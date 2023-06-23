@@ -7,5 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 21 Jun 2023 22:08:35 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Me</title>
+      <link>https://blog.laelaps.us/about/</link>
+      <pubDate>Thu, 22 Jun 2023 22:50:28 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/about/</guid>
+      <description>你好，我是laelaps，一名即将步入社会的计算机爱好者。
+在希腊神话中，laelaps是一只总能抓住任何猎物的狗，但他被利用来抓一只永远不能被抓到的狐狸。一只可以抓到任何猎物的狗，一只永远不能被抓到的狐狸，这形成了一个悖论，在最后宙斯将他们两个变成了两颗石头，并扔进了星空中，形成了Canis Major(Laelaps)和Canis Minor两个星座，而现在的他们仍然在星空中相互追逐。
+建立这个博客的目的主要是因为自己看过的内容很容易忘记，虽然有在记笔记，但是总是不那么的完善，我希望可以用这个博客来记录我自己的学习路径，强化我的记忆，所以整个博客就是为了我自己而创建。博客使用hugo + hugo-theme-yinyang + Github Page搭建而成。</description>
+    </item>
+    
   </channel>
 </rss>
