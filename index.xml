@@ -6,7 +6,19 @@
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Jun 2023 23:56:09 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Jul 2023 15:37:23 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>归并排序</title>
+      <link>https://blog.laelaps.us/posts/algorithm/mergesort/</link>
+      <pubDate>Sat, 01 Jul 2023 15:37:23 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/algorithm/mergesort/</guid>
+      <description>归并排序是一次采用分而治之算法解决排序的问题，他是一种高效的，可以产生稳定的排序方法。
+主要思想 归并排序是一中分而治之的算法，他将一个大问题不断分解成一序列小问题，在所有的小问题中寻求最优解。 在排序的过程中，我们将一个大的数组，分解成两个较小的子数组，而在将这两个子数组在次进行递归划分，知道子数组长度为1（此时我们认为在他以及是有序的），然后对子数组进行排序。 排序示意图： 性能分析 算法的时间复杂度在最坏，最好，平均复杂度都为O(nlogn)，而空间复杂度为O(n)（可以使用空间复杂度为O(1)）。
+算法实现 归并 我们要将两个已排序的子数组进行归并，其实就是将两个子数组在次合并成一个大的已经排序好的数组。这里我们需要一个辅助数组来存储将要归并的数组，通常这个辅助数组的大小通常为要排序数组的大小。我们将要排序的子数组全部拷贝到辅助数组，然后再将排序好的数据复制到要排序的数组。
+/** * 排序归并数组 * 归并 a[lo .. mid] 和 a[mid + 1 .. hi] */ private static void merge(Integer[] a, int lo, int mid, int hi){ int i = lo, j = mid + 1; // 复制数组到辅助数组，因为源数组会被排序结果覆盖 if (hi + 1 - lo &amp;gt;= 0) System.arraycopy(a, lo, aux, lo, hi + 1 - lo); for (int k = lo; k &amp;lt;= hi; k++){ // 需要比较k次 // 左半边用尽，将右半边剩余的数据依次放入 if ( i &amp;gt; mid) a[k] = aux[j++]; // 右半边用尽，将左半边剩余的数据依次放入 else if ( j &amp;gt; hi) a[k] = aux[i++]; // 左半边首字符小于右半边字符，将左半边字符放入 else if ( aux[i] &amp;lt; aux[j]) a[k] = aux[i++]; // 左半边首字符大于右半边字符，将右半边字符放入 else a[k] = aux[j++]; } } 自顶向下（递归） 他将数组不断的分解，直到分解到大小为1。然后对左半部分进行排序，然后在对右半部分进行排序，最后将左右两部分合并在一起，不断的递归后完成对数组的排序。 public static void sortByRec(Integer[] a){ aux = new Integer[a.</description>
+    </item>
+    
     <item>
       <title>2023年7月计划</title>
       <link>https://blog.laelaps.us/posts/plan/2023%E5%B9%B47%E6%9C%88%E8%AE%A1%E5%88%92/</link>
