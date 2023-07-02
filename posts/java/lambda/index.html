@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.115.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="laelaps" />
+  <meta property="og:url" content="https://blog.laelaps.us/posts/java/lambda/" />
+  <link rel="canonical" href="https://blog.laelaps.us/posts/java/lambda/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/blog.laelaps.us"
+      },
+      "articleSection" : "posts",
+      "name" : "Java Lambda表达式",
+      "headline" : "Java Lambda表达式",
+      "description" : "是什么？ Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。 我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。\n\/\/ 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(\u0026#34;abc\u0026#34;); } }); \/\/ 使用lambda表达式 new Thread(() -\u0026gt; System.out.println(\u0026#34;xyz\u0026#34;)).start(); 语法 Java中lambda表达式的形式：参数 -\u0026gt;（箭头）{代码块}\/一个表达式。\n如果需要实现的方法代码很多，可以将代码放入一个{}中 \/\/ 使用一个代码块实现，将代码放入一个{}中 Arrays.sort(arr, (String str1, String str2) -\u0026gt; { if(str1.length() \u0026lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambda表达式可以推导出参数的字符串，我们可以参数的类型省去，但是值得注意的是Java是一种强类型的编程语言，他需要明确的知道参数的类型，这里可以省去的原因是Java编译器可以从上下文中推到出来。 Arrays.sort(arr, (str1, str2) -\u0026gt; { if(str1.length() \u0026lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambada表达式只有一个参数，我们可以同时将参数类型以及()省去。 List\u0026lt;String\u0026gt; strings = List.",
+      "inLanguage" : "en-US",
+      "author" : "laelaps",
+      "creator" : "laelaps",
+      "publisher": "laelaps",
+      "accountablePerson" : "laelaps",
+      "copyrightHolder" : "laelaps",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-07-02 15:25:11 \u002b0800 \u002b0800",
+      "dateModified" : "2023-07-02 15:25:11 \u002b0800 \u002b0800",
+      "url" : "https:\/\/blog.laelaps.us\/posts\/java\/lambda\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Java Lambda表达式</title>
+  <meta property="og:title" content="Java Lambda表达式" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="是什么？ Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。 我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。
+// 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;#34;abc&amp;#34;); } }); // 使用lambda表达式 new Thread(() -&amp;gt; System.out.println(&amp;#34;xyz&amp;#34;)).start(); 语法 Java中lambda表达式的形式：参数 -&amp;gt;（箭头）{代码块}/一个表达式。
+如果需要实现的方法代码很多，可以将代码放入一个{}中 // 使用一个代码块实现，将代码放入一个{}中 Arrays.sort(arr, (String str1, String str2) -&amp;gt; { if(str1.length() &amp;lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambda表达式可以推导出参数的字符串，我们可以参数的类型省去，但是值得注意的是Java是一种强类型的编程语言，他需要明确的知道参数的类型，这里可以省去的原因是Java编译器可以从上下文中推到出来。 Arrays.sort(arr, (str1, str2) -&amp;gt; { if(str1.length() &amp;lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambada表达式只有一个参数，我们可以同时将参数类型以及()省去。 List&amp;lt;String&amp;gt; strings = List." />
+  <meta name="description" content="是什么？ Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。 我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。
+// 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;#34;abc&amp;#34;); } }); // 使用lambda表达式 new Thread(() -&amp;gt; System.out.println(&amp;#34;xyz&amp;#34;)).start(); 语法 Java中lambda表达式的形式：参数 -&amp;gt;（箭头）{代码块}/一个表达式。
+如果需要实现的方法代码很多，可以将代码放入一个{}中 // 使用一个代码块实现，将代码放入一个{}中 Arrays.sort(arr, (String str1, String str2) -&amp;gt; { if(str1.length() &amp;lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambda表达式可以推导出参数的字符串，我们可以参数的类型省去，但是值得注意的是Java是一种强类型的编程语言，他需要明确的知道参数的类型，这里可以省去的原因是Java编译器可以从上下文中推到出来。 Arrays.sort(arr, (str1, str2) -&amp;gt; { if(str1.length() &amp;lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambada表达式只有一个参数，我们可以同时将参数类型以及()省去。 List&amp;lt;String&amp;gt; strings = List." />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:none;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body a{color:#1bc92a}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{text-align:center}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}}@media screen and (max-width:48em){.posts-category{display:none}}table{width:100%;border-collapse:collapse;border:1px solid}tr,th,td{border:1px solid;height:40px;padding-left:10px}thead{background:#ebebeb}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >Laelaps</a
+    >
+  </div>
+  <div class="header-subtitle">I am laelaps</div>
+</header>
+<div class="row end-md center-xs header-items">
+  
+  <div class="header-item">
+    <a href="/categories/plan" target="_blank">Plan</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories" target="_blank">Categories</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories/java" target="_blank">Java</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories/go" target="_blank">Go</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/about" target="_blank">About Me</a>
+  </div>
+  
+</div>
+<div class="row end-xs">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Java Lambda表达式</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-07-02 15:25:11 &#43;0800">
+                02 Jul 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="/">@laelaps</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+        <aside id="toc-container">
+          <details>
+            <summary>Table of Contents</summary>
+            <aside class="toc">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#是什么">是什么？</a></li>
+    <li><a href="#语法">语法</a></li>
+    <li><a href="#函数式接口">函数式接口</a>
+      <ul>
+        <li><a href="#自定义函数接口">自定义函数接口</a></li>
+      </ul>
+    </li>
+    <li><a href="#引用">引用</a>
+      <ul>
+        <li><a href="#方法引用method-reference">方法引用（method reference）</a>
+          <ul>
+            <li><a href="#静态方法引用">静态方法引用</a></li>
+            <li><a href="#成员方法引用">成员方法引用</a></li>
+            <li><a href="#类的对象的实例方法">类的对象的实例方法</a></li>
+            <li><a href="#注意">注意</a></li>
+          </ul>
+        </li>
+        <li><a href="#构造器引用">构造器引用</a></li>
+      </ul>
+    </li>
+    <li><a href="#变量作用域">变量作用域</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#this">this</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+            </aside>
+        </details> 
+        </aside>
+
+        <div class="post-content markdown-body">
+          
+          <h1 id="是什么">是什么？</h1>
+<p>Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。
+我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 实现一个内部类来传递需要实现的代码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Thread thread1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Runnable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">});</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 使用lambda表达式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;xyz&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><h1 id="语法">语法</h1>
+<p>Java中lambda表达式的形式：参数 -&gt;（箭头）{代码块}/一个表达式。</p>
+<ol>
+<li>如果需要实现的方法代码很多，可以将代码放入一个{}中</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> <span style="color:#75715e">// 使用一个代码块实现，将代码放入一个{}中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>String str1<span style="color:#f92672">,</span> String str2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>str1<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">&lt;</span> str2<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">())</span> <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>str1<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> str2<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">())</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">});</span>
+</span></span></code></pre></div><ol start="2">
+<li>如果lambda表达式可以推导出参数的字符串，我们可以参数的类型省去，但是值得注意的是Java是一种强类型的编程语言，他需要明确的知道参数的类型，这里可以省去的原因是Java编译器可以从上下文中推到出来。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>str1<span style="color:#f92672">,</span> str2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>str1<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">&lt;</span> str2<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">())</span> <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>str1<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> str2<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">())</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">});</span>
+</span></span></code></pre></div><ol start="3">
+<li>如果lambada表达式只有一个参数，我们可以同时将参数类型以及<code>()</code>省去。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> strings <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;xyz&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;wert&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>strings<span style="color:#f92672">.</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">((</span>String s<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 同时省去参数类型以及()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>strings<span style="color:#f92672">.</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>s<span style="color:#f92672">));</span>
+</span></span></code></pre></div><ol start="4">
+<li>如果lambda表达式中没有参数，我们也需要同时提供空括号</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;xyz&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><ol start="5">
+<li>如果只是一个表达式，编译器会自动返回值，如果使用大括号包围，则需要手动的指明返回值；并且返回值的类型可以自动推到。</li>
+</ol>
+<h1 id="函数式接口">函数式接口</h1>
+<p>函数式接口（Functional interface）是有且只有一个抽象方法的接口。在<code>java.util.function</code>包中有许多非常通用的函数式接口。</p>
+<h2 id="自定义函数接口">自定义函数接口</h2>
+<p>自定义函数接口跟我们普通的定义函数接口没有任何的区别，但是我们有一个<strong>可选</strong>的<code>@FunctionalInterface</code>来注解这个接口，这个可以保证这个接口有只能有一个抽象方法；在javadoc中也会显示这个接口为一个函数式编接口。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@FunctionalInterface</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Multiply</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">multiplyAB</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> A<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> B<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>multiplyAB<span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">10</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>a<span style="color:#f92672">,</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">*</span> b<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">multiplyAB</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> b<span style="color:#f92672">,</span> Multiply multiply<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> multiply<span style="color:#f92672">.</span><span style="color:#a6e22e">multiplyAB</span><span style="color:#f92672">(</span>a<span style="color:#f92672">,</span>b<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h1 id="引用">引用</h1>
+<h2 id="方法引用method-reference">方法引用（method reference）</h2>
+<p>在一般情况下，我们都是自己写lambda的body部分，但是在有一些情况下，在Java中有一些方法已经实现了类似的操作，我们只需要引用他，引用的条件是方法的签名必须要接口恰好一致。
+使用<code>::</code>来表示引用运算符</p>
+<h3 id="静态方法引用">静态方法引用</h3>
+<p><code>Class::staticMethod</code>
+使用静态方法引用实时将所有的方法都传递到静态方法中
+<code>Math::pow</code> -&gt; <code>(x, y) - &gt; Math.pow(x,y)</code></p>
+<h3 id="成员方法引用">成员方法引用</h3>
+<p><code>object::instanceMethod</code>
+<code>System.out::println()</code> -&gt; <code>x -&gt; System.out.println(x)</code>
+<code>System.out</code>为对象，<code>println()</code>为对象中的实例方法</p>
+<h3 id="类的对象的实例方法">类的对象的实例方法</h3>
+<p><code>Class::instanceMethod</code>
+他接受的第一个参数成为方法的隐式参数，及使用第一个参数去调用这个方法。
+<code>String::compareToIgnoreCase</code> -&gt; <code>(x, y) -&gt; x.compareToIgnoreCase(y)</code></p>
+<h3 id="注意">注意</h3>
+<ol>
+<li>如果有多个重名的重载方法，编译器会从找出你所指的那个方法。</li>
+<li>在方法应用时也可以使用<code>this</code> 和 <code>super</code>。</li>
+</ol>
+<h2 id="构造器引用">构造器引用</h2>
+<p>构造器的引用跟方法的引用类似，区别在于方法名为<code>new</code>，如果有多个构造器，他会从上下文中推倒相对应的来构造器。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> strings <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;xyz&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;wert&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Person<span style="color:#f92672">&gt;</span> collect <span style="color:#f92672">=</span> strings<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Person<span style="color:#f92672">::</span><span style="color:#66d9ef">new</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toList</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>我们没有办法将一个stream流中的数据创建一个对应类型的数组保存，因为Java中不可能创建一个泛型数组<code>new T[]</code>，但是我们可以通过<code>stream.toArray</code>来生产一个数字，但是他默认返回的是一个<code>Object[]</code>类型的数组，但是他同时接受一个指定类型的lambda函数，我们可以提供一个相应类型的构造函数。</p>
+<h1 id="变量作用域">变量作用域</h1>
+<p>lambda 有三部分：一个代码块，参数，以及自由变量的值。
+自由变量的值是可以重调用这个方法中<strong>捕获</strong>的，他获取的变量必须是事实最终变量（effectively final）；就是确保这个变量初始化后不会再为他赋值（如下面的abc）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>    String abc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1000</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeException<span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;sleep 1000 millis, abc is &#34;</span> <span style="color:#f92672">+</span> abc<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;main thread quite&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>在一个lambda表达式中不能有两个同名的局部量</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Path first <span style="color:#f92672">=</span> Path<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/usr/bin&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Comparator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> comp <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>first<span style="color:#f92672">,</span> second<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> first<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> second<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><h3 id="this">this</h3>
+<p>如果一个lambda中使用了<code>this</code>，那么<code>this</code>这是代表调用这个lambda函数的这个方法。</p>
+<h1 id="总结">总结</h1>
+<p>我们使用lambda函数是为了他的延迟执行（deferred execution），是当有需要的时候才会执行，而不需要的时候并不消耗额外的CPU。如果我们使用内部类的方法，那么无论什么时候我们都需要先去<code>new</code>一个对象，如果我们并不需要去使用这个内部类的实现，其实在浪费CPU、内存。采用lambda函数可以避免这种情况。</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

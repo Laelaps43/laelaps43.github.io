@@ -6,7 +6,18 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Jul 2023 15:37:23 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 Jul 2023 15:25:11 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Lambda表达式</title>
+      <link>https://blog.laelaps.us/posts/java/lambda/</link>
+      <pubDate>Sun, 02 Jul 2023 15:25:11 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/java/lambda/</guid>
+      <description>是什么？ Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。 我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。
+// 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;#34;abc&amp;#34;); } }); // 使用lambda表达式 new Thread(() -&amp;gt; System.out.println(&amp;#34;xyz&amp;#34;)).start(); 语法 Java中lambda表达式的形式：参数 -&amp;gt;（箭头）{代码块}/一个表达式。
+如果需要实现的方法代码很多，可以将代码放入一个{}中 // 使用一个代码块实现，将代码放入一个{}中 Arrays.sort(arr, (String str1, String str2) -&amp;gt; { if(str1.length() &amp;lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambda表达式可以推导出参数的字符串，我们可以参数的类型省去，但是值得注意的是Java是一种强类型的编程语言，他需要明确的知道参数的类型，这里可以省去的原因是Java编译器可以从上下文中推到出来。 Arrays.sort(arr, (str1, str2) -&amp;gt; { if(str1.length() &amp;lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambada表达式只有一个参数，我们可以同时将参数类型以及()省去。 List&amp;lt;String&amp;gt; strings = List.</description>
+    </item>
+    
     <item>
       <title>归并排序</title>
       <link>https://blog.laelaps.us/posts/algorithm/mergesort/</link>
