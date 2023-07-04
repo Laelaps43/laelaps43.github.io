@@ -6,7 +6,20 @@
     <description>Recent content in Java on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Jul 2023 15:25:11 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Jul 2023 09:05:31 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java 函数式接口</title>
+      <link>https://blog.laelaps.us/posts/java/functionalinterface/</link>
+      <pubDate>Mon, 03 Jul 2023 09:05:31 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/java/functionalinterface/</guid>
+      <description>函数式接口 函数式接口（Functional interface）是有且只有一个抽象方法的接口。在java.util.function包中有许多非常通用的函数式接口。
+自定义函数接口 自定义函数接口跟我们普通的定义函数接口没有任何的区别，但是我们有一个可选的@FunctionalInterface来注解这个接口，这个可以保证这个接口有只能有一个抽象方法；在javadoc中也会显示这个接口为一个函数式编接口。
+@FunctionalInterface public interface Multiply { int multiplyAB(int A, int B); } public static void main(String[] args) { System.out.println(multiplyAB(1, 10, (a, b) -&amp;gt; a * b)); } public static int multiplyAB(int a, int b, Multiply multiply){ return multiply.multiplyAB(a,b); } 常用函数式接口 Supplier接口 对象实例的提供者，有一个名为get的抽象方法，没有任何参数，返回一个泛型对象；我们需要去实现get方法，让他生产一个泛型对象。
+package java.util.function; @FunctionalInterface public interface Supplier&amp;lt;T&amp;gt; { T get(); } 除了Supplier 接口的使用，我们还可以指定类型，如BooleanJSupplier DoubleSupplier IntSupplier LongSupplier。 |接口名称|方法名称|方法签名|
+Person person = (Person) Optional.empty().orElseGet(() -&amp;gt; new Person(&amp;#34;laelaps&amp;#34;)); System.</description>
+    </item>
+    
     <item>
       <title>Java Lambda表达式</title>
       <link>https://blog.laelaps.us/posts/java/lambda/</link>
