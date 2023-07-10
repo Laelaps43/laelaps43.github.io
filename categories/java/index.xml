@@ -6,7 +6,18 @@
     <description>Recent content in Java on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Jul 2023 19:38:17 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Jul 2023 16:31:01 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java判断基本数据类型</title>
+      <link>https://blog.laelaps.us/posts/java/judgeprimitivetype/</link>
+      <pubDate>Sat, 08 Jul 2023 16:31:01 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/java/judgeprimitivetype/</guid>
+      <description>Content 我们需要判断当前数据类型是不是基本数据类型，我们有以下一些方法：
+1. class类提供的 isPrimitive方法 public void testIsPrimitiveType(){ System.out.println(int.class.isPrimitive()); System.out.println(String.class.isPrimitive()); System.out.println(boolean.class.isPrimitive()); System.out.println(void.class.isPrimitive()); System.out.println(Double.class.isPrimitive()); // false } 这个方法用于判断Class对象是否为一个基本数据类型和Void，如果是八大基本类型加void，则返回true，否则返回false。
+2. class也可以使用isArray()判断是否为数组类型 public void testIsArray(){ int[] ints = new int[0]; System.out.println(ints.getClass().isArray()); System.out.println(&amp;#34;1&amp;#34;.getClass().isArray()); } 3. getName 引用类型不是数组类型 返回二进制名称 基本类型或者void，返回的是一个String字符串 数组类型，由多个或一个[后接内部形式的元素类型的名称组成。 @Test public void testGetName(){ MergeSort mergeSort = new MergeSort(); System.out.println(mergeSort.getClass().getName()); // us.laelaps.sort.MergeSort System.out.println(int.class.getName()); // int System.out.println(String.class.getName()); // java.lang.String System.out.println(void.class.getName()); // void int[] ints = new int[1]; System.out.println(ints.getClass().getName()); // [I String[][] strings = new String[2][3]; System.</description>
+    </item>
+    
     <item>
       <title>Java集合Iterator</title>
       <link>https://blog.laelaps.us/posts/java/iterator/</link>
