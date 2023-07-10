@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="laelaps" />
-  <meta property="og:url" content="https://blog.laelaps.us/posts/" />
-  <link rel="canonical" href="https://blog.laelaps.us/posts/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="">
+  <meta property="og:url" content="https://blog.laelaps.us/posts/java/listiterator/" />
+  <link rel="canonical" href="https://blog.laelaps.us/posts/java/listiterator/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="">
 
   <script type="application/ld+json">
   {
@@ -19,9 +19,9 @@
            "@id": "https:\/\/blog.laelaps.us"
       },
       "articleSection" : "posts",
-      "name" : "Posts",
-      "headline" : "Posts",
-      "description" : "",
+      "name" : "Java集合ListIterator",
+      "headline" : "Java集合ListIterator",
+      "description" : "ListIterator ListIterator是一只适用于List的双向迭代器；他扩展了默认的Iterator接口。\nListIterator 方法 方法 描述 boolean hasNext() 判断迭起器向前迭代时是否具有元素 boolean hasPrevious() 判断迭起器向后迭代时是否具有元素 E next(); 返回下一个元素 E previous(); 返回上一个元素 int nextIndex(); 返回下一个元素的索引，如果在末尾则返回list的大小 int previousIndex(); 返回上一个元素的索引，如果在list的开头返回 -1 void add(E e) 将指定的元素插入列表中，位于next 之前 void remove(); 删除由next 或者 previous 返回的最后一个元素 void set(E e); 替换由next 或者 previous 返回的最后一个元素 @Test public void testList(){ List\u0026lt;String\u0026gt; strings = new ArrayList\u0026lt;\u0026gt;(); strings.add(\u0026#34;a\u0026#34;); strings.add(\u0026#34;b\u0026#34;); strings.add(\u0026#34;c\u0026#34;); ListIterator\u0026lt;String\u0026gt; stringListIterator = strings.listIterator(); stringListIterator.add(\u0026#34;1\u0026#34;); System.out.println(stringListIterator.hasNext()); System.out.println(stringListIterator.hasPrevious()); System.out.println(stringListIterator.next()); System.out.println(stringListIterator.previous()); System.out.println(stringListIterator.nextIndex()); System.out.println(stringListIterator.previousIndex()); stringListIterator.next(); stringListIterator.next(); stringListIterator.remove(); System.out.println(strings); } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -31,15 +31,17 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-07-10 15:58:37 \u002b0800 \u002b0800",
       "dateModified" : "2023-07-10 15:58:37 \u002b0800 \u002b0800",
-      "url" : "https:\/\/blog.laelaps.us\/posts\/",
+      "url" : "https:\/\/blog.laelaps.us\/posts\/java\/listiterator\/",
       "keywords" : [  ]
   }
 </script>
-<title>Posts</title>
-  <meta property="og:title" content="Posts" />
+<title>Java集合ListIterator</title>
+  <meta property="og:title" content="Java集合ListIterator" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="ListIterator ListIterator是一只适用于List的双向迭代器；他扩展了默认的Iterator接口。
+ListIterator 方法 方法 描述 boolean hasNext() 判断迭起器向前迭代时是否具有元素 boolean hasPrevious() 判断迭起器向后迭代时是否具有元素 E next(); 返回下一个元素 E previous(); 返回上一个元素 int nextIndex(); 返回下一个元素的索引，如果在末尾则返回list的大小 int previousIndex(); 返回上一个元素的索引，如果在list的开头返回 -1 void add(E e) 将指定的元素插入列表中，位于next 之前 void remove(); 删除由next 或者 previous 返回的最后一个元素 void set(E e); 替换由next 或者 previous 返回的最后一个元素 @Test public void testList(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.add(&amp;#34;a&amp;#34;); strings.add(&amp;#34;b&amp;#34;); strings.add(&amp;#34;c&amp;#34;); ListIterator&amp;lt;String&amp;gt; stringListIterator = strings.listIterator(); stringListIterator.add(&amp;#34;1&amp;#34;); System.out.println(stringListIterator.hasNext()); System.out.println(stringListIterator.hasPrevious()); System.out.println(stringListIterator.next()); System.out.println(stringListIterator.previous()); System.out.println(stringListIterator.nextIndex()); System.out.println(stringListIterator.previousIndex()); stringListIterator.next(); stringListIterator.next(); stringListIterator.remove(); System.out.println(strings); } " />
+  <meta name="description" content="ListIterator ListIterator是一只适用于List的双向迭代器；他扩展了默认的Iterator接口。
+ListIterator 方法 方法 描述 boolean hasNext() 判断迭起器向前迭代时是否具有元素 boolean hasPrevious() 判断迭起器向后迭代时是否具有元素 E next(); 返回下一个元素 E previous(); 返回上一个元素 int nextIndex(); 返回下一个元素的索引，如果在末尾则返回list的大小 int previousIndex(); 返回上一个元素的索引，如果在list的开头返回 -1 void add(E e) 将指定的元素插入列表中，位于next 之前 void remove(); 删除由next 或者 previous 返回的最后一个元素 void set(E e); 替换由next 或者 previous 返回的最后一个元素 @Test public void testList(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.add(&amp;#34;a&amp;#34;); strings.add(&amp;#34;b&amp;#34;); strings.add(&amp;#34;c&amp;#34;); ListIterator&amp;lt;String&amp;gt; stringListIterator = strings.listIterator(); stringListIterator.add(&amp;#34;1&amp;#34;); System.out.println(stringListIterator.hasNext()); System.out.println(stringListIterator.hasPrevious()); System.out.println(stringListIterator.next()); System.out.println(stringListIterator.previous()); System.out.println(stringListIterator.nextIndex()); System.out.println(stringListIterator.previousIndex()); stringListIterator.next(); stringListIterator.next(); stringListIterator.remove(); System.out.println(strings); } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
@@ -66,10 +68,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -106,133 +109,139 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term"></h1>
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2023</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-07-10 15:58:37 &#43;0800">Jul 10</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/java/listiterator/">Java集合ListIterator</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-07-08 16:31:01 &#43;0800">Jul 08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/java/judgeprimitivetype/">Java判断基本数据类型</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-07-08 12:21:57 &#43;0800">Jul 08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/java/collecton/">Java集合Collecton</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-07-06 19:38:17 &#43;0800">Jul 06</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/java/iterator/">Java集合Iterator</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-07-03 09:05:31 &#43;0800">Jul 03</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/java/functionalinterface/">Java 函数式接口</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-07-02 15:25:11 &#43;0800">Jul 02</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/java/lambda/">Java Lambda表达式</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-07-01 15:37:23 &#43;0800">Jul 01</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/algorithm/mergesort/">归并排序</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-06-23 23:56:09 &#43;0800">Jun 23</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/plan/2023%E5%B9%B47%E6%9C%88%E8%AE%A1%E5%88%92/">2023年7月计划</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-06-23 23:17:37 &#43;0800">Jun 23</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/plan/2023%E5%B9%B47-10%E6%9C%88%E8%AE%A1%E5%88%92/">2023年7-10月计划</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">Java集合ListIterator</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-07-10 15:58:37 &#43;0800">
+                10 Jul 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="/">@laelaps</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+        <aside id="toc-container">
+          <details>
+            <summary>Table of Contents</summary>
+            <aside class="toc">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#listiterator">ListIterator</a>
+      <ul>
+        <li><a href="#listiterator-方法">ListIterator 方法</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </aside>
+        </details> 
+        </aside>
+
+        <div class="post-content markdown-body">
+          
+          <h1 id="listiterator">ListIterator</h1>
+<p><code>ListIterator</code>是一只适用于<code>List</code>的双向迭代器；他扩展了默认的<code>Iterator</code>接口。</p>
+<h2 id="listiterator-方法">ListIterator 方法</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>boolean hasNext()</code></td>
+<td>判断迭起器向前迭代时是否具有元素</td>
+</tr>
+<tr>
+<td><code>boolean hasPrevious()</code></td>
+<td>判断迭起器向后迭代时是否具有元素</td>
+</tr>
+<tr>
+<td><code>E next();</code></td>
+<td>返回下一个元素</td>
+</tr>
+<tr>
+<td><code>E previous();</code></td>
+<td>返回上一个元素</td>
+</tr>
+<tr>
+<td><code>int nextIndex();</code></td>
+<td>返回下一个元素的索引，如果在末尾则返回list的大小</td>
+</tr>
+<tr>
+<td><code>int previousIndex();</code></td>
+<td>返回上一个元素的索引，如果在list的开头返回 -1</td>
+</tr>
+<tr>
+<td><code>void add(E e)</code></td>
+<td>将指定的元素插入列表中，位于<code>next</code> 之前</td>
+</tr>
+<tr>
+<td><code>void remove();</code></td>
+<td>删除由<code>next</code> 或者 <code>previous</code> 返回的最后一个元素</td>
+</tr>
+<tr>
+<td><code>void set(E e);</code></td>
+<td>替换由<code>next</code> 或者 <code>previous</code> 返回的最后一个元素</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testList</span><span style="color:#f92672">(){</span>  
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> strings <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>  
+</span></span><span style="display:flex;"><span>    strings<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    strings<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    strings<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    ListIterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> stringListIterator <span style="color:#f92672">=</span> strings<span style="color:#f92672">.</span><span style="color:#a6e22e">listIterator</span><span style="color:#f92672">();</span>  
+</span></span><span style="display:flex;"><span>    stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">());</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">hasPrevious</span><span style="color:#f92672">());</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">());</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">previous</span><span style="color:#f92672">());</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">nextIndex</span><span style="color:#f92672">());</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">previousIndex</span><span style="color:#f92672">());</span>  
+</span></span><span style="display:flex;"><span>    stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>  
+</span></span><span style="display:flex;"><span>    stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>  
+</span></span><span style="display:flex;"><span>    stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">();</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>strings<span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
 
         <div class="site-footer">
   
@@ -252,6 +261,8 @@
     
   
 </script>
+
+  
 
 </body>
 
