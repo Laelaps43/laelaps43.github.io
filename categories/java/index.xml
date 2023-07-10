@@ -18,6 +18,24 @@ ListIterator 方法 方法 描述 boolean hasNext() 判断迭起器向前迭代�
     </item>
     
     <item>
+      <title>Java集合List</title>
+      <link>https://blog.laelaps.us/posts/java/list/</link>
+      <pubDate>Mon, 10 Jul 2023 15:25:27 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/java/list/</guid>
+      <description>Content List 是一个接口，是对应的是一组元素为有序的，可重复的集合；他基础于Collection，但List又有一些独特的方法。
+位置相关 E get(int index); 接受一个int类型的参数index，index &amp;lt; 0 || index &amp;gt;= size() 触发越界异常。
+E set(int index, E element); 在指定位置添加元素，添加成功后返回原来这个位置的元素。
+void add(int index, E element); 在指定的位置上添加元素，在这个位置之后的元素（包括这个元素）向右移动。
+E remove(int index); 删除指定位置上的元素
+搜索 int indexOf(Object o); 在给定的List中查找o第一次出现位置，查找到返回所在位置，没有则返回-1。
+int lastIndexOf(Object o); 与上面那个相反，这个是从后往前找。
+迭代 ListIterator&amp;lt;E&amp;gt; listIterator() 返回一个ListIterator迭代器
+ListIterator&amp;lt;E&amp;gt; listIterator(int index) 返回一ListIterator迭代器，但是他将这个”指针“放到指定的位置，所以next是指定的位置，而previous则是index - 1的位置。
+@Test public void testList3(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.add(&amp;#34;a&amp;#34;); strings.add(&amp;#34;b&amp;#34;); strings.add(&amp;#34;c&amp;#34;); ListIterator&amp;lt;String&amp;gt; stringListIterator = strings.listIterator(1); System.out.println(stringListIterator.previousIndex()); System.out.println(stringListIterator.nextIndex()); } 范围操作 List&amp;lt;E&amp;gt; subList(int fromIndex, int toIndex) 返回的是一个List的一个视图，所有所有的操作都会返回在原来的数组之上。</description>
+    </item>
+    
+    <item>
       <title>Java判断基本数据类型</title>
       <link>https://blog.laelaps.us/posts/java/judgeprimitivetype/</link>
       <pubDate>Sat, 08 Jul 2023 16:31:01 +0800</pubDate>

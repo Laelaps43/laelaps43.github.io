@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="laelaps" />
-  <meta property="og:url" content="https://blog.laelaps.us/categories/" />
-  <link rel="canonical" href="https://blog.laelaps.us/categories/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="">
+  <meta property="og:url" content="https://blog.laelaps.us/posts/java/list/" />
+  <link rel="canonical" href="https://blog.laelaps.us/posts/java/list/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="">
 
   <script type="application/ld+json">
   {
@@ -18,10 +18,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/blog.laelaps.us"
       },
-      "articleSection" : "categories",
-      "name" : "文章分类",
-      "headline" : "文章分类",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "Java集合List",
+      "headline" : "Java集合List",
+      "description" : "Content List 是一个接口，是对应的是一组元素为有序的，可重复的集合；他基础于Collection，但List又有一些独特的方法。\n位置相关 E get(int index); 接受一个int类型的参数index，index \u0026lt; 0 || index \u0026gt;= size() 触发越界异常。\nE set(int index, E element); 在指定位置添加元素，添加成功后返回原来这个位置的元素。\nvoid add(int index, E element); 在指定的位置上添加元素，在这个位置之后的元素（包括这个元素）向右移动。\nE remove(int index); 删除指定位置上的元素\n搜索 int indexOf(Object o); 在给定的List中查找o第一次出现位置，查找到返回所在位置，没有则返回-1。\nint lastIndexOf(Object o); 与上面那个相反，这个是从后往前找。\n迭代 ListIterator\u0026lt;E\u0026gt; listIterator() 返回一个ListIterator迭代器\nListIterator\u0026lt;E\u0026gt; listIterator(int index) 返回一ListIterator迭代器，但是他将这个”指针“放到指定的位置，所以next是指定的位置，而previous则是index - 1的位置。\n@Test public void testList3(){ List\u0026lt;String\u0026gt; strings = new ArrayList\u0026lt;\u0026gt;(); strings.add(\u0026#34;a\u0026#34;); strings.add(\u0026#34;b\u0026#34;); strings.add(\u0026#34;c\u0026#34;); ListIterator\u0026lt;String\u0026gt; stringListIterator = strings.listIterator(1); System.out.println(stringListIterator.previousIndex()); System.out.println(stringListIterator.nextIndex()); } 范围操作 List\u0026lt;E\u0026gt; subList(int fromIndex, int toIndex) 返回的是一个List的一个视图，所有所有的操作都会返回在原来的数组之上。",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -29,17 +29,35 @@
       "accountablePerson" : "laelaps",
       "copyrightHolder" : "laelaps",
       "copyrightYear" : "2023",
-      "datePublished": "2023-06-21 22:08:35 \u002b0800 \u002b0800",
-      "dateModified" : "2023-06-21 22:08:35 \u002b0800 \u002b0800",
-      "url" : "https:\/\/blog.laelaps.us\/categories\/",
+      "datePublished": "2023-07-10 15:25:27 \u002b0800 \u002b0800",
+      "dateModified" : "2023-07-10 15:25:27 \u002b0800 \u002b0800",
+      "url" : "https:\/\/blog.laelaps.us\/posts\/java\/list\/",
       "keywords" : [  ]
   }
 </script>
-<title>文章分类</title>
-  <meta property="og:title" content="文章分类" />
+<title>Java集合List</title>
+  <meta property="og:title" content="Java集合List" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Content List 是一个接口，是对应的是一组元素为有序的，可重复的集合；他基础于Collection，但List又有一些独特的方法。
+位置相关 E get(int index); 接受一个int类型的参数index，index &amp;lt; 0 || index &amp;gt;= size() 触发越界异常。
+E set(int index, E element); 在指定位置添加元素，添加成功后返回原来这个位置的元素。
+void add(int index, E element); 在指定的位置上添加元素，在这个位置之后的元素（包括这个元素）向右移动。
+E remove(int index); 删除指定位置上的元素
+搜索 int indexOf(Object o); 在给定的List中查找o第一次出现位置，查找到返回所在位置，没有则返回-1。
+int lastIndexOf(Object o); 与上面那个相反，这个是从后往前找。
+迭代 ListIterator&amp;lt;E&amp;gt; listIterator() 返回一个ListIterator迭代器
+ListIterator&amp;lt;E&amp;gt; listIterator(int index) 返回一ListIterator迭代器，但是他将这个”指针“放到指定的位置，所以next是指定的位置，而previous则是index - 1的位置。
+@Test public void testList3(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.add(&amp;#34;a&amp;#34;); strings.add(&amp;#34;b&amp;#34;); strings.add(&amp;#34;c&amp;#34;); ListIterator&amp;lt;String&amp;gt; stringListIterator = strings.listIterator(1); System.out.println(stringListIterator.previousIndex()); System.out.println(stringListIterator.nextIndex()); } 范围操作 List&amp;lt;E&amp;gt; subList(int fromIndex, int toIndex) 返回的是一个List的一个视图，所有所有的操作都会返回在原来的数组之上。" />
+  <meta name="description" content="Content List 是一个接口，是对应的是一组元素为有序的，可重复的集合；他基础于Collection，但List又有一些独特的方法。
+位置相关 E get(int index); 接受一个int类型的参数index，index &amp;lt; 0 || index &amp;gt;= size() 触发越界异常。
+E set(int index, E element); 在指定位置添加元素，添加成功后返回原来这个位置的元素。
+void add(int index, E element); 在指定的位置上添加元素，在这个位置之后的元素（包括这个元素）向右移动。
+E remove(int index); 删除指定位置上的元素
+搜索 int indexOf(Object o); 在给定的List中查找o第一次出现位置，查找到返回所在位置，没有则返回-1。
+int lastIndexOf(Object o); 与上面那个相反，这个是从后往前找。
+迭代 ListIterator&amp;lt;E&amp;gt; listIterator() 返回一个ListIterator迭代器
+ListIterator&amp;lt;E&amp;gt; listIterator(int index) 返回一ListIterator迭代器，但是他将这个”指针“放到指定的位置，所以next是指定的位置，而previous则是index - 1的位置。
+@Test public void testList3(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.add(&amp;#34;a&amp;#34;); strings.add(&amp;#34;b&amp;#34;); strings.add(&amp;#34;c&amp;#34;); ListIterator&amp;lt;String&amp;gt; stringListIterator = strings.listIterator(1); System.out.println(stringListIterator.previousIndex()); System.out.println(stringListIterator.nextIndex()); } 范围操作 List&amp;lt;E&amp;gt; subList(int fromIndex, int toIndex) 返回的是一个List的一个视图，所有所有的操作都会返回在原来的数组之上。" />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
@@ -109,79 +127,149 @@
 
         </div>
         <header class="post-header">
-          <h1 class="post-title">文章分类</h1>
+          <h1 class="post-title">Java集合List</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-07-10 15:25:27 &#43;0800">
+                10 Jul 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="/">@laelaps</a>
+              </div>
+              
+            </div>
+          </div>
           
         </header>
-        <div class="post-content markdown-body">
-          <p>已发布文章总数：10 <br>最近一次发布日期：
-            
-            2023-7-10
-            
-          </p>
+        <aside id="toc-container">
+          <details>
+            <summary>Table of Contents</summary>
+            <aside class="toc">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#content">Content</a>
+      <ul>
+        <li><a href="#位置相关">位置相关</a>
+          <ul>
+            <li><a href="#e-getint-index"><code>E get(int index);</code></a></li>
+            <li><a href="#e-setint-index-e-element"><code>E set(int index, E element);</code></a></li>
+            <li><a href="#void-addint-index-e-element"><code>void add(int index, E element);</code></a></li>
+            <li><a href="#e-removeint-index"><code>E remove(int index);</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#搜索">搜索</a>
+          <ul>
+            <li><a href="#int-indexofobject-o"><code>int indexOf(Object o);</code></a></li>
+            <li><a href="#int-lastindexofobject-o"><code>int lastIndexOf(Object o);</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#迭代">迭代</a>
+          <ul>
+            <li><a href="#listiteratore-listiterator"><code>ListIterator&lt;E&gt; listIterator()</code></a></li>
+            <li><a href="#listiteratore-listiteratorint-index"><code>ListIterator&lt;E&gt; listIterator(int index)</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#范围操作">范围操作</a>
+          <ul>
+            <li><a href="#liste-sublistint-fromindex-int-toindex"><code>List&lt;E&gt; subList(int fromIndex, int toIndex)</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#静态方法">静态方法</a>
+          <ul>
+            <li><a href="#of系列方法"><code>of</code>系列方法</a></li>
+            <li><a href="#copyof"><code>copyOf</code></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </aside>
+        </details> 
+        </aside>
 
-          <table>
-            <thead style="text-align: left;">
-              <th style="width: 40%;">Category</th>
-              <th style="width: 40%;">Last Updated Date </th>
-              <th style="width: 20%;">Count</th>
-            </thead>
-            <tbody>
-              
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/algorithm/">Algorithm</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-07-01 15:37:23 &#43;0800">
-                    2023-07-01
-                  </time>
-                </td>
-                
-                <td> 1 </td>
-              </tr>
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/java/">Java</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-07-10 15:58:37 &#43;0800">
-                    2023-07-10
-                  </time>
-                </td>
-                
-                <td> 7 </td>
-              </tr>
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/plan/">Plan</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-06-23 23:56:09 &#43;0800">
-                    2023-06-23
-                  </time>
-                </td>
-                
-                <td> 2 </td>
-              </tr>
-              
-              
-            </tbody>
-          </table>
+        <div class="post-content markdown-body">
+          
+          <h1 id="content">Content</h1>
+<p>List 是一个接口，是对应的是一组元素为有序的，可重复的集合；他基础于Collection，但List又有一些独特的方法。</p>
+<h2 id="位置相关">位置相关</h2>
+<h3 id="e-getint-index"><code>E get(int index);</code></h3>
+<p>接受一个int类型的参数index，<code>index &lt; 0 || index &gt;= size()</code> 触发越界异常。</p>
+<h3 id="e-setint-index-e-element"><code>E set(int index, E element);</code></h3>
+<p>在指定位置添加元素，添加成功后返回原来这个位置的元素。</p>
+<h3 id="void-addint-index-e-element"><code>void add(int index, E element);</code></h3>
+<p>在指定的位置上添加元素，在这个位置之后的元素（包括这个元素）向右移动。</p>
+<h3 id="e-removeint-index"><code>E remove(int index);</code></h3>
+<p>删除指定位置上的元素</p>
+<h2 id="搜索">搜索</h2>
+<h3 id="int-indexofobject-o"><code>int indexOf(Object o);</code></h3>
+<p>在给定的List中查找<code>o</code>第一次出现位置，查找到返回所在位置，没有则返回-1。</p>
+<h3 id="int-lastindexofobject-o"><code>int lastIndexOf(Object o);</code></h3>
+<p>与上面那个相反，这个是从后往前找。</p>
+<h2 id="迭代">迭代</h2>
+<h3 id="listiteratore-listiterator"><code>ListIterator&lt;E&gt; listIterator()</code></h3>
+<p>返回一个ListIterator迭代器</p>
+<h3 id="listiteratore-listiteratorint-index"><code>ListIterator&lt;E&gt; listIterator(int index)</code></h3>
+<p>返回一ListIterator迭代器，但是他将这个”指针“放到指定的位置，所以next是指定的位置，而previous则是index - 1的位置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testList3</span><span style="color:#f92672">(){</span>  
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> strings <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>  
+</span></span><span style="display:flex;"><span>    strings<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    strings<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    strings<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    ListIterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> stringListIterator <span style="color:#f92672">=</span> strings<span style="color:#f92672">.</span><span style="color:#a6e22e">listIterator</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">previousIndex</span><span style="color:#f92672">());</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>stringListIterator<span style="color:#f92672">.</span><span style="color:#a6e22e">nextIndex</span><span style="color:#f92672">());</span>  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="范围操作">范围操作</h2>
+<h3 id="liste-sublistint-fromindex-int-toindex"><code>List&lt;E&gt; subList(int fromIndex, int toIndex)</code></h3>
+<p>返回的是一个List的一个视图，所有所有的操作都会返回在原来的数组之上。</p>
+<h2 id="静态方法">静态方法</h2>
+<h3 id="of系列方法"><code>of</code>系列方法</h3>
+<p>Java9 新增的方法，根据给定的元素创建不可变的列表对象，同时定义的元素不可以为null，顺序跟给定的元素位置相同。他是一些列方法。</p>
+<h3 id="copyof"><code>copyOf</code></h3>
+<p>Java10 新增的方法，将元素放入到一个不可修改的集合并返回。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Test</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testList5</span><span style="color:#f92672">(){</span>  
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> strings <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>  
+</span></span><span style="display:flex;"><span>    strings<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    strings<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    strings<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">copyOf</span><span style="color:#f92672">(</span>strings<span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>list<span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;d&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
         </div>
         
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
 
+        
+
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
 
         <div class="site-footer">
   
