@@ -6,7 +6,20 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Jul 2023 15:58:37 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Jul 2023 08:28:15 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AbstractList</title>
+      <link>https://blog.laelaps.us/posts/java/abstractlist/</link>
+      <pubDate>Tue, 11 Jul 2023 08:28:15 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/java/abstractlist/</guid>
+      <description>Content AbstractList扩展了AbstractCollection和实现了List；在这里有趣的是有5个内部类的实现。
+removeRange protected void removeRange(int fromIndex, int toIndex) { ListIterator&amp;lt;E&amp;gt; it = listIterator(fromIndex); for (int i=0, n=toIndex-fromIndex; i&amp;lt;n; i++) { it.next(); it.remove(); } } 删除指定范围的元素，使用迭代器来实现，并且为一个protected方法。
+subList public List&amp;lt;E&amp;gt; subList(int fromIndex, int toIndex) { subListRangeCheck(fromIndex, toIndex, size()); return (this instanceof RandomAccess ? new RandomAccessSubList&amp;lt;&amp;gt;(this, fromIndex, toIndex) : new SubList&amp;lt;&amp;gt;(this, fromIndex, toIndex)); } RandomAccess 是一个标记接口，他是一个空的接口，通常用来表示我们的集合是支持随机访问，所有他的功能就仅仅是一个标记的作用。 在这里如果我们的集合实现了RandomAccess这个空接口，那么他返回的就是RandomAccessSubList，否则返回的就是一个SubList的内部类。
+Itr 他实现了Iterator接口，供AbstractList使用迭代器。
+private class Itr implements Iterator&amp;lt;E&amp;gt; { int cursor = 0; int lastRet = -1; int expectedModCount = modCount; public boolean hasNext() { return cursor !</description>
+    </item>
+    
     <item>
       <title>Java集合ListIterator</title>
       <link>https://blog.laelaps.us/posts/java/listiterator/</link>
@@ -14,7 +27,7 @@
       
       <guid>https://blog.laelaps.us/posts/java/listiterator/</guid>
       <description>ListIterator ListIterator是一只适用于List的双向迭代器；他扩展了默认的Iterator接口。
-ListIterator 方法 方法 描述 boolean hasNext() 判断迭起器向前迭代时是否具有元素 boolean hasPrevious() 判断迭起器向后迭代时是否具有元素 E next(); 返回下一个元素 E previous(); 返回上一个元素 int nextIndex(); 返回下一个元素的索引，如果在末尾则返回list的大小 int previousIndex(); 返回上一个元素的索引，如果在list的开头返回 -1 void add(E e) 将指定的元素插入列表中，位于next 之前 void remove(); 删除由next 或者 previous 返回的最后一个元素 void set(E e); 替换由next 或者 previous 返回的最后一个元素 @Test public void testList(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.add(&amp;#34;a&amp;#34;); strings.add(&amp;#34;b&amp;#34;); strings.add(&amp;#34;c&amp;#34;); ListIterator&amp;lt;String&amp;gt; stringListIterator = strings.listIterator(); stringListIterator.add(&amp;#34;1&amp;#34;); System.out.println(stringListIterator.hasNext()); System.out.println(stringListIterator.hasPrevious()); System.out.println(stringListIterator.next()); System.out.println(stringListIterator.previous()); System.out.println(stringListIterator.nextIndex()); System.out.println(stringListIterator.previousIndex()); stringListIterator.next(); stringListIterator.next(); stringListIterator.remove(); System.out.println(strings); } </description>
+ListIterator 方法 方法 描述 boolean hasNext() 判断迭起器向前迭代时是否具有元素 boolean hasPrevious() 判断迭起器向后迭代时是否具有元素 E next(); 返回下一个元素 E previous(); 返回上一个元素 int nextIndex(); 返回下一个元素的索引，如果在末尾则返回list的大小 int previousIndex(); 返回上一个元素的索引，如果在list的开头返回 -1 void add(E e) 将指定的元素插入列表中，位于next 之前 void remove(); 删除由next 或者 previous 返回的最后一个元素 void set(E e); 替换由next 或者 previous 返回的最后一个元素 @Test public void testList(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.add(&amp;#34;a&amp;#34;); strings.add(&amp;#34;b&amp;#34;); strings.add(&amp;#34;c&amp;#34;); ListIterator&amp;lt;String&amp;gt; stringListIterator = strings.listIterator(); stringListIterator.add(&amp;#34;1&amp;#34;); System.out.println(stringListIterator.hasNext()); System.out.println(stringListIterator.hasPrevious()); System.out.println(stringListIterator.next()); System.out.println(stringListIterator.previous()); System.out.println(stringListIterator.nextIndex()); System.out.println(stringListIterator.previousIndex()); stringListIterator.next(); stringListIterator.next(); stringListIterator.remove(); System.out.println(strings); } // 使用ListIterator倒序遍历 @Test public void testList5(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.</description>
     </item>
     
     <item>
