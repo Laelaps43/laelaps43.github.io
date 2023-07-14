@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.115.3">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="laelaps" />
+  <meta property="og:url" content="https://blog.laelaps.us/posts/docker/dockerimage/" />
+  <link rel="canonical" href="https://blog.laelaps.us/posts/docker/dockerimage/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="Laelaps">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/blog.laelaps.us"
+      },
+      "articleSection" : "posts",
+      "name" : "Docker镜像",
+      "headline" : "Docker镜像",
+      "description" : "什么是Docker Docker是一种容器，他对传统的Linux容器进行了封装，简化了他容器的创建和维护；Docker不像传统的虚拟机一样需要虚拟出一层硬件来，他的应用程序直接运行在宿主的内核中，但是运行的进程独立于宿主和其他的容器。\n优势 对资源的更好的利用，不用像传统虚拟机一样虚拟出硬件之后在运行一个完整的系统。 Docker容器应用启动更快，节省时间。（但是我的Docker Desktop启动很慢） 一致的运行环境，Docker 保证了应用运行的环境是一样的，只有宿主的内核不一样。 一次创建和配置，在任意的地方运行。 镜像 镜像类似于一个类，他是创建容器的模板，而且镜像是由多层组成，一层建立在另外一层之上；他包含应用运行所需要的文件和依赖等。\n命名 Docker镜像存储在镜像仓库中，默认的的仓库服务是Docker Hub（Docker维护）。 如果我们只需要给定一个镜像名字和标签（未给定为latest），就能在官方仓库中定位一个镜像；二如果需要从Docker Hub中拉取一个镜像，需要加入Docker Hub的用户名。当然我们还可以拉取第三方仓库的镜像，则需要加入第三方仓库的地址和端口号。\n\/\/ 在Docker Hub中拉取 docker pull ubuntu:20.04 \/\/ 在Docker Hub中拉取第三方 docker pull bitnami\/postgresql:15.3.0 \/\/ docker pull quay.io\/kiwigrid\/k8s-sidecar 分层 Docker镜像由一些松耦合的只读镜像组成，所有的Docker镜像都起源于一个基础镜像层，我们在当前镜像之上创建新的镜像层，我们就可以对新的镜像层进行修改或者增加。 尽管镜像由多层镜像组合而成，但是他们对外还是保存一个镜像文件。 多个镜像共享镜像层，因为有的镜像会依赖相同的镜像层，在这种情况下，如果镜像层已经存在，则不会重新拉取。\n$ docker image inspect mysql:latest ... \u0026#34;RootFS\u0026#34;: { \u0026#34;Type\u0026#34;: \u0026#34;layers\u0026#34;, \u0026#34;Layers\u0026#34;: [ \u0026#34;sha256:9cd9df9ffc972e9abc946d855162ef0c40dff9a89f10c962b7920154a3d943d8\u0026#34;, \u0026#34;sha256:824505732bf475e99d3d9f2d2a1bbcb2f822005a5eb42ed3bd6c90d896601cf6\u0026#34;, \u0026#34;sha256:0b175674497447465ef1a69f9aa74eaad5fc89875eceb9257b1f51723a676b22\u0026#34;, \u0026#34;sha256:824c2933e60c068e80f2aeed3156289d52e173302c9591307186a1901d511747\u0026#34;, \u0026#34;sha256:4645c1089915b7a96108959a038bbabd1a9301561c04884ee25217fbd8529cbd\u0026#34;, \u0026#34;sha256:2dddefc501cc94ee7378f11117eb7537f18e42dff066fd0b0e352579fa201e47\u0026#34;, \u0026#34;sha256:3e8acfe4342fadf5703bc0e57f029aa8645f5bdad6071289b98f33e1b207f522\u0026#34;, \u0026#34;sha256:5f038062397273abd71d4393adf7dbf3b5517e0f2c660054d1bedb1d629e3dd9\u0026#34;, \u0026#34;sha256:16f4176c5cad94a63121b2f4f77a2027f15c8b88559d423daf345a51d41251eb\u0026#34;, \u0026#34;sha256:394c5cd5b4baf7e17088e44077a8b14ecbd9ba5d460629f1efb8ea3a90380a08\u0026#34;, \u0026#34;sha256:e2eaf447bf15d59b9e8f4e7c00c63cf35bf9096403563eed770cd758d27eb557\u0026#34; ] }, .... 标签 用来标记仓库中的镜像，一个镜像能有多个标签。\n拉取 docker pull [选项] [Docker Registry 地址[:端口号]\/]仓库名[:标签] 悬虚镜像 zlmediakit\/zlmediakit master 635f082db6f7 7 weeks ago 597MB \/\/ 悬虚镜像 ubuntu \u0026lt;none\u0026gt; 1c5c8d0b973a 4 months ago 72.",
+      "inLanguage" : "en-US",
+      "author" : "laelaps",
+      "creator" : "laelaps",
+      "publisher": "laelaps",
+      "accountablePerson" : "laelaps",
+      "copyrightHolder" : "laelaps",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-07-11 19:09:44 \u002b0800 \u002b0800",
+      "dateModified" : "2023-07-11 19:09:44 \u002b0800 \u002b0800",
+      "url" : "https:\/\/blog.laelaps.us\/posts\/docker\/dockerimage\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Docker镜像</title>
+  <meta property="og:title" content="Docker镜像" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="什么是Docker Docker是一种容器，他对传统的Linux容器进行了封装，简化了他容器的创建和维护；Docker不像传统的虚拟机一样需要虚拟出一层硬件来，他的应用程序直接运行在宿主的内核中，但是运行的进程独立于宿主和其他的容器。
+优势 对资源的更好的利用，不用像传统虚拟机一样虚拟出硬件之后在运行一个完整的系统。 Docker容器应用启动更快，节省时间。（但是我的Docker Desktop启动很慢） 一致的运行环境，Docker 保证了应用运行的环境是一样的，只有宿主的内核不一样。 一次创建和配置，在任意的地方运行。 镜像 镜像类似于一个类，他是创建容器的模板，而且镜像是由多层组成，一层建立在另外一层之上；他包含应用运行所需要的文件和依赖等。
+命名 Docker镜像存储在镜像仓库中，默认的的仓库服务是Docker Hub（Docker维护）。 如果我们只需要给定一个镜像名字和标签（未给定为latest），就能在官方仓库中定位一个镜像；二如果需要从Docker Hub中拉取一个镜像，需要加入Docker Hub的用户名。当然我们还可以拉取第三方仓库的镜像，则需要加入第三方仓库的地址和端口号。
+// 在Docker Hub中拉取 docker pull ubuntu:20.04 // 在Docker Hub中拉取第三方 docker pull bitnami/postgresql:15.3.0 // docker pull quay.io/kiwigrid/k8s-sidecar 分层 Docker镜像由一些松耦合的只读镜像组成，所有的Docker镜像都起源于一个基础镜像层，我们在当前镜像之上创建新的镜像层，我们就可以对新的镜像层进行修改或者增加。 尽管镜像由多层镜像组合而成，但是他们对外还是保存一个镜像文件。 多个镜像共享镜像层，因为有的镜像会依赖相同的镜像层，在这种情况下，如果镜像层已经存在，则不会重新拉取。
+$ docker image inspect mysql:latest ... &amp;#34;RootFS&amp;#34;: { &amp;#34;Type&amp;#34;: &amp;#34;layers&amp;#34;, &amp;#34;Layers&amp;#34;: [ &amp;#34;sha256:9cd9df9ffc972e9abc946d855162ef0c40dff9a89f10c962b7920154a3d943d8&amp;#34;, &amp;#34;sha256:824505732bf475e99d3d9f2d2a1bbcb2f822005a5eb42ed3bd6c90d896601cf6&amp;#34;, &amp;#34;sha256:0b175674497447465ef1a69f9aa74eaad5fc89875eceb9257b1f51723a676b22&amp;#34;, &amp;#34;sha256:824c2933e60c068e80f2aeed3156289d52e173302c9591307186a1901d511747&amp;#34;, &amp;#34;sha256:4645c1089915b7a96108959a038bbabd1a9301561c04884ee25217fbd8529cbd&amp;#34;, &amp;#34;sha256:2dddefc501cc94ee7378f11117eb7537f18e42dff066fd0b0e352579fa201e47&amp;#34;, &amp;#34;sha256:3e8acfe4342fadf5703bc0e57f029aa8645f5bdad6071289b98f33e1b207f522&amp;#34;, &amp;#34;sha256:5f038062397273abd71d4393adf7dbf3b5517e0f2c660054d1bedb1d629e3dd9&amp;#34;, &amp;#34;sha256:16f4176c5cad94a63121b2f4f77a2027f15c8b88559d423daf345a51d41251eb&amp;#34;, &amp;#34;sha256:394c5cd5b4baf7e17088e44077a8b14ecbd9ba5d460629f1efb8ea3a90380a08&amp;#34;, &amp;#34;sha256:e2eaf447bf15d59b9e8f4e7c00c63cf35bf9096403563eed770cd758d27eb557&amp;#34; ] }, .... 标签 用来标记仓库中的镜像，一个镜像能有多个标签。
+拉取 docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] 悬虚镜像 zlmediakit/zlmediakit master 635f082db6f7 7 weeks ago 597MB // 悬虚镜像 ubuntu &amp;lt;none&amp;gt; 1c5c8d0b973a 4 months ago 72." />
+  <meta name="description" content="什么是Docker Docker是一种容器，他对传统的Linux容器进行了封装，简化了他容器的创建和维护；Docker不像传统的虚拟机一样需要虚拟出一层硬件来，他的应用程序直接运行在宿主的内核中，但是运行的进程独立于宿主和其他的容器。
+优势 对资源的更好的利用，不用像传统虚拟机一样虚拟出硬件之后在运行一个完整的系统。 Docker容器应用启动更快，节省时间。（但是我的Docker Desktop启动很慢） 一致的运行环境，Docker 保证了应用运行的环境是一样的，只有宿主的内核不一样。 一次创建和配置，在任意的地方运行。 镜像 镜像类似于一个类，他是创建容器的模板，而且镜像是由多层组成，一层建立在另外一层之上；他包含应用运行所需要的文件和依赖等。
+命名 Docker镜像存储在镜像仓库中，默认的的仓库服务是Docker Hub（Docker维护）。 如果我们只需要给定一个镜像名字和标签（未给定为latest），就能在官方仓库中定位一个镜像；二如果需要从Docker Hub中拉取一个镜像，需要加入Docker Hub的用户名。当然我们还可以拉取第三方仓库的镜像，则需要加入第三方仓库的地址和端口号。
+// 在Docker Hub中拉取 docker pull ubuntu:20.04 // 在Docker Hub中拉取第三方 docker pull bitnami/postgresql:15.3.0 // docker pull quay.io/kiwigrid/k8s-sidecar 分层 Docker镜像由一些松耦合的只读镜像组成，所有的Docker镜像都起源于一个基础镜像层，我们在当前镜像之上创建新的镜像层，我们就可以对新的镜像层进行修改或者增加。 尽管镜像由多层镜像组合而成，但是他们对外还是保存一个镜像文件。 多个镜像共享镜像层，因为有的镜像会依赖相同的镜像层，在这种情况下，如果镜像层已经存在，则不会重新拉取。
+$ docker image inspect mysql:latest ... &amp;#34;RootFS&amp;#34;: { &amp;#34;Type&amp;#34;: &amp;#34;layers&amp;#34;, &amp;#34;Layers&amp;#34;: [ &amp;#34;sha256:9cd9df9ffc972e9abc946d855162ef0c40dff9a89f10c962b7920154a3d943d8&amp;#34;, &amp;#34;sha256:824505732bf475e99d3d9f2d2a1bbcb2f822005a5eb42ed3bd6c90d896601cf6&amp;#34;, &amp;#34;sha256:0b175674497447465ef1a69f9aa74eaad5fc89875eceb9257b1f51723a676b22&amp;#34;, &amp;#34;sha256:824c2933e60c068e80f2aeed3156289d52e173302c9591307186a1901d511747&amp;#34;, &amp;#34;sha256:4645c1089915b7a96108959a038bbabd1a9301561c04884ee25217fbd8529cbd&amp;#34;, &amp;#34;sha256:2dddefc501cc94ee7378f11117eb7537f18e42dff066fd0b0e352579fa201e47&amp;#34;, &amp;#34;sha256:3e8acfe4342fadf5703bc0e57f029aa8645f5bdad6071289b98f33e1b207f522&amp;#34;, &amp;#34;sha256:5f038062397273abd71d4393adf7dbf3b5517e0f2c660054d1bedb1d629e3dd9&amp;#34;, &amp;#34;sha256:16f4176c5cad94a63121b2f4f77a2027f15c8b88559d423daf345a51d41251eb&amp;#34;, &amp;#34;sha256:394c5cd5b4baf7e17088e44077a8b14ecbd9ba5d460629f1efb8ea3a90380a08&amp;#34;, &amp;#34;sha256:e2eaf447bf15d59b9e8f4e7c00c63cf35bf9096403563eed770cd758d27eb557&amp;#34; ] }, .... 标签 用来标记仓库中的镜像，一个镜像能有多个标签。
+拉取 docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] 悬虚镜像 zlmediakit/zlmediakit master 635f082db6f7 7 weeks ago 597MB // 悬虚镜像 ubuntu &amp;lt;none&amp;gt; 1c5c8d0b973a 4 months ago 72." />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:none;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body a{color:#1bc92a}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{text-align:center}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}}@media screen and (max-width:48em){.posts-category{display:none}}table{width:100%;border-collapse:collapse;border:1px solid}tr,th,td{border:1px solid;height:40px;padding-left:10px}thead{background:#ebebeb}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="Laelaps">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >Laelaps</a
+    >
+  </div>
+  <div class="header-subtitle">I am laelaps</div>
+</header>
+<div class="row end-md center-xs header-items">
+  
+  <div class="header-item">
+    <a href="/categories/plan" target="_blank">Plan</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories" target="_blank">Categories</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories/java" target="_blank">Java</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories/go" target="_blank">Go</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/about" target="_blank">About Me</a>
+  </div>
+  
+</div>
+<div class="row end-xs">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Docker镜像</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-07-11 19:09:44 &#43;0800">
+                11 Jul 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="/">@laelaps</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+        <aside id="toc-container">
+          <details>
+            <summary>Table of Contents</summary>
+            <aside class="toc">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是docker">什么是Docker</a>
+      <ul>
+        <li><a href="#优势">优势</a></li>
+      </ul>
+    </li>
+    <li><a href="#镜像">镜像</a>
+      <ul>
+        <li><a href="#命名">命名</a></li>
+        <li><a href="#分层">分层</a></li>
+        <li><a href="#标签">标签</a></li>
+        <li><a href="#拉取">拉取</a></li>
+        <li><a href="#悬虚镜像">悬虚镜像</a></li>
+        <li><a href="#列出">列出</a></li>
+        <li><a href="#删除">删除</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </aside>
+        </details> 
+        </aside>
+
+        <div class="post-content markdown-body">
+          
+          <h1 id="什么是docker">什么是Docker</h1>
+<p>Docker是一种容器，他对传统的Linux容器进行了封装，简化了他容器的创建和维护；Docker不像传统的虚拟机一样需要虚拟出一层硬件来，他的应用程序直接运行在宿主的内核中，但是运行的进程独立于宿主和其他的容器。</p>
+<h2 id="优势">优势</h2>
+<ul>
+<li>对资源的更好的利用，不用像传统虚拟机一样虚拟出硬件之后在运行一个完整的系统。</li>
+<li>Docker容器应用启动更快，节省时间。（但是我的Docker Desktop启动很慢）</li>
+<li>一致的运行环境，Docker 保证了应用运行的环境是一样的，只有宿主的内核不一样。</li>
+<li>一次创建和配置，在任意的地方运行。</li>
+</ul>
+<h1 id="镜像">镜像</h1>
+<p>镜像类似于一个类，他是创建容器的模板，而且镜像是由多层组成，一层建立在另外一层之上；他包含应用运行所需要的文件和依赖等。</p>
+<h2 id="命名">命名</h2>
+<p>Docker镜像存储在镜像仓库中，默认的的仓库服务是Docker Hub（Docker维护）。
+如果我们只需要给定一个镜像名字和标签（未给定为latest），就能在官方仓库中定位一个镜像；二如果需要从Docker Hub中拉取一个镜像，需要加入Docker Hub的用户名。当然我们还可以拉取第三方仓库的镜像，则需要加入第三方仓库的地址和端口号。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>// 在Docker Hub中拉取
+</span></span><span style="display:flex;"><span>docker pull ubuntu:20.04
+</span></span><span style="display:flex;"><span>// 在Docker Hub中拉取第三方
+</span></span><span style="display:flex;"><span>docker pull bitnami/postgresql:15.3.0
+</span></span><span style="display:flex;"><span>// docker pull quay.io/kiwigrid/k8s-sidecar
+</span></span></code></pre></div><h2 id="分层">分层</h2>
+<p>Docker镜像由一些松耦合的只读镜像组成，所有的Docker镜像都起源于一个基础镜像层，我们在当前镜像之上创建新的镜像层，我们就可以对新的镜像层进行修改或者增加。
+尽管镜像由多层镜像组合而成，但是他们对外还是保存一个镜像文件。
+多个镜像共享镜像层，因为有的镜像会依赖相同的镜像层，在这种情况下，如果镜像层已经存在，则不会重新拉取。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ docker image inspect mysql:latest
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#34;RootFS&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Type&#34;</span>: <span style="color:#e6db74">&#34;layers&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Layers&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:9cd9df9ffc972e9abc946d855162ef0c40dff9a89f10c962b7920154a3d943d8&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:824505732bf475e99d3d9f2d2a1bbcb2f822005a5eb42ed3bd6c90d896601cf6&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:0b175674497447465ef1a69f9aa74eaad5fc89875eceb9257b1f51723a676b22&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:824c2933e60c068e80f2aeed3156289d52e173302c9591307186a1901d511747&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:4645c1089915b7a96108959a038bbabd1a9301561c04884ee25217fbd8529cbd&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:2dddefc501cc94ee7378f11117eb7537f18e42dff066fd0b0e352579fa201e47&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:3e8acfe4342fadf5703bc0e57f029aa8645f5bdad6071289b98f33e1b207f522&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:5f038062397273abd71d4393adf7dbf3b5517e0f2c660054d1bedb1d629e3dd9&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:16f4176c5cad94a63121b2f4f77a2027f15c8b88559d423daf345a51d41251eb&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:394c5cd5b4baf7e17088e44077a8b14ecbd9ba5d460629f1efb8ea3a90380a08&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;sha256:e2eaf447bf15d59b9e8f4e7c00c63cf35bf9096403563eed770cd758d27eb557&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>....
+</span></span></code></pre></div><h2 id="标签">标签</h2>
+<p>用来标记仓库中的镜像，一个镜像能有多个标签。</p>
+<h2 id="拉取">拉取</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker pull <span style="color:#f92672">[</span>选项<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>Docker Registry 地址<span style="color:#f92672">[</span>:端口号<span style="color:#f92672">]</span>/<span style="color:#f92672">]</span>仓库名<span style="color:#f92672">[</span>:标签<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="悬虚镜像">悬虚镜像</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>zlmediakit/zlmediakit          master    635f082db6f7   <span style="color:#ae81ff">7</span> weeks ago    597MB
+</span></span><span style="display:flex;"><span>// 悬虚镜像
+</span></span><span style="display:flex;"><span>ubuntu                         &lt;none&gt;    1c5c8d0b973a   <span style="color:#ae81ff">4</span> months ago   72.8MB
+</span></span><span style="display:flex;"><span>redis/redis-stack              latest    49a0cdc3302f   <span style="color:#ae81ff">4</span> months ago   574MB
+</span></span></code></pre></div><p>没有标签的镜像，造成愿意是建立新的镜像时给这个镜像打了一个已经存在的标签，Docker将原来的标签移动到新的镜像上，旧的镜像变成了悬虚镜像。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>// 列出全部的悬虚对象
+</span></span><span style="display:flex;"><span>docker iamge ls -f dangling<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span>// 删除全部的悬虚镜像
+</span></span><span style="display:flex;"><span>docker image prune
+</span></span></code></pre></div><h2 id="列出">列出</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>&gt;&gt; docker image ls
+</span></span><span style="display:flex;"><span>REPOSITORY                     TAG       IMAGE ID       CREATED        SIZE
+</span></span><span style="display:flex;"><span>bitnami/postgresql             15.3.0    0f76c1584533   <span style="color:#ae81ff">13</span> hours ago   273MB
+</span></span><span style="display:flex;"><span>quay.io/kiwigrid/k8s-sidecar   latest    7d854a5599ce   <span style="color:#ae81ff">30</span> hours ago   79.2MB
+</span></span><span style="display:flex;"><span>nginx                          v3        fa4cfd60221c   <span style="color:#ae81ff">3</span> days ago     187MB
+</span></span><span style="display:flex;"><span>nginx                          v2        ce96242a6cba   <span style="color:#ae81ff">3</span> days ago     187MB
+</span></span><span style="display:flex;"><span>nginx                          latest    021283c8eb95   <span style="color:#ae81ff">9</span> days ago     187MB
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>// 值列出镜像id
+</span></span><span style="display:flex;"><span>$ docker image ls -q
+</span></span><span style="display:flex;"><span>5f515359c7f8
+</span></span><span style="display:flex;"><span>05a60462f8ba
+</span></span><span style="display:flex;"><span>fe9198c04d62
+</span></span><span style="display:flex;"><span>00285df0df87
+</span></span><span style="display:flex;"><span>329ed837d508
+</span></span><span style="display:flex;"><span>329ed837d508
+</span></span></code></pre></div><h2 id="删除">删除</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ docker image rm <span style="color:#f92672">[</span>选项<span style="color:#f92672">]</span> &lt;镜像1&gt; <span style="color:#f92672">[</span>&lt;镜像2&gt; ...<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><code>&lt;镜像&gt;</code> 可以是 <code>镜像短 ID</code>（可以区分开就像）、<code>镜像长 ID</code>、<code>镜像名</code> 或者 <code>镜像摘要</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>// 删除全部镜像
+</span></span><span style="display:flex;"><span>$ docker image rm <span style="color:#66d9ef">$(</span>docker image ls -q<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>
