@@ -6,7 +6,22 @@
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Jul 2023 15:24:34 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Jul 2023 16:08:33 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Go Programming Language 基本数据（3)</title>
+      <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter3/</link>
+      <pubDate>Thu, 13 Jul 2023 16:08:33 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter3/</guid>
+      <description>类型分类 Go语言的数据类型有四类：基础类型（basic type）、聚合类型（aggregate type）、引用类型（reference type）、接口类型（interface type）。
+整数 在Go中有有符合整数和无符合整数两种。 有符合整数：int8（8位）、 int16 （16位）、int32（32位）、 int64（64位） 无符合整数：uint8（8位）、 uint16 （16位）、uint32（32位）、 uint64（64位） 此外还有int和uint两种类型，他们在不同的平台有不同的大小，他等于平台上运算效率最高的值。 rune类型是int32类型的同义词，他用来代表这个值是一个Unicode码点，bete类型是uint8类型的同义词，他表示这个值是一个原始数据。 uintptr是一种无符号整数类型，他的大小并不明确，但是他可以存放一个完整的指针。 关于其他对整数的操作跟其他语言差不多
+浮点数 在Go中的浮点数值只有float32和float64。
+复数 在Go中有两种复数类complex64和complex128，他们分配由float32和float64构成。在Go中有complex函数根据实部和虚部来创建一个复数，使用real和imag函数来分别提取实部和虚部。 复数可以使用== 和!=来判断是否相等。
+c1 := complex(1, 2) c2 := complex(2, 1) fmt.Println(c1) fmt.Println(real(c2)) fmt.Println(imag(c2)) fmt.Println(c1 == c2) 布尔值 跟其他编程语言差不多
+常量 常量是一种在编译阶段就可以计算出值的表达式；常量的声明定义了具体的值，他在运行阶段不可被更改。
+const ( pi = 3.1415946 e = 2.78 ) // 或者指定类型 const ( b float64 = 2.3333 c int = 2 d bool = true ) 如果我们声明一组常量时，只写第一项，那么其他项会服用前一项。</description>
+    </item>
+    
     <item>
       <title>The Go Programming Language 程序结构（2）</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter2/</link>
