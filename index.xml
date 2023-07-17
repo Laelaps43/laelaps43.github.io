@@ -6,7 +6,18 @@
     <description>Recent content on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Jul 2023 16:08:33 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Jul 2023 08:07:53 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Go Programming Language 复合数据类型（4)</title>
+      <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter4/</link>
+      <pubDate>Sat, 15 Jul 2023 08:07:53 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter4/</guid>
+      <description>前言 复合数据类型由基本的数据类型已各种方式组合而成。 四种复合数据类型：数组、slice、map、结构体。 数组中的元素具有同一种类型，而结构体中没有这种要求，slice、map是动态数据结构。
+数组 数组是拥有固定长度的有系统数据类型的元素序列，他跟我们其他语言的数字是一样的。
+package main import &amp;#34;fmt&amp;#34; func main() { var a [3]int // 创建一个长度为三的数组，默认填充零值 a1 := [3]int{} a2 := [3]int{1, 2, 3} // 创建一个为三的数组，给定值 a3 := [3]int{1, 2}	// 为指定的为值为零值 a4 := [...]int{1, 2, 3, 4} // 数组的长度由初始化元素的个数决定 a5 := [...]int{50: -5, 99: 5} // 数组的长度为一百，下标50为-5,下标99为5 fmt.Println(a[1]) fmt.Println(a1[0]) fmt.Println(a2[0]) fmt.Println(a3[2]) fmt.Println(a4[2]) fmt.Println(len(a4)) fmt.Println(a5[50], a5[99])	fmt.Println(len(a5)) fmt.Printf(&amp;#34;%t\n&amp;#34;, a == a1) // 如果数字的类型和数组的基本数据类型可比较，则可比较 fmt.Printf(&amp;#34;%t\n&amp;#34;, a2 != a3) } Slice Slice是一个有相同类型的可变长度的序列，Slice之间不能比较；slice唯一比较的就是跟nil比较，但是不能根据slice是否为nil来判断slice是否为空，因为有可能长度为空，但是拥有底层数组。</description>
+    </item>
+    
     <item>
       <title>The Go Programming Language 基本数据（3)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter3/</link>
