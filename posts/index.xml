@@ -6,7 +6,19 @@
     <description>Recent content in Posts on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Jul 2023 08:07:53 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Jul 2023 11:32:55 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Go Programming Language 函数（5)</title>
+      <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter5/</link>
+      <pubDate>Mon, 17 Jul 2023 11:32:55 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter5/</guid>
+      <description>函数声明 func name(paramter-list)(result-list){ } 在Go中返回值可以是多个参数，并且返回值可以像形参一样命名，会根据变量的类型初始化相应的零值。 当两个函数有相同的形参列表和返回的列表是，这两个函数的类型或者函数的签名是相同的。
+func fun1(x, y int) (z int){ return x + y } 多返回值 我们在标准库中可以看见许多的函数返回有两个值，一个是函数返回的结果，另外一个是表示一个函数是否执行成功的布尔值。 如果我们去调用一个多返回值的函数，必须将这些函数的返回值全部接收，如果我们不需要某个值，那我们可以将返回值赋值给一个空标识符。
+func judgeXY(x, y int) (string, error){ if x == y { return &amp;#34;&amp;#34;, fmt.Errorf(&amp;#34;x == y&amp;#34;) } if x &amp;gt; y { return &amp;#34;x &amp;gt; y&amp;#34;, nil } return &amp;#34;x &amp;lt; y&amp;#34;, nil } 函数的裸返回是指函数的返回值有命名，那么我们可以使用命名的参数去接收函数中计算的结果，最后我们可以直接写return，他根据命名返回值相应的结果。
+func judgeXY(x, y int) (result string, err error){ if x == y { err = fmt.</description>
+    </item>
+    
     <item>
       <title>The Go Programming Language 复合数据类型（4)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter4/</link>
