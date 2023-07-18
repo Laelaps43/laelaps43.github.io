@@ -43,6 +43,19 @@ package main import &amp;#34;fmt&amp;#34; func main() { var a [3]int // 创建�
     </item>
     
     <item>
+      <title>Docker容器</title>
+      <link>https://blog.laelaps.us/posts/docker/dockercontainer/</link>
+      <pubDate>Fri, 14 Jul 2023 22:47:10 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/docker/dockercontainer/</guid>
+      <description>什么是容器？ 容器是镜像运行的实例，我们可以从一个镜像中运行多个容器，容器比传统的虚拟机更快和更轻量级；在采用虚拟机时，我们的虚拟机的软件要将物理资源进行划分，然后分配给每一个虚拟机，他是一种居于硬件虚拟化；而在容器时代，我们的物理资源全部分配给操作系统，我们的容器引擎想操作系统申请资源，每一个容器是一个独立的相互隔离的进程，他可以自动的调整资源的大小，容器是一种居于操作系统的虚拟化。
+启动容器 docker container run &amp;lt;options&amp;gt; &amp;lt;im-age&amp;gt;:&amp;lt;tag&amp;gt; &amp;lt;app&amp;gt; // 启动一个ubuntu docker container run -it ubuntu:20.04 /bin/bash // 或者省去container docker run -it ubuntu:20.04 /bin/sh 当运行docker run时，docker会根据指定的镜像的标签在本地查找，如果查找不到则自动进行pull。然后运行命令指定的程序。
+-t是分配一个伪终端将（pseudo-tty）绑定到容器的标准输入上。 -i是让容器的标准输入保存打开。 退出当前终端使用exit()，容器会停止运行，因为这时候终端是容器唯一运行的程序。 docker使用docker container start来启动一个已经停止的容器；使用docker container restart来将一个运行中的容器重新启动它。 查看容器 docker使用docker container ls来查看当前正在运行的容器，在ls之后添加-a来查看全部的容器，包括已经退出的容器。
+删除容器 我们在查看所有容器后，会发现有许多停止运行的容器，使用docker container rm可以将已经停止运行的容器删除。
+$ docker container ls -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 7f87eac41019 ubuntu:20.04 &amp;#34;/bin/bash&amp;#34; 13 minutes ago Exited (0) 6 minutes ago condescending_jennings f412d9c4ff7e ubuntu:20.04 &amp;#34;/bin/sh&amp;#34; 14 minutes ago Exited (0) 7 minutes ago $ docker container rm 7f87eac41019 f412d9c4ff7e 7f87eac41019 f412d9c4ff7e 守护态运行 在之前我们都是的容器都是将输入结果输出到当前的数组的终端上，如果我们想让容器运行在后台上，可以在docker run -d .</description>
+    </item>
+    
+    <item>
       <title>The Go Programming Language 基本数据（3)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter3/</link>
       <pubDate>Thu, 13 Jul 2023 16:08:33 +0800</pubDate>
