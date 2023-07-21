@@ -6,7 +6,18 @@
     <description>Recent content in Go on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Jul 2023 18:30:16 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jul 2023 18:12:39 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Go Programming Language 接口（7)</title>
+      <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter7/</link>
+      <pubDate>Tue, 18 Jul 2023 18:12:39 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter7/</guid>
+      <description>前言 Go中通过接口支持鸭子类型 If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.
+What? 接口类型是对其他类型行为的概括和抽象，一个接口定义了一套方法，如果一个类型需要实现该接口，那么需要实现接口中定义的所有方法，所以对于一个接口对象，我们不知道他是什么，但是我们可以知道他能做什么，及有那些方法，及接口是一种抽象的类型，他并没有暴露他所含有的数据的布局和内部结构，而是只有操纵他的方法。 接口要求类型包含了与签名和行为与接口类的方法一致的方法；实现了接口类型的任何方法都可以等于这个接口类型。 接口类型可以嵌套其他接口类型，这个新的接口类型需要去实现所有嵌套接口的类型。
+package main import &amp;#34;fmt&amp;#34; type Person struct{ Name string Age int } type Lae interface { play() } func (p Person)play(){ fmt.Println(p.Name + &amp;#34; play&amp;#34;) } func main() { lae := new(Person) lae.Name = &amp;#34;Ron&amp;#34; lae.Age = 18 var inter Lae = lae inter.</description>
+    </item>
+    
     <item>
       <title>The Go Programming Language 方法（6)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter6/</link>
