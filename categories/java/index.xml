@@ -6,13 +6,26 @@
     <description>Recent content in Java on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Jul 2023 08:28:15 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Jul 2023 15:15:45 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java多线程基础</title>
+      <link>https://blog.laelaps.us/posts/java/concurrent/1/</link>
+      <pubDate>Fri, 21 Jul 2023 15:15:45 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/java/concurrent/1/</guid>
+      <description>前言 进程VS线程 进程 进程是应用程序在内存中分配的空间，及正在运行的程序，进程之间互不干扰。 基于进程实现的并发是基于CPU的时间片轮转；在CPU的单个核心中，CPU为每一个进程分配一个时间段（时间片），如果在时间片结束时，进程还在执行，那么暂停他，将CPU分配给他的进程（上下文切换）；如果在时间片用完前进程结束或阻塞，那么立即切换；在宏观上就像多个任务同时执行。
+线程 如果我们一个进程之间有许多的子任务，那么我们在线程里面还是按照串行的方法执行，所以提出了线程的思想，让一个线程去执行一个子任务。 进程让操作系统的并发成为了可能，线程让进程内部的并发成为了可能。
+优点 线程间的通信简单，进程通信复杂 线程是轻量级，进程是重量级，线程的开销更小 区别 进程有独立的内存空间，进程之间相互隔离，数据共享复杂，但是同步简单；线程属于进程，他占据线程的内存和资源，数据共享简单，但是同步复杂 可靠性，进程有独立的内存空间，出错时不会影响其他的进程，线程出错时会影响整个程序 开销，进程的创建需要进行资源的分配，开销大，线程只需要保留寄存器和栈的信息，开销较小 Java多线程 Thread类和Runable接口 在Java中，我们使用Thread类和Runable接口来实现我们自己的线程类
+继承Thread类 public class T21 { public static class MyThread extends Thread{ @Override public void run() { super.run(); System.out.println(&amp;#34;Hello&amp;#34;); } } public static void main(String[] args) { MyThread myThread = new MyThread(); myThread.start(); } } 实现Runable接口 实现Runable接口，他是一个函数式接口，我们可以使用函数式编程来简化
+public class T21 { public static void main(String[] args) { Thread thread = new Thread(() -&amp;gt; { System.</description>
+    </item>
+    
     <item>
       <title>Java集合AbstractList</title>
-      <link>https://blog.laelaps.us/posts/java/abstractlist/</link>
+      <link>https://blog.laelaps.us/posts/java/collections/abstractlist/</link>
       <pubDate>Tue, 11 Jul 2023 08:28:15 +0800</pubDate>
       
-      <guid>https://blog.laelaps.us/posts/java/abstractlist/</guid>
+      <guid>https://blog.laelaps.us/posts/java/collections/abstractlist/</guid>
       <description>Content AbstractList扩展了AbstractCollection和实现了List；在这里有趣的是有5个内部类的实现。
 removeRange protected void removeRange(int fromIndex, int toIndex) { ListIterator&amp;lt;E&amp;gt; it = listIterator(fromIndex); for (int i=0, n=toIndex-fromIndex; i&amp;lt;n; i++) { it.next(); it.remove(); } } 删除指定范围的元素，使用迭代器来实现，并且为一个protected方法。
 subList public List&amp;lt;E&amp;gt; subList(int fromIndex, int toIndex) { subListRangeCheck(fromIndex, toIndex, size()); return (this instanceof RandomAccess ? new RandomAccessSubList&amp;lt;&amp;gt;(this, fromIndex, toIndex) : new SubList&amp;lt;&amp;gt;(this, fromIndex, toIndex)); } RandomAccess 是一个标记接口，他是一个空的接口，通常用来表示我们的集合是支持随机访问，所有他的功能就仅仅是一个标记的作用。 在这里如果我们的集合实现了RandomAccess这个空接口，那么他返回的就是RandomAccessSubList，否则返回的就是一个SubList的内部类。
@@ -22,20 +35,20 @@ private class Itr implements Iterator&amp;lt;E&amp;gt; { int cursor = 0; int las
     
     <item>
       <title>Java集合ListIterator</title>
-      <link>https://blog.laelaps.us/posts/java/listiterator/</link>
+      <link>https://blog.laelaps.us/posts/java/collections/listiterator/</link>
       <pubDate>Mon, 10 Jul 2023 15:58:37 +0800</pubDate>
       
-      <guid>https://blog.laelaps.us/posts/java/listiterator/</guid>
+      <guid>https://blog.laelaps.us/posts/java/collections/listiterator/</guid>
       <description>ListIterator ListIterator是一只适用于List的双向迭代器；他扩展了默认的Iterator接口。
 ListIterator 方法 方法 描述 boolean hasNext() 判断迭起器向前迭代时是否具有元素 boolean hasPrevious() 判断迭起器向后迭代时是否具有元素 E next(); 返回下一个元素 E previous(); 返回上一个元素 int nextIndex(); 返回下一个元素的索引，如果在末尾则返回list的大小 int previousIndex(); 返回上一个元素的索引，如果在list的开头返回 -1 void add(E e) 将指定的元素插入列表中，位于next 之前 void remove(); 删除由next 或者 previous 返回的最后一个元素 void set(E e); 替换由next 或者 previous 返回的最后一个元素 @Test public void testList(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.add(&amp;#34;a&amp;#34;); strings.add(&amp;#34;b&amp;#34;); strings.add(&amp;#34;c&amp;#34;); ListIterator&amp;lt;String&amp;gt; stringListIterator = strings.listIterator(); stringListIterator.add(&amp;#34;1&amp;#34;); System.out.println(stringListIterator.hasNext()); System.out.println(stringListIterator.hasPrevious()); System.out.println(stringListIterator.next()); System.out.println(stringListIterator.previous()); System.out.println(stringListIterator.nextIndex()); System.out.println(stringListIterator.previousIndex()); stringListIterator.next(); stringListIterator.next(); stringListIterator.remove(); System.out.println(strings); } // 使用ListIterator倒序遍历 @Test public void testList5(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.</description>
     </item>
     
     <item>
       <title>Java集合List</title>
-      <link>https://blog.laelaps.us/posts/java/list/</link>
+      <link>https://blog.laelaps.us/posts/java/collections/list/</link>
       <pubDate>Mon, 10 Jul 2023 15:25:27 +0800</pubDate>
       
-      <guid>https://blog.laelaps.us/posts/java/list/</guid>
+      <guid>https://blog.laelaps.us/posts/java/collections/list/</guid>
       <description>Content List 是一个接口，是对应的是一组元素为有序的，可重复的集合；他基础于Collection，但List又有一些独特的方法。
 位置相关 E get(int index); 接受一个int类型的参数index，index &amp;lt; 0 || index &amp;gt;= size() 触发越界异常。
 E set(int index, E element); 在指定位置添加元素，添加成功后返回原来这个位置的元素。
@@ -50,10 +63,10 @@ ListIterator&amp;lt;E&amp;gt; listIterator(int index) 返回一ListIterator迭�
     
     <item>
       <title>Java判断基本数据类型</title>
-      <link>https://blog.laelaps.us/posts/java/judgeprimitivetype/</link>
+      <link>https://blog.laelaps.us/posts/java/collections/judgeprimitivetype/</link>
       <pubDate>Sat, 08 Jul 2023 16:31:01 +0800</pubDate>
       
-      <guid>https://blog.laelaps.us/posts/java/judgeprimitivetype/</guid>
+      <guid>https://blog.laelaps.us/posts/java/collections/judgeprimitivetype/</guid>
       <description>Content 我们需要判断当前数据类型是不是基本数据类型，我们有以下一些方法：
 1. class类提供的 isPrimitive方法 public void testIsPrimitiveType(){ System.out.println(int.class.isPrimitive()); System.out.println(String.class.isPrimitive()); System.out.println(boolean.class.isPrimitive()); System.out.println(void.class.isPrimitive()); System.out.println(Double.class.isPrimitive()); // false } 这个方法用于判断Class对象是否为一个基本数据类型和Void，如果是八大基本类型加void，则返回true，否则返回false。
 2. class也可以使用isArray()判断是否为数组类型 public void testIsArray(){ int[] ints = new int[0]; System.out.println(ints.getClass().isArray()); System.out.println(&amp;#34;1&amp;#34;.getClass().isArray()); } 3. getName 引用类型不是数组类型 返回二进制名称 基本类型或者void，返回的是一个String字符串 数组类型，由多个或一个[后接内部形式的元素类型的名称组成。 @Test public void testGetName(){ MergeSort mergeSort = new MergeSort(); System.out.println(mergeSort.getClass().getName()); // us.laelaps.sort.MergeSort System.out.println(int.class.getName()); // int System.out.println(String.class.getName()); // java.lang.String System.out.println(void.class.getName()); // void int[] ints = new int[1]; System.out.println(ints.getClass().getName()); // [I String[][] strings = new String[2][3]; System.</description>
@@ -61,10 +74,10 @@ ListIterator&amp;lt;E&amp;gt; listIterator(int index) 返回一ListIterator迭�
     
     <item>
       <title>Java集合Collecton</title>
-      <link>https://blog.laelaps.us/posts/java/collecton/</link>
+      <link>https://blog.laelaps.us/posts/java/collections/collecton/</link>
       <pubDate>Sat, 08 Jul 2023 12:21:57 +0800</pubDate>
       
-      <guid>https://blog.laelaps.us/posts/java/collecton/</guid>
+      <guid>https://blog.laelaps.us/posts/java/collections/collecton/</guid>
       <description>Collection Collection是一个接口，他定义了一些对集合的通用方法。
 removeIf default boolean removeIf(Predicate&amp;lt;? super E&amp;gt; filter) Collection 中的默认实现，接受一个Predicate函数，他在删除的时候也是采用的Iterator来迭代找到最佳的匹配数据，然后使用迭代器的remove()。
 toArray 在Collection有以下三个方法：
@@ -79,10 +92,10 @@ finishToArray 迭代器中还有数据，我们将全部的数据拷贝到数组
     
     <item>
       <title>Java集合Iterator</title>
-      <link>https://blog.laelaps.us/posts/java/iterator/</link>
+      <link>https://blog.laelaps.us/posts/java/collections/iterator/</link>
       <pubDate>Thu, 06 Jul 2023 19:38:17 +0800</pubDate>
       
-      <guid>https://blog.laelaps.us/posts/java/iterator/</guid>
+      <guid>https://blog.laelaps.us/posts/java/collections/iterator/</guid>
       <description>为什么会有集合 在Java中一切皆对象，但是我们在编写程序的时候，我们根本不知道会有多少个对象，对象的周期，如何保存对象，尽管我们可以使用变量去保存对象，但是每一个对象都不可能使用一个变量，我们可以使用数组去保存变量，但是新的问题是我们怎么分配数组的大小，太小了我们不够去存储变量，而太大了者浪费资；但是我们似乎可以使用一个对象去代替我们去保存，我们只要去问他索取或者是将对象交给他来保存，我们就可以不用花很多的精力去管理我们的对象啊，而这个对象就是我们所说的集合，我们可以简单的使用集合给我提供的接口来管理变量，而不用我们自己去实现，集合还会自动的扩充自己的大小。
 集合关系图 在这里可以看见，我们所有的集合都是实现了Collection和Map接口，而他们两个都同样继承了iterator接口（实际上继承的不是iterator接口，而是iterable接口）。
 Iterator 这是Java集合必须实现的一个接口，他用来遍历集合，在传统的做法中，我们一般是使用for循环来遍历集合，但是Java为我们实现了Iterator，所以我们可以使用他来遍历集合。
@@ -93,10 +106,10 @@ Java中的接口 public interface Iterator&amp;lt;E&amp;gt; { boolean hasNext();
     
     <item>
       <title>Java 函数式接口</title>
-      <link>https://blog.laelaps.us/posts/java/functionalinterface/</link>
+      <link>https://blog.laelaps.us/posts/java/lambda/functionalinterface/</link>
       <pubDate>Mon, 03 Jul 2023 09:05:31 +0800</pubDate>
       
-      <guid>https://blog.laelaps.us/posts/java/functionalinterface/</guid>
+      <guid>https://blog.laelaps.us/posts/java/lambda/functionalinterface/</guid>
       <description>函数式接口 函数式接口（Functional interface）是有且只有一个抽象方法的接口。在java.util.function包中有许多非常通用的函数式接口。
 自定义函数接口 自定义函数接口跟我们普通的定义函数接口没有任何的区别，但是我们有一个可选的@FunctionalInterface来注解这个接口，这个可以保证这个接口有只能有一个抽象方法；在javadoc中也会显示这个接口为一个函数式编接口。
 @FunctionalInterface public interface Multiply { int multiplyAB(int A, int B); } public static void main(String[] args) { System.out.println(multiplyAB(1, 10, (a, b) -&amp;gt; a * b)); } public static int multiplyAB(int a, int b, Multiply multiply){ return multiply.multiplyAB(a,b); } 常用函数式接口 Supplier接口 对象实例的提供者，有一个名为get的抽象方法，没有任何参数，返回一个泛型对象；我们需要去实现get方法，让他生产一个泛型对象。
@@ -106,10 +119,10 @@ Person person = (Person) Optional.empty().orElseGet(() -&amp;gt; new Person(&amp
     
     <item>
       <title>Java Lambda表达式</title>
-      <link>https://blog.laelaps.us/posts/java/lambda/</link>
+      <link>https://blog.laelaps.us/posts/java/lambda/lambda/</link>
       <pubDate>Sun, 02 Jul 2023 15:25:11 +0800</pubDate>
       
-      <guid>https://blog.laelaps.us/posts/java/lambda/</guid>
+      <guid>https://blog.laelaps.us/posts/java/lambda/lambda/</guid>
       <description>是什么？ Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。 我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。
 // 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;#34;abc&amp;#34;); } }); // 使用lambda表达式 new Thread(() -&amp;gt; System.out.println(&amp;#34;xyz&amp;#34;)).start(); 语法 Java中lambda表达式的形式：参数 -&amp;gt;（箭头）{代码块}/一个表达式。
 如果需要实现的方法代码很多，可以将代码放入一个{}中 // 使用一个代码块实现，将代码放入一个{}中 Arrays.sort(arr, (String str1, String str2) -&amp;gt; { if(str1.length() &amp;lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambda表达式可以推导出参数的字符串，我们可以参数的类型省去，但是值得注意的是Java是一种强类型的编程语言，他需要明确的知道参数的类型，这里可以省去的原因是Java编译器可以从上下文中推到出来。 Arrays.sort(arr, (str1, str2) -&amp;gt; { if(str1.length() &amp;lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambada表达式只有一个参数，我们可以同时将参数类型以及()省去。 List&amp;lt;String&amp;gt; strings = List.</description>
