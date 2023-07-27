@@ -6,7 +6,25 @@
     <description>Recent content in Go on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Jul 2023 18:12:39 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Jul 2023 14:54:44 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Go Programming Language 包和go工具（10)</title>
+      <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter10/</link>
+      <pubDate>Tue, 25 Jul 2023 14:54:44 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter10/</guid>
+      <description>包 包通过控制名字是否导出使其对包外可见来提供封装能力。
+命名 包名命名规则：
+使用一个简短的名字 保证可读性和无歧义 使用负数来避免覆盖响应的预声明类型 避免使用有其他含义的包名 导入路径 导入路径是用来标识一个包的唯一字符串，对于需要共享或者公开的包，导入路径需要全局唯一。通常为了避免冲突，除标准库中的包之外，其他包的导入路径应该以互联网域名作为路径开始。
+import ( &amp;#34;fmt&amp;#34; &amp;#34;math/rand&amp;#34; &amp;#34;golang.org/x/net/html&amp;#34; &amp;#34;github.com/go-sql-driver/mysql&amp;#34; ) 包的声明 每一个Go源文件的开头都需要进行包声明，目的是当该包被其他包引入的时候作为默认的标识符；在导入路径的最后一段是具体的报名。
+如果声明时使用的是main，那么这个文件是会告诉go build需要生成一个可执行文件。 如果报名以_test结尾，文件以_test.go结尾，目录中通常有两个包，一个普通，加上一个外部测试包。 如果再包名的导入路径追加版本号后缀，那么报名是不包含后缀版本号。 导入声明 我们使用import来导入声明，如果有条声明，那么我们使用圆括号包含起来，我们使用空行对导入的包进行分组，我们也会对导入路径进行排序，但是通常情况下，我们并不需要手动的进行排序（gofmt和goimports会自动的进行分组和排序）；如果在导入不同路径的包，但是有相同的包名，我们可以使用一个代替的名字来避免冲突（重命名导入），包名过长也可以使用重命名导入。
+import ( &amp;#34;crypto/rand&amp;#34; mrand &amp;#34;math/rand&amp;#34; ) 空导入 空导入是指我们依赖指定路径下的包，但是我们并没有显示这个包下的任何语法元素。我们依赖的是这个包在程序初始化的时候会执行包所包含的init函数。
+import _ &amp;#34;image/png&amp;#34; go工具 go工具将不同种类的工具集合为一个命令集。
+工作区间 GOPATH为指定工作区间的根（在GO 1.11之后，出现了Go Modules，不需要配置GOPATH），GOPATH有三个子目录：
+src包含源文件 pkg构建工具存储编译后的包 bin存储可执行文件 GOROOT是GO发行版的根目录，他提供所有标准库的包。 使用go env可以输出所有的环境变量。 go get go get借助代码管理工具从远程拉取代码和依赖包，并且自动完成编译和安装，在拉取的时候，go get可以得出需要那些依赖包，只拉取那些不存在的依赖，当然我们可以使用-u来强制性的更新所有依赖的包。 go get支持多个代码托管网站，并且可以选择合适的版本控制协议向系统发送合适的请求，在Go 1.11之前拉去到的包存储在$GOPATH/src目录下，使用 go mod 获取的依赖在$GOPATH/pkg/mod/下。 参数介绍：
+-d 只下载不安装 -f 只有在你包含了 -u 参数的时候才有效，不让 -u 去验证 import 中的每一个都已经获取了，这对于本地 fork 的包特别有用 -fix 在获取源码之后先运行 fix，然后再去做其他的事情 -t 同时也下载需要为运行测试所需要的包 -u 强制使用网络去更新包和它的依赖包 -v 显示执行的命令 -insecure 允许使用不安全的 HTTP 方式进行下载操作 go build go build [-o output] [build flags] [packages] 当编译的是单个main包时，那么在当前目录下生成可执行文件。 当编译的包是一个库时，那么结果会被舍弃。 编译一个包是，会自动的忽略_test.</description>
+    </item>
+    
     <item>
       <title>The Go Programming Language 接口（7)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter7/</link>
