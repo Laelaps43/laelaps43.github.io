@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.116.0">
+  <meta name="generator" content="Hugo 0.116.1">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -356,8 +356,8 @@ package main import &amp;#34;fmt&amp;#34; func main() { var a [3]int // 创建�
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">q</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;p&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">_</span> = <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">T</span>{<span style="color:#a6e22e">a</span> : <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">2</span>} <span style="color:#960050;background-color:#1e0010">／／</span> <span style="color:#960050;background-color:#1e0010">编译错误，</span> <span style="color:#960050;background-color:#1e0010">无法引用</span><span style="color:#a6e22e">a</span> <span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">b</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">_</span> = <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">T</span>{ <span style="color:#a6e22e">l</span>, <span style="color:#ae81ff">2</span>} <span style="color:#960050;background-color:#1e0010">／／</span> <span style="color:#960050;background-color:#1e0010">编译错误，无法引用</span><span style="color:#a6e22e">a</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">b</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">_</span> = <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">T</span>{<span style="color:#a6e22e">a</span> : <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">b</span>: <span style="color:#ae81ff">2</span>} <span style="color:#960050;background-color:#1e0010">／／</span> <span style="color:#a6e22e">编译错误</span><span style="color:#960050;background-color:#1e0010">，</span> <span style="color:#a6e22e">无法引用a</span> <span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">b</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">_</span> = <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">T</span>{ <span style="color:#a6e22e">l</span>, <span style="color:#ae81ff">2</span>} <span style="color:#960050;background-color:#1e0010">／／</span> <span style="color:#a6e22e">编译错误</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">无法引用a</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">b</span>
 </span></span></code></pre></div><h2 id="结构体比较">结构体比较</h2>
 <p>如果结构体中的成员变量是可比较的，则结构体是可比较的，还可以作为结构体的键类型。</p>
 <h2 id="结构体嵌套匿名成员">结构体嵌套&amp;匿名成员</h2>

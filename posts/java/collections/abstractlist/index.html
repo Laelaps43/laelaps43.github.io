@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.116.0">
+  <meta name="generator" content="Hugo 0.116.1">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -171,7 +171,7 @@ private class Itr implements Iterator&amp;lt;E&amp;gt; { int cursor = 0; int las
 <h2 id="removerange">removeRange</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">removeRange</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> fromIndex<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> toIndex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
 </span></span><span style="display:flex;"><span>    ListIterator<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> it <span style="color:#f92672">=</span> listIterator<span style="color:#f92672">(</span>fromIndex<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span> n<span style="color:#f92672">=</span>toIndex<span style="color:#f92672">-</span>fromIndex<span style="color:#f92672">;</span> i<span style="color:#f92672">&lt;</span>n<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>0<span style="color:#f92672">,</span> n<span style="color:#f92672">=</span>toIndex<span style="color:#f92672">-</span>fromIndex<span style="color:#f92672">;</span> i<span style="color:#f92672">&lt;</span>n<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>  
 </span></span><span style="display:flex;"><span>        it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>  
 </span></span><span style="display:flex;"><span>        it<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">();</span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
@@ -190,9 +190,9 @@ private class Itr implements Iterator&amp;lt;E&amp;gt; { int cursor = 0; int las
 <p>他实现了<code>Iterator</code>接口，供<code>AbstractList</code>使用迭代器。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Itr</span> <span style="color:#66d9ef">implements</span> Iterator<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>  
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> cursor <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> cursor <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> lastRet <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> lastRet <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>1<span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> expectedModCount <span style="color:#f92672">=</span> modCount<span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span>  
@@ -206,7 +206,7 @@ private class Itr implements Iterator&amp;lt;E&amp;gt; { int cursor = 0; int las
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> cursor<span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span>            E next <span style="color:#f92672">=</span> get<span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>            lastRet <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>            cursor <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>            cursor <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> 1<span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> next<span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IndexOutOfBoundsException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
 </span></span><span style="display:flex;"><span>            checkForComodification<span style="color:#f92672">();</span>  
@@ -215,7 +215,7 @@ private class Itr implements Iterator&amp;lt;E&amp;gt; { int cursor = 0; int las
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">remove</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>lastRet <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>lastRet <span style="color:#f92672">&lt;</span> 0<span style="color:#f92672">)</span>  
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">();</span>  
 </span></span><span style="display:flex;"><span>        checkForComodification<span style="color:#f92672">();</span>  
 </span></span><span style="display:flex;"><span>  
@@ -223,7 +223,7 @@ private class Itr implements Iterator&amp;lt;E&amp;gt; { int cursor = 0; int las
 </span></span><span style="display:flex;"><span>            AbstractList<span style="color:#f92672">.</span><span style="color:#a6e22e">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>lastRet<span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>lastRet <span style="color:#f92672">&lt;</span> cursor<span style="color:#f92672">)</span>  
 </span></span><span style="display:flex;"><span>                cursor<span style="color:#f92672">--;</span>  
-</span></span><span style="display:flex;"><span>            lastRet <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>            lastRet <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>1<span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span>            expectedModCount <span style="color:#f92672">=</span> modCount<span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IndexOutOfBoundsException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> ConcurrentModificationException<span style="color:#f92672">();</span>  
