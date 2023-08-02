@@ -33,8 +33,8 @@ src包含源文件 pkg构建工具存储编译后的包 bin存储可执行文件
       <guid>https://blog.laelaps.us/posts/java/concurrent/1/</guid>
       <description>前言 进程VS线程 进程 进程是应用程序在内存中分配的空间，及正在运行的程序，进程之间互不干扰。 基于进程实现的并发是基于CPU的时间片轮转；在CPU的单个核心中，CPU为每一个进程分配一个时间段（时间片），如果在时间片结束时，进程还在执行，那么暂停他，将CPU分配给他的进程（上下文切换）；如果在时间片用完前进程结束或阻塞，那么立即切换；在宏观上就像多个任务同时执行。
 线程 如果我们一个进程之间有许多的子任务，那么我们在线程里面还是按照串行的方法执行，所以提出了线程的思想，让一个线程去执行一个子任务。 进程让操作系统的并发成为了可能，线程让进程内部的并发成为了可能。
-优点 线程间的通信简单，进程通信复杂 线程是轻量级，进程是重量级，线程的开销更小 区别 进程有独立的内存空间，进程之间相互隔离，数据共享复杂，但是同步简单；线程属于进程，他占据线程的内存和资源，数据共享简单，但是同步复杂 可靠性，进程有独立的内存空间，出错时不会影响其他的进程，线程出错时会影响整个程序 开销，进程的创建需要进行资源的分配，开销大，线程只需要保留寄存器和栈的信息，开销较小 Java多线程 Thread类和Runable接口 在Java中，我们使用Thread类和Runable接口来实现我们自己的线程类
-继承Thread类 public class T21 { public static class MyThread extends Thread{ @Override public void run() { super.run(); System.out.println(&amp;#34;Hello&amp;#34;); } } public static void main(String[] args) { MyThread myThread = new MyThread(); myThread.start(); } } 实现Runable接口 实现Runable接口，他是一个函数式接口，我们可以使用函数式编程来简化
+优点 线程间的通信简单，进程通信复杂 线程是轻量级，进程是重量级，线程的开销更小 区别 进程有独立的内存空间，进程之间相互隔离，数据共享复杂，但是同步简单；线程属于进程，他占据线程的内存和资源，数据共享简单，但是同步复杂 可靠性，进程有独立的内存空间，出错时不会影响其他的进程，线程出错时会影响整个程序 开销，进程的创建需要进行资源的分配，开销大，线程只需要保留寄存器和栈的信息，开销较小 Java多线程 Thread类和Runnable接口 在Java中，我们使用Thread类和Runnable接口来实现我们自己的线程类
+继承Thread类 public class T21 { public static class MyThread extends Thread{ @Override public void run() { super.run(); System.out.println(&amp;#34;Hello&amp;#34;); } } public static void main(String[] args) { MyThread myThread = new MyThread(); myThread.start(); } } 实现Runnable接口 实现Runnable接口，他是一个函数式接口，我们可以使用函数式编程来简化
 public class T21 { public static void main(String[] args) { Thread thread = new Thread(() -&amp;gt; { System.</description>
     </item>
     

@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="laelaps" />
-  <meta property="og:url" content="https://blog.laelaps.us/leetcodes/" />
-  <link rel="canonical" href="https://blog.laelaps.us/leetcodes/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="Laelaps">
+  <meta property="og:url" content="https://blog.laelaps.us/leetcodes/24/" />
+  <link rel="canonical" href="https://blog.laelaps.us/leetcodes/24/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="Laelaps">
 
   <script type="application/ld+json">
   {
@@ -19,9 +19,9 @@
            "@id": "https:\/\/blog.laelaps.us"
       },
       "articleSection" : "leetcodes",
-      "name" : "Leetcode",
-      "headline" : "Leetcode",
-      "description" : "",
+      "name" : "力扣24题解",
+      "headline" : "力扣24题解",
+      "description" : "前言 这题是关于链表，那么我首先想到的就是使用递归去解决，但是我在这个过程中，发现空间复杂度有点大，所有第二次那么就直接使用迭代了。\n递归 func swapPairs(head *ListNode) *ListNode { if head == nil || head.Next == nil{ return head } nextNode := head.Next head.Next, nextNode.Next = swapPairs(nextNode.Next), head return nextNode } 迭代 \/** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } *\/ func swapPairs(head *ListNode) *ListNode { var tailPre,nextNode,nodeTmp *ListNode = nil, nil, nil node := head for node != nil \u0026amp;\u0026amp; node.",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -29,17 +29,19 @@
       "accountablePerson" : "laelaps",
       "copyrightHolder" : "laelaps",
       "copyrightYear" : "2023",
-      "datePublished": "2023-07-17 18:31:55 \u002b0800 \u002b0800",
-      "dateModified" : "2023-07-17 18:31:55 \u002b0800 \u002b0800",
-      "url" : "https:\/\/blog.laelaps.us\/leetcodes\/",
+      "datePublished": "2023-08-02 06:37:05 \u002b0800 \u002b0800",
+      "dateModified" : "2023-08-02 06:37:05 \u002b0800 \u002b0800",
+      "url" : "https:\/\/blog.laelaps.us\/leetcodes\/24\/",
       "keywords" : [  ]
   }
 </script>
-<title>Leetcode</title>
-  <meta property="og:title" content="Leetcode" />
+<title>力扣24题解</title>
+  <meta property="og:title" content="力扣24题解" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="前言 这题是关于链表，那么我首先想到的就是使用递归去解决，但是我在这个过程中，发现空间复杂度有点大，所有第二次那么就直接使用迭代了。
+递归 func swapPairs(head *ListNode) *ListNode { if head == nil || head.Next == nil{ return head } nextNode := head.Next head.Next, nextNode.Next = swapPairs(nextNode.Next), head return nextNode } 迭代 /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func swapPairs(head *ListNode) *ListNode { var tailPre,nextNode,nodeTmp *ListNode = nil, nil, nil node := head for node != nil &amp;amp;&amp;amp; node." />
+  <meta name="description" content="前言 这题是关于链表，那么我首先想到的就是使用递归去解决，但是我在这个过程中，发现空间复杂度有点大，所有第二次那么就直接使用迭代了。
+递归 func swapPairs(head *ListNode) *ListNode { if head == nil || head.Next == nil{ return head } nextNode := head.Next head.Next, nextNode.Next = swapPairs(nextNode.Next), head return nextNode } 迭代 /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func swapPairs(head *ListNode) *ListNode { var tailPre,nextNode,nodeTmp *ListNode = nil, nil, nil node := head for node != nil &amp;amp;&amp;amp; node." />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
@@ -113,55 +115,74 @@
 
         </div>
         <header class="post-header">
-          <h1 class="post-title">Leetcode</h1>
+          <h1 class="post-title">力扣24题解</h1>
           
         </header>
-        <div class="post-content markdown-body">
-          <p>已发布文章总数：2 <br>
-          </p>
+        <aside id="toc-container">
+          <details>
+            <summary>Table of Contents</summary>
+            <aside class="toc">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#递归">递归</a></li>
+    <li><a href="#迭代">迭代</a></li>
+  </ul>
+</nav>
+            </aside>
+        </details> 
+        </aside>
 
-          <table style="text-align: center;">
-            <thead style="text-align: center;">
-              <th style="width: 35%;">Title</th>
-              <th style="width: 42%;">Solution</th>
-              <th style="width: 23%;">Last Updated Date </th>
-            </thead>
-            <tbody>
-              
-                  <tr>
-                    <td>
-                      <a href="https://leetcode.com/problems/swap-nodes-in-pairs" target="_blank">Swap Nodes in Pairs</a> 
-                    </td>      
-                    <td>
-                      <a href="/leetcodes/24/">力扣24题解</a> 
-                    </td>
-                    <td>
-                      <time datetime=" 2023-08-02 06:37:05 &#43;0800">
-                        2023-08-02
-                      </time>
-                    </td>
-                  </tr>
-                
-                  <tr>
-                    <td>
-                      <a href="https://leetcode.com/problems/maximum-subarray" target="_blank">53. Maximum Subarray</a> 
-                    </td>      
-                    <td>
-                      <a href="/leetcodes/53/">力扣53题解</a> 
-                    </td>
-                    <td>
-                      <time datetime=" 2023-07-18 20:25:31 &#43;0800">
-                        2023-07-18
-                      </time>
-                    </td>
-                  </tr>
-                
-              
-            </tbody>
-          </table>
+        <div class="post-content markdown-body">
+          
+          <h1 id="前言">前言</h1>
+<p>这题是关于链表，那么我首先想到的就是使用递归去解决，但是我在这个过程中，发现空间复杂度有点大，所有第二次那么就直接使用迭代了。</p>
+<h1 id="递归">递归</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">swapPairs</span>(<span style="color:#a6e22e">head</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">head</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">head</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">nextNode</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">head</span>.<span style="color:#a6e22e">Next</span>, <span style="color:#a6e22e">nextNode</span>.<span style="color:#a6e22e">Next</span> = <span style="color:#a6e22e">swapPairs</span>(<span style="color:#a6e22e">nextNode</span>.<span style="color:#a6e22e">Next</span>), <span style="color:#a6e22e">head</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">nextNode</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="迭代">迭代</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Definition for singly-linked list.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * type ListNode struct {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *     Val int
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *     Next *ListNode
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">swapPairs</span>(<span style="color:#a6e22e">head</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">tailPre</span>,<span style="color:#a6e22e">nextNode</span>,<span style="color:#a6e22e">nodeTmp</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ListNode</span> = <span style="color:#66d9ef">nil</span>, <span style="color:#66d9ef">nil</span>, <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">node</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">head</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">node</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Next</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">nextNode</span> = <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Next</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">nodeTmp</span> = <span style="color:#a6e22e">nextNode</span>.<span style="color:#a6e22e">Next</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">nextNode</span>.<span style="color:#a6e22e">Next</span>, <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">Next</span> = <span style="color:#a6e22e">node</span>, <span style="color:#a6e22e">nodeTmp</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">tailPre</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">head</span> = <span style="color:#a6e22e">nextNode</span>
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">tailPre</span>.<span style="color:#a6e22e">Next</span> = <span style="color:#a6e22e">nextNode</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">tailPre</span> = <span style="color:#a6e22e">node</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">node</span> = <span style="color:#a6e22e">nodeTmp</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">head</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>在这里可以使用一个dummy节点，那么就可以替换for中的if判断。</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
         </div>
         
-
 
         <div class="site-footer">
   

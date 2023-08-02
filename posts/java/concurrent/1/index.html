@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "Java多线程基础",
       "headline" : "Java多线程基础",
-      "description" : "前言 进程VS线程 进程 进程是应用程序在内存中分配的空间，及正在运行的程序，进程之间互不干扰。 基于进程实现的并发是基于CPU的时间片轮转；在CPU的单个核心中，CPU为每一个进程分配一个时间段（时间片），如果在时间片结束时，进程还在执行，那么暂停他，将CPU分配给他的进程（上下文切换）；如果在时间片用完前进程结束或阻塞，那么立即切换；在宏观上就像多个任务同时执行。\n线程 如果我们一个进程之间有许多的子任务，那么我们在线程里面还是按照串行的方法执行，所以提出了线程的思想，让一个线程去执行一个子任务。 进程让操作系统的并发成为了可能，线程让进程内部的并发成为了可能。\n优点 线程间的通信简单，进程通信复杂 线程是轻量级，进程是重量级，线程的开销更小 区别 进程有独立的内存空间，进程之间相互隔离，数据共享复杂，但是同步简单；线程属于进程，他占据线程的内存和资源，数据共享简单，但是同步复杂 可靠性，进程有独立的内存空间，出错时不会影响其他的进程，线程出错时会影响整个程序 开销，进程的创建需要进行资源的分配，开销大，线程只需要保留寄存器和栈的信息，开销较小 Java多线程 Thread类和Runable接口 在Java中，我们使用Thread类和Runable接口来实现我们自己的线程类\n继承Thread类 public class T21 { public static class MyThread extends Thread{ @Override public void run() { super.run(); System.out.println(\u0026#34;Hello\u0026#34;); } } public static void main(String[] args) { MyThread myThread = new MyThread(); myThread.start(); } } 实现Runable接口 实现Runable接口，他是一个函数式接口，我们可以使用函数式编程来简化\npublic class T21 { public static void main(String[] args) { Thread thread = new Thread(() -\u0026gt; { System.",
+      "description" : "前言 进程VS线程 进程 进程是应用程序在内存中分配的空间，及正在运行的程序，进程之间互不干扰。 基于进程实现的并发是基于CPU的时间片轮转；在CPU的单个核心中，CPU为每一个进程分配一个时间段（时间片），如果在时间片结束时，进程还在执行，那么暂停他，将CPU分配给他的进程（上下文切换）；如果在时间片用完前进程结束或阻塞，那么立即切换；在宏观上就像多个任务同时执行。\n线程 如果我们一个进程之间有许多的子任务，那么我们在线程里面还是按照串行的方法执行，所以提出了线程的思想，让一个线程去执行一个子任务。 进程让操作系统的并发成为了可能，线程让进程内部的并发成为了可能。\n优点 线程间的通信简单，进程通信复杂 线程是轻量级，进程是重量级，线程的开销更小 区别 进程有独立的内存空间，进程之间相互隔离，数据共享复杂，但是同步简单；线程属于进程，他占据线程的内存和资源，数据共享简单，但是同步复杂 可靠性，进程有独立的内存空间，出错时不会影响其他的进程，线程出错时会影响整个程序 开销，进程的创建需要进行资源的分配，开销大，线程只需要保留寄存器和栈的信息，开销较小 Java多线程 Thread类和Runnable接口 在Java中，我们使用Thread类和Runnable接口来实现我们自己的线程类\n继承Thread类 public class T21 { public static class MyThread extends Thread{ @Override public void run() { super.run(); System.out.println(\u0026#34;Hello\u0026#34;); } } public static void main(String[] args) { MyThread myThread = new MyThread(); myThread.start(); } } 实现Runnable接口 实现Runnable接口，他是一个函数式接口，我们可以使用函数式编程来简化\npublic class T21 { public static void main(String[] args) { Thread thread = new Thread(() -\u0026gt; { System.",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -40,13 +40,13 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="前言 进程VS线程 进程 进程是应用程序在内存中分配的空间，及正在运行的程序，进程之间互不干扰。 基于进程实现的并发是基于CPU的时间片轮转；在CPU的单个核心中，CPU为每一个进程分配一个时间段（时间片），如果在时间片结束时，进程还在执行，那么暂停他，将CPU分配给他的进程（上下文切换）；如果在时间片用完前进程结束或阻塞，那么立即切换；在宏观上就像多个任务同时执行。
 线程 如果我们一个进程之间有许多的子任务，那么我们在线程里面还是按照串行的方法执行，所以提出了线程的思想，让一个线程去执行一个子任务。 进程让操作系统的并发成为了可能，线程让进程内部的并发成为了可能。
-优点 线程间的通信简单，进程通信复杂 线程是轻量级，进程是重量级，线程的开销更小 区别 进程有独立的内存空间，进程之间相互隔离，数据共享复杂，但是同步简单；线程属于进程，他占据线程的内存和资源，数据共享简单，但是同步复杂 可靠性，进程有独立的内存空间，出错时不会影响其他的进程，线程出错时会影响整个程序 开销，进程的创建需要进行资源的分配，开销大，线程只需要保留寄存器和栈的信息，开销较小 Java多线程 Thread类和Runable接口 在Java中，我们使用Thread类和Runable接口来实现我们自己的线程类
-继承Thread类 public class T21 { public static class MyThread extends Thread{ @Override public void run() { super.run(); System.out.println(&amp;#34;Hello&amp;#34;); } } public static void main(String[] args) { MyThread myThread = new MyThread(); myThread.start(); } } 实现Runable接口 实现Runable接口，他是一个函数式接口，我们可以使用函数式编程来简化
+优点 线程间的通信简单，进程通信复杂 线程是轻量级，进程是重量级，线程的开销更小 区别 进程有独立的内存空间，进程之间相互隔离，数据共享复杂，但是同步简单；线程属于进程，他占据线程的内存和资源，数据共享简单，但是同步复杂 可靠性，进程有独立的内存空间，出错时不会影响其他的进程，线程出错时会影响整个程序 开销，进程的创建需要进行资源的分配，开销大，线程只需要保留寄存器和栈的信息，开销较小 Java多线程 Thread类和Runnable接口 在Java中，我们使用Thread类和Runnable接口来实现我们自己的线程类
+继承Thread类 public class T21 { public static class MyThread extends Thread{ @Override public void run() { super.run(); System.out.println(&amp;#34;Hello&amp;#34;); } } public static void main(String[] args) { MyThread myThread = new MyThread(); myThread.start(); } } 实现Runnable接口 实现Runnable接口，他是一个函数式接口，我们可以使用函数式编程来简化
 public class T21 { public static void main(String[] args) { Thread thread = new Thread(() -&amp;gt; { System." />
   <meta name="description" content="前言 进程VS线程 进程 进程是应用程序在内存中分配的空间，及正在运行的程序，进程之间互不干扰。 基于进程实现的并发是基于CPU的时间片轮转；在CPU的单个核心中，CPU为每一个进程分配一个时间段（时间片），如果在时间片结束时，进程还在执行，那么暂停他，将CPU分配给他的进程（上下文切换）；如果在时间片用完前进程结束或阻塞，那么立即切换；在宏观上就像多个任务同时执行。
 线程 如果我们一个进程之间有许多的子任务，那么我们在线程里面还是按照串行的方法执行，所以提出了线程的思想，让一个线程去执行一个子任务。 进程让操作系统的并发成为了可能，线程让进程内部的并发成为了可能。
-优点 线程间的通信简单，进程通信复杂 线程是轻量级，进程是重量级，线程的开销更小 区别 进程有独立的内存空间，进程之间相互隔离，数据共享复杂，但是同步简单；线程属于进程，他占据线程的内存和资源，数据共享简单，但是同步复杂 可靠性，进程有独立的内存空间，出错时不会影响其他的进程，线程出错时会影响整个程序 开销，进程的创建需要进行资源的分配，开销大，线程只需要保留寄存器和栈的信息，开销较小 Java多线程 Thread类和Runable接口 在Java中，我们使用Thread类和Runable接口来实现我们自己的线程类
-继承Thread类 public class T21 { public static class MyThread extends Thread{ @Override public void run() { super.run(); System.out.println(&amp;#34;Hello&amp;#34;); } } public static void main(String[] args) { MyThread myThread = new MyThread(); myThread.start(); } } 实现Runable接口 实现Runable接口，他是一个函数式接口，我们可以使用函数式编程来简化
+优点 线程间的通信简单，进程通信复杂 线程是轻量级，进程是重量级，线程的开销更小 区别 进程有独立的内存空间，进程之间相互隔离，数据共享复杂，但是同步简单；线程属于进程，他占据线程的内存和资源，数据共享简单，但是同步复杂 可靠性，进程有独立的内存空间，出错时不会影响其他的进程，线程出错时会影响整个程序 开销，进程的创建需要进行资源的分配，开销大，线程只需要保留寄存器和栈的信息，开销较小 Java多线程 Thread类和Runnable接口 在Java中，我们使用Thread类和Runnable接口来实现我们自己的线程类
+继承Thread类 public class T21 { public static class MyThread extends Thread{ @Override public void run() { super.run(); System.out.println(&amp;#34;Hello&amp;#34;); } } public static void main(String[] args) { MyThread myThread = new MyThread(); myThread.start(); } } 实现Runnable接口 实现Runnable接口，他是一个函数式接口，我们可以使用函数式编程来简化
 public class T21 { public static void main(String[] args) { Thread thread = new Thread(() -&amp;gt; { System." />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
@@ -158,10 +158,10 @@ public class T21 { public static void main(String[] args) { Thread thread = new 
     </li>
     <li><a href="#java多线程">Java多线程</a>
       <ul>
-        <li><a href="#thread类和runable接口">Thread类和Runable接口</a>
+        <li><a href="#thread类和runnable接口">Thread类和Runnable接口</a>
           <ul>
             <li><a href="#继承thread类">继承Thread类</a></li>
-            <li><a href="#实现runable接口">实现Runable接口</a></li>
+            <li><a href="#实现runnable接口">实现Runnable接口</a></li>
             <li><a href="#thread类">Thread类</a>
               <ul>
                 <li><a href="#常用方法">常用方法</a></li>
@@ -256,8 +256,8 @@ public class T21 { public static void main(String[] args) { Thread thread = new 
 <li>开销，进程的创建需要进行资源的分配，开销大，线程只需要保留寄存器和栈的信息，开销较小</li>
 </ul>
 <h1 id="java多线程">Java多线程</h1>
-<h2 id="thread类和runable接口">Thread类和Runable接口</h2>
-<p>在Java中，我们使用<code>Thread</code>类和<code>Runable</code>接口来实现我们自己的线程类</p>
+<h2 id="thread类和runnable接口">Thread类和Runnable接口</h2>
+<p>在Java中，我们使用<code>Thread</code>类和<code>Runnable</code>接口来实现我们自己的线程类</p>
 <h3 id="继承thread类">继承Thread类</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T21</span> <span style="color:#f92672">{</span>  
 </span></span><span style="display:flex;"><span>  
@@ -273,8 +273,8 @@ public class T21 { public static void main(String[] args) { Thread thread = new 
 </span></span><span style="display:flex;"><span>        myThread<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><h3 id="实现runable接口">实现Runable接口</h3>
-<p>实现<code>Runable</code>接口，他是一个函数式接口，我们可以使用函数式编程来简化</p>
+</span></span></code></pre></div><h3 id="实现runnable接口">实现Runnable接口</h3>
+<p>实现<code>Runnable</code>接口，他是一个函数式接口，我们可以使用函数式编程来简化</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T21</span> <span style="color:#f92672">{</span>  
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
@@ -285,7 +285,7 @@ public class T21 { public static void main(String[] args) { Thread thread = new 
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><h3 id="thread类">Thread类</h3>
-<p>Thread实现了Runable接口</p>
+<p>Thread实现了Runnable接口</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Thread类源码 
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 片段1 - init方法
@@ -323,13 +323,13 @@ public class T21 { public static void main(String[] args) { Thread thread = new 
 </ul>
 <h3 id="两者比较">两者比较</h3>
 <ol>
-<li><code>Runable</code>比<code>Tharead</code>更加灵活</li>
-<li><code>Runable</code>接口更符合面向对象，将线程单独进行对象封装</li>
-<li><code>Runable</code>接口降低了线程对象和线程任务的耦合性</li>
-<li><code>Runable</code>接口更为轻量</li>
+<li><code>Runnable</code>比<code>Tharead</code>更加灵活</li>
+<li><code>Runnable</code>接口更符合面向对象，将线程单独进行对象封装</li>
+<li><code>Runnable</code>接口降低了线程对象和线程任务的耦合性</li>
+<li><code>Runnable</code>接口更为轻量</li>
 </ol>
 <h1 id="callable-future与future-task">Callable Future与Future Task</h1>
-<p>使用<code>Runable</code>和<code>Thread</code>来创建一个新线程，<code>run</code>方法没有返回值，我们如果希望一个线程执行完一个任务后，可以将计算的结果（如果有的话）作为返回值的话，所谓的异步，需要使用Java提供的<code>Callable</code>接口和<code>Future</code>接口。</p>
+<p>使用<code>Runnable</code>和<code>Thread</code>来创建一个新线程，<code>run</code>方法没有返回值，我们如果希望一个线程执行完一个任务后，可以将计算的结果（如果有的话）作为返回值的话，所谓的异步，需要使用Java提供的<code>Callable</code>接口和<code>Future</code>接口。</p>
 <h2 id="callable接口">Callable接口</h2>
 <p>他是一个函数式编程接口，他提供的方法有返回值，并且支持泛型。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@FunctionalInterface</span>
@@ -366,7 +366,7 @@ public class T21 { public static void main(String[] args) { Thread thread = new 
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><p>如果我们需要线程的取消性，而不注重返回的结果，可以使用<code>Future&lt;?&gt;</code>类型，并返回null作为底层任务的结果。</p>
 <h2 id="futuretask类">FutureTask类</h2>
-<p><code>FutureTask</code>类是<code>Future</code>接口的实现（实现了里面的<code>cancel</code>等复杂方法），他实现了<code>RunableFuture</code>接口实现了<code>Runable</code>接口和<code>Future</code>接口。</p>
+<p><code>FutureTask</code>类是<code>Future</code>接口的实现（实现了里面的<code>cancel</code>等复杂方法），他实现了<code>RunnableFuture</code>接口实现了<code>Runnable</code>接口和<code>Future</code>接口。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RunnableFuture</span><span style="color:#f92672">&lt;</span>V<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">extends</span> Runnable<span style="color:#f92672">,</span> Future<span style="color:#f92672">&lt;</span>V<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Sets this Future to the result of its computation
@@ -567,9 +567,9 @@ public class T21 { public static void main(String[] args) { Thread thread = new 
 <p>表示线程正在运行当中，线程在JVM中正在运行，也有可能在等待CPU分配系统资源；他包括了传统操作系统线程中的ready和running两个状态。</p>
 <h2 id="blocked">BLOCKED</h2>
 <p>线程处在阻塞状态，线程正在等待其他线程释放锁进入同步区，线程被动的放弃系统资源。
-线程阻塞通常是使用互斥锁；当一个线程释放锁的时候，那么操作系统的调度策略会将在等待锁的现场中选择一个或者多个，将他们的状态从BLOCKED改变为RUNABLE，然后线程在等待CPU的时间片分配，然后在获取锁。</p>
+线程阻塞通常是使用互斥锁；当一个线程释放锁的时候，那么操作系统的调度策略会将在等待锁的现场中选择一个或者多个，将他们的状态从BLOCKED改变为RUNNABLE，然后线程在等待CPU的时间片分配，然后在获取锁。</p>
 <h2 id="waiting">WAITING</h2>
-<p>线程在等待其他线程唤醒，然后变成RUNABLE状态，线程主动的放弃系统资源。
+<p>线程在等待其他线程唤醒，然后变成RUNNABLE状态，线程主动的放弃系统资源。
 进程进入等待状态的条件：</p>
 <ul>
 <li><code>Object.wait()</code>：线程变成等待状态，等待另外一个线程调用<code>Object.notify()</code>和<code>Object.notifyAll()</code>来唤醒。</li>
@@ -673,7 +673,9 @@ Object.wait(long)和Thread.join(long)同WAITING，只是多了一个等待时间
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><h2 id="自旋锁">自旋锁</h2>
-<p>自旋锁是一种比较特殊的锁，线程不像互斥锁一样去阻塞，相反他是在一个循环中不断的检查锁是否被释放；优点是线程在等待锁被释放的时候仍然保持活跃，避免了线程切换的开销；缺点是在等待锁被释放的时候后占用CPU资源，其次是可能会导致线程饥饿，线程可能会长时间获取不到锁，总是在不断的自旋等待。</p>
+<p>自旋锁是一种比较特殊的锁，线程不像互斥锁一样去阻塞，相反他是在一个循环中不断的检查锁是否被释放；优点是线程在等待锁被释放的时候仍然保持活跃，避免了线程切换的开销；缺点是在等待锁被释放的时候后占用CPU资源，其次是可能会导致线程饥饿，线程可能会长时间获取不到锁，总是在不断的自旋等待。
+如果线程对锁的竞争不激烈，占用锁时间非常短的代码块，可以大幅度提升性能，自旋的消耗小于线程阻塞挂起再唤醒的操作。
+如果锁竞争激烈，或者持有锁的线程需要长时间占用锁执行同步块，那么自旋锁会造成CPU的大量消耗。</p>
 <h2 id="同步">同步</h2>
 <p>线程同步确保了线程在同一段时间段只有一个线程才可以进入临界区，其他线程必须等待。主要目的是为了防治多个线程同时访问和修改共享资源，从而避免数据的不一致性和冲突。如果线程不同步，可能有线程同时修改一个共享变量，导致数据的不一致。</p>
 <h2 id="等待通知机制">等待、通知机制</h2>

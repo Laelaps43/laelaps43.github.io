@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 17 Jul 2023 18:31:55 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/leetcodes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>力扣24题解</title>
+      <link>https://blog.laelaps.us/leetcodes/24/</link>
+      <pubDate>Wed, 02 Aug 2023 06:37:05 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/leetcodes/24/</guid>
+      <description>前言 这题是关于链表，那么我首先想到的就是使用递归去解决，但是我在这个过程中，发现空间复杂度有点大，所有第二次那么就直接使用迭代了。
+递归 func swapPairs(head *ListNode) *ListNode { if head == nil || head.Next == nil{ return head } nextNode := head.Next head.Next, nextNode.Next = swapPairs(nextNode.Next), head return nextNode } 迭代 /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func swapPairs(head *ListNode) *ListNode { var tailPre,nextNode,nodeTmp *ListNode = nil, nil, nil node := head for node != nil &amp;amp;&amp;amp; node.</description>
+    </item>
+    
+    <item>
       <title>力扣53题解</title>
       <link>https://blog.laelaps.us/leetcodes/53/</link>
       <pubDate>Tue, 18 Jul 2023 20:25:31 +0800</pubDate>
