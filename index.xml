@@ -6,7 +6,17 @@
     <description>Recent content on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Aug 2023 06:37:05 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Aug 2023 17:05:24 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>力扣19题解</title>
+      <link>https://blog.laelaps.us/leetcodes/19/</link>
+      <pubDate>Thu, 03 Aug 2023 17:05:24 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/leetcodes/19/</guid>
+      <description>前言 看到这个是关于链表的题目，那么就是使用递归或者是迭代了，在递归的时候，是从后往前数到第n个；使用迭代则是先得出总的节点数，然后在使用总的节点数减去n，得到的就是从前往后数的个数，在使用一次迭代就可以将节点删去。
+迭代 func removeNthFromEnd(head *ListNode, n int) *ListNode { dummy := &amp;amp;ListNode{0, head} tmp := dummy.Next sum := 0 for tmp.Next != nil { tmp = tmp.Next sum += 1 } beforeNth := sum - n tmp = dummy for i := 0; i &amp;lt;= beforeNth; i++{ tmp = tmp.Next } tmp.Next = tmp.Next.Next return dummy.Next } 递归 func removeNthFromEnd(head *ListNode, n int) *ListNode { m := 0 dummy := &amp;amp;ListNode{0, head} removeByRecursion(dummy, n, &amp;amp;m) return dummy.</description>
+    </item>
+    
     <item>
       <title>力扣24题解</title>
       <link>https://blog.laelaps.us/leetcodes/24/</link>
