@@ -8,6 +8,36 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 17 Jul 2023 18:31:55 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/leetcodes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>力扣216题解</title>
+      <link>https://blog.laelaps.us/leetcodes/216/</link>
+      <pubDate>Sun, 06 Aug 2023 22:18:30 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/leetcodes/216/</guid>
+      <description>前言 回溯问题
+回溯 func combinationSum3(k int, n int) [][]int { path := make([]int, 0, k) result := make([][]int, 0) backtracking(1, k, n, 9, 0, &amp;amp;path, &amp;amp;result) return result } func backtracking(start, k, n, end, target int, path *[]int, result *[][]int){ if len(*path) == k { if target == n{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) } return } if start &amp;gt; end || n &amp;lt; target || start &amp;gt; n{ return } *path = append(*path, start) backtracking(start + 1, k, n, end, target + start, path, result) *path = (*path)[:len(*path) - 1] backtracking(start + 1, k, n, end,target, path, result) } </description>
+    </item>
+    
+    <item>
+      <title>力扣77题解</title>
+      <link>https://blog.laelaps.us/leetcodes/77/</link>
+      <pubDate>Sun, 06 Aug 2023 21:54:47 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/leetcodes/77/</guid>
+      <description>前言 回溯算法题目
+回溯 func combine(n int, k int) [][]int { path := make([]int, 0) result := make([][]int, 0) backtracking(1, n, k, &amp;amp;path, &amp;amp;result) return result } func backtracking(begin, n, k int, path *[]int, result *[][]int) { if len(*path) == k{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) return } if begin &amp;gt; n { return } *path = append(*path, begin) backtracking(begin+1, n, k, path, result) *path = (*path)[:len(*path) - 1] backtracking(begin+1, n, k, path, result) } </description>
+    </item>
+    
+    <item>
+      <title>力扣62题解</title>
+      <link>https://blog.laelaps.us/leetcodes/62/</link>
+      <pubDate>Sat, 05 Aug 2023 21:05:55 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/leetcodes/62/</guid>
+      <description>前言 在看到这题时，可以很快的想到是使用DP去做，其实我们最先想到的是使用递归去做，但是我感觉有点复杂，因为这个题目的状态转移方程很容易求解出来。
+DP func uniquePaths(m int, n int) int { var grid [100][100]int grid[0][0] = 1 for i := 0; i &amp;lt; m; i++{ for j := 0; j &amp;lt; n; j++{ if i == 0 &amp;amp;&amp;amp; j != 0 { // 第一行 grid[i][j] = grid[i][j - 1] } if j == 0 &amp;amp;&amp;amp; i != 0{ // 第一列 grid[i][j] = grid[i - 1][j] } if i != 0 &amp;amp;&amp;amp; j !</description>
+    </item>
+    
+    <item>
       <title>力扣19题解</title>
       <link>https://blog.laelaps.us/leetcodes/19/</link>
       <pubDate>Thu, 03 Aug 2023 17:05:24 +0800</pubDate>

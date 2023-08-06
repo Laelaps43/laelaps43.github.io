@@ -6,7 +6,37 @@
     <description>Recent content on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 03 Aug 2023 17:05:24 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Aug 2023 22:18:30 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>力扣216题解</title>
+      <link>https://blog.laelaps.us/leetcodes/216/</link>
+      <pubDate>Sun, 06 Aug 2023 22:18:30 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/leetcodes/216/</guid>
+      <description>前言 回溯问题
+回溯 func combinationSum3(k int, n int) [][]int { path := make([]int, 0, k) result := make([][]int, 0) backtracking(1, k, n, 9, 0, &amp;amp;path, &amp;amp;result) return result } func backtracking(start, k, n, end, target int, path *[]int, result *[][]int){ if len(*path) == k { if target == n{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) } return } if start &amp;gt; end || n &amp;lt; target || start &amp;gt; n{ return } *path = append(*path, start) backtracking(start + 1, k, n, end, target + start, path, result) *path = (*path)[:len(*path) - 1] backtracking(start + 1, k, n, end,target, path, result) } </description>
+    </item>
+    
+    <item>
+      <title>力扣77题解</title>
+      <link>https://blog.laelaps.us/leetcodes/77/</link>
+      <pubDate>Sun, 06 Aug 2023 21:54:47 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/leetcodes/77/</guid>
+      <description>前言 回溯算法题目
+回溯 func combine(n int, k int) [][]int { path := make([]int, 0) result := make([][]int, 0) backtracking(1, n, k, &amp;amp;path, &amp;amp;result) return result } func backtracking(begin, n, k int, path *[]int, result *[][]int) { if len(*path) == k{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) return } if begin &amp;gt; n { return } *path = append(*path, begin) backtracking(begin+1, n, k, path, result) *path = (*path)[:len(*path) - 1] backtracking(begin+1, n, k, path, result) } </description>
+    </item>
+    
+    <item>
+      <title>力扣62题解</title>
+      <link>https://blog.laelaps.us/leetcodes/62/</link>
+      <pubDate>Sat, 05 Aug 2023 21:05:55 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/leetcodes/62/</guid>
+      <description>前言 在看到这题时，可以很快的想到是使用DP去做，其实我们最先想到的是使用递归去做，但是我感觉有点复杂，因为这个题目的状态转移方程很容易求解出来。
+DP func uniquePaths(m int, n int) int { var grid [100][100]int grid[0][0] = 1 for i := 0; i &amp;lt; m; i++{ for j := 0; j &amp;lt; n; j++{ if i == 0 &amp;amp;&amp;amp; j != 0 { // 第一行 grid[i][j] = grid[i][j - 1] } if j == 0 &amp;amp;&amp;amp; i != 0{ // 第一列 grid[i][j] = grid[i - 1][j] } if i != 0 &amp;amp;&amp;amp; j !</description>
+    </item>
+    
     <item>
       <title>力扣19题解</title>
       <link>https://blog.laelaps.us/leetcodes/19/</link>
@@ -25,6 +55,16 @@
       <guid>https://blog.laelaps.us/leetcodes/24/</guid>
       <description>前言 这题是关于链表，那么我首先想到的就是使用递归去解决，但是我在这个过程中，发现空间复杂度有点大，所有第二次那么就直接使用迭代了。
 递归 func swapPairs(head *ListNode) *ListNode { if head == nil || head.Next == nil{ return head } nextNode := head.Next head.Next, nextNode.Next = swapPairs(nextNode.Next), head return nextNode } 迭代 /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func swapPairs(head *ListNode) *ListNode { var tailPre,nextNode,nodeTmp *ListNode = nil, nil, nil node := head for node != nil &amp;amp;&amp;amp; node.</description>
+    </item>
+    
+    <item>
+      <title>Java锁体系</title>
+      <link>https://blog.laelaps.us/posts/java/concurrent/lock/</link>
+      <pubDate>Thu, 27 Jul 2023 21:05:59 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/java/concurrent/lock/</guid>
+      <description>Monitor机制 monitor（监视器、管程）是一个同步工具（同步机制）；底层以来于操作系统的mutex lock实现。 特点：
+互斥 提供singnal机制 Mark Word会保存指向重量级锁的指针，结构如下： ObjectMonitor() { _header = NULL; _count = 0; _waiters = 0, _recursions = 0; _object = NULL; _owner = NULL; _WaitSet = NULL; _WaitSetLock = 0 ; _Responsible = NULL ; _succ = NULL ; _cxq = NULL ; FreeNext = NULL ; _EntryList = NULL ; _SpinFreq = 0 ; _SpinClock = 0 ; OwnerIsThread = 0 ; _previous_owner_tid = 0; } 字段声明：</description>
     </item>
     
     <item>

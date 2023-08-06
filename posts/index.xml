@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Jul 2023 14:54:44 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 27 Jul 2023 21:05:59 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java锁体系</title>
+      <link>https://blog.laelaps.us/posts/java/concurrent/lock/</link>
+      <pubDate>Thu, 27 Jul 2023 21:05:59 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/java/concurrent/lock/</guid>
+      <description>Monitor机制 monitor（监视器、管程）是一个同步工具（同步机制）；底层以来于操作系统的mutex lock实现。 特点：
+互斥 提供singnal机制 Mark Word会保存指向重量级锁的指针，结构如下： ObjectMonitor() { _header = NULL; _count = 0; _waiters = 0, _recursions = 0; _object = NULL; _owner = NULL; _WaitSet = NULL; _WaitSetLock = 0 ; _Responsible = NULL ; _succ = NULL ; _cxq = NULL ; FreeNext = NULL ; _EntryList = NULL ; _SpinFreq = 0 ; _SpinClock = 0 ; OwnerIsThread = 0 ; _previous_owner_tid = 0; } 字段声明：</description>
+    </item>
+    
     <item>
       <title>The Go Programming Language 包和go工具（10)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter10/</link>
