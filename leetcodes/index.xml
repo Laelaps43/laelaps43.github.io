@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 17 Jul 2023 18:31:55 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/leetcodes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>力扣17题解</title>
+      <link>https://blog.laelaps.us/leetcodes/17/</link>
+      <pubDate>Mon, 07 Aug 2023 22:29:40 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/leetcodes/17/</guid>
+      <description>前言 一开始想到的是使用一个Map来存储，其实有一个数组来存储字母组合获取更加的方便。回溯思想。
+回溯 func letterCombinations(digits string) []string { if digits == &amp;#34;&amp;#34;{ return make([]string, 0) } tel := map[rune]string{ &amp;#39;2&amp;#39;: &amp;#34;abc&amp;#34;, &amp;#39;3&amp;#39;: &amp;#34;def&amp;#34;, &amp;#39;4&amp;#39;: &amp;#34;ghi&amp;#34;, &amp;#39;5&amp;#39;: &amp;#34;jkl&amp;#34;, &amp;#39;6&amp;#39;: &amp;#34;mno&amp;#34;, &amp;#39;7&amp;#39;: &amp;#34;pqrs&amp;#34;, &amp;#39;8&amp;#39;: &amp;#34;tuv&amp;#34;, &amp;#39;9&amp;#39;: &amp;#34;wxyz&amp;#34;, } result := make([]string, 0) path := make([]rune,0, len(digits)) backtracking(0, digits, &amp;amp;path, &amp;amp;result, &amp;amp;tel) return result } func backtracking(start int, digits string, path *[]rune, result *[]string, tel *map[rune]string){ if len(*path) == len(digits){ *result = append(*result, string(*path)) return } for _,value := range (*tel)[rune(digits[start])] { *path = append(*path, value) backtracking(start + 1, digits, path, result, tel) *path = (*path)[:len(*path) -1 ] } } </description>
+    </item>
+    
+    <item>
       <title>力扣216题解</title>
       <link>https://blog.laelaps.us/leetcodes/216/</link>
       <pubDate>Sun, 06 Aug 2023 22:18:30 +0800</pubDate>
