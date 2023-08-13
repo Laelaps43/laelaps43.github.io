@@ -6,7 +6,19 @@
     <description>Recent content on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 07 Aug 2023 22:29:40 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Aug 2023 21:23:53 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Volumes</title>
+      <link>https://blog.laelaps.us/posts/docker/volumes/</link>
+      <pubDate>Sat, 12 Aug 2023 21:23:53 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/docker/volumes/</guid>
+      <description>数据管理 在Docker内部以及容器之间管理数据，数据持久化，有两种方式：数据卷（Volumes）、挂载主机目录（Bind mounts）。
+数据卷 数据卷是一个可以由一个或者多个容器共同使用的特殊目录，实现数据的持久化，他可以被挂载到指定容器的指定目录下。
+特性：
+在容器中可以共享和重用 对数据卷的修改会立马生效 对数据卷的更新，不会影响镜像 数据卷会一致存在，即使容器被删除 # 创建一个数据卷 $ docker volume create my-vol my-vol # 查看所有的数据卷 $ docker volume ls DRIVER VOLUME NAME local 4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8 local my-vol # 查看指定数据卷的信息 $ docker volume inspect my-vol [ { &amp;#34;CreatedAt&amp;#34;: &amp;#34;2023-08-12T14:19:27Z&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Labels&amp;#34;: null, &amp;#34;Mountpoint&amp;#34;: &amp;#34;/var/lib/docker/volumes/my-vol/_data&amp;#34;, &amp;#34;Name&amp;#34;: &amp;#34;my-vol&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34; } ] # 删除指定的数据卷 $ docker volume rm my-vol my-vol # 删除无主的数据卷 $ docker volume prune 挂载数据卷到容器：</description>
+    </item>
+    
     <item>
       <title>力扣17题解</title>
       <link>https://blog.laelaps.us/leetcodes/17/</link>
@@ -65,6 +77,18 @@ DP func uniquePaths(m int, n int) int { var grid [100][100]int grid[0][0] = 1 fo
       <guid>https://blog.laelaps.us/leetcodes/24/</guid>
       <description>前言 这题是关于链表，那么我首先想到的就是使用递归去解决，但是我在这个过程中，发现空间复杂度有点大，所有第二次那么就直接使用迭代了。
 递归 func swapPairs(head *ListNode) *ListNode { if head == nil || head.Next == nil{ return head } nextNode := head.Next head.Next, nextNode.Next = swapPairs(nextNode.Next), head return nextNode } 迭代 /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func swapPairs(head *ListNode) *ListNode { var tailPre,nextNode,nodeTmp *ListNode = nil, nil, nil node := head for node != nil &amp;amp;&amp;amp; node.</description>
+    </item>
+    
+    <item>
+      <title>The Go Programming Language 测试（11)</title>
+      <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter11/</link>
+      <pubDate>Mon, 31 Jul 2023 20:47:06 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter11/</guid>
+      <description>在go的包下通常会存在一些以_test.go结尾的文件，他在go build阶段并不会被编译，在文件中有三种函数，一种是以Test开头的功能测试函数，运行go test会测试这些函数；一种是Benchmark开头的基准测试函数，用来测试某些操作的性能，go test会回报操作的平均执行时间；最后一种是以Example开头的示例函数。 go test会扫描包下的_test.go结尾的文件来寻找特殊的函数，使用一个临时的main包来调用这些函数，并编译和运行他们。
+Test函数 test基本 在_test.go里面的Test函数有着固定的函数前面，所有的函数都要符合这个规定
+func TestName(t *testing.T){ } package word // IsPalindrome reports whether s reads the same forward and backward. // (Our first attempt.) func IsPalindrome(s string) bool { for i := range s { if s[i] != s[len(s)-1-i] { return false } } return true } 测试函数：
+func TestPalindrome(t *testing.T) { if !IsPalindrome(&amp;#34;detartrated&amp;#34;) { t.Error(`IsPalindrome(&amp;#34;detartrated&amp;#34;) = false`) } if !IsPalindrome(&amp;#34;kayak&amp;#34;) { t.Error(`IsPalindrome(&amp;#34;kayak&amp;#34;) = false`) } } 我们可以使用go test来运行测试，为当前目录，当测试成功的时候会返回PASS，测试失败会给出失败的函数等信息。</description>
     </item>
     
     <item>
