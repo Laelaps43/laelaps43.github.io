@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="laelaps" />
-  <meta property="og:url" content="https://blog.laelaps.us/posts/docker/volumes/" />
-  <link rel="canonical" href="https://blog.laelaps.us/posts/docker/volumes/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="Laelaps">
+  <meta property="og:url" content="https://blog.laelaps.us/posts/docker/network/" />
+  <link rel="canonical" href="https://blog.laelaps.us/posts/docker/network/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="Laelaps">
 
   <script type="application/ld+json">
   {
@@ -19,9 +19,9 @@
            "@id": "https:\/\/blog.laelaps.us"
       },
       "articleSection" : "posts",
-      "name" : "Docker数据持久化",
-      "headline" : "Docker数据持久化",
-      "description" : "数据管理 在Docker内部以及容器之间管理数据，数据持久化，有两种方式：数据卷（Volumes）、挂载主机目录（Bind mounts）。\n数据卷 数据卷是一个可以由一个或者多个容器共同使用的特殊目录，实现数据的持久化，他可以被挂载到指定容器的指定目录下。\n特性：\n在容器中可以共享和重用 对数据卷的修改会立马生效 对数据卷的更新，不会影响镜像 数据卷会一致存在，即使容器被删除 # 创建一个数据卷 $ docker volume create my-vol my-vol # 查看所有的数据卷 $ docker volume ls DRIVER VOLUME NAME local 4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8 local my-vol # 查看指定数据卷的信息 $ docker volume inspect my-vol [ { \u0026#34;CreatedAt\u0026#34;: \u0026#34;2023-08-12T14:19:27Z\u0026#34;, \u0026#34;Driver\u0026#34;: \u0026#34;local\u0026#34;, \u0026#34;Labels\u0026#34;: null, \u0026#34;Mountpoint\u0026#34;: \u0026#34;\/var\/lib\/docker\/volumes\/my-vol\/_data\u0026#34;, \u0026#34;Name\u0026#34;: \u0026#34;my-vol\u0026#34;, \u0026#34;Options\u0026#34;: null, \u0026#34;Scope\u0026#34;: \u0026#34;local\u0026#34; } ] # 删除指定的数据卷 $ docker volume rm my-vol my-vol # 删除无主的数据卷 $ docker volume prune 挂载数据卷到容器：",
+      "name" : "Docker网络",
+      "headline" : "Docker网络",
+      "description" : "网络 在安装Docker时，会自动创建三个网络。\n➜ ~ sudo docker network ls NETWORK ID NAME DRIVER SCOPE 2ddeffb91230 bridge bridge local c55e5f5ed788 host host local 1eebd0c8e7c7 none null local 在Docker中有三种模式，分别为bridg、host和null 。\nBridge模式 在Docker启动时，Docker会在宿主中创建一个为Docker0的虚拟网口，Docker会为这个虚拟网口分配一个虚拟网段，在每次启动一个服务时，那么就会分配docker0的一个子网给容器，那么容器就可以访问宿主和外网；同时他会进行NAT转换；在同一个bridge下的所有设备都可以相互通信，我们也可以将他们之间设置为禁止通信。 # 创建一个容器，自动加入bridge网桥 ➜ ~ sudo docker run -d --name ron1 praqma\/network-multitool 我们可以查看一个bridge的信息。\n➜ ~ sudo docker network inspect bridge [ { \u0026#34;Name\u0026#34;: \u0026#34;bridge\u0026#34;, \u0026#34;Id\u0026#34;: \u0026#34;2ddeffb91230eb06f738dc5ca7be5e853f82fa8324e338c592424e1b478e5571\u0026#34;, \u0026#34;Created\u0026#34;: \u0026#34;2023-08-14T00:53:05.367734129\u002b08:00\u0026#34;, \u0026#34;Scope\u0026#34;: \u0026#34;local\u0026#34;, \u0026#34;Driver\u0026#34;: \u0026#34;bridge\u0026#34;, \u0026#34;EnableIPv6\u0026#34;: false, \u0026#34;IPAM\u0026#34;: { \u0026#34;Driver\u0026#34;: \u0026#34;default\u0026#34;, \u0026#34;Options\u0026#34;: null, \u0026#34;Config\u0026#34;: [ { \u0026#34;Subnet\u0026#34;: \u0026#34;172.",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -29,23 +29,23 @@
       "accountablePerson" : "laelaps",
       "copyrightHolder" : "laelaps",
       "copyrightYear" : "2023",
-      "datePublished": "2023-08-12 21:23:53 \u002b0800 \u002b0800",
-      "dateModified" : "2023-08-12 21:23:53 \u002b0800 \u002b0800",
-      "url" : "https:\/\/blog.laelaps.us\/posts\/docker\/volumes\/",
+      "datePublished": "2023-08-13 14:07:23 \u002b0800 \u002b0800",
+      "dateModified" : "2023-08-13 14:07:23 \u002b0800 \u002b0800",
+      "url" : "https:\/\/blog.laelaps.us\/posts\/docker\/network\/",
       "keywords" : [  ]
   }
 </script>
-<title>Docker数据持久化</title>
-  <meta property="og:title" content="Docker数据持久化" />
+<title>Docker网络</title>
+  <meta property="og:title" content="Docker网络" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="数据管理 在Docker内部以及容器之间管理数据，数据持久化，有两种方式：数据卷（Volumes）、挂载主机目录（Bind mounts）。
-数据卷 数据卷是一个可以由一个或者多个容器共同使用的特殊目录，实现数据的持久化，他可以被挂载到指定容器的指定目录下。
-特性：
-在容器中可以共享和重用 对数据卷的修改会立马生效 对数据卷的更新，不会影响镜像 数据卷会一致存在，即使容器被删除 # 创建一个数据卷 $ docker volume create my-vol my-vol # 查看所有的数据卷 $ docker volume ls DRIVER VOLUME NAME local 4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8 local my-vol # 查看指定数据卷的信息 $ docker volume inspect my-vol [ { &amp;#34;CreatedAt&amp;#34;: &amp;#34;2023-08-12T14:19:27Z&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Labels&amp;#34;: null, &amp;#34;Mountpoint&amp;#34;: &amp;#34;/var/lib/docker/volumes/my-vol/_data&amp;#34;, &amp;#34;Name&amp;#34;: &amp;#34;my-vol&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34; } ] # 删除指定的数据卷 $ docker volume rm my-vol my-vol # 删除无主的数据卷 $ docker volume prune 挂载数据卷到容器：" />
-  <meta name="description" content="数据管理 在Docker内部以及容器之间管理数据，数据持久化，有两种方式：数据卷（Volumes）、挂载主机目录（Bind mounts）。
-数据卷 数据卷是一个可以由一个或者多个容器共同使用的特殊目录，实现数据的持久化，他可以被挂载到指定容器的指定目录下。
-特性：
-在容器中可以共享和重用 对数据卷的修改会立马生效 对数据卷的更新，不会影响镜像 数据卷会一致存在，即使容器被删除 # 创建一个数据卷 $ docker volume create my-vol my-vol # 查看所有的数据卷 $ docker volume ls DRIVER VOLUME NAME local 4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8 local my-vol # 查看指定数据卷的信息 $ docker volume inspect my-vol [ { &amp;#34;CreatedAt&amp;#34;: &amp;#34;2023-08-12T14:19:27Z&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Labels&amp;#34;: null, &amp;#34;Mountpoint&amp;#34;: &amp;#34;/var/lib/docker/volumes/my-vol/_data&amp;#34;, &amp;#34;Name&amp;#34;: &amp;#34;my-vol&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34; } ] # 删除指定的数据卷 $ docker volume rm my-vol my-vol # 删除无主的数据卷 $ docker volume prune 挂载数据卷到容器：" />
+  <meta property="og:description" content="网络 在安装Docker时，会自动创建三个网络。
+➜ ~ sudo docker network ls NETWORK ID NAME DRIVER SCOPE 2ddeffb91230 bridge bridge local c55e5f5ed788 host host local 1eebd0c8e7c7 none null local 在Docker中有三种模式，分别为bridg、host和null 。
+Bridge模式 在Docker启动时，Docker会在宿主中创建一个为Docker0的虚拟网口，Docker会为这个虚拟网口分配一个虚拟网段，在每次启动一个服务时，那么就会分配docker0的一个子网给容器，那么容器就可以访问宿主和外网；同时他会进行NAT转换；在同一个bridge下的所有设备都可以相互通信，我们也可以将他们之间设置为禁止通信。 # 创建一个容器，自动加入bridge网桥 ➜ ~ sudo docker run -d --name ron1 praqma/network-multitool 我们可以查看一个bridge的信息。
+➜ ~ sudo docker network inspect bridge [ { &amp;#34;Name&amp;#34;: &amp;#34;bridge&amp;#34;, &amp;#34;Id&amp;#34;: &amp;#34;2ddeffb91230eb06f738dc5ca7be5e853f82fa8324e338c592424e1b478e5571&amp;#34;, &amp;#34;Created&amp;#34;: &amp;#34;2023-08-14T00:53:05.367734129&#43;08:00&amp;#34;, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;bridge&amp;#34;, &amp;#34;EnableIPv6&amp;#34;: false, &amp;#34;IPAM&amp;#34;: { &amp;#34;Driver&amp;#34;: &amp;#34;default&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Config&amp;#34;: [ { &amp;#34;Subnet&amp;#34;: &amp;#34;172." />
+  <meta name="description" content="网络 在安装Docker时，会自动创建三个网络。
+➜ ~ sudo docker network ls NETWORK ID NAME DRIVER SCOPE 2ddeffb91230 bridge bridge local c55e5f5ed788 host host local 1eebd0c8e7c7 none null local 在Docker中有三种模式，分别为bridg、host和null 。
+Bridge模式 在Docker启动时，Docker会在宿主中创建一个为Docker0的虚拟网口，Docker会为这个虚拟网口分配一个虚拟网段，在每次启动一个服务时，那么就会分配docker0的一个子网给容器，那么容器就可以访问宿主和外网；同时他会进行NAT转换；在同一个bridge下的所有设备都可以相互通信，我们也可以将他们之间设置为禁止通信。 # 创建一个容器，自动加入bridge网桥 ➜ ~ sudo docker run -d --name ron1 praqma/network-multitool 我们可以查看一个bridge的信息。
+➜ ~ sudo docker network inspect bridge [ { &amp;#34;Name&amp;#34;: &amp;#34;bridge&amp;#34;, &amp;#34;Id&amp;#34;: &amp;#34;2ddeffb91230eb06f738dc5ca7be5e853f82fa8324e338c592424e1b478e5571&amp;#34;, &amp;#34;Created&amp;#34;: &amp;#34;2023-08-14T00:53:05.367734129&#43;08:00&amp;#34;, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;bridge&amp;#34;, &amp;#34;EnableIPv6&amp;#34;: false, &amp;#34;IPAM&amp;#34;: { &amp;#34;Driver&amp;#34;: &amp;#34;default&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Config&amp;#34;: [ { &amp;#34;Subnet&amp;#34;: &amp;#34;172." />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
@@ -119,13 +119,13 @@
 
         </div>
         <header class="post-header">
-          <h1 class="post-title">Docker数据持久化</h1>
+          <h1 class="post-title">Docker网络</h1>
           
           <div class="row post-desc">
             <div class="col-xs-6">
               
-              <time class="post-date" datetime=" 2023-08-12 21:23:53 &#43;0800">
-                12 Aug 2023
+              <time class="post-date" datetime=" 2023-08-13 14:07:23 &#43;0800">
+                13 Aug 2023
               </time>
               
             </div>
@@ -145,12 +145,15 @@
             <aside class="toc">
                 <nav id="TableOfContents">
   <ul>
-    <li><a href="#数据管理">数据管理</a>
+    <li><a href="#网络">网络</a></li>
+    <li><a href="#bridge模式">Bridge模式</a>
       <ul>
-        <li><a href="#数据卷">数据卷</a></li>
-        <li><a href="#挂载主机目录">挂载主机目录</a></li>
+        <li><a href="#模式详解">模式详解</a></li>
+        <li><a href="#创建网桥">创建网桥</a></li>
       </ul>
     </li>
+    <li><a href="#host模式">Host模式</a></li>
+    <li><a href="#none模式">None模式</a></li>
   </ul>
 </nav>
             </aside>
@@ -159,68 +162,94 @@
 
         <div class="post-content markdown-body">
           
-          <h1 id="数据管理">数据管理</h1>
-<p>在Docker内部以及容器之间管理数据，数据持久化，有两种方式：数据卷（Volumes）、挂载主机目录（Bind mounts）。</p>
-<h2 id="数据卷">数据卷</h2>
-<p>数据卷是一个可以由一个或者多个容器共同使用的特殊目录，实现数据的持久化，他可以被挂载到指定容器的指定目录下。</p>
-<p>特性：</p>
-<ol>
-<li>在容器中可以共享和重用</li>
-<li>对数据卷的修改会立马生效</li>
-<li>对数据卷的更新，不会影响镜像</li>
-<li>数据卷会一致存在，即使容器被删除</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 创建一个数据卷</span>
-</span></span><span style="display:flex;"><span>$ docker volume create my-vol
-</span></span><span style="display:flex;"><span>my-vol
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看所有的数据卷</span>
-</span></span><span style="display:flex;"><span>$ docker volume ls
-</span></span><span style="display:flex;"><span>DRIVER    VOLUME NAME
-</span></span><span style="display:flex;"><span>local     4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8
-</span></span><span style="display:flex;"><span>local     my-vol
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看指定数据卷的信息</span>
-</span></span><span style="display:flex;"><span>$ docker volume inspect my-vol
+          <h1 id="网络">网络</h1>
+<p>在安装Docker时，会自动创建三个网络。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Shell" data-lang="Shell"><span style="display:flex;"><span>➜  ~ sudo docker network ls
+</span></span><span style="display:flex;"><span>NETWORK ID     NAME      DRIVER    SCOPE
+</span></span><span style="display:flex;"><span>2ddeffb91230   bridge    bridge    local
+</span></span><span style="display:flex;"><span>c55e5f5ed788   host      host      local
+</span></span><span style="display:flex;"><span>1eebd0c8e7c7   none      null      local
+</span></span></code></pre></div><p>在Docker中有三种模式，分别为<code>bridg</code>、<code>host</code>和<code>null</code> 。</p>
+<h1 id="bridge模式">Bridge模式</h1>
+<p>在Docker启动时，Docker会在宿主中创建一个为<code>Docker0</code>的虚拟网口，Docker会为这个虚拟网口分配一个虚拟网段，在每次启动一个服务时，那么就会分配<code>docker0</code>的一个子网给容器，那么容器就可以访问宿主和外网；同时他会进行NAT转换；在同一个bridge下的所有设备都可以相互通信，我们也可以将他们之间设置为禁止通信。
+<img src="/images/docker-network-bridge.jpeg" alt="dockerBridge"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Shell" data-lang="Shell"><span style="display:flex;"><span><span style="color:#75715e"># 创建一个容器，自动加入bridge网桥</span>
+</span></span><span style="display:flex;"><span>➜  ~ sudo docker run -d --name ron1 praqma/network-multitool
+</span></span></code></pre></div><p>我们可以查看一个bridge的信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Shell" data-lang="Shell"><span style="display:flex;"><span>➜  ~ sudo docker network inspect bridge
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;CreatedAt&#34;</span>: <span style="color:#e6db74">&#34;2023-08-12T14:19:27Z&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Driver&#34;</span>: <span style="color:#e6db74">&#34;local&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Labels&#34;</span>: null,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Mountpoint&#34;</span>: <span style="color:#e6db74">&#34;/var/lib/docker/volumes/my-vol/_data&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;my-vol&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Options&#34;</span>: null,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Scope&#34;</span>: <span style="color:#e6db74">&#34;local&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;bridge&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Id&#34;</span>: <span style="color:#e6db74">&#34;2ddeffb91230eb06f738dc5ca7be5e853f82fa8324e338c592424e1b478e5571&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Created&#34;</span>: <span style="color:#e6db74">&#34;2023-08-14T00:53:05.367734129+08:00&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Scope&#34;</span>: <span style="color:#e6db74">&#34;local&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Driver&#34;</span>: <span style="color:#e6db74">&#34;bridge&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;EnableIPv6&#34;</span>: false,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;IPAM&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Driver&#34;</span>: <span style="color:#e6db74">&#34;default&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Options&#34;</span>: null,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Config&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;Subnet&#34;</span>: <span style="color:#e6db74">&#34;172.17.0.0/16&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;Gateway&#34;</span>: <span style="color:#e6db74">&#34;172.17.0.1&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Internal&#34;</span>: false,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Attachable&#34;</span>: false,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Ingress&#34;</span>: false,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;ConfigFrom&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Network&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;ConfigOnly&#34;</span>: false,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Containers&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;f05a0f88099419ad9b8f73fc7ba5aeaa6e95fac3259e40d4c251c5372870e83b&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;ron1&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;EndpointID&#34;</span>: <span style="color:#e6db74">&#34;b15bd425f7028556113c603c814c34acfc15f357c43a61fcaa817fab6060012d&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;MacAddress&#34;</span>: <span style="color:#e6db74">&#34;02:42:ac:11:00:02&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;IPv4Address&#34;</span>: <span style="color:#e6db74">&#34;172.17.0.2/16&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;IPv6Address&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Options&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;com.docker.network.bridge.default_bridge&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;com.docker.network.bridge.enable_icc&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;com.docker.network.bridge.enable_ip_masquerade&#34;</span>: <span style="color:#e6db74">&#34;true&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;com.docker.network.bridge.host_binding_ipv4&#34;</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;com.docker.network.bridge.name&#34;</span>: <span style="color:#e6db74">&#34;docker0&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;com.docker.network.driver.mtu&#34;</span>: <span style="color:#e6db74">&#34;1500&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;Labels&#34;</span>: <span style="color:#f92672">{}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="模式详解">模式详解</h2>
+<ol>
+<li>在主机中会创建一对虚拟网卡<code>veth pair</code>设备，这个设备总是成对出现的。</li>
+<li>Docker将一段放在容器中，为<code>eth0</code>，一端在主机中，通常为<code>veth6de92cb</code>类似的名字出现，然后将这个网络设备加入到<code>docker0</code>网桥中。</li>
+<li>从<code>docker0</code>中分配一个IP给容器使用，并将<code>docker0</code>的IP地址设置为容器的默认网关。</li>
+</ol>
+<h2 id="创建网桥">创建网桥</h2>
+<p>我们可以也可以创建自己的bridge，在创建容器的时候指定加入这个bridge中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># -d 指定网络driver，有bridge和overlay，overlay 网络类型用于 Swarm mode</span>
+</span></span><span style="display:flex;"><span>~ sudo docker network create -d bridge my-net
+</span></span><span style="display:flex;"><span>16830244f5272fcd2ddcd0f87b25f72642b4e5a9c95150bddcdec11246b718e8
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 删除指定的数据卷</span>
-</span></span><span style="display:flex;"><span>$ docker volume rm my-vol
-</span></span><span style="display:flex;"><span>my-vol
+</span></span><span style="display:flex;"><span>~ sudo docker network ls
+</span></span><span style="display:flex;"><span>NETWORK ID     NAME      DRIVER    SCOPE
+</span></span><span style="display:flex;"><span>2ddeffb91230   bridge    bridge    local
+</span></span><span style="display:flex;"><span>c55e5f5ed788   host      host      local
+</span></span><span style="display:flex;"><span>16830244f527   my-net    bridge    local
+</span></span><span style="display:flex;"><span>1eebd0c8e7c7   none      null      local
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 删除无主的数据卷</span>
-</span></span><span style="display:flex;"><span>$ docker volume prune
-</span></span></code></pre></div><p>挂载数据卷到容器：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># -v</span>
-</span></span><span style="display:flex;"><span>docker run -it -P --name ubuntu -v my-vol:/home ubuntu:20.04 /bin/sh
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># --mount</span>
-</span></span><span style="display:flex;"><span>docker run -it -P --name ron --mount source<span style="color:#f92672">=</span>my-vol,target<span style="color:#f92672">=</span>/home ubuntu:20.04 /bin/sh
-</span></span></code></pre></div><p><code>-v</code>或者<code>--volume</code>是给单独的容器用的，而<code>--mount</code>是给集群服务使用的，但是<code>--mount</code>在17.06后也可以给单独的容器使用。</p>
-<h2 id="挂载主机目录">挂载主机目录</h2>
-<p>挂载主机目录是将主机中特定的目录直接挂载到容器内部使用。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># -v</span>
-</span></span><span style="display:flex;"><span>docker run -it -P --name ubuntu -v <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>:/home ubuntu:20.04 /bin/sh
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># --mount</span>
-</span></span><span style="display:flex;"><span>docker run -it -P --name ron --mount type<span style="color:#f92672">=</span>bind,source<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>,target<span style="color:#f92672">=</span>/home ubuntu:20.04 /bin/sh
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 只读模式</span>
-</span></span><span style="display:flex;"><span>docker run -it -P --name ron --mount type<span style="color:#f92672">=</span>bind,source<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>,target<span style="color:#f92672">=</span>/home,readonly ubuntu:20.04 /bin/sh
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>docker run -it -P --name ubuntu -v <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>:/home:ro ubuntu:20.04 /bin/sh
-</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建一个容器，加入my-net网桥</span>
+</span></span><span style="display:flex;"><span>➜  ~ sudo docker run -d --name ron2 --net<span style="color:#f92672">=</span>my-net praqma/network-multitool
+</span></span></code></pre></div><h1 id="host模式">Host模式</h1>
+<p>在这种模式下，容器跟宿主在同一个网络下，或者是共享宿主的网卡，而不会虚拟出自己的网卡。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 使用host模式</span>
+</span></span><span style="display:flex;"><span>$ docker run --name<span style="color:#f92672">=</span>nginx_host --net<span style="color:#f92672">=</span>host -p 80:80 -d nginx
+</span></span></code></pre></div><h1 id="none模式">None模式</h1>
+<p>容器关闭了网络功能，可能是容器不需要网络。</p>
+
         </div>
 
         <div class="row middle-xs">
