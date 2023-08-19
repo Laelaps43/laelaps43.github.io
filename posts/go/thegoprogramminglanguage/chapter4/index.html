@@ -161,6 +161,7 @@ package main import &amp;#34;fmt&amp;#34; func main() { var a [3]int // 创建�
         <li><a href="#字面量">字面量</a></li>
         <li><a href="#结构体比较">结构体比较</a></li>
         <li><a href="#结构体嵌套匿名成员">结构体嵌套&amp;匿名成员</a></li>
+        <li><a href="#结构体标签">结构体标签</a></li>
       </ul>
     </li>
   </ul>
@@ -395,7 +396,28 @@ package main import &amp;#34;fmt&amp;#34; func main() { var a [3]int // 创建�
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">stu3</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Student1</span>{<span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">Person</span>{<span style="color:#e6db74">&#34;Lae&#34;</span>, <span style="color:#ae81ff">20</span>}}
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%#v\n&#34;</span>, <span style="color:#a6e22e">stu3</span>)
-</span></span></code></pre></div>
+</span></span></code></pre></div><h2 id="结构体标签">结构体标签</h2>
+<p>结构体在定义的时候处理字段和类型之外，还可以定义一个可选的tag标签。</p>
+<p><code>struct</code>结构体在成员变量后面使用[“”]或者[``]定义一些描述性的信息。</p>
+<p>Tag在结构体字段后的格式：</p>
+<pre tabindex="0"><code>`key1:&#34;value1&#34; key2:&#34;value&#34;`
+</code></pre><ul>
+<li>key为非空字符串，字符串不能包含控制字符、空格、引号、冒号</li>
+<li>value为双引号标记的字符串</li>
+<li>Tag可以由多个键值对组成，键值对之间使用空格分隔</li>
+<li>如果当一个value中有多个值，有的使用逗号风格，<strong>不同的库中的实现是不一样的</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">User</span> <span style="color:#66d9ef">struct</span> { 
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Id</span> <span style="color:#66d9ef">int</span> <span style="color:#e6db74">`json:&#34;id&#34; gorm:&#34;column:id;primaryKey&#34;`</span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;name&#34;`</span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Password</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;password,omitempty&#34;`</span> 
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>“-”：表示不需要解析这个字段</li>
+<li>“omitempty”：当字段为空(默认值)时，不要解析这个字段；比如是false、0、nil或者长度为0的array、map、slice、string等。</li>
+<li>FieldName：当解析json、xml、ini等的时候用这个名字。</li>
+</ul>
+
         </div>
 
         <div class="row middle-xs">

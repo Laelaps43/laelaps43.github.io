@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Aug 2023 14:07:23 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Aug 2023 22:18:32 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go标准库之os库</title>
+      <link>https://blog.laelaps.us/posts/go/library/os/</link>
+      <pubDate>Wed, 16 Aug 2023 22:18:32 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/go/library/os/</guid>
+      <description>权限 在syscall包下定义了许多关于文件操作的权限的常量。
+const ( O_RDONLY int = syscall.O_RDONLY // 只读模式打开文件 O_WRONLY int = syscall.O_WRONLY // 只写模式打开文件 O_RDWR int = syscall.O_RDWR // 读写模式打开文件 O_APPEND int = syscall.O_APPEND // 写操作时将数据附加到文件尾部 O_CREATE int = syscall.O_CREAT // 如果不存在将创建一个新文件 O_EXCL int = syscall.O_EXCL // 和O_CREATE配合使用，文件必须不存在 O_SYNC int = syscall.O_SYNC // 打开文件用于同步I/O O_TRUNC int = syscall.O_TRUNC // 如果可能，打开时清空文件 ) os 创建文件 func Create(name string) (*File, error) func TestCreate(t *testing.T){ file, err := os.Create(name) if err != nil { fmt.</description>
+    </item>
+    
     <item>
       <title>Docker网络</title>
       <link>https://blog.laelaps.us/posts/docker/network/</link>
