@@ -6,7 +6,33 @@
     <description>Recent content on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Aug 2023 22:18:32 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Sep 2023 08:51:44 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HandlerInterceptor</title>
+      <link>https://blog.laelaps.us/posts/spring/mvc/handlerinterceptor/</link>
+      <pubDate>Thu, 07 Sep 2023 08:51:44 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/spring/mvc/handlerinterceptor/</guid>
+      <description>过滤器vs拦截器 过滤器（Filter）是Servlet的特性，他属于Servlet容器；而拦截器（HandlerInterceptor）是由Spring MVC提供的特性。 Filter可以拦截所到达的所有请求，而HandlerInterceptor只能拦截被DispatcherServlet处理过的请求。 在Request到达Servlet之前先执行Filter的预处理逻辑，在Request到达DispatcherServlet之后，Handler执行之前执行拦截器的功能。 Filter在doFilter方法中定义预处理和后处理两个逻辑，之间使用filterChain.doFilter进行分隔，同时Filter自身有初始化和销毁的方法，即init和destroy；而HandlerIntercepter则是将这两个方式分开preHandle、postHandle两个方法，同时他拥有一个afterCompletion方法，无论有没有发生异常，在DispatchServlet之后，都会执行afterCompletion。 如果在Spring中使用HandlerInterceptor可以自动Spring容器中被管理。 原理 在HandlerMapping在根据Request查找Handler时，他会返回一个处理器执行链对象（HandlerExecutionChain），内部包含了一个Handler和HandlerInterceptor执行链。如果想要自定义Handler拦截器，那么需要实现HandlerInterceptor接口中的三个方法。
+preHandle：在处理Handler之前执行。 postHandle：在处理Handler成功之后，根据执行链的倒序执行，如果前面的流程出现异常则不会被执行。 afterCompletion：在请求执行完之后执行，他之后对preHandle返回True的HandlerInterceptor执行。 preHandle preHandle返回一个bool类型的值，可以用来终端或继续处理执行链。如果方法返回True时，他会继续沿着执行链继续向后执行；如果返回false，DispatcherServlet 会假定拦截器本身已处理完毕请求（例如，已经渲染了合适的视图），此时将尝试直接倒序执行此前已放行的拦截器链的afterCompletion 方法。
+多个拦截器 我们在MVC的配置中可以配置多个拦截器，在默认情况下是通过配置的顺序来执行，我们可以使用InterceptorRegistration的Order属性来定义优先级问题，order中的值越小，优先级越高。
+Example 定义一个实现了HandlerInterceptor接口的拦截器。
+@Component public class MyHandlerInterceptor implements HandlerInterceptor { @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { System.out.println(&amp;#34;MyHandlerInterceptor preHandle method......&amp;#34;); return HandlerInterceptor.super.preHandle(request, response, handler); } @Override public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception { HandlerInterceptor.super.postHandle(request, response, handler, modelAndView); System.out.println(&amp;#34;MyHandlerInterceptor postHandle method......&amp;#34;); } @Override public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception { HandlerInterceptor.</description>
+    </item>
+    
+    <item>
+      <title>Spring Boot 监听事件</title>
+      <link>https://blog.laelaps.us/posts/spring/boot/applicationevent/</link>
+      <pubDate>Tue, 05 Sep 2023 13:46:42 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/spring/boot/applicationevent/</guid>
+      <description>事件监听 Spring中的事件监听是观察者模式的一种实现，在观察者模式当中，应当有主题、发布者、订阅人；所有在Spring的事件中存在事件（ApplicationEvent）、监听器（ApplicationListener）和事件发布三部分。
+事件用于在松耦合的组件之间交换信息，发布者和订阅者之间没有直接耦合，使得修改发布者并不会影响订阅者，反之也成立。
+监听事件 监听事件是消息传递的对象，用来传递事件消息，在Spring中我们去继承ApplicationEvent来定义一个事件。
+public class MyEvent extends ApplicationEvent { private String name; private int age; public MyEvent(Object source, String name, int age) { super(source); this.age = age; this.name = name; } } 事件发布 在定义事件后，我们需要发布事件，我们可以使用ApplicationContext和ApplicationEventPublisher两者来发布事件；前者去继承了后者。
+@Service public class MyEventService { @Autowired ApplicationContext applicationContext; @Autowired ApplicationEventPublisher applicationEventPublisher; public void myEvent(){ System.out.println(&amp;#34;发布事件......&amp;#34;); applicationContext.publishEvent(new MyEvent(this, &amp;#34;laelaps&amp;#34;, 12)); System.out.println(&amp;#34;事件发布完毕。&amp;#34;); } public void myEvent2(){ System.out.println(&amp;#34;发布事件......&amp;#34;); applicationEventPublisher.publishEvent(new MyEvent(this, &amp;#34;laelaps&amp;#34;, 12)); System.out.println(&amp;#34;事件发布完毕。&amp;#34;); } } 事件监听 在发布了事件后，我们需要监听者去监听发布的事件；在Spring中有两种方式来定义监听对象；</description>
+    </item>
+    
     <item>
       <title>Go标准库之os库</title>
       <link>https://blog.laelaps.us/posts/go/library/os/</link>
@@ -408,28 +434,6 @@ Person person = (Person) Optional.empty().orElseGet(() -&amp;gt; new Person(&amp
 主要思想 归并排序是一中分而治之的算法，他将一个大问题不断分解成一序列小问题，在所有的小问题中寻求最优解。 在排序的过程中，我们将一个大的数组，分解成两个较小的子数组，而在将这两个子数组在次进行递归划分，知道子数组长度为1（此时我们认为在他以及是有序的），然后对子数组进行排序。 排序示意图： 性能分析 算法的时间复杂度在最坏，最好，平均复杂度都为O(nlogn)，而空间复杂度为O(n)（可以使用空间复杂度为O(1)）。
 算法实现 归并 我们要将两个已排序的子数组进行归并，其实就是将两个子数组在次合并成一个大的已经排序好的数组。这里我们需要一个辅助数组来存储将要归并的数组，通常这个辅助数组的大小通常为要排序数组的大小。我们将要排序的子数组全部拷贝到辅助数组，然后再将排序好的数据复制到要排序的数组。
 /** * 排序归并数组 * 归并 a[lo .. mid] 和 a[mid + 1 .. hi] */ private static void merge(Integer[] a, int lo, int mid, int hi){ int i = lo, j = mid + 1; // 复制数组到辅助数组，因为源数组会被排序结果覆盖 if (hi + 1 - lo &amp;gt;= 0) System.arraycopy(a, lo, aux, lo, hi + 1 - lo); for (int k = lo; k &amp;lt;= hi; k++){ // 需要比较k次 // 左半边用尽，将右半边剩余的数据依次放入 if ( i &amp;gt; mid) a[k] = aux[j++]; // 右半边用尽，将左半边剩余的数据依次放入 else if ( j &amp;gt; hi) a[k] = aux[i++]; // 左半边首字符小于右半边字符，将左半边字符放入 else if ( aux[i] &amp;lt; aux[j]) a[k] = aux[i++]; // 左半边首字符大于右半边字符，将右半边字符放入 else a[k] = aux[j++]; } } 自顶向下（递归） 他将数组不断的分解，直到分解到大小为1。然后对左半部分进行排序，然后在对右半部分进行排序，最后将左右两部分合并在一起，不断的递归后完成对数组的排序。 public static void sortByRec(Integer[] a){ aux = new Integer[a.</description>
-    </item>
-    
-    <item>
-      <title>2023年7月计划</title>
-      <link>https://blog.laelaps.us/posts/plan/2023%E5%B9%B47%E6%9C%88%E8%AE%A1%E5%88%92/</link>
-      <pubDate>Fri, 23 Jun 2023 23:56:09 +0800</pubDate>
-      
-      <guid>https://blog.laelaps.us/posts/plan/2023%E5%B9%B47%E6%9C%88%E8%AE%A1%E5%88%92/</guid>
-      <description>Content git docker JAVA基础需要过一遍（~~lambda ~~、线程、集合、反射） 学习Go语言 力扣题目(50) 数据库 </description>
-    </item>
-    
-    <item>
-      <title>2023年7-10月计划</title>
-      <link>https://blog.laelaps.us/posts/plan/2023%E5%B9%B47-10%E6%9C%88%E8%AE%A1%E5%88%92/</link>
-      <pubDate>Fri, 23 Jun 2023 23:17:37 +0800</pubDate>
-      
-      <guid>https://blog.laelaps.us/posts/plan/2023%E5%B9%B47-10%E6%9C%88%E8%AE%A1%E5%88%92/</guid>
-      <description>煽情 这是我在即将要出去实习或者走向社会的最后四个月可以完完全全用来学习的机会，所以我需要一些计划用来完善自己，确保我能够在十一月的时候可以找到一个不错的实习；在这四个月里我知道会很痛苦，但是希望可以坚持和完成自己所列的一些计划吧？ PS: 这里只列举一些较大的计划，详细的将会列举到每月计划中。
-Content 计划 论文的初稿 JAVA基础需要过一遍（lambda、线程、集合、反射） Spring家族需要重新过一遍 将那个网盘项目继续写下去 需要学习kafka JVM需要学习 数据库需要学习 Redis需要仔细看一遍 计算机网络需要在看一遍（计算机网络自顶向下方法 第2、3、4、5、6章） 需要刷一些力扣题目（200） 学习Go语言 一些工具（git、docker） 以上这些可能是就是按照我的简历所写来的计划的，看来我对我简历所写的好像并不算很满意，但是，这最后四个月不就是这样的吗？
-补充 这里是一些不太重要的事情，如果可以完成的话，那就试试吧！
-系统学习Js 再看一遍Vue的文档 系统的学习一下Linux（尽管会使用过但是还是不太熟悉） 学习Pytho的爬虫 以上可以说就是这四个月需要做的一些事，可能有一些不全面，那就等想到在补充吧！在我的影响里，在这种比较大的假期的时候，我都会有一些计划，但是从来没有一次会写下来，所有他也就永远留存在过去，就更别说完成了。总之自己可以完成以上一些计划吧！
-2023.6.23 夜</description>
     </item>
     
     <item>
