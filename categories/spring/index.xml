@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 07 Sep 2023 08:51:44 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/spring/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>HandlerInterceptor</title>
+      <title>Spring MVC 拦截器</title>
       <link>https://blog.laelaps.us/posts/spring/mvc/handlerinterceptor/</link>
       <pubDate>Thu, 07 Sep 2023 08:51:44 +0800</pubDate>
       
