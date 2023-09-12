@@ -21,7 +21,7 @@ package org.example; // 声明一个接口为需要被代理行为的集合，Su
     </item>
     
     <item>
-      <title>Reflection</title>
+      <title>Java反射</title>
       <link>https://blog.laelaps.us/posts/java/reflection/reflection/</link>
       <pubDate>Fri, 08 Sep 2023 14:03:43 +0800</pubDate>
       
@@ -107,6 +107,17 @@ READ UNCOMMITED：使用查询语句不会加锁，可能会读到未提交的�
 一致性（Consistent） ACID 如果一个事务原子地在一个一致地数据库中独立运行，那么在它执行之后，数据库的状态一定是一致的。对于这个概念，它的第一层意思就是对于数据完整性的约束，包括主键约束、引用约束以及一些约束检查等等，在事务的执行的前后以及过程中不会违背对数据完整性的约束，所有对数据库写入的操作都应该是合法的，并不能产生不合法的数据状态。
 数据库 ACID 中的一致性对事务的要求不止包含对数据完整性以及合法性的检查，还包含应用层面逻辑的正确（对开展在逻辑上的要求）。
 CAP CAP 定理中的数据一致性，其实是说分布式系统中的各个节点中对于同一数据的拷贝有着相同的值；</description>
+    </item>
+    
+    <item>
+      <title>Java AQS</title>
+      <link>https://blog.laelaps.us/posts/java/concurrent/aqs/</link>
+      <pubDate>Mon, 14 Aug 2023 08:26:03 +0800</pubDate>
+      
+      <guid>https://blog.laelaps.us/posts/java/concurrent/aqs/</guid>
+      <description>LockSupport LockSupport是JUC包下locks子包下的一个类，同用来在Java中对线程实现一个最基本的阻塞和唤醒。它和CAS一样是在JUC包下并发工具控制的实现基础，他们同样都依赖Unsafe类，依赖该类下的JNI接口。
+基本方法 在LockSupport中使用park开头的方法来阻塞当前线程，unpark方法用来唤醒一个被阻塞的现场。
+/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 */ public static void park() { UNSAFE.park(false, 0L); } /** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 */ public static void parkNanos(long nanos) { if (nanos &amp;gt; 0) UNSAFE.park(false, nanos); } /** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 */ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } /** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2.</description>
     </item>
     
     <item>
