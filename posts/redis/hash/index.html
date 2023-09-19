@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="laelaps" />
-  <meta property="og:url" content="https://blog.laelaps.us/categories/" />
-  <link rel="canonical" href="https://blog.laelaps.us/categories/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="Laelaps">
+  <meta property="og:url" content="https://blog.laelaps.us/posts/redis/hash/" />
+  <link rel="canonical" href="https://blog.laelaps.us/posts/redis/hash/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.usindex.xml" title="Laelaps">
 
   <script type="application/ld+json">
   {
@@ -18,10 +18,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/blog.laelaps.us"
       },
-      "articleSection" : "categories",
-      "name" : "文章分类",
-      "headline" : "文章分类",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "Redis 数据结构Hash",
+      "headline" : "Redis 数据结构Hash",
+      "description" : "Hash数据结构 HSET HSET为Hash中指定的字段设置值，如果字段已经存在，那么这是一次更新操作，返回0，如果字段不存在，那么这是一次创建操作，返回1（如果Hash不存在，同时会创建Hash）。\nHSET hash field value HSETNX HSETNX（H SET No Exists）跟HSET不同在于，HSETNX只会对键存在的时候操作，如果键不存在，设置成功返回1，如果键存在，设置失败返回0。\nHSETNX hash field value HGET HGET从指定的Hash中获取对应field的值，如果存在，返回对应的值，如果Field或者Hash不存在，返回nil。\nHGET hash field HINCRBY HINCRBY（H Increment By）对字段存储可以被Redis识别为整数的字段执行加分或减法，返回当前的结果值，如果传入的为一个正整数，则为加上一个数；如果为一个负整数，被识别为一个减法；如果传入的是一个非整数，则会产生异常。\nHINCRBY hash field increment HINCRBYFLOAT 跟HINCRBY不同的是，他可以执行一个浮点数的计算，无论字段中的值是一个整数或者一个浮点数。\nHINCRBYFLOAT hash field increment 用来获取指定字段值的长度。\nHSTRLEN hash field HEXISTS HEXISTS用来检查用户给定的字段是否存在于指定的Hash中，存在返回1，不存在返回0。\nHEXISTS hash field HDEL HDEL用来删除hash中指定字段及其关联的值，如果指定的字段存在于hash中并且成功删除时，命令返回1，如果字段不存在或者hash不存在，返回0。\nHDEL hash field HMSET HMSET（H Multiple Set）跟HSET不同在于，他可以同时指定多个field-value，其他更HSET一样，字段存在更新值等；不同在于一条HMSET跟多条HSET只需要通信一次。\nHMSET hash field value [field value] HMGET HMGET可以同时获取多个字段的值，其他跟HGET相同，如果获取的字段或hash不存在，那么他返回一个nil。\nHMGET hash field [field] HKEYS、HVALS、HGETALL HKEYS、HVALS、HGETALL分别为获取所有的键，所有的值，所有的键值对，因为Hash不对如何的数据进行排序，为无序状态，所以这三个每次返回值的顺序都可能是不一样的。\nKEYS hash HVALS hash HGETALL hash Hash vs String hash和string是两种不同的数据结构，他们有相同的特征，也有不同，hash可以保存许多对不同的键值对，而stirng只能保存一个键值对。",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -29,17 +29,39 @@
       "accountablePerson" : "laelaps",
       "copyrightHolder" : "laelaps",
       "copyrightYear" : "2023",
-      "datePublished": "2023-06-21 22:08:35 \u002b0800 \u002b0800",
-      "dateModified" : "2023-06-21 22:08:35 \u002b0800 \u002b0800",
-      "url" : "https:\/\/blog.laelaps.us\/categories\/",
+      "datePublished": "2023-09-15 14:26:10 \u002b0800 \u002b0800",
+      "dateModified" : "2023-09-15 14:26:10 \u002b0800 \u002b0800",
+      "url" : "https:\/\/blog.laelaps.us\/posts\/redis\/hash\/",
       "keywords" : [  ]
   }
 </script>
-<title>文章分类</title>
-  <meta property="og:title" content="文章分类" />
+<title>Redis 数据结构Hash</title>
+  <meta property="og:title" content="Redis 数据结构Hash" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Hash数据结构 HSET HSET为Hash中指定的字段设置值，如果字段已经存在，那么这是一次更新操作，返回0，如果字段不存在，那么这是一次创建操作，返回1（如果Hash不存在，同时会创建Hash）。
+HSET hash field value HSETNX HSETNX（H SET No Exists）跟HSET不同在于，HSETNX只会对键存在的时候操作，如果键不存在，设置成功返回1，如果键存在，设置失败返回0。
+HSETNX hash field value HGET HGET从指定的Hash中获取对应field的值，如果存在，返回对应的值，如果Field或者Hash不存在，返回nil。
+HGET hash field HINCRBY HINCRBY（H Increment By）对字段存储可以被Redis识别为整数的字段执行加分或减法，返回当前的结果值，如果传入的为一个正整数，则为加上一个数；如果为一个负整数，被识别为一个减法；如果传入的是一个非整数，则会产生异常。
+HINCRBY hash field increment HINCRBYFLOAT 跟HINCRBY不同的是，他可以执行一个浮点数的计算，无论字段中的值是一个整数或者一个浮点数。
+HINCRBYFLOAT hash field increment 用来获取指定字段值的长度。
+HSTRLEN hash field HEXISTS HEXISTS用来检查用户给定的字段是否存在于指定的Hash中，存在返回1，不存在返回0。
+HEXISTS hash field HDEL HDEL用来删除hash中指定字段及其关联的值，如果指定的字段存在于hash中并且成功删除时，命令返回1，如果字段不存在或者hash不存在，返回0。
+HDEL hash field HMSET HMSET（H Multiple Set）跟HSET不同在于，他可以同时指定多个field-value，其他更HSET一样，字段存在更新值等；不同在于一条HMSET跟多条HSET只需要通信一次。
+HMSET hash field value [field value] HMGET HMGET可以同时获取多个字段的值，其他跟HGET相同，如果获取的字段或hash不存在，那么他返回一个nil。
+HMGET hash field [field] HKEYS、HVALS、HGETALL HKEYS、HVALS、HGETALL分别为获取所有的键，所有的值，所有的键值对，因为Hash不对如何的数据进行排序，为无序状态，所以这三个每次返回值的顺序都可能是不一样的。
+KEYS hash HVALS hash HGETALL hash Hash vs String hash和string是两种不同的数据结构，他们有相同的特征，也有不同，hash可以保存许多对不同的键值对，而stirng只能保存一个键值对。" />
+  <meta name="description" content="Hash数据结构 HSET HSET为Hash中指定的字段设置值，如果字段已经存在，那么这是一次更新操作，返回0，如果字段不存在，那么这是一次创建操作，返回1（如果Hash不存在，同时会创建Hash）。
+HSET hash field value HSETNX HSETNX（H SET No Exists）跟HSET不同在于，HSETNX只会对键存在的时候操作，如果键不存在，设置成功返回1，如果键存在，设置失败返回0。
+HSETNX hash field value HGET HGET从指定的Hash中获取对应field的值，如果存在，返回对应的值，如果Field或者Hash不存在，返回nil。
+HGET hash field HINCRBY HINCRBY（H Increment By）对字段存储可以被Redis识别为整数的字段执行加分或减法，返回当前的结果值，如果传入的为一个正整数，则为加上一个数；如果为一个负整数，被识别为一个减法；如果传入的是一个非整数，则会产生异常。
+HINCRBY hash field increment HINCRBYFLOAT 跟HINCRBY不同的是，他可以执行一个浮点数的计算，无论字段中的值是一个整数或者一个浮点数。
+HINCRBYFLOAT hash field increment 用来获取指定字段值的长度。
+HSTRLEN hash field HEXISTS HEXISTS用来检查用户给定的字段是否存在于指定的Hash中，存在返回1，不存在返回0。
+HEXISTS hash field HDEL HDEL用来删除hash中指定字段及其关联的值，如果指定的字段存在于hash中并且成功删除时，命令返回1，如果字段不存在或者hash不存在，返回0。
+HDEL hash field HMSET HMSET（H Multiple Set）跟HSET不同在于，他可以同时指定多个field-value，其他更HSET一样，字段存在更新值等；不同在于一条HMSET跟多条HSET只需要通信一次。
+HMSET hash field value [field value] HMGET HMGET可以同时获取多个字段的值，其他跟HGET相同，如果获取的字段或hash不存在，那么他返回一个nil。
+HMGET hash field [field] HKEYS、HVALS、HGETALL HKEYS、HVALS、HGETALL分别为获取所有的键，所有的值，所有的键值对，因为Hash不对如何的数据进行排序，为无序状态，所以这三个每次返回值的顺序都可能是不一样的。
+KEYS hash HVALS hash HGETALL hash Hash vs String hash和string是两种不同的数据结构，他们有相同的特征，也有不同，hash可以保存许多对不同的键值对，而stirng只能保存一个键值对。" />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
@@ -113,159 +135,120 @@
 
         </div>
         <header class="post-header">
-          <h1 class="post-title">文章分类</h1>
+          <h1 class="post-title">Redis 数据结构Hash</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-09-15 14:26:10 &#43;0800">
+                15 Sep 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="/">@laelaps</a>
+              </div>
+              
+            </div>
+          </div>
           
         </header>
-        <div class="post-content markdown-body">
-          <p>已发布文章总数：34 <br>最近一次发布日期：
-            
-            2023-9-19
-            
-          </p>
+        <aside id="toc-container">
+          <details>
+            <summary>Table of Contents</summary>
+            <aside class="toc">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#hash数据结构">Hash数据结构</a>
+      <ul>
+        <li><a href="#hset">HSET</a></li>
+        <li><a href="#hsetnx">HSETNX</a></li>
+        <li><a href="#hget">HGET</a></li>
+        <li><a href="#hincrby">HINCRBY</a></li>
+        <li><a href="#hincrbyfloat">HINCRBYFLOAT</a></li>
+        <li><a href="#hexists">HEXISTS</a></li>
+        <li><a href="#hdel">HDEL</a></li>
+        <li><a href="#hmset">HMSET</a></li>
+        <li><a href="#hmget">HMGET</a></li>
+        <li><a href="#hkeyshvalshgetall">HKEYS、HVALS、HGETALL</a></li>
+      </ul>
+    </li>
+    <li><a href="#hash-vs-string">Hash vs String</a></li>
+  </ul>
+</nav>
+            </aside>
+        </details> 
+        </aside>
 
-          <table>
-            <thead style="text-align: left;">
-              <th style="width: 40%;">Category</th>
-              <th style="width: 40%;">Last Updated Date </th>
-              <th style="width: 20%;">Count</th>
-            </thead>
-            <tbody>
-              
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/algorithm/">Algorithm</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-07-01 15:37:23 &#43;0800">
-                    2023-07-01
-                  </time>
-                </td>
-                
-                <td> 1 </td>
-              </tr>
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/database/">DataBase</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-08-25 10:45:00 &#43;0800">
-                    2023-08-25
-                  </time>
-                </td>
-                
-                <td> 1 </td>
-              </tr>
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/docker/">Docker</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-08-14 21:58:13 &#43;0800">
-                    2023-08-14
-                  </time>
-                </td>
-                
-                <td> 5 </td>
-              </tr>
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/go/">Go</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-08-16 22:18:32 &#43;0800">
-                    2023-08-16
-                  </time>
-                </td>
-                
-                <td> 9 </td>
-              </tr>
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/java/">Java</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-09-09 08:01:21 &#43;0800">
-                    2023-09-09
-                  </time>
-                </td>
-                
-                <td> 14 </td>
-              </tr>
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/nginx/">Nginx</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-09-16 14:34:33 &#43;0800">
-                    2023-09-16
-                  </time>
-                </td>
-                
-                <td> 1 </td>
-              </tr>
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/redis/">Redis</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-09-15 14:26:10 &#43;0800">
-                    2023-09-15
-                  </time>
-                </td>
-                
-                <td> 1 </td>
-              </tr>
-              
-              <tr>
-                
-                <td>
-                  <a href="/categories/spring/">Spring</a>
-                </td>
-                
-                
-                <td>
-                  <time datetime=" 2023-09-07 08:51:44 &#43;0800">
-                    2023-09-07
-                  </time>
-                </td>
-                
-                <td> 2 </td>
-              </tr>
-              
-              
-            </tbody>
-          </table>
+        <div class="post-content markdown-body">
+          
+          <h1 id="hash数据结构">Hash数据结构</h1>
+<h2 id="hset">HSET</h2>
+<p>HSET为Hash中指定的字段设置值，如果字段已经存在，那么这是一次更新操作，返回0，如果字段不存在，那么这是一次创建操作，返回1（如果Hash不存在，同时会创建Hash）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>HSET hash field value
+</span></span></code></pre></div><h2 id="hsetnx">HSETNX</h2>
+<p>HSETNX（H SET No Exists）跟HSET不同在于，HSETNX只会对键存在的时候操作，如果键不存在，设置成功返回1，如果键存在，设置失败返回0。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>HSETNX hash field value
+</span></span></code></pre></div><h2 id="hget">HGET</h2>
+<p>HGET从指定的Hash中获取对应field的值，如果存在，返回对应的值，如果Field或者Hash不存在，返回nil。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>HGET hash field
+</span></span></code></pre></div><h2 id="hincrby">HINCRBY</h2>
+<p>HINCRBY（H Increment By）对字段存储可以被Redis识别为整数的字段执行加分或减法，返回当前的结果值，如果传入的为一个正整数，则为加上一个数；如果为一个负整数，被识别为一个减法；如果传入的是一个非整数，则会产生异常。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>HINCRBY hash field increment
+</span></span></code></pre></div><h2 id="hincrbyfloat">HINCRBYFLOAT</h2>
+<p>跟HINCRBY不同的是，他可以执行一个浮点数的计算，无论字段中的值是一个整数或者一个浮点数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>HINCRBYFLOAT hash field increment
+</span></span></code></pre></div><p>用来获取指定字段值的长度。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>HSTRLEN hash field
+</span></span></code></pre></div><h2 id="hexists">HEXISTS</h2>
+<p>HEXISTS用来检查用户给定的字段是否存在于指定的Hash中，存在返回1，不存在返回0。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>HEXISTS hash field
+</span></span></code></pre></div><h2 id="hdel">HDEL</h2>
+<p>HDEL用来删除hash中指定字段及其关联的值，如果指定的字段存在于hash中并且成功删除时，命令返回1，如果字段不存在或者hash不存在，返回0。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>HDEL hash field
+</span></span></code></pre></div><h2 id="hmset">HMSET</h2>
+<p>HMSET（H Multiple Set）跟HSET不同在于，他可以同时指定多个field-value，其他更HSET一样，字段存在更新值等；不同在于一条HMSET跟多条HSET只需要通信一次。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>HMSET hash field value <span style="color:#f92672">[</span>field value<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="hmget">HMGET</h2>
+<p>HMGET可以同时获取多个字段的值，其他跟HGET相同，如果获取的字段或hash不存在，那么他返回一个nil。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>HMGET hash field <span style="color:#f92672">[</span>field<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="hkeyshvalshgetall">HKEYS、HVALS、HGETALL</h2>
+<p>HKEYS、HVALS、HGETALL分别为获取所有的键，所有的值，所有的键值对，因为Hash不对如何的数据进行排序，为无序状态，所以这三个每次返回值的顺序都可能是不一样的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>KEYS hash
+</span></span><span style="display:flex;"><span>HVALS hash
+</span></span><span style="display:flex;"><span>HGETALL hash
+</span></span></code></pre></div><h1 id="hash-vs-string">Hash vs String</h1>
+<p>hash和string是两种不同的数据结构，他们有相同的特征，也有不同，hash可以保存许多对不同的键值对，而stirng只能保存一个键值对。</p>
+<ul>
+<li>在保存数据的时候，String需要较长的key名，而hash可以将系统同的key名提取出来，只做为一个hash key名，可以减少许多存储key的空间。</li>
+<li></li>
+</ul>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
         </div>
         
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
 
+        
+
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
 
         <div class="site-footer">
   

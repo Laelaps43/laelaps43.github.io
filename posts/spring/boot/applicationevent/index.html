@@ -230,6 +230,7 @@ public class MyEvent extends ApplicationEvent { private String name; private int
 </span></span></code></pre></div><p>一个方法的注解可以监听多个事件或者不使用参数来定义。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@EventListener</span><span style="color:#f92672">(</span>classes<span style="color:#f92672">={</span>ContextStartedEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> ContextRefreshedEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">})</span>
 </span></span></code></pre></div><p>在注解中还有一个<code>condition</code>属性，他接受一个SpEL表达式，用来表明在那些情况下可以触发监听器。</p>
+<p>如果定义了多个监听器的话，那么他们都会被触发。</p>
 <h2 id="异步">异步</h2>
 <p>在一般情况下，Spring事件是同步的，意味着在发布者发布后，只有当监听器处理之后才能继续运行，其他的时间下他是被阻塞的；我们可以在监听器中添加<code>@Async</code>注解来实现监听事件来以异步的方式运行；在使<code>@Async</code>生效，需要使用<code>@EnableAsync</code>注释<code>SpringBootApplication</code>类。</p>
 <h1 id="深入">深入</h1>
