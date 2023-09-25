@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.118.2">
+  <meta name="generator" content="Hugo 0.119.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -275,7 +275,7 @@ getClass package org.example; public class Main { public static void main(String
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Student</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">){</span>  
-</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">this</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> name<span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">this</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> name<span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Student</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>  
@@ -305,7 +305,7 @@ getClass package org.example; public class Main { public static void main(String
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 通过Constructor的newInstance来构建对象  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Constructor<span style="color:#f92672">&lt;?&gt;</span> constructor <span style="color:#f92672">=</span> studentClass<span style="color:#f92672">.</span><span style="color:#a6e22e">getConstructor</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        Object student2 <span style="color:#f92672">=</span> constructor<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">(</span>11<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Ron&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>        Object student2 <span style="color:#f92672">=</span> constructor<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">(</span><span style="color:#ae81ff">11</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Ron&#34;</span><span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>        Constructor<span style="color:#f92672">&lt;?&gt;</span> constructor1 <span style="color:#f92672">=</span> studentClass<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredConstructor</span><span style="color:#f92672">(</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 如果不开启，会产生IllegalAccessException异常  
@@ -353,7 +353,7 @@ getClass package org.example; public class Main { public static void main(String
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">//给该对象设置属性值.obj-实例对象 value-属性的值  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        name<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>student<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Ron&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        id<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>student<span style="color:#f92672">,</span> 12<span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>        id<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>student<span style="color:#f92672">,</span> <span style="color:#ae81ff">12</span><span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>student<span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>  
@@ -378,7 +378,7 @@ getClass package org.example; public class Main { public static void main(String
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 执行方法  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Object student <span style="color:#f92672">=</span> studentClass<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredConstructor</span><span style="color:#f92672">().</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>  
 </span></span><span style="display:flex;"><span>        setName<span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>student<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Ron&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        setId<span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>student<span style="color:#f92672">,</span> 12<span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>        setId<span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>student<span style="color:#f92672">,</span> <span style="color:#ae81ff">12</span><span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>        String name <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>String<span style="color:#f92672">)</span>getName<span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>student<span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>name<span style="color:#f92672">);</span>  

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.118.2">
+  <meta name="generator" content="Hugo 0.119.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -173,7 +173,7 @@ Java中的接口 public interface Iterator&amp;lt;E&amp;gt; { boolean hasNext();
 <p>这是Java集合必须实现的一个接口，他用来遍历集合，在传统的做法中，我们一般是使用<code>for</code>循环来遍历集合，但是Java为我们实现了<code>Iterator</code>，所以我们可以使用他来遍历集合。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;(</span>List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;xyz&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;12&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;pq&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;abcd&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;1234&#34;</span><span style="color:#f92672">));</span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 传统方法遍历
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span> i<span style="color:#f92672">++){</span>  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span> i<span style="color:#f92672">++){</span>  
 </span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>i<span style="color:#f92672">)+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>  
 </span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">();</span>  
@@ -214,11 +214,11 @@ Java中的接口 public interface Iterator&amp;lt;E&amp;gt; { boolean hasNext();
 <li><code>forEachRemaining</code> 对集合中使用的iterator未遍历完的迭代器剩下的元素进行遍历，直到数据完全遍历完或者抛出异常。</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> iterator <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 只打印前三个元素  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">()){</span>  
 </span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">==</span> 2<span style="color:#f92672">)</span> <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>  
 </span></span><span style="display:flex;"><span>    i<span style="color:#f92672">++;</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>  
 </span></span><span style="display:flex;"><span>  

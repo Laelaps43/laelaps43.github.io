@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.118.2">
+  <meta name="generator" content="Hugo 0.119.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -219,9 +219,9 @@ Example 定义一个实现了HandlerInterceptor接口的拦截器。
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addInterceptors</span><span style="color:#f92672">(</span>InterceptorRegistry registry<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
 </span></span><span style="display:flex;"><span>        InterceptorRegistration interceptorRegistration <span style="color:#f92672">=</span> registry<span style="color:#f92672">.</span><span style="color:#a6e22e">addInterceptor</span><span style="color:#f92672">(</span>myHandlerInterceptor<span style="color:#f92672">).</span><span style="color:#a6e22e">addPathPatterns</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/hello/**&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        interceptorRegistration<span style="color:#f92672">.</span><span style="color:#a6e22e">order</span><span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>        interceptorRegistration<span style="color:#f92672">.</span><span style="color:#a6e22e">order</span><span style="color:#f92672">(</span><span style="color:#ae81ff">100</span><span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>        InterceptorRegistration interceptorRegistration1 <span style="color:#f92672">=</span> registry<span style="color:#f92672">.</span><span style="color:#a6e22e">addInterceptor</span><span style="color:#f92672">(</span>handlerInterceptor2<span style="color:#f92672">).</span><span style="color:#a6e22e">addPathPatterns</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/**&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        interceptorRegistration1<span style="color:#f92672">.</span><span style="color:#a6e22e">order</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>        interceptorRegistration1<span style="color:#f92672">.</span><span style="color:#a6e22e">order</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div>
