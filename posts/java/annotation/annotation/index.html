@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.119.0">
+  <meta name="generator" content="Hugo 0.120.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -207,50 +207,50 @@ Annotation是一种特殊的标记，程序在编译或者运行的时候可以�
 <p>注解可被用于：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/** Class, interface (including annotation interface), enum, or record  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * declaration */</span>
-</span></span><span style="display:flex;"><span>TYPE<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span>TYPE,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/** Field declaration (includes enum constants) */</span>  
-</span></span><span style="display:flex;"><span>FIELD<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span>FIELD,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/** Method declaration */</span>  
-</span></span><span style="display:flex;"><span>METHOD<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span>METHOD,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/** Formal parameter declaration */</span>  
-</span></span><span style="display:flex;"><span>PARAMETER<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span>PARAMETER,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/** Constructor declaration */</span>  
-</span></span><span style="display:flex;"><span>CONSTRUCTOR<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span>CONSTRUCTOR,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/** Local variable declaration */</span>  
-</span></span><span style="display:flex;"><span>LOCAL_VARIABLE<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span>LOCAL_VARIABLE,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/** Annotation interface declaration (Formerly known as an annotation type.) */</span>  
-</span></span><span style="display:flex;"><span>ANNOTATION_TYPE<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span>ANNOTATION_TYPE,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/** Package declaration */</span>  
-</span></span><span style="display:flex;"><span>PACKAGE<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span>PACKAGE,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/**  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Type parameter declaration * * @since 1.8  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span> TYPE_PARAMETER<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span> TYPE_PARAMETER,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/**  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Use of a type * * @since 1.8  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span> TYPE_USE<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span> TYPE_USE,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/**  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Module declaration. * * @since 9  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span> MODULE<span style="color:#f92672">,</span>  
+</span></span><span style="display:flex;"><span> MODULE,  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#75715e">/**  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Record component * * @jls 8.10.3 Record Members  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @jls 9.7.4 Where Annotations May Appear  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * * @since 16  
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span> RECORD_COMPONENT<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> RECORD_COMPONENT;
 </span></span></code></pre></div><h3 id="retention">@Retention</h3>
 <p><code>@Retention</code>定义了注解的生命周期。</p>
 <ul>
@@ -266,12 +266,12 @@ Annotation是一种特殊的标记，程序在编译或者运行的时候可以�
 <p>允许一个注解可以在同一个Target中被使用一次或者多次。</p>
 <h2 id="自定义注解">自定义注解</h2>
 <p>在自定义注解中，我们跟创建一个类的方式类似，只不过是将<code>class</code>改为<code>@interface</code>，实际上一个注解是实现了<code>Annotation</code>接口，我们使用<code>@interface</code>自动的帮我们指明了需要实现的接口，在接口中没有继承关系。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Documented</span> <span style="color:#75715e">//定义可以被文档工具文档化  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">@Target</span><span style="color:#f92672">({</span>ElementType<span style="color:#f92672">.</span><span style="color:#a6e22e">METHOD</span><span style="color:#f92672">})</span> <span style="color:#75715e">//注解修饰范围为方法  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">@Retention</span><span style="color:#f92672">(</span>RetentionPolicy<span style="color:#f92672">.</span><span style="color:#a6e22e">RUNTIME</span><span style="color:#f92672">)</span> <span style="color:#75715e">//声明周期为runtime，运行时可以通过反射拿到  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> Annotation1 <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">name</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">default</span> <span style="color:#e6db74">&#34;laelaps&#34;</span><span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Documented</span> <span style="color:#75715e">//定义可以被文档工具文档化  </span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Target</span>({ElementType.<span style="color:#a6e22e">METHOD</span>}) <span style="color:#75715e">//注解修饰范围为方法  </span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Retention</span>(RetentionPolicy.<span style="color:#a6e22e">RUNTIME</span>) <span style="color:#75715e">//声明周期为runtime，运行时可以通过反射拿到  </span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> Annotation1 {  
+</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">name</span>() <span style="color:#66d9ef">default</span> <span style="color:#e6db74">&#34;laelaps&#34;</span>;  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="成员变量">成员变量</h3>
 <ol>
 <li>成员以无参数无异常的方式声明 <code>String name()&quot;</code></li>

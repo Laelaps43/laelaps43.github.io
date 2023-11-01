@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.119.0">
+  <meta name="generator" content="Hugo 0.120.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -186,44 +186,44 @@ Example 定义一个实现了HandlerInterceptor接口的拦截器。
 <p>定义一个实现了HandlerInterceptor接口的拦截器。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>  
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyHandlerInterceptor</span> <span style="color:#66d9ef">implements</span> HandlerInterceptor <span style="color:#f92672">{</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyHandlerInterceptor</span> <span style="color:#66d9ef">implements</span> HandlerInterceptor {  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">preHandle</span><span style="color:#f92672">(</span>HttpServletRequest request<span style="color:#f92672">,</span> HttpServletResponse response<span style="color:#f92672">,</span> Object handler<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MyHandlerInterceptor preHandle method......&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HandlerInterceptor<span style="color:#f92672">.</span><span style="color:#a6e22e">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">preHandle</span><span style="color:#f92672">(</span>request<span style="color:#f92672">,</span> response<span style="color:#f92672">,</span> handler<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">preHandle</span>(HttpServletRequest request, HttpServletResponse response, Object handler) <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;MyHandlerInterceptor preHandle method......&#34;</span>);  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HandlerInterceptor.<span style="color:#a6e22e">super</span>.<span style="color:#a6e22e">preHandle</span>(request, response, handler);  
+</span></span><span style="display:flex;"><span>    }  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">postHandle</span><span style="color:#f92672">(</span>HttpServletRequest request<span style="color:#f92672">,</span> HttpServletResponse response<span style="color:#f92672">,</span> Object handler<span style="color:#f92672">,</span> ModelAndView modelAndView<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        HandlerInterceptor<span style="color:#f92672">.</span><span style="color:#a6e22e">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">postHandle</span><span style="color:#f92672">(</span>request<span style="color:#f92672">,</span> response<span style="color:#f92672">,</span> handler<span style="color:#f92672">,</span> modelAndView<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MyHandlerInterceptor postHandle method......&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">postHandle</span>(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>        HandlerInterceptor.<span style="color:#a6e22e">super</span>.<span style="color:#a6e22e">postHandle</span>(request, response, handler, modelAndView);  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;MyHandlerInterceptor postHandle method......&#34;</span>);  
+</span></span><span style="display:flex;"><span>    }  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">afterCompletion</span><span style="color:#f92672">(</span>HttpServletRequest request<span style="color:#f92672">,</span> HttpServletResponse response<span style="color:#f92672">,</span> Object handler<span style="color:#f92672">,</span> Exception ex<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        HandlerInterceptor<span style="color:#f92672">.</span><span style="color:#a6e22e">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">afterCompletion</span><span style="color:#f92672">(</span>request<span style="color:#f92672">,</span> response<span style="color:#f92672">,</span> handler<span style="color:#f92672">,</span> ex<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MyHandlerInterceptor afterCompletion method......&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">afterCompletion</span>(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>        HandlerInterceptor.<span style="color:#a6e22e">super</span>.<span style="color:#a6e22e">afterCompletion</span>(request, response, handler, ex);  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;MyHandlerInterceptor afterCompletion method......&#34;</span>);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>配置MVC，将HandlerInterceptor交给Spring管理。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>  
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebConfig</span> <span style="color:#66d9ef">implements</span> WebMvcConfigurer <span style="color:#f92672">{</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebConfig</span> <span style="color:#66d9ef">implements</span> WebMvcConfigurer {  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>  
-</span></span><span style="display:flex;"><span>    MyHandlerInterceptor myHandlerInterceptor<span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>    MyHandlerInterceptor myHandlerInterceptor;  
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>  
-</span></span><span style="display:flex;"><span>    MyHandlerInterceptor2 handlerInterceptor2<span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>    MyHandlerInterceptor2 handlerInterceptor2;  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addInterceptors</span><span style="color:#f92672">(</span>InterceptorRegistry registry<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        InterceptorRegistration interceptorRegistration <span style="color:#f92672">=</span> registry<span style="color:#f92672">.</span><span style="color:#a6e22e">addInterceptor</span><span style="color:#f92672">(</span>myHandlerInterceptor<span style="color:#f92672">).</span><span style="color:#a6e22e">addPathPatterns</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/hello/**&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        interceptorRegistration<span style="color:#f92672">.</span><span style="color:#a6e22e">order</span><span style="color:#f92672">(</span><span style="color:#ae81ff">100</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        InterceptorRegistration interceptorRegistration1 <span style="color:#f92672">=</span> registry<span style="color:#f92672">.</span><span style="color:#a6e22e">addInterceptor</span><span style="color:#f92672">(</span>handlerInterceptor2<span style="color:#f92672">).</span><span style="color:#a6e22e">addPathPatterns</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/**&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        interceptorRegistration1<span style="color:#f92672">.</span><span style="color:#a6e22e">order</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addInterceptors</span>(InterceptorRegistry registry) {  
+</span></span><span style="display:flex;"><span>        InterceptorRegistration interceptorRegistration <span style="color:#f92672">=</span> registry.<span style="color:#a6e22e">addInterceptor</span>(myHandlerInterceptor).<span style="color:#a6e22e">addPathPatterns</span>(<span style="color:#e6db74">&#34;/hello/**&#34;</span>);  
+</span></span><span style="display:flex;"><span>        interceptorRegistration.<span style="color:#a6e22e">order</span>(100);  
+</span></span><span style="display:flex;"><span>        InterceptorRegistration interceptorRegistration1 <span style="color:#f92672">=</span> registry.<span style="color:#a6e22e">addInterceptor</span>(handlerInterceptor2).<span style="color:#a6e22e">addPathPatterns</span>(<span style="color:#e6db74">&#34;/**&#34;</span>);  
+</span></span><span style="display:flex;"><span>        interceptorRegistration1.<span style="color:#a6e22e">order</span>(1);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
         </div>
 

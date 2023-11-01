@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.119.0">
+  <meta name="generator" content="Hugo 0.120.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -169,118 +169,118 @@ private class Itr implements Iterator&amp;lt;E&amp;gt; { int cursor = 0; int las
           <h1 id="content">Content</h1>
 <p>AbstractList扩展了<code>AbstractCollection</code>和实现了<code>List</code>；在这里有趣的是有5个内部类的实现。</p>
 <h2 id="removerange">removeRange</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">removeRange</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> fromIndex<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> toIndex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>    ListIterator<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> it <span style="color:#f92672">=</span> listIterator<span style="color:#f92672">(</span>fromIndex<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span> n<span style="color:#f92672">=</span>toIndex<span style="color:#f92672">-</span>fromIndex<span style="color:#f92672">;</span> i<span style="color:#f92672">&lt;</span>n<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span>        it<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">removeRange</span>(<span style="color:#66d9ef">int</span> fromIndex, <span style="color:#66d9ef">int</span> toIndex) {  
+</span></span><span style="display:flex;"><span>    ListIterator<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> it <span style="color:#f92672">=</span> listIterator(fromIndex);  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>0, n<span style="color:#f92672">=</span>toIndex<span style="color:#f92672">-</span>fromIndex; i<span style="color:#f92672">&lt;</span>n; i<span style="color:#f92672">++</span>) {  
+</span></span><span style="display:flex;"><span>        it.<span style="color:#a6e22e">next</span>();  
+</span></span><span style="display:flex;"><span>        it.<span style="color:#a6e22e">remove</span>();  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>删除指定范围的元素，使用迭代器来实现，并且为一个<code>protected</code>方法。</p>
 <h2 id="sublist">subList</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">subList</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> fromIndex<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> toIndex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>    subListRangeCheck<span style="color:#f92672">(</span>fromIndex<span style="color:#f92672">,</span> toIndex<span style="color:#f92672">,</span> size<span style="color:#f92672">());</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> RandomAccess <span style="color:#f92672">?</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> RandomAccessSubList<span style="color:#f92672">&lt;&gt;(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> fromIndex<span style="color:#f92672">,</span> toIndex<span style="color:#f92672">)</span> <span style="color:#f92672">:</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> SubList<span style="color:#f92672">&lt;&gt;(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> fromIndex<span style="color:#f92672">,</span> toIndex<span style="color:#f92672">));</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">subList</span>(<span style="color:#66d9ef">int</span> fromIndex, <span style="color:#66d9ef">int</span> toIndex) {  
+</span></span><span style="display:flex;"><span>    subListRangeCheck(fromIndex, toIndex, size());  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> RandomAccess <span style="color:#f92672">?</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> RandomAccessSubList<span style="color:#f92672">&lt;&gt;</span>(<span style="color:#66d9ef">this</span>, fromIndex, toIndex) :  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> SubList<span style="color:#f92672">&lt;&gt;</span>(<span style="color:#66d9ef">this</span>, fromIndex, toIndex));  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><code>RandomAccess</code> 是一个<strong>标记接口</strong>，他是一个空的接口，通常用来表示我们的集合是支持随机访问，所有他的功能就仅仅是一个标记的作用。
 在这里如果我们的集合实现了<code>RandomAccess</code>这个空接口，那么他返回的就是<code>RandomAccessSubList</code>，否则返回的就是一个<code>SubList</code>的内部类。</p>
 <h2 id="itr">Itr</h2>
 <p>他实现了<code>Iterator</code>接口，供<code>AbstractList</code>使用迭代器。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Itr</span> <span style="color:#66d9ef">implements</span> Iterator<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Itr</span> <span style="color:#66d9ef">implements</span> Iterator<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> {  
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> cursor <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> cursor <span style="color:#f92672">=</span> 0;  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> lastRet <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> lastRet <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>1;  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> expectedModCount <span style="color:#f92672">=</span> modCount<span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">int</span> expectedModCount <span style="color:#f92672">=</span> modCount;  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasNext</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cursor <span style="color:#f92672">!=</span> size<span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasNext</span>() {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cursor <span style="color:#f92672">!=</span> size();  
+</span></span><span style="display:flex;"><span>    }  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> E <span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        checkForComodification<span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> cursor<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>            E next <span style="color:#f92672">=</span> get<span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>            lastRet <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>            cursor <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> next<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IndexOutOfBoundsException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>            checkForComodification<span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NoSuchElementException<span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> E <span style="color:#a6e22e">next</span>() {  
+</span></span><span style="display:flex;"><span>        checkForComodification();  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> cursor;  
+</span></span><span style="display:flex;"><span>            E next <span style="color:#f92672">=</span> get(i);  
+</span></span><span style="display:flex;"><span>            lastRet <span style="color:#f92672">=</span> i;  
+</span></span><span style="display:flex;"><span>            cursor <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> 1;  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> next;  
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IndexOutOfBoundsException e) {  
+</span></span><span style="display:flex;"><span>            checkForComodification();  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NoSuchElementException(e);  
+</span></span><span style="display:flex;"><span>        }  
+</span></span><span style="display:flex;"><span>    }  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">remove</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>lastRet <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span>        checkForComodification<span style="color:#f92672">();</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">remove</span>() {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (lastRet <span style="color:#f92672">&lt;</span> 0)  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException();  
+</span></span><span style="display:flex;"><span>        checkForComodification();  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>            AbstractList<span style="color:#f92672">.</span><span style="color:#a6e22e">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>lastRet<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>lastRet <span style="color:#f92672">&lt;</span> cursor<span style="color:#f92672">)</span>  
-</span></span><span style="display:flex;"><span>                cursor<span style="color:#f92672">--;</span>  
-</span></span><span style="display:flex;"><span>            lastRet <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>            expectedModCount <span style="color:#f92672">=</span> modCount<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IndexOutOfBoundsException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> ConcurrentModificationException<span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {  
+</span></span><span style="display:flex;"><span>            AbstractList.<span style="color:#a6e22e">this</span>.<span style="color:#a6e22e">remove</span>(lastRet);  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (lastRet <span style="color:#f92672">&lt;</span> cursor)  
+</span></span><span style="display:flex;"><span>                cursor<span style="color:#f92672">--</span>;  
+</span></span><span style="display:flex;"><span>            lastRet <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>1;  
+</span></span><span style="display:flex;"><span>            expectedModCount <span style="color:#f92672">=</span> modCount;  
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IndexOutOfBoundsException e) {  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> ConcurrentModificationException();  
+</span></span><span style="display:flex;"><span>        }  
+</span></span><span style="display:flex;"><span>    }  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkForComodification</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>modCount <span style="color:#f92672">!=</span> expectedModCount<span style="color:#f92672">)</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> ConcurrentModificationException<span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkForComodification</span>() {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (modCount <span style="color:#f92672">!=</span> expectedModCount)  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> ConcurrentModificationException();  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>最有趣的地方在于每次删除后都会将<code>lastRet</code>设置为-1，是因为我们在调用remove之后都会先调用next，所有每次都会被更新。</p>
 <h2 id="listitr">ListItr</h2>
 <p>他扩展Itr的同时实现了ListIterator接口；整体跟Itr是很相似增加和set都是调用了<code>AbstractList</code>方法。</p>
 <h2 id="sublist内部类">SubList内部类</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SubList</span><span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">extends</span> AbstractList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> AbstractList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> root<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> SubList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> parent<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> offset<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">int</span> size<span style="color:#f92672">;</span>  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SubList</span><span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">extends</span> AbstractList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> AbstractList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> root;  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> SubList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> parent;  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> offset;  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">int</span> size;  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SubList</span><span style="color:#f92672">(</span>AbstractList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> root<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> fromIndex<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> toIndex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">root</span> <span style="color:#f92672">=</span> root<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">parent</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">offset</span> <span style="color:#f92672">=</span> fromIndex<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">size</span> <span style="color:#f92672">=</span> toIndex <span style="color:#f92672">-</span> fromIndex<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">modCount</span> <span style="color:#f92672">=</span> root<span style="color:#f92672">.</span><span style="color:#a6e22e">modCount</span><span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SubList</span>(AbstractList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> root, <span style="color:#66d9ef">int</span> fromIndex, <span style="color:#66d9ef">int</span> toIndex) {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span> <span style="color:#f92672">=</span> root;  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">parent</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">offset</span> <span style="color:#f92672">=</span> fromIndex;  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">=</span> toIndex <span style="color:#f92672">-</span> fromIndex;  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modCount</span> <span style="color:#f92672">=</span> root.<span style="color:#a6e22e">modCount</span>;  
+</span></span><span style="display:flex;"><span>    }  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">SubList</span><span style="color:#f92672">(</span>SubList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> parent<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> fromIndex<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> toIndex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">root</span> <span style="color:#f92672">=</span> parent<span style="color:#f92672">.</span><span style="color:#a6e22e">root</span><span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">parent</span> <span style="color:#f92672">=</span> parent<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">offset</span> <span style="color:#f92672">=</span> parent<span style="color:#f92672">.</span><span style="color:#a6e22e">offset</span> <span style="color:#f92672">+</span> fromIndex<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">size</span> <span style="color:#f92672">=</span> toIndex <span style="color:#f92672">-</span> fromIndex<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">modCount</span> <span style="color:#f92672">=</span> root<span style="color:#f92672">.</span><span style="color:#a6e22e">modCount</span><span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">......</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">SubList</span>(SubList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> parent, <span style="color:#66d9ef">int</span> fromIndex, <span style="color:#66d9ef">int</span> toIndex) {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span> <span style="color:#f92672">=</span> parent.<span style="color:#a6e22e">root</span>;  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">parent</span> <span style="color:#f92672">=</span> parent;  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">offset</span> <span style="color:#f92672">=</span> parent.<span style="color:#a6e22e">offset</span> <span style="color:#f92672">+</span> fromIndex;  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">=</span> toIndex <span style="color:#f92672">-</span> fromIndex;  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modCount</span> <span style="color:#f92672">=</span> root.<span style="color:#a6e22e">modCount</span>;  
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>	......
 </span></span></code></pre></div><p>在这里可以看出他也是扩展了<code>AbstractList</code>，所有他需要实现<code>AbstractList</code>的抽象方法，在他的两个构造函数可以看出他需要传递一个<code>AbstractList</code> 或者一个<code>SubList</code>，而在之后的所有方法也是调用了<code>AbstractList</code>中的所有方法，所有SubList可以看成是一个从AbstractList中抽象出来的一个视图，他所有的更改都会实现在源容器上。</p>
 <h2 id="randomaccesssublist">RandomAccessSubList</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RandomAccessSubList</span><span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extends</span> SubList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> RandomAccess <span style="color:#f92672">{</span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">extends</span> SubList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> RandomAccess {  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>     RandomAccessSubList<span style="color:#f92672">(</span>AbstractList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> root<span style="color:#f92672">,</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> fromIndex<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> toIndex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>root<span style="color:#f92672">,</span> fromIndex<span style="color:#f92672">,</span> toIndex<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
+</span></span><span style="display:flex;"><span>     RandomAccessSubList(AbstractList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> root,  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> fromIndex, <span style="color:#66d9ef">int</span> toIndex) {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(root, fromIndex, toIndex);  
+</span></span><span style="display:flex;"><span>    }  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>     RandomAccessSubList<span style="color:#f92672">(</span>RandomAccessSubList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> parent<span style="color:#f92672">,</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> fromIndex<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> toIndex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>parent<span style="color:#f92672">,</span> fromIndex<span style="color:#f92672">,</span> toIndex<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
+</span></span><span style="display:flex;"><span>     RandomAccessSubList(RandomAccessSubList<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> parent,  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> fromIndex, <span style="color:#66d9ef">int</span> toIndex) {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(parent, fromIndex, toIndex);  
+</span></span><span style="display:flex;"><span>    }  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">subList</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> fromIndex<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> toIndex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        subListRangeCheck<span style="color:#f92672">(</span>fromIndex<span style="color:#f92672">,</span> toIndex<span style="color:#f92672">,</span> size<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> RandomAccessSubList<span style="color:#f92672">&lt;&gt;(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> fromIndex<span style="color:#f92672">,</span> toIndex<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">subList</span>(<span style="color:#66d9ef">int</span> fromIndex, <span style="color:#66d9ef">int</span> toIndex) {  
+</span></span><span style="display:flex;"><span>        subListRangeCheck(fromIndex, toIndex, size);  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> RandomAccessSubList<span style="color:#f92672">&lt;&gt;</span>(<span style="color:#66d9ef">this</span>, fromIndex, toIndex);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>他基础了<code>SubList</code>这个内部类，同时也实现了<code>RandomAccess</code>这个标记接口。表明这个类是可以随机访问的。</p>
 <h2 id="randomaccessspliterator">RandomAccessSpliterator</h2>
 <p><strong>TODO</strong></p>

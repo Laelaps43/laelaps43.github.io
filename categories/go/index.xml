@@ -6,34 +6,30 @@
     <description>Recent content in Go on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Aug 2023 22:18:32 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Aug 2023 22:18:32 +0800</lastBuildDate>
+    <atom:link href="https://blog.laelaps.us/categories/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go标准库之os库</title>
       <link>https://blog.laelaps.us/posts/go/library/os/</link>
       <pubDate>Wed, 16 Aug 2023 22:18:32 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/library/os/</guid>
       <description>权限 在syscall包下定义了许多关于文件操作的权限的常量。
 const ( O_RDONLY int = syscall.O_RDONLY // 只读模式打开文件 O_WRONLY int = syscall.O_WRONLY // 只写模式打开文件 O_RDWR int = syscall.O_RDWR // 读写模式打开文件 O_APPEND int = syscall.O_APPEND // 写操作时将数据附加到文件尾部 O_CREATE int = syscall.O_CREAT // 如果不存在将创建一个新文件 O_EXCL int = syscall.O_EXCL // 和O_CREATE配合使用，文件必须不存在 O_SYNC int = syscall.O_SYNC // 打开文件用于同步I/O O_TRUNC int = syscall.O_TRUNC // 如果可能，打开时清空文件 ) os 创建文件 func Create(name string) (*File, error) func TestCreate(t *testing.T){ file, err := os.Create(name) if err != nil { fmt.</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 测试（11)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter11/</link>
       <pubDate>Mon, 31 Jul 2023 20:47:06 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter11/</guid>
       <description>在go的包下通常会存在一些以_test.go结尾的文件，他在go build阶段并不会被编译，在文件中有三种函数，一种是以Test开头的功能测试函数，运行go test会测试这些函数；一种是Benchmark开头的基准测试函数，用来测试某些操作的性能，go test会回报操作的平均执行时间；最后一种是以Example开头的示例函数。 go test会扫描包下的_test.go结尾的文件来寻找特殊的函数，使用一个临时的main包来调用这些函数，并编译和运行他们。
 Test函数 test基本 在_test.go里面的Test函数有着固定的函数前面，所有的函数都要符合这个规定
 func TestName(t *testing.T){ } package word // IsPalindrome reports whether s reads the same forward and backward. // (Our first attempt.) func IsPalindrome(s string) bool { for i := range s { if s[i] != s[len(s)-1-i] { return false } } return true } 测试函数：
 func TestPalindrome(t *testing.T) { if !IsPalindrome(&amp;#34;detartrated&amp;#34;) { t.Error(`IsPalindrome(&amp;#34;detartrated&amp;#34;) = false`) } if !IsPalindrome(&amp;#34;kayak&amp;#34;) { t.Error(`IsPalindrome(&amp;#34;kayak&amp;#34;) = false`) } } 我们可以使用go test来运行测试，为当前目录，当测试成功的时候会返回PASS，测试失败会给出失败的函数等信息。</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 包和go工具（10)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter10/</link>
       <pubDate>Tue, 25 Jul 2023 14:54:44 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter10/</guid>
       <description>包 包通过控制名字是否导出使其对包外可见来提供封装能力。
 命名 包名命名规则：
@@ -46,58 +42,48 @@ import _ &amp;#34;image/png&amp;#34; go工具 go工具将不同种类的工具�
 src包含源文件 pkg构建工具存储编译后的包 bin存储可执行文件 GOROOT是GO发行版的根目录，他提供所有标准库的包。 使用go env可以输出所有的环境变量。 go get go get借助代码管理工具从远程拉取代码和依赖包，并且自动完成编译和安装，在拉取的时候，go get可以得出需要那些依赖包，只拉取那些不存在的依赖，当然我们可以使用-u来强制性的更新所有依赖的包。 go get支持多个代码托管网站，并且可以选择合适的版本控制协议向系统发送合适的请求，在Go 1.11之前拉去到的包存储在$GOPATH/src目录下，使用 go mod 获取的依赖在$GOPATH/pkg/mod/下。 参数介绍：
 -d 只下载不安装 -f 只有在你包含了 -u 参数的时候才有效，不让 -u 去验证 import 中的每一个都已经获取了，这对于本地 fork 的包特别有用 -fix 在获取源码之后先运行 fix，然后再去做其他的事情 -t 同时也下载需要为运行测试所需要的包 -u 强制使用网络去更新包和它的依赖包 -v 显示执行的命令 -insecure 允许使用不安全的 HTTP 方式进行下载操作 go build go build [-o output] [build flags] [packages] 当编译的是单个main包时，那么在当前目录下生成可执行文件。 当编译的包是一个库时，那么结果会被舍弃。 编译一个包是，会自动的忽略_test.</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 接口（7)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter7/</link>
       <pubDate>Tue, 18 Jul 2023 18:12:39 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter7/</guid>
       <description>前言 Go中通过接口支持鸭子类型 If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.
 What? 接口类型是对其他类型行为的概括和抽象，一个接口定义了一套方法，如果一个类型需要实现该接口，那么需要实现接口中定义的所有方法，所以对于一个接口对象，我们不知道他是什么，但是我们可以知道他能做什么，及有那些方法，及接口是一种抽象的类型，他并没有暴露他所含有的数据的布局和内部结构，而是只有操纵他的方法。 接口要求类型包含了与签名和行为与接口类的方法一致的方法；实现了接口类型的任何方法都可以等于这个接口类型。 接口类型可以嵌套其他接口类型，这个新的接口类型需要去实现所有嵌套接口的类型。
 package main import &amp;#34;fmt&amp;#34; type Person struct{ Name string Age int } type Lae interface { play() } func (p Person)play(){ fmt.Println(p.Name + &amp;#34; play&amp;#34;) } func main() { lae := new(Person) lae.Name = &amp;#34;Ron&amp;#34; lae.Age = 18 var inter Lae = lae inter.</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 方法（6)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter6/</link>
       <pubDate>Mon, 17 Jul 2023 18:30:16 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter6/</guid>
       <description>面向对象编程 在Go中没有统一的面向对象编程的定义，也就是没有类，但是我们还是可以使用者一种思想。对象可以是一个简单的值或者变量同时拥有方法，方法是某特定类型的函数。
 方法 声明 我们可以在同一个包下的任何类型（但是指针类型和接口类型除外）给他们声明一个方法，方法跟函数类型类似，只是在函数的前面多了一个接受者，用来描述方法跟哪一种类型相互关联。 注意 方法和字段在同一个命名空间内不能是相同的名字。
 type Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } 指针接收者 方法的接受者可以使用类型的指针来代替以来的类型，改变原来的值传递；但是按照习惯，如果一个地方使用了指针接收者，那么该类型的所有方法都应该使用指针接受者。
 // 声明 type Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p.</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 函数（5)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter5/</link>
       <pubDate>Mon, 17 Jul 2023 11:32:55 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter5/</guid>
       <description>函数声明 func name(paramter-list)(result-list){ } 在Go中返回值可以是多个参数，并且返回值可以像形参一样命名，会根据变量的类型初始化相应的零值。 当两个函数有相同的形参列表和返回的列表是，这两个函数的类型或者函数的签名是相同的。
 func fun1(x, y int) (z int){ return x + y } 多返回值 我们在标准库中可以看见许多的函数返回有两个值，一个是函数返回的结果，另外一个是表示一个函数是否执行成功的布尔值。 如果我们去调用一个多返回值的函数，必须将这些函数的返回值全部接收，如果我们不需要某个值，那我们可以将返回值赋值给一个空标识符。
 func judgeXY(x, y int) (string, error){ if x == y { return &amp;#34;&amp;#34;, fmt.Errorf(&amp;#34;x == y&amp;#34;) } if x &amp;gt; y { return &amp;#34;x &amp;gt; y&amp;#34;, nil } return &amp;#34;x &amp;lt; y&amp;#34;, nil } 函数的裸返回是指函数的返回值有命名，那么我们可以使用命名的参数去接收函数中计算的结果，最后我们可以直接写return，他根据命名返回值相应的结果。
 func judgeXY(x, y int) (result string, err error){ if x == y { err = fmt.</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 复合数据类型（4)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter4/</link>
       <pubDate>Sat, 15 Jul 2023 08:07:53 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter4/</guid>
       <description>前言 复合数据类型由基本的数据类型已各种方式组合而成。 四种复合数据类型：数组、slice、map、结构体。 数组中的元素具有同一种类型，而结构体中没有这种要求，slice、map是动态数据结构。
 数组 数组是拥有固定长度的有系统数据类型的元素序列，他跟我们其他语言的数字是一样的。
 package main import &amp;#34;fmt&amp;#34; func main() { var a [3]int // 创建一个长度为三的数组，默认填充零值 a1 := [3]int{} a2 := [3]int{1, 2, 3} // 创建一个为三的数组，给定值 a3 := [3]int{1, 2}	// 为指定的为值为零值 a4 := [...]int{1, 2, 3, 4} // 数组的长度由初始化元素的个数决定 a5 := [...]int{50: -5, 99: 5} // 数组的长度为一百，下标50为-5,下标99为5 fmt.Println(a[1]) fmt.Println(a1[0]) fmt.Println(a2[0]) fmt.Println(a3[2]) fmt.Println(a4[2]) fmt.Println(len(a4)) fmt.Println(a5[50], a5[99])	fmt.Println(len(a5)) fmt.Printf(&amp;#34;%t\n&amp;#34;, a == a1) // 如果数字的类型和数组的基本数据类型可比较，则可比较 fmt.Printf(&amp;#34;%t\n&amp;#34;, a2 != a3) } Slice Slice是一个有相同类型的可变长度的序列，Slice之间不能比较；slice唯一比较的就是跟nil比较，但是不能根据slice是否为nil来判断slice是否为空，因为有可能长度为空，但是拥有底层数组。</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 基本数据（3)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter3/</link>
       <pubDate>Thu, 13 Jul 2023 16:08:33 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter3/</guid>
       <description>类型分类 Go语言的数据类型有四类：基础类型（basic type）、聚合类型（aggregate type）、引用类型（reference type）、接口类型（interface type）。
 整数 在Go中有有符合整数和无符合整数两种。 有符合整数：int8（8位）、 int16 （16位）、int32（32位）、 int64（64位） 无符合整数：uint8（8位）、 uint16 （16位）、uint32（32位）、 uint64（64位） 此外还有int和uint两种类型，他们在不同的平台有不同的大小，他等于平台上运算效率最高的值。 rune类型是int32类型的同义词，他用来代表这个值是一个Unicode码点，bete类型是uint8类型的同义词，他表示这个值是一个原始数据。 uintptr是一种无符号整数类型，他的大小并不明确，但是他可以存放一个完整的指针。 关于其他对整数的操作跟其他语言差不多
@@ -107,18 +93,15 @@ c1 := complex(1, 2) c2 := complex(2, 1) fmt.Println(c1) fmt.Println(real(c2)) fm
 常量 常量是一种在编译阶段就可以计算出值的表达式；常量的声明定义了具体的值，他在运行阶段不可被更改。
 const ( pi = 3.1415946 e = 2.78 ) // 或者指定类型 const ( b float64 = 2.3333 c int = 2 d bool = true ) 如果我们声明一组常量时，只写第一项，那么其他项会服用前一项。</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 程序结构（2）</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter2/</link>
       <pubDate>Wed, 12 Jul 2023 15:24:34 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter2/</guid>
       <description>名称 在Go中使用驼峰式来命名名称（大驼峰或小驼峰都可以），名称区分大小写，并且名称的开头应该是一个字母或者下划线，后面可以是任意的字符、数字、下划线。 实体 第一个字母大写表示对包外是可见的和可访问的。 声明 在Go中只有四个主要的声明：变量（var），常量（const），类型（type），函数（func）。
 Go文件格式 一个Go文件应该有一个package在文件开头表明文件属于那个包。 接着是一个import声明，表示导入的包。 接下来是包的级别的类型，变量，常量，函数的声明。 package main import &amp;#34;fmt&amp;#34; //(包级别的声明) 不仅只对这个文件可见，而是对同一个包中的所有源文件都可以见 const bollingF = 212.0 func main(){ var f = bollingF var c = (f - 32) * 5 / 9 fmt.Printf(&amp;#34;boiling point = %g or %g°C\n&amp;#34;, f, c) } 变量 var name type = expression 我们可以将type或者expression省略一个，如果省略type，则可以从expression中推断出，如果省略expression，则Go会对他自己进行初始化，数字为0，布尔类型为false，字符串为“”，接口和其他的引用类型为nil。
 var a, b, c int var x, y, z = 1, 2, 3 短变量声明 我们要知道短变量是用来声明和初始化局部变量。
 name := expression 如果短变量声明的左边变量在之前被定义，那么他的行为就跟复制一样，但是每一个短变量声明中都必须声明一个新变量</description>
     </item>
-    
   </channel>
 </rss>

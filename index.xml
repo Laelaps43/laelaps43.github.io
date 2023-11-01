@@ -6,24 +6,22 @@
     <description>Recent content on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 16 Sep 2023 14:34:33 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Sep 2023 14:34:33 +0800</lastBuildDate>
+    <atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>重读Nginx</title>
       <link>https://blog.laelaps.us/posts/tools/nginx/</link>
       <pubDate>Sat, 16 Sep 2023 14:34:33 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/tools/nginx/</guid>
       <description>Nginx 在之前就看过Nginx，但是很久了，许多内容都忘记了，就只剩下Nginx是一个Web服务器，可以干很多牛逼的事。这次突然想再去玩玩Nginx了。
 Nginx是一个高性能的、轻量级的Web服务器、反向代理服务器以及电子邮件代理服务器。反向代理服务器是指来自互联网的流量全部指向代理服务器，然后代理服务器再将请求转向内部的其他服务器上，再将从服务器上的结果重新返回给用户；有反向服务器就必然有正向代理服务器，正向代理服务器最常见的可能就是“翻墙”了，典型的正向代理，正向代理服务器代理用户去访问外部的服务器，所以正向代理服务提供了安全性、隐私保护等功能。
 |-------------------| | Client1\ | | Client2 \ Proxy |-------&amp;gt; Origin Server | Client3 / | |-------------------| Forward Proxy 代理客户端 |-------------------| |-------------------| | Client1 -------&amp;gt;| | / Server 1 | | Client2 -------&amp;gt;|----&amp;gt;| Proxy - Server 2 | | Client3 -------&amp;gt;| | \ Server 3 | |-------------------| |-------------------| Forward Proxy 代理服务器 如果我们只是想使用Nginx的话，不想研究他的源码（至少我不想），那么我们只需要知道他的配置文件即可，在接下来，我们也只是居于配置文件上的学习；学会之后，也不用我们真的去手写配置文件，至少我是不愿意的，我们可以利用https://github.com/digitalocean/nginxconfig.io去生成配置。
 常用命令 nginx -s stop 快速关闭Nginx，可能不保存相关信息，并迅速终止web服务。 nginx -s quit 平稳关闭Nginx，保存相关信息，有安排的结束web服务。 nginx -s reload 因改变了Nginx相关配置，需要重新加载配置而重载。 nginx -s reopen 重新打开日志文件。 nginx -c filename 为 Nginx 指定一个配置文件，来代替缺省的。 nginx -t 不运行，仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。 nginx -v 显示 nginx 的版本。 nginx -V 显示 nginx 的版本，编译器版本和配置参数。 配置 我们先使用ChatGPT生成一份配置文件，要求如下: 我需要部署一个前后端分离的项目，前端包括管理页面（https://domain.</description>
     </item>
-    
     <item>
       <title>Redis 数据结构Hash</title>
       <link>https://blog.laelaps.us/posts/redis/hash/</link>
       <pubDate>Fri, 15 Sep 2023 14:26:10 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/redis/hash/</guid>
       <description>Hash数据结构 HSET HSET为Hash中指定的字段设置值，如果字段已经存在，那么这是一次更新操作，返回0，如果字段不存在，那么这是一次创建操作，返回1（如果Hash不存在，同时会创建Hash）。
 HSET hash field value HSETNX HSETNX（H SET No Exists）跟HSET不同在于，HSETNX只会对键存在的时候操作，如果键不存在，设置成功返回1，如果键存在，设置失败返回0。
@@ -38,12 +36,10 @@ HMSET hash field value [field value] HMGET HMGET可以同时获取多个字段�
 HMGET hash field [field] HKEYS、HVALS、HGETALL HKEYS、HVALS、HGETALL分别为获取所有的键，所有的值，所有的键值对，因为Hash不对如何的数据进行排序，为无序状态，所以这三个每次返回值的顺序都可能是不一样的。
 KEYS hash HVALS hash HGETALL hash Hash vs String hash和string是两种不同的数据结构，他们有相同的特征，也有不同，hash可以保存许多对不同的键值对，而stirng只能保存一个键值对。</description>
     </item>
-    
     <item>
       <title>Java代理模式</title>
       <link>https://blog.laelaps.us/posts/java/proxy/proxy/</link>
       <pubDate>Sat, 09 Sep 2023 08:01:21 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/proxy/proxy/</guid>
       <description>代理 代理是一种设计模式，他用一个代理对象来控制其他的对象进行访问。在我们对对象进行访问的时候，我们不是直接访问对应的对象，而是访问他的代理对象，我们可以在访问对象之前或者之后执行对应的操作；代理提供了一种更加灵活和可控的访问方式。
 代理又分为动态代理和静态代理，两种代理各有各的优缺点；但是他们都是通过一个代理对象来访问对应的被代理对象。
@@ -51,12 +47,10 @@ KEYS hash HVALS hash HGETALL hash Hash vs String hash和string是两种不同的
 Subject：一组可以被代理的行为的集合，通常是一个接口，保证代理对象有被代理对象有相同的行为。 ProxySubject：代理对象，消费端通过它来访问实际的对象。 RealSubject：实际被代理的对象。 静态代理 静态代理是指程序运行前，代理类已经存在于编译结果之前，也就是存在代理类的字节码（一个实际的Class文件）。
 package org.example; // 声明一个接口为需要被代理行为的集合，Subject public interface People { void callMe(); } package org.example; // 被代理对象 public class Ron implements People{ public void callMe(){ System.out.println(&amp;#34;I am Ron&amp;#34;); } } package org.example; // People的代理对象 public class PeopleProxy implements People{ private People target; public PeopleProxy(People target) { this.target = target; } @Override public void callMe() { System.out.println(&amp;#34;People Proxy Class&amp;#34;); target.callMe(); } } public class Main { public static void main(String[] args) throws Exception { PeopleProxy peopleProxy = new PeopleProxy(new Ron()); peopleProxy.</description>
     </item>
-    
     <item>
       <title>Java反射</title>
       <link>https://blog.laelaps.us/posts/java/reflection/reflection/</link>
       <pubDate>Fri, 08 Sep 2023 14:03:43 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/reflection/reflection/</guid>
       <description>Class类 Class类是真实存在的，他在java.lang下，他跟普通的类还是有很多不一样的；在Java中一切都是对象，而在java中有两种对象，一种是我们创建的实例对象，而另外一种是有JVM以及类加载器创建的Class对象，其实也就是说Class对象并不是我们自己创建的，他应该由JVM来创建；
 Class保存的是什么信息呢？他用来表示一般类在运行时的类型信息，我们创建的实例对象在JVM中都应该根据Class对象来创建；而他被用来进行RTTI（Run-Time Type Identification）运行类型识别，在运行时识别一个对象的类型和类的信息。
@@ -65,12 +59,10 @@ Class保存的是什么信息呢？他用来表示一般类在运行时的类型
 获取Class对象 Class.forName package org.example; public class Ron { static { System.out.println(&amp;#34;I am Ron&amp;#34;); } } package org.example; public class Main { public static void main(String[] args) throws ClassNotFoundException { Class&amp;lt;?&amp;gt; ron = Class.forName(&amp;#34;org.example.Ron&amp;#34;); } } static{}会被类第一次被加载的时候被执行，所以new或forName都会判断类是否被加载，forName获取Class对象时并不需要去拥有该类型的对象，而只需要全限定名就可以获取到对应的Class对象。
 getClass package org.example; public class Main { public static void main(String[] args){ // Class&amp;lt;?&amp;gt; ron = Class.</description>
     </item>
-    
     <item>
       <title>Java注解</title>
       <link>https://blog.laelaps.us/posts/java/annotation/annotation/</link>
       <pubDate>Thu, 07 Sep 2023 10:54:40 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/annotation/annotation/</guid>
       <description>注解 Annotation（注解）是一个接口，程序可以通过反射来获取Annotation对象，然后可以在通过Annotation对象来获取注解的元数据，所以Annotation可以为Java代码提供源数据，同时不影响代码的运行。
 Annotation是一种特殊的标记，程序在编译或者运行的时候可以检测到这些标记而进行一些特殊的处理，他可以在包、类型、构造方法、方法、成员变量、参数、本地变量的声明中注解。
@@ -79,12 +71,10 @@ Annotation是一种特殊的标记，程序在编译或者运行的时候可以�
 注解可被用于：
 /** Class, interface (including annotation interface), enum, or record * declaration */ TYPE, /** Field declaration (includes enum constants) */ FIELD, /** Method declaration */ METHOD, /** Formal parameter declaration */ PARAMETER, /** Constructor declaration */ CONSTRUCTOR, /** Local variable declaration */ LOCAL_VARIABLE, /** Annotation interface declaration (Formerly known as an annotation type.</description>
     </item>
-    
     <item>
       <title>Spring MVC 拦截器</title>
       <link>https://blog.laelaps.us/posts/spring/mvc/handlerinterceptor/</link>
       <pubDate>Thu, 07 Sep 2023 08:51:44 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/spring/mvc/handlerinterceptor/</guid>
       <description>过滤器vs拦截器 过滤器（Filter）是Servlet的特性，他属于Servlet容器；而拦截器（HandlerInterceptor）是由Spring MVC提供的特性。 Filter可以拦截所到达的所有请求，而HandlerInterceptor只能拦截被DispatcherServlet处理过的请求。 在Request到达Servlet之前先执行Filter的预处理逻辑，在Request到达DispatcherServlet之后，Handler执行之前执行拦截器的功能。 Filter在doFilter方法中定义预处理和后处理两个逻辑，之间使用filterChain.doFilter进行分隔，同时Filter自身有初始化和销毁的方法，即init和destroy；而HandlerIntercepter则是将这两个方式分开preHandle、postHandle两个方法，同时他拥有一个afterCompletion方法，无论有没有发生异常，在DispatchServlet之后，都会执行afterCompletion。 如果在Spring中使用HandlerInterceptor可以自动Spring容器中被管理。 原理 在HandlerMapping在根据Request查找Handler时，他会返回一个处理器执行链对象（HandlerExecutionChain），内部包含了一个Handler和HandlerInterceptor执行链。如果想要自定义Handler拦截器，那么需要实现HandlerInterceptor接口中的三个方法。
 preHandle：在处理Handler之前执行。 postHandle：在处理Handler成功之后，根据执行链的倒序执行，如果前面的流程出现异常则不会被执行。 afterCompletion：在请求执行完之后执行，他之后对preHandle返回True的HandlerInterceptor执行。 preHandle preHandle返回一个bool类型的值，可以用来终端或继续处理执行链。如果方法返回True时，他会继续沿着执行链继续向后执行；如果返回false，DispatcherServlet 会假定拦截器本身已处理完毕请求（例如，已经渲染了合适的视图），此时将尝试直接倒序执行此前已放行的拦截器链的afterCompletion 方法。
@@ -92,12 +82,10 @@ preHandle：在处理Handler之前执行。 postHandle：在处理Handler成功�
 Example 定义一个实现了HandlerInterceptor接口的拦截器。
 @Component public class MyHandlerInterceptor implements HandlerInterceptor { @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception { System.out.println(&amp;#34;MyHandlerInterceptor preHandle method......&amp;#34;); return HandlerInterceptor.super.preHandle(request, response, handler); } @Override public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception { HandlerInterceptor.super.postHandle(request, response, handler, modelAndView); System.out.println(&amp;#34;MyHandlerInterceptor postHandle method......&amp;#34;); } @Override public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception { HandlerInterceptor.</description>
     </item>
-    
     <item>
       <title>Spring Boot 监听事件</title>
       <link>https://blog.laelaps.us/posts/spring/boot/applicationevent/</link>
       <pubDate>Tue, 05 Sep 2023 13:46:42 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/spring/boot/applicationevent/</guid>
       <description>事件监听 Spring中的事件监听是观察者模式的一种实现，在观察者模式当中，应当有主题、发布者、订阅人；所有在Spring的事件中存在事件（ApplicationEvent）、监听器（ApplicationListener）和事件发布三部分。
 事件用于在松耦合的组件之间交换信息，发布者和订阅者之间没有直接耦合，使得修改发布者并不会影响订阅者，反之也成立。
@@ -105,12 +93,10 @@ Example 定义一个实现了HandlerInterceptor接口的拦截器。
 public class MyEvent extends ApplicationEvent { private String name; private int age; public MyEvent(Object source, String name, int age) { super(source); this.age = age; this.name = name; } } 事件发布 在定义事件后，我们需要发布事件，我们可以使用ApplicationContext和ApplicationEventPublisher两者来发布事件；前者去继承了后者。
 @Service public class MyEventService { @Autowired ApplicationContext applicationContext; @Autowired ApplicationEventPublisher applicationEventPublisher; public void myEvent(){ System.out.println(&amp;#34;发布事件......&amp;#34;); applicationContext.publishEvent(new MyEvent(this, &amp;#34;laelaps&amp;#34;, 12)); System.out.println(&amp;#34;事件发布完毕。&amp;#34;); } public void myEvent2(){ System.out.println(&amp;#34;发布事件......&amp;#34;); applicationEventPublisher.publishEvent(new MyEvent(this, &amp;#34;laelaps&amp;#34;, 12)); System.out.println(&amp;#34;事件发布完毕。&amp;#34;); } } 事件监听 在发布了事件后，我们需要监听者去监听发布的事件；在Spring中有两种方式来定义监听对象；</description>
     </item>
-    
     <item>
       <title>Indexing</title>
       <link>https://blog.laelaps.us/posts/database/indexing/</link>
       <pubDate>Fri, 25 Aug 2023 10:45:00 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/database/indexing/</guid>
       <description>索引是存储引擎用来快速找到记录的一种数据结构。 优点：
 减少服务器需要扫描的数据量 帮助服务器避免排序和临时表 将随机I/O变为顺序I/O 聚集索引和非聚集索引 聚集索引和非聚集索引的区别在于表记录的排列顺序与索引的排列顺序是否一致。 区别：
@@ -126,22 +112,18 @@ public class MyEvent extends ApplicationEvent { private String name; private int
 哈希索引仅仅只包含哈希值和行指针，不能存储字段，所有不得不再次读取行数据。 哈希索引的排序不是按照哈希值的顺序排序的。 哈希索引不支持部分索引的模糊查找，因为索引是整体数据计算得出来的。 哈希索引只能等值比较。 可能存在大量的数据存在哈希冲突，对索引维护代价非常高。 在InnoDB引擎中，有一个叫做自适应哈希索引，当InnoDB中有一些索引使用的非常频繁时，他会在内存中基于B+Tree索引在创建一个哈希索引。 MySQL B-Tree索引 B-Tree是一种索引的数据结构，他可以看出由一个二元组[Key, data]组成，key记录的键值为索引使用，而Data则是记录key之外的数据，但是值得注意的是B-Tree的所有纪律都存在于节点中；B-Tree的特性是，他会从根节点进行二分查找，找到了返回对应的节点，否则对相应的区间的指针指向的的节点进行递归查找，直到找到节点或者找到NULL指针，前者找到成功，后者为失败；以及在插入新的数据会破坏B-Tree的性质，因此在对一个树进行插入数据的时候，需要对树进行分裂、合并、转移来保证B-Tree的性质。 B+Tree B+Tree跟B-Tree不同在于，B+Tree的非叶子节点只存储key，而不存储数据，而叶子节点不存储key，只存储数据。 但是在所有的数据库系统中，并不会直接使用B+Tree，而是在B+Tree上进行了一些优化，比如在叶子节点中添加指向下一个叶子节点的指针，就可以将所的数据链接起来，可以进行局部的顺序查找，提高了区间访问性能。 MyISAM索引实现 MyISAM引擎疏慵B+Tree来实现索引（非聚集索引），在叶子节点的Data域存储的为数据记录的地址；同时他们没有指定主索引必须是主键，只要保证选择的列唯一即可。 InnoDB索引 InnoDB也使用B+Tree作为索引，但是更MyISAM不同的是，MyISAM是使用索引文件和数据文件分离，而在InnoDB数据文件则是索引的一部分，在B+Tree的叶子节点中的Data域中保存了完整的数据记录（聚集索引），而且索引的key必须是表的主键，如果没有指定主键，那么InnoDB 会自动选择一个可以唯一标识数据纪律作为主键，如果不存在这样的列，InnoDB会自动生成一个隐含字段作为主键，字段长度为6个字节。
 在辅助索引中，MyISAM使用的也是地址，但是在InnoDB中实用的是主键索引，所以在InnoDB中使用防辅助索引，会先查找到主键，然后在用主键到主索引中获得记录，所以在InnoDB中并不建议使用较长的字段作为主键，因为过长的主键会导致辅助索引变得过大；在数据插入时，非单调的主键在插入数据的时候，会导致需要改变B+Tree的特性并得频繁的分裂，所以使用一个自增的字段作为索引在InnoDB中是非常好的选择。</description>
     </item>
-    
     <item>
       <title>Go标准库之os库</title>
       <link>https://blog.laelaps.us/posts/go/library/os/</link>
       <pubDate>Wed, 16 Aug 2023 22:18:32 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/library/os/</guid>
       <description>权限 在syscall包下定义了许多关于文件操作的权限的常量。
 const ( O_RDONLY int = syscall.O_RDONLY // 只读模式打开文件 O_WRONLY int = syscall.O_WRONLY // 只写模式打开文件 O_RDWR int = syscall.O_RDWR // 读写模式打开文件 O_APPEND int = syscall.O_APPEND // 写操作时将数据附加到文件尾部 O_CREATE int = syscall.O_CREAT // 如果不存在将创建一个新文件 O_EXCL int = syscall.O_EXCL // 和O_CREATE配合使用，文件必须不存在 O_SYNC int = syscall.O_SYNC // 打开文件用于同步I/O O_TRUNC int = syscall.O_TRUNC // 如果可能，打开时清空文件 ) os 创建文件 func Create(name string) (*File, error) func TestCreate(t *testing.T){ file, err := os.Create(name) if err != nil { fmt.</description>
     </item>
-    
     <item>
       <title>数据库事务</title>
       <link>https://blog.laelaps.us/posts/database/transaction/</link>
       <pubDate>Mon, 14 Aug 2023 21:58:13 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/database/transaction/</guid>
       <description>在一些情况下，如数据库在写入到一半数据时崩溃，在或者多个客户端同时向数据库中相同的位置写入不同的数据，如果我们只在应用层面解决这些问题，似乎变得繁琐，而事务简化了这些操作，他将多个操作组合成一个集合，这个集合要不全部执行成功，要不全部失败。事务有着ACID的属性。
 原子性（Atomicity） 事务有多个操作组合，那么这一些列的操作，要不全部执行，要不都不执行；如果一个事务不具备原子性，那就没有办法保证同一个事务中的所有操作都被执行或者未被执行。
@@ -161,129 +143,105 @@ READ UNCOMMITED：使用查询语句不会加锁，可能会读到未提交的�
 数据库 ACID 中的一致性对事务的要求不止包含对数据完整性以及合法性的检查，还包含应用层面逻辑的正确（对开展在逻辑上的要求）。
 CAP CAP 定理中的数据一致性，其实是说分布式系统中的各个节点中对于同一数据的拷贝有着相同的值；</description>
     </item>
-    
     <item>
       <title>Java AQS</title>
       <link>https://blog.laelaps.us/posts/java/concurrent/aqs/</link>
       <pubDate>Mon, 14 Aug 2023 08:26:03 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/concurrent/aqs/</guid>
       <description>LockSupport LockSupport是JUC包下locks子包下的一个类，同用来在Java中对线程实现一个最基本的阻塞和唤醒。它和CAS一样是在JUC包下并发工具控制的实现基础，他们同样都依赖Unsafe类，依赖该类下的JNI接口。
 基本方法 在LockSupport中使用park开头的方法来阻塞当前线程，unpark方法用来唤醒一个被阻塞的现场。
 /** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 */ public static void park() { UNSAFE.park(false, 0L); } /** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 */ public static void parkNanos(long nanos) { if (nanos &amp;gt; 0) UNSAFE.park(false, nanos); } /** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 */ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } /** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2.</description>
     </item>
-    
     <item>
       <title>Docker网络</title>
       <link>https://blog.laelaps.us/posts/docker/network/</link>
       <pubDate>Sun, 13 Aug 2023 14:07:23 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/docker/network/</guid>
       <description>网络 在安装Docker时，会自动创建三个网络。
 ➜ ~ sudo docker network ls NETWORK ID NAME DRIVER SCOPE 2ddeffb91230 bridge bridge local c55e5f5ed788 host host local 1eebd0c8e7c7 none null local 在Docker中有三种模式，分别为bridg、host和null 。
 Bridge模式 在Docker启动时，Docker会在宿主中创建一个为Docker0的虚拟网口，Docker会为这个虚拟网口分配一个虚拟网段，在每次启动一个服务时，那么就会分配docker0的一个子网给容器，那么容器就可以访问宿主和外网；同时他会进行NAT转换；在同一个bridge下的所有设备都可以相互通信，我们也可以将他们之间设置为禁止通信。 # 创建一个容器，自动加入bridge网桥 ➜ ~ sudo docker run -d --name ron1 praqma/network-multitool 我们可以查看一个bridge的信息。
 ➜ ~ sudo docker network inspect bridge [ { &amp;#34;Name&amp;#34;: &amp;#34;bridge&amp;#34;, &amp;#34;Id&amp;#34;: &amp;#34;2ddeffb91230eb06f738dc5ca7be5e853f82fa8324e338c592424e1b478e5571&amp;#34;, &amp;#34;Created&amp;#34;: &amp;#34;2023-08-14T00:53:05.367734129+08:00&amp;#34;, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;bridge&amp;#34;, &amp;#34;EnableIPv6&amp;#34;: false, &amp;#34;IPAM&amp;#34;: { &amp;#34;Driver&amp;#34;: &amp;#34;default&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Config&amp;#34;: [ { &amp;#34;Subnet&amp;#34;: &amp;#34;172.</description>
     </item>
-    
     <item>
       <title>Docker数据持久化</title>
       <link>https://blog.laelaps.us/posts/docker/volumes/</link>
       <pubDate>Sat, 12 Aug 2023 21:23:53 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/docker/volumes/</guid>
       <description>数据管理 在Docker内部以及容器之间管理数据，数据持久化，有两种方式：数据卷（Volumes）、挂载主机目录（Bind mounts）。
 数据卷 数据卷是一个可以由一个或者多个容器共同使用的特殊目录，实现数据的持久化，他可以被挂载到指定容器的指定目录下。
 特性：
 在容器中可以共享和重用 对数据卷的修改会立马生效 对数据卷的更新，不会影响镜像 数据卷会一致存在，即使容器被删除 # 创建一个数据卷 $ docker volume create my-vol my-vol # 查看所有的数据卷 $ docker volume ls DRIVER VOLUME NAME local 4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8 local my-vol # 查看指定数据卷的信息 $ docker volume inspect my-vol [ { &amp;#34;CreatedAt&amp;#34;: &amp;#34;2023-08-12T14:19:27Z&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Labels&amp;#34;: null, &amp;#34;Mountpoint&amp;#34;: &amp;#34;/var/lib/docker/volumes/my-vol/_data&amp;#34;, &amp;#34;Name&amp;#34;: &amp;#34;my-vol&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34; } ] # 删除指定的数据卷 $ docker volume rm my-vol my-vol # 删除无主的数据卷 $ docker volume prune 挂载数据卷到容器：</description>
     </item>
-    
     <item>
       <title>力扣17题解</title>
       <link>https://blog.laelaps.us/leetcodes/17/</link>
       <pubDate>Mon, 07 Aug 2023 22:29:40 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/leetcodes/17/</guid>
       <description>前言 一开始想到的是使用一个Map来存储，其实有一个数组来存储字母组合获取更加的方便。回溯思想。
 回溯 func letterCombinations(digits string) []string { if digits == &amp;#34;&amp;#34;{ return make([]string, 0) } tel := map[rune]string{ &amp;#39;2&amp;#39;: &amp;#34;abc&amp;#34;, &amp;#39;3&amp;#39;: &amp;#34;def&amp;#34;, &amp;#39;4&amp;#39;: &amp;#34;ghi&amp;#34;, &amp;#39;5&amp;#39;: &amp;#34;jkl&amp;#34;, &amp;#39;6&amp;#39;: &amp;#34;mno&amp;#34;, &amp;#39;7&amp;#39;: &amp;#34;pqrs&amp;#34;, &amp;#39;8&amp;#39;: &amp;#34;tuv&amp;#34;, &amp;#39;9&amp;#39;: &amp;#34;wxyz&amp;#34;, } result := make([]string, 0) path := make([]rune,0, len(digits)) backtracking(0, digits, &amp;amp;path, &amp;amp;result, &amp;amp;tel) return result } func backtracking(start int, digits string, path *[]rune, result *[]string, tel *map[rune]string){ if len(*path) == len(digits){ *result = append(*result, string(*path)) return } for _,value := range (*tel)[rune(digits[start])] { *path = append(*path, value) backtracking(start + 1, digits, path, result, tel) *path = (*path)[:len(*path) -1 ] } } </description>
     </item>
-    
     <item>
       <title>力扣216题解</title>
       <link>https://blog.laelaps.us/leetcodes/216/</link>
       <pubDate>Sun, 06 Aug 2023 22:18:30 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/leetcodes/216/</guid>
       <description>前言 回溯问题
 回溯 func combinationSum3(k int, n int) [][]int { path := make([]int, 0, k) result := make([][]int, 0) backtracking(1, k, n, 9, 0, &amp;amp;path, &amp;amp;result) return result } func backtracking(start, k, n, end, target int, path *[]int, result *[][]int){ if len(*path) == k { if target == n{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) } return } if start &amp;gt; end || n &amp;lt; target || start &amp;gt; n{ return } *path = append(*path, start) backtracking(start + 1, k, n, end, target + start, path, result) *path = (*path)[:len(*path) - 1] backtracking(start + 1, k, n, end,target, path, result) } </description>
     </item>
-    
     <item>
       <title>力扣77题解</title>
       <link>https://blog.laelaps.us/leetcodes/77/</link>
       <pubDate>Sun, 06 Aug 2023 21:54:47 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/leetcodes/77/</guid>
       <description>前言 回溯算法题目
 回溯 func combine(n int, k int) [][]int { path := make([]int, 0) result := make([][]int, 0) backtracking(1, n, k, &amp;amp;path, &amp;amp;result) return result } func backtracking(begin, n, k int, path *[]int, result *[][]int) { if len(*path) == k{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) return } if begin &amp;gt; n { return } *path = append(*path, begin) backtracking(begin+1, n, k, path, result) *path = (*path)[:len(*path) - 1] backtracking(begin+1, n, k, path, result) } </description>
     </item>
-    
     <item>
       <title>力扣62题解</title>
       <link>https://blog.laelaps.us/leetcodes/62/</link>
       <pubDate>Sat, 05 Aug 2023 21:05:55 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/leetcodes/62/</guid>
       <description>前言 在看到这题时，可以很快的想到是使用DP去做，其实我们最先想到的是使用递归去做，但是我感觉有点复杂，因为这个题目的状态转移方程很容易求解出来。
 DP func uniquePaths(m int, n int) int { var grid [100][100]int grid[0][0] = 1 for i := 0; i &amp;lt; m; i++{ for j := 0; j &amp;lt; n; j++{ if i == 0 &amp;amp;&amp;amp; j != 0 { // 第一行 grid[i][j] = grid[i][j - 1] } if j == 0 &amp;amp;&amp;amp; i != 0{ // 第一列 grid[i][j] = grid[i - 1][j] } if i != 0 &amp;amp;&amp;amp; j !</description>
     </item>
-    
     <item>
       <title>力扣19题解</title>
       <link>https://blog.laelaps.us/leetcodes/19/</link>
       <pubDate>Thu, 03 Aug 2023 17:05:24 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/leetcodes/19/</guid>
       <description>前言 看到这个是关于链表的题目，那么就是使用递归或者是迭代了，在递归的时候，是从后往前数到第n个；使用迭代则是先得出总的节点数，然后在使用总的节点数减去n，得到的就是从前往后数的个数，在使用一次迭代就可以将节点删去。
 迭代 func removeNthFromEnd(head *ListNode, n int) *ListNode { dummy := &amp;amp;ListNode{0, head} tmp := dummy.Next sum := 0 for tmp.Next != nil { tmp = tmp.Next sum += 1 } beforeNth := sum - n tmp = dummy for i := 0; i &amp;lt;= beforeNth; i++{ tmp = tmp.Next } tmp.Next = tmp.Next.Next return dummy.Next } 递归 func removeNthFromEnd(head *ListNode, n int) *ListNode { m := 0 dummy := &amp;amp;ListNode{0, head} removeByRecursion(dummy, n, &amp;amp;m) return dummy.</description>
     </item>
-    
     <item>
       <title>力扣24题解</title>
       <link>https://blog.laelaps.us/leetcodes/24/</link>
       <pubDate>Wed, 02 Aug 2023 06:37:05 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/leetcodes/24/</guid>
       <description>前言 这题是关于链表，那么我首先想到的就是使用递归去解决，但是我在这个过程中，发现空间复杂度有点大，所有第二次那么就直接使用迭代了。
 递归 func swapPairs(head *ListNode) *ListNode { if head == nil || head.Next == nil{ return head } nextNode := head.Next head.Next, nextNode.Next = swapPairs(nextNode.Next), head return nextNode } 迭代 /** * Definition for singly-linked list. * type ListNode struct { * Val int * Next *ListNode * } */ func swapPairs(head *ListNode) *ListNode { var tailPre,nextNode,nodeTmp *ListNode = nil, nil, nil node := head for node != nil &amp;amp;&amp;amp; node.</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 测试（11)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter11/</link>
       <pubDate>Mon, 31 Jul 2023 20:47:06 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter11/</guid>
       <description>在go的包下通常会存在一些以_test.go结尾的文件，他在go build阶段并不会被编译，在文件中有三种函数，一种是以Test开头的功能测试函数，运行go test会测试这些函数；一种是Benchmark开头的基准测试函数，用来测试某些操作的性能，go test会回报操作的平均执行时间；最后一种是以Example开头的示例函数。 go test会扫描包下的_test.go结尾的文件来寻找特殊的函数，使用一个临时的main包来调用这些函数，并编译和运行他们。
 Test函数 test基本 在_test.go里面的Test函数有着固定的函数前面，所有的函数都要符合这个规定
 func TestName(t *testing.T){ } package word // IsPalindrome reports whether s reads the same forward and backward. // (Our first attempt.) func IsPalindrome(s string) bool { for i := range s { if s[i] != s[len(s)-1-i] { return false } } return true } 测试函数：
 func TestPalindrome(t *testing.T) { if !IsPalindrome(&amp;#34;detartrated&amp;#34;) { t.Error(`IsPalindrome(&amp;#34;detartrated&amp;#34;) = false`) } if !IsPalindrome(&amp;#34;kayak&amp;#34;) { t.Error(`IsPalindrome(&amp;#34;kayak&amp;#34;) = false`) } } 我们可以使用go test来运行测试，为当前目录，当测试成功的时候会返回PASS，测试失败会给出失败的函数等信息。</description>
     </item>
-    
     <item>
       <title>Java锁体系</title>
       <link>https://blog.laelaps.us/posts/java/concurrent/lock/</link>
       <pubDate>Thu, 27 Jul 2023 21:05:59 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/concurrent/lock/</guid>
       <description>Monitor机制 monitor（监视器、管程）是一个同步工具（同步机制）；底层以来于操作系统的mutex lock实现。 特点：
 互斥 提供singnal机制 Mark Word会保存指向重量级锁的指针，结构如下： ObjectMonitor() { _header = NULL; _count = 0; _waiters = 0, _recursions = 0; _object = NULL; _owner = NULL; _WaitSet = NULL; _WaitSetLock = 0 ; _Responsible = NULL ; _succ = NULL ; _cxq = NULL ; FreeNext = NULL ; _EntryList = NULL ; _SpinFreq = 0 ; _SpinClock = 0 ; OwnerIsThread = 0 ; _previous_owner_tid = 0; } 字段声明：</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 包和go工具（10)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter10/</link>
       <pubDate>Tue, 25 Jul 2023 14:54:44 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter10/</guid>
       <description>包 包通过控制名字是否导出使其对包外可见来提供封装能力。
 命名 包名命名规则：
@@ -296,12 +254,10 @@ import _ &amp;#34;image/png&amp;#34; go工具 go工具将不同种类的工具�
 src包含源文件 pkg构建工具存储编译后的包 bin存储可执行文件 GOROOT是GO发行版的根目录，他提供所有标准库的包。 使用go env可以输出所有的环境变量。 go get go get借助代码管理工具从远程拉取代码和依赖包，并且自动完成编译和安装，在拉取的时候，go get可以得出需要那些依赖包，只拉取那些不存在的依赖，当然我们可以使用-u来强制性的更新所有依赖的包。 go get支持多个代码托管网站，并且可以选择合适的版本控制协议向系统发送合适的请求，在Go 1.11之前拉去到的包存储在$GOPATH/src目录下，使用 go mod 获取的依赖在$GOPATH/pkg/mod/下。 参数介绍：
 -d 只下载不安装 -f 只有在你包含了 -u 参数的时候才有效，不让 -u 去验证 import 中的每一个都已经获取了，这对于本地 fork 的包特别有用 -fix 在获取源码之后先运行 fix，然后再去做其他的事情 -t 同时也下载需要为运行测试所需要的包 -u 强制使用网络去更新包和它的依赖包 -v 显示执行的命令 -insecure 允许使用不安全的 HTTP 方式进行下载操作 go build go build [-o output] [build flags] [packages] 当编译的是单个main包时，那么在当前目录下生成可执行文件。 当编译的包是一个库时，那么结果会被舍弃。 编译一个包是，会自动的忽略_test.</description>
     </item>
-    
     <item>
       <title>Java多线程基础</title>
       <link>https://blog.laelaps.us/posts/java/concurrent/1/</link>
       <pubDate>Fri, 21 Jul 2023 15:15:45 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/concurrent/1/</guid>
       <description>前言 进程VS线程 进程 进程是应用程序在内存中分配的空间，及正在运行的程序，进程之间互不干扰。 基于进程实现的并发是基于CPU的时间片轮转；在CPU的单个核心中，CPU为每一个进程分配一个时间段（时间片），如果在时间片结束时，进程还在执行，那么暂停他，将CPU分配给他的进程（上下文切换）；如果在时间片用完前进程结束或阻塞，那么立即切换；在宏观上就像多个任务同时执行。
 线程 如果我们一个进程之间有许多的子任务，那么我们在线程里面还是按照串行的方法执行，所以提出了线程的思想，让一个线程去执行一个子任务。 进程让操作系统的并发成为了可能，线程让进程内部的并发成为了可能。
@@ -309,69 +265,57 @@ src包含源文件 pkg构建工具存储编译后的包 bin存储可执行文件
 继承Thread类 public class T21 { public static class MyThread extends Thread{ @Override public void run() { super.run(); System.out.println(&amp;#34;Hello&amp;#34;); } } public static void main(String[] args) { MyThread myThread = new MyThread(); myThread.start(); } } 实现Runnable接口 实现Runnable接口，他是一个函数式接口，我们可以使用函数式编程来简化
 public class T21 { public static void main(String[] args) { Thread thread = new Thread(() -&amp;gt; { System.</description>
     </item>
-    
     <item>
       <title>力扣53题解</title>
       <link>https://blog.laelaps.us/leetcodes/53/</link>
       <pubDate>Tue, 18 Jul 2023 20:25:31 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/leetcodes/53/</guid>
       <description>前言 我一开始想到的是使用双指针，但是写着写着发现还是有点复杂的，最后放弃了这种方法，因为之前做个这个题目，所以也很容易想到贪心。
 贪心 思想 当sum &amp;lt;= 0时，重新将sum赋值为0，因为一个负数加上一个负数，那么他更小，如果他加上一个大于他的数，我们为什么不选择比他的那个数，而需要加上他呢。
 Java public static int maxSubArray(int[] nums) { int max = Integer.MIN_VALUE; int sum = 0; for (int i = 0; i &amp;lt; nums.length; i++) { sum += nums[i]; max = Math.max(max, sum); if (sum &amp;lt;= 0) sum = 0; } return max; } Go func maxSubArray(nums []int) int { max := math.MinInt sum := 0 for _, num := range(nums){ sum += num if sum &amp;gt; max { max = sum } if sum &amp;lt;= 0 { sum = 0 } } return max } </description>
     </item>
-    
     <item>
       <title>The Go Programming Language 接口（7)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter7/</link>
       <pubDate>Tue, 18 Jul 2023 18:12:39 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter7/</guid>
       <description>前言 Go中通过接口支持鸭子类型 If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.
 What? 接口类型是对其他类型行为的概括和抽象，一个接口定义了一套方法，如果一个类型需要实现该接口，那么需要实现接口中定义的所有方法，所以对于一个接口对象，我们不知道他是什么，但是我们可以知道他能做什么，及有那些方法，及接口是一种抽象的类型，他并没有暴露他所含有的数据的布局和内部结构，而是只有操纵他的方法。 接口要求类型包含了与签名和行为与接口类的方法一致的方法；实现了接口类型的任何方法都可以等于这个接口类型。 接口类型可以嵌套其他接口类型，这个新的接口类型需要去实现所有嵌套接口的类型。
 package main import &amp;#34;fmt&amp;#34; type Person struct{ Name string Age int } type Lae interface { play() } func (p Person)play(){ fmt.Println(p.Name + &amp;#34; play&amp;#34;) } func main() { lae := new(Person) lae.Name = &amp;#34;Ron&amp;#34; lae.Age = 18 var inter Lae = lae inter.</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 方法（6)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter6/</link>
       <pubDate>Mon, 17 Jul 2023 18:30:16 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter6/</guid>
       <description>面向对象编程 在Go中没有统一的面向对象编程的定义，也就是没有类，但是我们还是可以使用者一种思想。对象可以是一个简单的值或者变量同时拥有方法，方法是某特定类型的函数。
 方法 声明 我们可以在同一个包下的任何类型（但是指针类型和接口类型除外）给他们声明一个方法，方法跟函数类型类似，只是在函数的前面多了一个接受者，用来描述方法跟哪一种类型相互关联。 注意 方法和字段在同一个命名空间内不能是相同的名字。
 type Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } 指针接收者 方法的接受者可以使用类型的指针来代替以来的类型，改变原来的值传递；但是按照习惯，如果一个地方使用了指针接收者，那么该类型的所有方法都应该使用指针接受者。
 // 声明 type Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p.</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 函数（5)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter5/</link>
       <pubDate>Mon, 17 Jul 2023 11:32:55 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter5/</guid>
       <description>函数声明 func name(paramter-list)(result-list){ } 在Go中返回值可以是多个参数，并且返回值可以像形参一样命名，会根据变量的类型初始化相应的零值。 当两个函数有相同的形参列表和返回的列表是，这两个函数的类型或者函数的签名是相同的。
 func fun1(x, y int) (z int){ return x + y } 多返回值 我们在标准库中可以看见许多的函数返回有两个值，一个是函数返回的结果，另外一个是表示一个函数是否执行成功的布尔值。 如果我们去调用一个多返回值的函数，必须将这些函数的返回值全部接收，如果我们不需要某个值，那我们可以将返回值赋值给一个空标识符。
 func judgeXY(x, y int) (string, error){ if x == y { return &amp;#34;&amp;#34;, fmt.Errorf(&amp;#34;x == y&amp;#34;) } if x &amp;gt; y { return &amp;#34;x &amp;gt; y&amp;#34;, nil } return &amp;#34;x &amp;lt; y&amp;#34;, nil } 函数的裸返回是指函数的返回值有命名，那么我们可以使用命名的参数去接收函数中计算的结果，最后我们可以直接写return，他根据命名返回值相应的结果。
 func judgeXY(x, y int) (result string, err error){ if x == y { err = fmt.</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 复合数据类型（4)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter4/</link>
       <pubDate>Sat, 15 Jul 2023 08:07:53 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter4/</guid>
       <description>前言 复合数据类型由基本的数据类型已各种方式组合而成。 四种复合数据类型：数组、slice、map、结构体。 数组中的元素具有同一种类型，而结构体中没有这种要求，slice、map是动态数据结构。
 数组 数组是拥有固定长度的有系统数据类型的元素序列，他跟我们其他语言的数字是一样的。
 package main import &amp;#34;fmt&amp;#34; func main() { var a [3]int // 创建一个长度为三的数组，默认填充零值 a1 := [3]int{} a2 := [3]int{1, 2, 3} // 创建一个为三的数组，给定值 a3 := [3]int{1, 2}	// 为指定的为值为零值 a4 := [...]int{1, 2, 3, 4} // 数组的长度由初始化元素的个数决定 a5 := [...]int{50: -5, 99: 5} // 数组的长度为一百，下标50为-5,下标99为5 fmt.Println(a[1]) fmt.Println(a1[0]) fmt.Println(a2[0]) fmt.Println(a3[2]) fmt.Println(a4[2]) fmt.Println(len(a4)) fmt.Println(a5[50], a5[99])	fmt.Println(len(a5)) fmt.Printf(&amp;#34;%t\n&amp;#34;, a == a1) // 如果数字的类型和数组的基本数据类型可比较，则可比较 fmt.Printf(&amp;#34;%t\n&amp;#34;, a2 != a3) } Slice Slice是一个有相同类型的可变长度的序列，Slice之间不能比较；slice唯一比较的就是跟nil比较，但是不能根据slice是否为nil来判断slice是否为空，因为有可能长度为空，但是拥有底层数组。</description>
     </item>
-    
     <item>
       <title>Docker容器</title>
       <link>https://blog.laelaps.us/posts/docker/dockercontainer/</link>
       <pubDate>Fri, 14 Jul 2023 22:47:10 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/docker/dockercontainer/</guid>
       <description>什么是容器？ 容器是镜像运行的实例，我们可以从一个镜像中运行多个容器，容器比传统的虚拟机更快和更轻量级；在采用虚拟机时，我们的虚拟机的软件要将物理资源进行划分，然后分配给每一个虚拟机，他是一种居于硬件虚拟化；而在容器时代，我们的物理资源全部分配给操作系统，我们的容器引擎想操作系统申请资源，每一个容器是一个独立的相互隔离的进程，他可以自动的调整资源的大小，容器是一种居于操作系统的虚拟化。
 启动容器 docker container run &amp;lt;options&amp;gt; &amp;lt;im-age&amp;gt;:&amp;lt;tag&amp;gt; &amp;lt;app&amp;gt; // 启动一个ubuntu docker container run -it ubuntu:20.04 /bin/bash // 或者省去container docker run -it ubuntu:20.04 /bin/sh 当运行docker run时，docker会根据指定的镜像的标签在本地查找，如果查找不到则自动进行pull。然后运行命令指定的程序。
@@ -379,12 +323,10 @@ package main import &amp;#34;fmt&amp;#34; func main() { var a [3]int // 创建�
 删除容器 我们在查看所有容器后，会发现有许多停止运行的容器，使用docker container rm可以将已经停止运行的容器删除。
 $ docker container ls -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 7f87eac41019 ubuntu:20.04 &amp;#34;/bin/bash&amp;#34; 13 minutes ago Exited (0) 6 minutes ago condescending_jennings f412d9c4ff7e ubuntu:20.04 &amp;#34;/bin/sh&amp;#34; 14 minutes ago Exited (0) 7 minutes ago $ docker container rm 7f87eac41019 f412d9c4ff7e 7f87eac41019 f412d9c4ff7e 守护态运行 在之前我们都是的容器都是将输入结果输出到当前的数组的终端上，如果我们想让容器运行在后台上，可以在docker run -d .</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 基本数据（3)</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter3/</link>
       <pubDate>Thu, 13 Jul 2023 16:08:33 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter3/</guid>
       <description>类型分类 Go语言的数据类型有四类：基础类型（basic type）、聚合类型（aggregate type）、引用类型（reference type）、接口类型（interface type）。
 整数 在Go中有有符合整数和无符合整数两种。 有符合整数：int8（8位）、 int16 （16位）、int32（32位）、 int64（64位） 无符合整数：uint8（8位）、 uint16 （16位）、uint32（32位）、 uint64（64位） 此外还有int和uint两种类型，他们在不同的平台有不同的大小，他等于平台上运算效率最高的值。 rune类型是int32类型的同义词，他用来代表这个值是一个Unicode码点，bete类型是uint8类型的同义词，他表示这个值是一个原始数据。 uintptr是一种无符号整数类型，他的大小并不明确，但是他可以存放一个完整的指针。 关于其他对整数的操作跟其他语言差不多
@@ -394,24 +336,20 @@ c1 := complex(1, 2) c2 := complex(2, 1) fmt.Println(c1) fmt.Println(real(c2)) fm
 常量 常量是一种在编译阶段就可以计算出值的表达式；常量的声明定义了具体的值，他在运行阶段不可被更改。
 const ( pi = 3.1415946 e = 2.78 ) // 或者指定类型 const ( b float64 = 2.3333 c int = 2 d bool = true ) 如果我们声明一组常量时，只写第一项，那么其他项会服用前一项。</description>
     </item>
-    
     <item>
       <title>The Go Programming Language 程序结构（2）</title>
       <link>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter2/</link>
       <pubDate>Wed, 12 Jul 2023 15:24:34 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/go/thegoprogramminglanguage/chapter2/</guid>
       <description>名称 在Go中使用驼峰式来命名名称（大驼峰或小驼峰都可以），名称区分大小写，并且名称的开头应该是一个字母或者下划线，后面可以是任意的字符、数字、下划线。 实体 第一个字母大写表示对包外是可见的和可访问的。 声明 在Go中只有四个主要的声明：变量（var），常量（const），类型（type），函数（func）。
 Go文件格式 一个Go文件应该有一个package在文件开头表明文件属于那个包。 接着是一个import声明，表示导入的包。 接下来是包的级别的类型，变量，常量，函数的声明。 package main import &amp;#34;fmt&amp;#34; //(包级别的声明) 不仅只对这个文件可见，而是对同一个包中的所有源文件都可以见 const bollingF = 212.0 func main(){ var f = bollingF var c = (f - 32) * 5 / 9 fmt.Printf(&amp;#34;boiling point = %g or %g°C\n&amp;#34;, f, c) } 变量 var name type = expression 我们可以将type或者expression省略一个，如果省略type，则可以从expression中推断出，如果省略expression，则Go会对他自己进行初始化，数字为0，布尔类型为false，字符串为“”，接口和其他的引用类型为nil。
 var a, b, c int var x, y, z = 1, 2, 3 短变量声明 我们要知道短变量是用来声明和初始化局部变量。
 name := expression 如果短变量声明的左边变量在之前被定义，那么他的行为就跟复制一样，但是每一个短变量声明中都必须声明一个新变量</description>
     </item>
-    
     <item>
       <title>Docker镜像</title>
       <link>https://blog.laelaps.us/posts/docker/dockerimage/</link>
       <pubDate>Tue, 11 Jul 2023 19:09:44 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/docker/dockerimage/</guid>
       <description>什么是Docker Docker是一种容器，他对传统的Linux容器进行了封装，简化了他容器的创建和维护；Docker不像传统的虚拟机一样需要虚拟出一层硬件来，他的应用程序直接运行在宿主的内核中，但是运行的进程独立于宿主和其他的容器。
 优势 对资源的更好的利用，不用像传统虚拟机一样虚拟出硬件之后在运行一个完整的系统。 Docker容器应用启动更快，节省时间。（但是我的Docker Desktop启动很慢） 一致的运行环境，Docker 保证了应用运行的环境是一样的，只有宿主的内核不一样。 一次创建和配置，在任意的地方运行。 镜像 镜像类似于一个类，他是创建容器的模板，而且镜像是由多层组成，一层建立在另外一层之上；他包含应用运行所需要的文件和依赖等。
@@ -420,12 +358,10 @@ name := expression 如果短变量声明的左边变量在之前被定义，那�
 $ docker image inspect mysql:latest ... &amp;#34;RootFS&amp;#34;: { &amp;#34;Type&amp;#34;: &amp;#34;layers&amp;#34;, &amp;#34;Layers&amp;#34;: [ &amp;#34;sha256:9cd9df9ffc972e9abc946d855162ef0c40dff9a89f10c962b7920154a3d943d8&amp;#34;, &amp;#34;sha256:824505732bf475e99d3d9f2d2a1bbcb2f822005a5eb42ed3bd6c90d896601cf6&amp;#34;, &amp;#34;sha256:0b175674497447465ef1a69f9aa74eaad5fc89875eceb9257b1f51723a676b22&amp;#34;, &amp;#34;sha256:824c2933e60c068e80f2aeed3156289d52e173302c9591307186a1901d511747&amp;#34;, &amp;#34;sha256:4645c1089915b7a96108959a038bbabd1a9301561c04884ee25217fbd8529cbd&amp;#34;, &amp;#34;sha256:2dddefc501cc94ee7378f11117eb7537f18e42dff066fd0b0e352579fa201e47&amp;#34;, &amp;#34;sha256:3e8acfe4342fadf5703bc0e57f029aa8645f5bdad6071289b98f33e1b207f522&amp;#34;, &amp;#34;sha256:5f038062397273abd71d4393adf7dbf3b5517e0f2c660054d1bedb1d629e3dd9&amp;#34;, &amp;#34;sha256:16f4176c5cad94a63121b2f4f77a2027f15c8b88559d423daf345a51d41251eb&amp;#34;, &amp;#34;sha256:394c5cd5b4baf7e17088e44077a8b14ecbd9ba5d460629f1efb8ea3a90380a08&amp;#34;, &amp;#34;sha256:e2eaf447bf15d59b9e8f4e7c00c63cf35bf9096403563eed770cd758d27eb557&amp;#34; ] }, .... 标签 用来标记仓库中的镜像，一个镜像能有多个标签。
 拉取 docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] 悬虚镜像 zlmediakit/zlmediakit master 635f082db6f7 7 weeks ago 597MB // 悬虚镜像 ubuntu &amp;lt;none&amp;gt; 1c5c8d0b973a 4 months ago 72.</description>
     </item>
-    
     <item>
       <title>Java集合AbstractList</title>
       <link>https://blog.laelaps.us/posts/java/collections/abstractlist/</link>
       <pubDate>Tue, 11 Jul 2023 08:28:15 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/collections/abstractlist/</guid>
       <description>Content AbstractList扩展了AbstractCollection和实现了List；在这里有趣的是有5个内部类的实现。
 removeRange protected void removeRange(int fromIndex, int toIndex) { ListIterator&amp;lt;E&amp;gt; it = listIterator(fromIndex); for (int i=0, n=toIndex-fromIndex; i&amp;lt;n; i++) { it.next(); it.remove(); } } 删除指定范围的元素，使用迭代器来实现，并且为一个protected方法。
@@ -433,22 +369,18 @@ subList public List&amp;lt;E&amp;gt; subList(int fromIndex, int toIndex) { subLi
 Itr 他实现了Iterator接口，供AbstractList使用迭代器。
 private class Itr implements Iterator&amp;lt;E&amp;gt; { int cursor = 0; int lastRet = -1; int expectedModCount = modCount; public boolean hasNext() { return cursor !</description>
     </item>
-    
     <item>
       <title>Java集合ListIterator</title>
       <link>https://blog.laelaps.us/posts/java/collections/listiterator/</link>
       <pubDate>Mon, 10 Jul 2023 15:58:37 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/collections/listiterator/</guid>
       <description>ListIterator ListIterator是一只适用于List的双向迭代器；他扩展了默认的Iterator接口。
 ListIterator 方法 方法 描述 boolean hasNext() 判断迭起器向前迭代时是否具有元素 boolean hasPrevious() 判断迭起器向后迭代时是否具有元素 E next(); 返回下一个元素 E previous(); 返回上一个元素 int nextIndex(); 返回下一个元素的索引，如果在末尾则返回list的大小 int previousIndex(); 返回上一个元素的索引，如果在list的开头返回 -1 void add(E e) 将指定的元素插入列表中，位于next 之前 void remove(); 删除由next 或者 previous 返回的最后一个元素 void set(E e); 替换由next 或者 previous 返回的最后一个元素 @Test public void testList(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.add(&amp;#34;a&amp;#34;); strings.add(&amp;#34;b&amp;#34;); strings.add(&amp;#34;c&amp;#34;); ListIterator&amp;lt;String&amp;gt; stringListIterator = strings.listIterator(); stringListIterator.add(&amp;#34;1&amp;#34;); System.out.println(stringListIterator.hasNext()); System.out.println(stringListIterator.hasPrevious()); System.out.println(stringListIterator.next()); System.out.println(stringListIterator.previous()); System.out.println(stringListIterator.nextIndex()); System.out.println(stringListIterator.previousIndex()); stringListIterator.next(); stringListIterator.next(); stringListIterator.remove(); System.out.println(strings); } // 使用ListIterator倒序遍历 @Test public void testList5(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.</description>
     </item>
-    
     <item>
       <title>Java集合List</title>
       <link>https://blog.laelaps.us/posts/java/collections/list/</link>
       <pubDate>Mon, 10 Jul 2023 15:25:27 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/collections/list/</guid>
       <description>Content List 是一个接口，是对应的是一组元素为有序的，可重复的集合；他基础于Collection，但List又有一些独特的方法。
 位置相关 E get(int index); 接受一个int类型的参数index，index &amp;lt; 0 || index &amp;gt;= size() 触发越界异常。
@@ -461,23 +393,19 @@ int lastIndexOf(Object o); 与上面那个相反，这个是从后往前找。
 ListIterator&amp;lt;E&amp;gt; listIterator(int index) 返回一ListIterator迭代器，但是他将这个”指针“放到指定的位置，所以next是指定的位置，而previous则是index - 1的位置。
 @Test public void testList3(){ List&amp;lt;String&amp;gt; strings = new ArrayList&amp;lt;&amp;gt;(); strings.add(&amp;#34;a&amp;#34;); strings.add(&amp;#34;b&amp;#34;); strings.add(&amp;#34;c&amp;#34;); ListIterator&amp;lt;String&amp;gt; stringListIterator = strings.listIterator(1); System.out.println(stringListIterator.previousIndex()); System.out.println(stringListIterator.nextIndex()); } 范围操作 List&amp;lt;E&amp;gt; subList(int fromIndex, int toIndex) 返回的是一个List的一个视图，所有所有的操作都会返回在原来的数组之上。</description>
     </item>
-    
     <item>
       <title>Java判断基本数据类型</title>
       <link>https://blog.laelaps.us/posts/java/collections/judgeprimitivetype/</link>
       <pubDate>Sat, 08 Jul 2023 16:31:01 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/collections/judgeprimitivetype/</guid>
       <description>Content 我们需要判断当前数据类型是不是基本数据类型，我们有以下一些方法：
 1. class类提供的 isPrimitive方法 public void testIsPrimitiveType(){ System.out.println(int.class.isPrimitive()); System.out.println(String.class.isPrimitive()); System.out.println(boolean.class.isPrimitive()); System.out.println(void.class.isPrimitive()); System.out.println(Double.class.isPrimitive()); // false } 这个方法用于判断Class对象是否为一个基本数据类型和Void，如果是八大基本类型加void，则返回true，否则返回false。
 2. class也可以使用isArray()判断是否为数组类型 public void testIsArray(){ int[] ints = new int[0]; System.out.println(ints.getClass().isArray()); System.out.println(&amp;#34;1&amp;#34;.getClass().isArray()); } 3. getName 引用类型不是数组类型 返回二进制名称 基本类型或者void，返回的是一个String字符串 数组类型，由多个或一个[后接内部形式的元素类型的名称组成。 @Test public void testGetName(){ MergeSort mergeSort = new MergeSort(); System.out.println(mergeSort.getClass().getName()); // us.laelaps.sort.MergeSort System.out.println(int.class.getName()); // int System.out.println(String.class.getName()); // java.lang.String System.out.println(void.class.getName()); // void int[] ints = new int[1]; System.out.println(ints.getClass().getName()); // [I String[][] strings = new String[2][3]; System.</description>
     </item>
-    
     <item>
       <title>Java集合Collecton</title>
       <link>https://blog.laelaps.us/posts/java/collections/collecton/</link>
       <pubDate>Sat, 08 Jul 2023 12:21:57 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/collections/collecton/</guid>
       <description>Collection Collection是一个接口，他定义了一些对集合的通用方法。
 removeIf default boolean removeIf(Predicate&amp;lt;? super E&amp;gt; filter) Collection 中的默认实现，接受一个Predicate函数，他在删除的时候也是采用的Iterator来迭代找到最佳的匹配数据，然后使用迭代器的remove()。
@@ -490,12 +418,10 @@ retainAll public boolean retainAll(Collection&amp;lt;?&amp;gt; c) 只保留交�
 finishToArray 迭代器中还有数据，我们将全部的数据拷贝到数组中。
 // 源代码 private static &amp;lt;T&amp;gt; T[] finishToArray(T[] r, Iterator&amp;lt;?&amp;gt; it) { int len = r.length; int i = len; while (it.</description>
     </item>
-    
     <item>
       <title>Java集合Iterator</title>
       <link>https://blog.laelaps.us/posts/java/collections/iterator/</link>
       <pubDate>Thu, 06 Jul 2023 19:38:17 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/collections/iterator/</guid>
       <description>为什么会有集合 在Java中一切皆对象，但是我们在编写程序的时候，我们根本不知道会有多少个对象，对象的周期，如何保存对象，尽管我们可以使用变量去保存对象，但是每一个对象都不可能使用一个变量，我们可以使用数组去保存变量，但是新的问题是我们怎么分配数组的大小，太小了我们不够去存储变量，而太大了者浪费资；但是我们似乎可以使用一个对象去代替我们去保存，我们只要去问他索取或者是将对象交给他来保存，我们就可以不用花很多的精力去管理我们的对象啊，而这个对象就是我们所说的集合，我们可以简单的使用集合给我提供的接口来管理变量，而不用我们自己去实现，集合还会自动的扩充自己的大小。
 集合关系图 在这里可以看见，我们所有的集合都是实现了Collection和Map接口，而他们两个都同样继承了iterator接口（实际上继承的不是iterator接口，而是iterable接口）。
@@ -504,12 +430,10 @@ List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;&amp;gt;(List.of(&amp;#34
 // Iterable 接口下对forEach的实现 default void forEach(Consumer&amp;lt;? super T&amp;gt; action) { Objects.requireNonNull(action); for (T t : this) { action.accept(t); } } 但是值得注意的是，我们并不能在for循环中进行remove操作，这样会导致一些错误，应该避免这种情况，但是在迭代的时候可以进行相应的操作。
 Java中的接口 public interface Iterator&amp;lt;E&amp;gt; { boolean hasNext(); E next(); default void remove() { throw new UnsupportedOperationException(&amp;#34;remove&amp;#34;); } default void forEachRemaining(Consumer&amp;lt;?</description>
     </item>
-    
     <item>
       <title>Java 函数式接口</title>
       <link>https://blog.laelaps.us/posts/java/lambda/functionalinterface/</link>
       <pubDate>Mon, 03 Jul 2023 09:05:31 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/lambda/functionalinterface/</guid>
       <description>函数式接口 函数式接口（Functional interface）是有且只有一个抽象方法的接口。在java.util.function包中有许多非常通用的函数式接口。
 自定义函数接口 自定义函数接口跟我们普通的定义函数接口没有任何的区别，但是我们有一个可选的@FunctionalInterface来注解这个接口，这个可以保证这个接口有只能有一个抽象方法；在javadoc中也会显示这个接口为一个函数式编接口。
@@ -517,40 +441,33 @@ Java中的接口 public interface Iterator&amp;lt;E&amp;gt; { boolean hasNext();
 package java.util.function; @FunctionalInterface public interface Supplier&amp;lt;T&amp;gt; { T get(); } 除了Supplier 接口的使用，我们还可以指定类型，如BooleanJSupplier DoubleSupplier IntSupplier LongSupplier。 |接口名称|方法名称|方法签名|
 Person person = (Person) Optional.empty().orElseGet(() -&amp;gt; new Person(&amp;#34;laelaps&amp;#34;)); System.</description>
     </item>
-    
     <item>
       <title>Java Lambda表达式</title>
       <link>https://blog.laelaps.us/posts/java/lambda/lambda/</link>
       <pubDate>Sun, 02 Jul 2023 15:25:11 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/java/lambda/lambda/</guid>
       <description>是什么？ Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。 我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。
 // 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&amp;#34;abc&amp;#34;); } }); // 使用lambda表达式 new Thread(() -&amp;gt; System.out.println(&amp;#34;xyz&amp;#34;)).start(); 语法 Java中lambda表达式的形式：参数 -&amp;gt;（箭头）{代码块}/一个表达式。
 如果需要实现的方法代码很多，可以将代码放入一个{}中 // 使用一个代码块实现，将代码放入一个{}中 Arrays.sort(arr, (String str1, String str2) -&amp;gt; { if(str1.length() &amp;lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambda表达式可以推导出参数的字符串，我们可以参数的类型省去，但是值得注意的是Java是一种强类型的编程语言，他需要明确的知道参数的类型，这里可以省去的原因是Java编译器可以从上下文中推到出来。 Arrays.sort(arr, (str1, str2) -&amp;gt; { if(str1.length() &amp;lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambada表达式只有一个参数，我们可以同时将参数类型以及()省去。 List&amp;lt;String&amp;gt; strings = List.</description>
     </item>
-    
     <item>
       <title>归并排序</title>
       <link>https://blog.laelaps.us/posts/algorithm/mergesort/</link>
       <pubDate>Sat, 01 Jul 2023 15:37:23 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/algorithm/mergesort/</guid>
       <description>归并排序是一次采用分而治之算法解决排序的问题，他是一种高效的，可以产生稳定的排序方法。
 主要思想 归并排序是一中分而治之的算法，他将一个大问题不断分解成一序列小问题，在所有的小问题中寻求最优解。 在排序的过程中，我们将一个大的数组，分解成两个较小的子数组，而在将这两个子数组在次进行递归划分，知道子数组长度为1（此时我们认为在他以及是有序的），然后对子数组进行排序。 排序示意图： 性能分析 算法的时间复杂度在最坏，最好，平均复杂度都为O(nlogn)，而空间复杂度为O(n)（可以使用空间复杂度为O(1)）。
 算法实现 归并 我们要将两个已排序的子数组进行归并，其实就是将两个子数组在次合并成一个大的已经排序好的数组。这里我们需要一个辅助数组来存储将要归并的数组，通常这个辅助数组的大小通常为要排序数组的大小。我们将要排序的子数组全部拷贝到辅助数组，然后再将排序好的数据复制到要排序的数组。
 /** * 排序归并数组 * 归并 a[lo .. mid] 和 a[mid + 1 .. hi] */ private static void merge(Integer[] a, int lo, int mid, int hi){ int i = lo, j = mid + 1; // 复制数组到辅助数组，因为源数组会被排序结果覆盖 if (hi + 1 - lo &amp;gt;= 0) System.arraycopy(a, lo, aux, lo, hi + 1 - lo); for (int k = lo; k &amp;lt;= hi; k++){ // 需要比较k次 // 左半边用尽，将右半边剩余的数据依次放入 if ( i &amp;gt; mid) a[k] = aux[j++]; // 右半边用尽，将左半边剩余的数据依次放入 else if ( j &amp;gt; hi) a[k] = aux[i++]; // 左半边首字符小于右半边字符，将左半边字符放入 else if ( aux[i] &amp;lt; aux[j]) a[k] = aux[i++]; // 左半边首字符大于右半边字符，将右半边字符放入 else a[k] = aux[j++]; } } 自顶向下（递归） 他将数组不断的分解，直到分解到大小为1。然后对左半部分进行排序，然后在对右半部分进行排序，最后将左右两部分合并在一起，不断的递归后完成对数组的排序。 public static void sortByRec(Integer[] a){ aux = new Integer[a.</description>
     </item>
-    
     <item>
       <title>About Me</title>
       <link>https://blog.laelaps.us/about/</link>
       <pubDate>Thu, 22 Jun 2023 22:50:28 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/about/</guid>
       <description>你好，我是laelaps，一名即将步入社会的计算机爱好者。
 在希腊神话中，laelaps是一只总能抓住任何猎物的狗，但他被利用来抓一只永远不能被抓到的狐狸。一只可以抓到任何猎物的狗，一只永远不能被抓到的狐狸，这形成了一个悖论，在最后宙斯将他们两个变成了两颗石头，并扔进了星空中，形成了Canis Major(Laelaps)和Canis Minor两个星座，而现在的他们仍然在星空中相互追逐。
 建立这个博客的目的主要是因为自己看过的内容很容易忘记，虽然有在记笔记，但是总是不那么的完善，我希望可以用这个博客来记录我自己的学习路径，强化我的记忆，所以整个博客就是为了我自己而创建。博客使用hugo + hugo-theme-yinyang + Github Page搭建而成。</description>
     </item>
-    
   </channel>
 </rss>

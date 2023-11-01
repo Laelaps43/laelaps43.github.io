@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.119.0">
+  <meta name="generator" content="Hugo 0.120.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -169,38 +169,38 @@ public class MyEvent extends ApplicationEvent { private String name; private int
 <p>事件用于在松耦合的组件之间交换信息，发布者和订阅者之间没有直接耦合，使得修改发布者并不会影响订阅者，反之也成立。</p>
 <h2 id="监听事件">监听事件</h2>
 <p>监听事件是消息传递的对象，用来传递事件消息，在Spring中我们去继承<code>ApplicationEvent</code>来定义一个事件。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyEvent</span> <span style="color:#66d9ef">extends</span> ApplicationEvent <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyEvent</span> <span style="color:#66d9ef">extends</span> ApplicationEvent {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age;  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyEvent</span><span style="color:#f92672">(</span>Object source<span style="color:#f92672">,</span> String name<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>source<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MyEvent</span>(Object source, String name, <span style="color:#66d9ef">int</span> age) {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(source);  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age;  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="事件发布">事件发布</h2>
 <p>在定义事件后，我们需要发布事件，我们可以使用<code>ApplicationContext</code>和<code>ApplicationEventPublisher</code>两者来发布事件；前者去继承了后者。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Service</span>  
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyEventService</span> <span style="color:#f92672">{</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyEventService</span> {  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>  
-</span></span><span style="display:flex;"><span>    ApplicationContext applicationContext<span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>    ApplicationContext applicationContext;  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Autowired</span>  
-</span></span><span style="display:flex;"><span>    ApplicationEventPublisher applicationEventPublisher<span style="color:#f92672">;</span>  
+</span></span><span style="display:flex;"><span>    ApplicationEventPublisher applicationEventPublisher;  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">myEvent</span><span style="color:#f92672">(){</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;发布事件......&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        applicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">publishEvent</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> MyEvent<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;laelaps&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">12</span><span style="color:#f92672">));</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;事件发布完毕。&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">myEvent</span>(){  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;发布事件......&#34;</span>);  
+</span></span><span style="display:flex;"><span>        applicationContext.<span style="color:#a6e22e">publishEvent</span>(<span style="color:#66d9ef">new</span> MyEvent(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#34;laelaps&#34;</span>, 12));  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;事件发布完毕。&#34;</span>);  
+</span></span><span style="display:flex;"><span>    }  
 </span></span><span style="display:flex;"><span>      
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">myEvent2</span><span style="color:#f92672">(){</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;发布事件......&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        applicationEventPublisher<span style="color:#f92672">.</span><span style="color:#a6e22e">publishEvent</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> MyEvent<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;laelaps&#34;</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">12</span><span style="color:#f92672">));</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;事件发布完毕。&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">myEvent2</span>(){  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;发布事件......&#34;</span>);  
+</span></span><span style="display:flex;"><span>        applicationEventPublisher.<span style="color:#a6e22e">publishEvent</span>(<span style="color:#66d9ef">new</span> MyEvent(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#34;laelaps&#34;</span>, 12));  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;事件发布完毕。&#34;</span>);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="事件监听-1">事件监听</h2>
 <p>在发布了事件后，我们需要监听者去监听发布的事件；在Spring中有两种方式来定义监听对象；</p>
 <ol>
@@ -210,25 +210,25 @@ public class MyEvent extends ApplicationEvent { private String name; private int
 <p>这两种都需要向IOC容器中注册，因为要让Spring去托管这些Bean。</p>
 <p>使用接口来定义监听器：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>  
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyEventListener</span> <span style="color:#66d9ef">implements</span> ApplicationListener<span style="color:#f92672">&lt;</span>MyEvent<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyEventListener</span> <span style="color:#66d9ef">implements</span> ApplicationListener<span style="color:#f92672">&lt;</span>MyEvent<span style="color:#f92672">&gt;</span> {  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onApplicationEvent</span><span style="color:#f92672">(</span>MyEvent event<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MyEventListener start......&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>event<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onApplicationEvent</span>(MyEvent event) {  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;MyEventListener start......&#34;</span>);  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(event);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>使用注解来定义监听器：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>  
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyEventListener</span><span style="color:#f92672">{</span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyEventListener</span>{  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@EventListener</span><span style="color:#f92672">(</span>classes <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>MyEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">})</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onApplicationEvent</span><span style="color:#f92672">(</span>MyEvent event<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MyEventListener start......&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>event<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@EventListener</span>(classes <span style="color:#f92672">=</span> {MyEvent.<span style="color:#a6e22e">class</span>})  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onApplicationEvent</span>(MyEvent event) {  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;MyEventListener start......&#34;</span>);  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(event);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>一个方法的注解可以监听多个事件或者不使用参数来定义。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@EventListener</span><span style="color:#f92672">(</span>classes<span style="color:#f92672">={</span>ContextStartedEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> ContextRefreshedEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">})</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@EventListener</span>(classes<span style="color:#f92672">=</span>{ContextStartedEvent.<span style="color:#a6e22e">class</span>, ContextRefreshedEvent.<span style="color:#a6e22e">class</span>})
 </span></span></code></pre></div><p>在注解中还有一个<code>condition</code>属性，他接受一个SpEL表达式，用来表明在那些情况下可以触发监听器。</p>
 <p>如果定义了多个监听器的话，那么他们都会被触发。</p>
 <h2 id="异步">异步</h2>

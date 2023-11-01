@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.119.0">
+  <meta name="generator" content="Hugo 0.120.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,18 +197,18 @@ finishToArray 迭代器中还有数据，我们将全部的数据拷贝到数组
           <h1 id="collection">Collection</h1>
 <p><code>Collection</code>是一个接口，他定义了一些对集合的通用方法。</p>
 <h2 id="removeif">removeIf</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">default</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">removeIf</span><span style="color:#f92672">(</span>Predicate<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> E<span style="color:#f92672">&gt;</span> filter<span style="color:#f92672">)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">default</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">removeIf</span>(Predicate<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> E<span style="color:#f92672">&gt;</span> filter)
 </span></span></code></pre></div><p><code>Collection</code> 中的默认实现，接受一个<code>Predicate</code>函数，他在删除的时候也是采用的<code>Iterator</code>来迭代找到最佳的匹配数据，然后使用迭代器的<code>remove()</code>。</p>
 <h2 id="toarray">toArray</h2>
 <p>在<code>Collection</code>有以下三个方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Object<span style="color:#f92672">[]</span> <span style="color:#a6e22e">toArray</span><span style="color:#f92672">();</span> <span style="color:#75715e">// 直接返回的就是一个Object类型的数组
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T<span style="color:#f92672">[]</span> <span style="color:#a6e22e">toArray</span><span style="color:#f92672">(</span>T<span style="color:#f92672">[]</span> a<span style="color:#f92672">);</span> <span style="color:#75715e">// 接受一个T[]的数组
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 接受一个lambda 函数，但是这个lambda函数返回的类型应该也是返回一个数组，因为他调用的是上一个函数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T<span style="color:#f92672">[]</span> <span style="color:#a6e22e">toArray</span><span style="color:#f92672">(</span>IntFunction<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">[]&gt;</span> generator<span style="color:#f92672">){</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> toArray<span style="color:#f92672">(</span>generator<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">));</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Object<span style="color:#f92672">[]</span> <span style="color:#a6e22e">toArray</span>(); <span style="color:#75715e">// 直接返回的就是一个Object类型的数组</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T<span style="color:#f92672">[]</span> <span style="color:#a6e22e">toArray</span>(T<span style="color:#f92672">[]</span> a); <span style="color:#75715e">// 接受一个T[]的数组</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 接受一个lambda 函数，但是这个lambda函数返回的类型应该也是返回一个数组，因为他调用的是上一个函数</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T<span style="color:#f92672">[]</span> <span style="color:#a6e22e">toArray</span>(IntFunction<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">[]&gt;</span> generator){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> toArray(generator.<span style="color:#a6e22e">apply</span>(0));  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="spliterator">spliterator</h2>
 <p>spliterator是Java 8加入的一个新接口，他和Iterator一样，用于遍历数据源的元素，与之不同的是他是为了并行执行而设计的。</p>
 <h2 id="stream">stream</h2>
@@ -218,58 +218,58 @@ finishToArray 迭代器中还有数据，我们将全部的数据拷贝到数组
 <h1 id="abstractcollection">AbstractCollection</h1>
 <p><code>AbstractCollection</code>实现了<code>Collection</code>接口的所有方法。</p>
 <h2 id="retainall">retainAll</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">retainAll</span><span style="color:#f92672">(</span>Collection<span style="color:#f92672">&lt;?&gt;</span> c<span style="color:#f92672">)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">retainAll</span>(Collection<span style="color:#f92672">&lt;?&gt;</span> c)
 </span></span></code></pre></div><p>只保留交集的那一部分，也是使用迭代器的方式判断来判断c中是否含有相关的元素，没有执行使用迭代器的<code>remove()</code>。</p>
 <h2 id="finishtoarray">finishToArray</h2>
 <p>迭代器中还有数据，我们将全部的数据拷贝到数组中。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 源代码
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T<span style="color:#f92672">[]</span> <span style="color:#a6e22e">finishToArray</span><span style="color:#f92672">(</span>T<span style="color:#f92672">[]</span> r<span style="color:#f92672">,</span> Iterator<span style="color:#f92672">&lt;?&gt;</span> it<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> r<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> len<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">==</span> len<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>            len <span style="color:#f92672">=</span> ArraysSupport<span style="color:#f92672">.</span><span style="color:#a6e22e">newLength</span><span style="color:#f92672">(</span>len<span style="color:#f92672">,</span>  
-</span></span><span style="display:flex;"><span>                    <span style="color:#ae81ff">1</span><span style="color:#f92672">,</span>             <span style="color:#75715e">/* minimum growth */</span>  
-</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">(</span>len <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">/* preferred growth */</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>            r <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">copyOf</span><span style="color:#f92672">(</span>r<span style="color:#f92672">,</span> len<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span>        r<span style="color:#f92672">[</span>i<span style="color:#f92672">++]</span> <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>T<span style="color:#f92672">)</span>it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// trim if overallocated  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">==</span> len<span style="color:#f92672">)</span> <span style="color:#f92672">?</span> r <span style="color:#f92672">:</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">copyOf</span><span style="color:#f92672">(</span>r<span style="color:#f92672">,</span> i<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">newLength</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> oldLength<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> minGrowth<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> prefGrowth<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// preconditions not checked because of inlining  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// assert oldLength &gt;= 0    // assert minGrowth &gt; 0  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> prefLength <span style="color:#f92672">=</span> oldLength <span style="color:#f92672">+</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>minGrowth<span style="color:#f92672">,</span> prefGrowth<span style="color:#f92672">);</span> <span style="color:#75715e">// might overflow  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> prefLength <span style="color:#f92672">&amp;&amp;</span> prefLength <span style="color:#f92672">&lt;=</span> SOFT_MAX_ARRAY_LENGTH<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> prefLength<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// put code cold in a separate method  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> hugeLength<span style="color:#f92672">(</span>oldLength<span style="color:#f92672">,</span> minGrowth<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 源代码</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T<span style="color:#f92672">[]</span> <span style="color:#a6e22e">finishToArray</span>(T<span style="color:#f92672">[]</span> r, Iterator<span style="color:#f92672">&lt;?&gt;</span> it) {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> r.<span style="color:#a6e22e">length</span>;  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> len;  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (it.<span style="color:#a6e22e">hasNext</span>()) {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">==</span> len) {  
+</span></span><span style="display:flex;"><span>            len <span style="color:#f92672">=</span> ArraysSupport.<span style="color:#a6e22e">newLength</span>(len,  
+</span></span><span style="display:flex;"><span>                    1,             <span style="color:#75715e">/* minimum growth */</span>  
+</span></span><span style="display:flex;"><span>                    (len <span style="color:#f92672">&gt;&gt;</span> 1) <span style="color:#f92672">+</span> 1 <span style="color:#75715e">/* preferred growth */</span>);  
+</span></span><span style="display:flex;"><span>            r <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">copyOf</span>(r, len);  
+</span></span><span style="display:flex;"><span>        }  
+</span></span><span style="display:flex;"><span>        r<span style="color:#f92672">[</span>i<span style="color:#f92672">++]</span> <span style="color:#f92672">=</span> (T)it.<span style="color:#a6e22e">next</span>();  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// trim if overallocated  </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (i <span style="color:#f92672">==</span> len) <span style="color:#f92672">?</span> r : Arrays.<span style="color:#a6e22e">copyOf</span>(r, i);  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">newLength</span>(<span style="color:#66d9ef">int</span> oldLength, <span style="color:#66d9ef">int</span> minGrowth, <span style="color:#66d9ef">int</span> prefGrowth) {  
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// preconditions not checked because of inlining  </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// assert oldLength &gt;= 0    // assert minGrowth &gt; 0  </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> prefLength <span style="color:#f92672">=</span> oldLength <span style="color:#f92672">+</span> Math.<span style="color:#a6e22e">max</span>(minGrowth, prefGrowth); <span style="color:#75715e">// might overflow  </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (0 <span style="color:#f92672">&lt;</span> prefLength <span style="color:#f92672">&amp;&amp;</span> prefLength <span style="color:#f92672">&lt;=</span> SOFT_MAX_ARRAY_LENGTH) {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> prefLength;  
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// put code cold in a separate method  </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> hugeLength(oldLength, minGrowth);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hugeLength</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> oldLength<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> minGrowth<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> minLength <span style="color:#f92672">=</span> oldLength <span style="color:#f92672">+</span> minGrowth<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>minLength <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// overflow  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> OutOfMemoryError<span style="color:#f92672">(</span>  
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Required array length &#34;</span> <span style="color:#f92672">+</span> oldLength <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; + &#34;</span> <span style="color:#f92672">+</span> minGrowth <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; is too large&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>minLength <span style="color:#f92672">&lt;=</span> SOFT_MAX_ARRAY_LENGTH<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> SOFT_MAX_ARRAY_LENGTH<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> minLength<span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hugeLength</span>(<span style="color:#66d9ef">int</span> oldLength, <span style="color:#66d9ef">int</span> minGrowth) {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> minLength <span style="color:#f92672">=</span> oldLength <span style="color:#f92672">+</span> minGrowth;  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (minLength <span style="color:#f92672">&lt;</span> 0) { <span style="color:#75715e">// overflow  </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> OutOfMemoryError(  
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Required array length &#34;</span> <span style="color:#f92672">+</span> oldLength <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; + &#34;</span> <span style="color:#f92672">+</span> minGrowth <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; is too large&#34;</span>);  
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (minLength <span style="color:#f92672">&lt;=</span> SOFT_MAX_ARRAY_LENGTH) {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> SOFT_MAX_ARRAY_LENGTH;  
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> minLength;  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>在扩容的时候主要是需要计算新的数组长度</p>
 <h2 id="toarray-1">toArray</h2>
 <p>在这里实现了全部的<code>toArray</code> 方法。</p>
 <h3 id="toarray-2"><code>toArray()</code></h3>
 <p>使用集合的迭代将数据复制到指定的数字中</p>
 <h3 id="toarrayt-a"><code>toArray(T[] a)</code></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>T<span style="color:#f92672">[]</span> r <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;=</span> size <span style="color:#f92672">?</span> a <span style="color:#f92672">:</span>  
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">(</span>T<span style="color:#f92672">[])</span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Array</span>  
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">(</span>a<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getComponentType</span><span style="color:#f92672">(),</span> size<span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>T<span style="color:#f92672">[]</span> r <span style="color:#f92672">=</span> a.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;=</span> size <span style="color:#f92672">?</span> a :  
+</span></span><span style="display:flex;"><span>          (T<span style="color:#f92672">[]</span>)java.<span style="color:#a6e22e">lang</span>.<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">Array</span>  
+</span></span><span style="display:flex;"><span>          .<span style="color:#a6e22e">newInstance</span>(a.<span style="color:#a6e22e">getClass</span>().<span style="color:#a6e22e">getComponentType</span>(), size);
 </span></span></code></pre></div><p>如果a.length小于size时，使用反射来创建一个新数组；</p>
 <h2 id="isempty">isEmpty</h2>
 <p>判断集合是否为空。</p>

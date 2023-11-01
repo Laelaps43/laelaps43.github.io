@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.119.0">
+  <meta name="generator" content="Hugo 0.120.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -171,61 +171,61 @@ Java中的接口 public interface Iterator&amp;lt;E&amp;gt; { boolean hasNext();
 在这里可以看见，我们所有的集合都是实现了<code>Collection</code>和<code>Map</code>接口，而他们两个都同样继承了<code>iterator</code>接口（实际上继承的不是<code>iterator</code>接口，而是<code>iterable</code>接口）。</p>
 <h1 id="iterator">Iterator</h1>
 <p>这是Java集合必须实现的一个接口，他用来遍历集合，在传统的做法中，我们一般是使用<code>for</code>循环来遍历集合，但是Java为我们实现了<code>Iterator</code>，所以我们可以使用他来遍历集合。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;(</span>List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;xyz&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;12&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;pq&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;abcd&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;1234&#34;</span><span style="color:#f92672">));</span>  
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 传统方法遍历
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span> i<span style="color:#f92672">++){</span>  
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>i<span style="color:#f92672">)+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 使用Iterator来进行遍历
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> iterator <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">()){</span>  
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>(List.<span style="color:#a6e22e">of</span>(<span style="color:#e6db74">&#34;abc&#34;</span>, <span style="color:#e6db74">&#34;xyz&#34;</span>, <span style="color:#e6db74">&#34;12&#34;</span>, <span style="color:#e6db74">&#34;pq&#34;</span>, <span style="color:#e6db74">&#34;abcd&#34;</span>, <span style="color:#e6db74">&#34;1234&#34;</span>));  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 传统方法遍历</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> list.<span style="color:#a6e22e">size</span>(); i<span style="color:#f92672">++</span>){  
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(list.<span style="color:#a6e22e">get</span>(i)<span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>);  
+</span></span><span style="display:flex;"><span>}  
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>();  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 使用Iterator来进行遍历</span>
+</span></span><span style="display:flex;"><span>Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> iterator <span style="color:#f92672">=</span> list.<span style="color:#a6e22e">iterator</span>();  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (iterator.<span style="color:#a6e22e">hasNext</span>()){  
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(iterator.<span style="color:#a6e22e">next</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>);  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>我们可能会想使用<code>forEach()</code>来遍历集合，其实<code>forEach</code>内部也是使用的<code>Iterator</code>来遍历。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Iterable 接口下对forEach的实现
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>Consumer<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">&gt;</span> action<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>    Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">requireNonNull</span><span style="color:#f92672">(</span>action<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>T t <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        action<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">(</span>t<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Iterable 接口下对forEach的实现</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">forEach</span>(Consumer<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">&gt;</span> action) {  
+</span></span><span style="display:flex;"><span>    Objects.<span style="color:#a6e22e">requireNonNull</span>(action);  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (T t : <span style="color:#66d9ef">this</span>) {  
+</span></span><span style="display:flex;"><span>        action.<span style="color:#a6e22e">accept</span>(t);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>但是值得注意的是，我们并不能在for循环中进行remove操作，这样会导致一些错误，应该避免这种情况，但是在迭代的时候可以进行相应的操作。</p>
 <h2 id="java中的接口">Java中的接口</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Iterator</span><span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasNext</span><span style="color:#f92672">();</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Iterator</span><span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">hasNext</span>();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	E <span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	E <span style="color:#a6e22e">next</span>();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">remove</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> UnsupportedOperationException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;remove&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">remove</span>() {  
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> UnsupportedOperationException(<span style="color:#e6db74">&#34;remove&#34;</span>);  
+</span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">forEachRemaining</span><span style="color:#f92672">(</span>Consumer<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> E<span style="color:#f92672">&gt;</span> action<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>	    Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">requireNonNull</span><span style="color:#f92672">(</span>action<span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>hasNext<span style="color:#f92672">())</span>  
-</span></span><span style="display:flex;"><span>	        action<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">(</span>next<span style="color:#f92672">());</span>  
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">forEachRemaining</span>(Consumer<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> E<span style="color:#f92672">&gt;</span> action) {  
+</span></span><span style="display:flex;"><span>	    Objects.<span style="color:#a6e22e">requireNonNull</span>(action);  
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">while</span> (hasNext())  
+</span></span><span style="display:flex;"><span>	        action.<span style="color:#a6e22e">accept</span>(next());  
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ol>
 <li><code>hasNext()</code>用于判断是否有下一个元素</li>
 <li><code>next()</code>  获取下一个元素</li>
 <li><code>remove()</code> 删除当前元素，默认函数，可不实现；迭代过程<strong>唯一安全</strong>修改集合的方法。</li>
 <li><code>forEachRemaining</code> 对集合中使用的iterator未遍历完的迭代器剩下的元素进行遍历，直到数据完全遍历完或者抛出异常。</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> iterator <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>  
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 只打印前三个元素  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">()){</span>  
-</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>  
-</span></span><span style="display:flex;"><span>    i<span style="color:#f92672">++;</span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> iterator <span style="color:#f92672">=</span> list.<span style="color:#a6e22e">iterator</span>();  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0;  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 只打印前三个元素  </span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (iterator.<span style="color:#a6e22e">hasNext</span>()){  
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(iterator.<span style="color:#a6e22e">next</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>);  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (i <span style="color:#f92672">==</span> 2) <span style="color:#66d9ef">break</span>;  
+</span></span><span style="display:flex;"><span>    i<span style="color:#f92672">++</span>;  
+</span></span><span style="display:flex;"><span>}  
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n------------------&#34;</span><span style="color:#f92672">);</span>  
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 迭代器中还拥有未遍历完的元素，使用forEachRemaining来遍历剩下的元素  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">forEachRemaining</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>s <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">));</span>  
-</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n------------------&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;\n------------------&#34;</span>);  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 迭代器中还拥有未遍历完的元素，使用forEachRemaining来遍历剩下的元素  </span>
+</span></span><span style="display:flex;"><span>iterator.<span style="color:#a6e22e">forEachRemaining</span>(s <span style="color:#f92672">-&gt;</span> System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(s <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>));  
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;\n------------------&#34;</span>);
 </span></span></code></pre></div>
         </div>
 

@@ -6,12 +6,12 @@
     <description>Recent content in Redis on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Sep 2023 14:26:10 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/redis/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Sep 2023 14:26:10 +0800</lastBuildDate>
+    <atom:link href="https://blog.laelaps.us/categories/redis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redis 数据结构Hash</title>
       <link>https://blog.laelaps.us/posts/redis/hash/</link>
       <pubDate>Fri, 15 Sep 2023 14:26:10 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/redis/hash/</guid>
       <description>Hash数据结构 HSET HSET为Hash中指定的字段设置值，如果字段已经存在，那么这是一次更新操作，返回0，如果字段不存在，那么这是一次创建操作，返回1（如果Hash不存在，同时会创建Hash）。
 HSET hash field value HSETNX HSETNX（H SET No Exists）跟HSET不同在于，HSETNX只会对键存在的时候操作，如果键不存在，设置成功返回1，如果键存在，设置失败返回0。
@@ -26,6 +26,5 @@ HMSET hash field value [field value] HMGET HMGET可以同时获取多个字段�
 HMGET hash field [field] HKEYS、HVALS、HGETALL HKEYS、HVALS、HGETALL分别为获取所有的键，所有的值，所有的键值对，因为Hash不对如何的数据进行排序，为无序状态，所以这三个每次返回值的顺序都可能是不一样的。
 KEYS hash HVALS hash HGETALL hash Hash vs String hash和string是两种不同的数据结构，他们有相同的特征，也有不同，hash可以保存许多对不同的键值对，而stirng只能保存一个键值对。</description>
     </item>
-    
   </channel>
 </rss>

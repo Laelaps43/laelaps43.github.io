@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.119.0">
+  <meta name="generator" content="Hugo 0.120.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -232,25 +232,25 @@
 <li>提供singnal机制
 Mark Word会保存指向重量级锁的指针，结构如下：</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ObjectMonitor<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    _header       <span style="color:#f92672">=</span> NULL<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _count        <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _waiters      <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">,</span>
-</span></span><span style="display:flex;"><span>    _recursions   <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _object       <span style="color:#f92672">=</span> NULL<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _owner        <span style="color:#f92672">=</span> NULL<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _WaitSet      <span style="color:#f92672">=</span> NULL<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _WaitSetLock  <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _Responsible  <span style="color:#f92672">=</span> NULL <span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _succ         <span style="color:#f92672">=</span> NULL <span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _cxq          <span style="color:#f92672">=</span> NULL <span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    FreeNext      <span style="color:#f92672">=</span> NULL <span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _EntryList    <span style="color:#f92672">=</span> NULL <span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _SpinFreq     <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _SpinClock    <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    OwnerIsThread <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    _previous_owner_tid <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ObjectMonitor() {
+</span></span><span style="display:flex;"><span>    _header       <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>    _count        <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    _waiters      <span style="color:#f92672">=</span> 0,
+</span></span><span style="display:flex;"><span>    _recursions   <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>    _object       <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>    _owner        <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>    _WaitSet      <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>    _WaitSetLock  <span style="color:#f92672">=</span> 0 ;
+</span></span><span style="display:flex;"><span>    _Responsible  <span style="color:#f92672">=</span> NULL ;
+</span></span><span style="display:flex;"><span>    _succ         <span style="color:#f92672">=</span> NULL ;
+</span></span><span style="display:flex;"><span>    _cxq          <span style="color:#f92672">=</span> NULL ;
+</span></span><span style="display:flex;"><span>    FreeNext      <span style="color:#f92672">=</span> NULL ;
+</span></span><span style="display:flex;"><span>    _EntryList    <span style="color:#f92672">=</span> NULL ;
+</span></span><span style="display:flex;"><span>    _SpinFreq     <span style="color:#f92672">=</span> 0 ;
+</span></span><span style="display:flex;"><span>    _SpinClock    <span style="color:#f92672">=</span> 0 ;
+</span></span><span style="display:flex;"><span>    OwnerIsThread <span style="color:#f92672">=</span> 0 ;
+</span></span><span style="display:flex;"><span>    _previous_owner_tid <span style="color:#f92672">=</span> 0;
+</span></span><span style="display:flex;"><span>  }
 </span></span></code></pre></div><p>字段声明：</p>
 <ul>
 <li>_owner：持有该ObjectMonitor的线程的指针；</li>

@@ -6,12 +6,12 @@
     <description>Recent content in Docker on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Aug 2023 21:58:13 +0800</lastBuildDate><atom:link href="https://blog.laelaps.us/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Aug 2023 21:58:13 +0800</lastBuildDate>
+    <atom:link href="https://blog.laelaps.us/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>数据库事务</title>
       <link>https://blog.laelaps.us/posts/database/transaction/</link>
       <pubDate>Mon, 14 Aug 2023 21:58:13 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/database/transaction/</guid>
       <description>在一些情况下，如数据库在写入到一半数据时崩溃，在或者多个客户端同时向数据库中相同的位置写入不同的数据，如果我们只在应用层面解决这些问题，似乎变得繁琐，而事务简化了这些操作，他将多个操作组合成一个集合，这个集合要不全部执行成功，要不全部失败。事务有着ACID的属性。
 原子性（Atomicity） 事务有多个操作组合，那么这一些列的操作，要不全部执行，要不都不执行；如果一个事务不具备原子性，那就没有办法保证同一个事务中的所有操作都被执行或者未被执行。
@@ -31,36 +31,30 @@ READ UNCOMMITED：使用查询语句不会加锁，可能会读到未提交的�
 数据库 ACID 中的一致性对事务的要求不止包含对数据完整性以及合法性的检查，还包含应用层面逻辑的正确（对开展在逻辑上的要求）。
 CAP CAP 定理中的数据一致性，其实是说分布式系统中的各个节点中对于同一数据的拷贝有着相同的值；</description>
     </item>
-    
     <item>
       <title>Docker网络</title>
       <link>https://blog.laelaps.us/posts/docker/network/</link>
       <pubDate>Sun, 13 Aug 2023 14:07:23 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/docker/network/</guid>
       <description>网络 在安装Docker时，会自动创建三个网络。
 ➜ ~ sudo docker network ls NETWORK ID NAME DRIVER SCOPE 2ddeffb91230 bridge bridge local c55e5f5ed788 host host local 1eebd0c8e7c7 none null local 在Docker中有三种模式，分别为bridg、host和null 。
 Bridge模式 在Docker启动时，Docker会在宿主中创建一个为Docker0的虚拟网口，Docker会为这个虚拟网口分配一个虚拟网段，在每次启动一个服务时，那么就会分配docker0的一个子网给容器，那么容器就可以访问宿主和外网；同时他会进行NAT转换；在同一个bridge下的所有设备都可以相互通信，我们也可以将他们之间设置为禁止通信。 # 创建一个容器，自动加入bridge网桥 ➜ ~ sudo docker run -d --name ron1 praqma/network-multitool 我们可以查看一个bridge的信息。
 ➜ ~ sudo docker network inspect bridge [ { &amp;#34;Name&amp;#34;: &amp;#34;bridge&amp;#34;, &amp;#34;Id&amp;#34;: &amp;#34;2ddeffb91230eb06f738dc5ca7be5e853f82fa8324e338c592424e1b478e5571&amp;#34;, &amp;#34;Created&amp;#34;: &amp;#34;2023-08-14T00:53:05.367734129+08:00&amp;#34;, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;bridge&amp;#34;, &amp;#34;EnableIPv6&amp;#34;: false, &amp;#34;IPAM&amp;#34;: { &amp;#34;Driver&amp;#34;: &amp;#34;default&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Config&amp;#34;: [ { &amp;#34;Subnet&amp;#34;: &amp;#34;172.</description>
     </item>
-    
     <item>
       <title>Docker数据持久化</title>
       <link>https://blog.laelaps.us/posts/docker/volumes/</link>
       <pubDate>Sat, 12 Aug 2023 21:23:53 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/docker/volumes/</guid>
       <description>数据管理 在Docker内部以及容器之间管理数据，数据持久化，有两种方式：数据卷（Volumes）、挂载主机目录（Bind mounts）。
 数据卷 数据卷是一个可以由一个或者多个容器共同使用的特殊目录，实现数据的持久化，他可以被挂载到指定容器的指定目录下。
 特性：
 在容器中可以共享和重用 对数据卷的修改会立马生效 对数据卷的更新，不会影响镜像 数据卷会一致存在，即使容器被删除 # 创建一个数据卷 $ docker volume create my-vol my-vol # 查看所有的数据卷 $ docker volume ls DRIVER VOLUME NAME local 4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8 local my-vol # 查看指定数据卷的信息 $ docker volume inspect my-vol [ { &amp;#34;CreatedAt&amp;#34;: &amp;#34;2023-08-12T14:19:27Z&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Labels&amp;#34;: null, &amp;#34;Mountpoint&amp;#34;: &amp;#34;/var/lib/docker/volumes/my-vol/_data&amp;#34;, &amp;#34;Name&amp;#34;: &amp;#34;my-vol&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34; } ] # 删除指定的数据卷 $ docker volume rm my-vol my-vol # 删除无主的数据卷 $ docker volume prune 挂载数据卷到容器：</description>
     </item>
-    
     <item>
       <title>Docker容器</title>
       <link>https://blog.laelaps.us/posts/docker/dockercontainer/</link>
       <pubDate>Fri, 14 Jul 2023 22:47:10 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/docker/dockercontainer/</guid>
       <description>什么是容器？ 容器是镜像运行的实例，我们可以从一个镜像中运行多个容器，容器比传统的虚拟机更快和更轻量级；在采用虚拟机时，我们的虚拟机的软件要将物理资源进行划分，然后分配给每一个虚拟机，他是一种居于硬件虚拟化；而在容器时代，我们的物理资源全部分配给操作系统，我们的容器引擎想操作系统申请资源，每一个容器是一个独立的相互隔离的进程，他可以自动的调整资源的大小，容器是一种居于操作系统的虚拟化。
 启动容器 docker container run &amp;lt;options&amp;gt; &amp;lt;im-age&amp;gt;:&amp;lt;tag&amp;gt; &amp;lt;app&amp;gt; // 启动一个ubuntu docker container run -it ubuntu:20.04 /bin/bash // 或者省去container docker run -it ubuntu:20.04 /bin/sh 当运行docker run时，docker会根据指定的镜像的标签在本地查找，如果查找不到则自动进行pull。然后运行命令指定的程序。
@@ -68,12 +62,10 @@ Bridge模式 在Docker启动时，Docker会在宿主中创建一个为Docker0的
 删除容器 我们在查看所有容器后，会发现有许多停止运行的容器，使用docker container rm可以将已经停止运行的容器删除。
 $ docker container ls -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 7f87eac41019 ubuntu:20.04 &amp;#34;/bin/bash&amp;#34; 13 minutes ago Exited (0) 6 minutes ago condescending_jennings f412d9c4ff7e ubuntu:20.04 &amp;#34;/bin/sh&amp;#34; 14 minutes ago Exited (0) 7 minutes ago $ docker container rm 7f87eac41019 f412d9c4ff7e 7f87eac41019 f412d9c4ff7e 守护态运行 在之前我们都是的容器都是将输入结果输出到当前的数组的终端上，如果我们想让容器运行在后台上，可以在docker run -d .</description>
     </item>
-    
     <item>
       <title>Docker镜像</title>
       <link>https://blog.laelaps.us/posts/docker/dockerimage/</link>
       <pubDate>Tue, 11 Jul 2023 19:09:44 +0800</pubDate>
-      
       <guid>https://blog.laelaps.us/posts/docker/dockerimage/</guid>
       <description>什么是Docker Docker是一种容器，他对传统的Linux容器进行了封装，简化了他容器的创建和维护；Docker不像传统的虚拟机一样需要虚拟出一层硬件来，他的应用程序直接运行在宿主的内核中，但是运行的进程独立于宿主和其他的容器。
 优势 对资源的更好的利用，不用像传统虚拟机一样虚拟出硬件之后在运行一个完整的系统。 Docker容器应用启动更快，节省时间。（但是我的Docker Desktop启动很慢） 一致的运行环境，Docker 保证了应用运行的环境是一样的，只有宿主的内核不一样。 一次创建和配置，在任意的地方运行。 镜像 镜像类似于一个类，他是创建容器的模板，而且镜像是由多层组成，一层建立在另外一层之上；他包含应用运行所需要的文件和依赖等。
@@ -82,6 +74,5 @@ $ docker container ls -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 7
 $ docker image inspect mysql:latest ... &amp;#34;RootFS&amp;#34;: { &amp;#34;Type&amp;#34;: &amp;#34;layers&amp;#34;, &amp;#34;Layers&amp;#34;: [ &amp;#34;sha256:9cd9df9ffc972e9abc946d855162ef0c40dff9a89f10c962b7920154a3d943d8&amp;#34;, &amp;#34;sha256:824505732bf475e99d3d9f2d2a1bbcb2f822005a5eb42ed3bd6c90d896601cf6&amp;#34;, &amp;#34;sha256:0b175674497447465ef1a69f9aa74eaad5fc89875eceb9257b1f51723a676b22&amp;#34;, &amp;#34;sha256:824c2933e60c068e80f2aeed3156289d52e173302c9591307186a1901d511747&amp;#34;, &amp;#34;sha256:4645c1089915b7a96108959a038bbabd1a9301561c04884ee25217fbd8529cbd&amp;#34;, &amp;#34;sha256:2dddefc501cc94ee7378f11117eb7537f18e42dff066fd0b0e352579fa201e47&amp;#34;, &amp;#34;sha256:3e8acfe4342fadf5703bc0e57f029aa8645f5bdad6071289b98f33e1b207f522&amp;#34;, &amp;#34;sha256:5f038062397273abd71d4393adf7dbf3b5517e0f2c660054d1bedb1d629e3dd9&amp;#34;, &amp;#34;sha256:16f4176c5cad94a63121b2f4f77a2027f15c8b88559d423daf345a51d41251eb&amp;#34;, &amp;#34;sha256:394c5cd5b4baf7e17088e44077a8b14ecbd9ba5d460629f1efb8ea3a90380a08&amp;#34;, &amp;#34;sha256:e2eaf447bf15d59b9e8f4e7c00c63cf35bf9096403563eed770cd758d27eb557&amp;#34; ] }, .... 标签 用来标记仓库中的镜像，一个镜像能有多个标签。
 拉取 docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] 悬虚镜像 zlmediakit/zlmediakit master 635f082db6f7 7 weeks ago 597MB // 悬虚镜像 ubuntu &amp;lt;none&amp;gt; 1c5c8d0b973a 4 months ago 72.</description>
     </item>
-    
   </channel>
 </rss>
