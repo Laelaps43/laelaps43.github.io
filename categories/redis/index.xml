@@ -13,18 +13,7 @@
       <link>https://blog.laelaps.us/posts/redis/hash/</link>
       <pubDate>Fri, 15 Sep 2023 14:26:10 +0800</pubDate>
       <guid>https://blog.laelaps.us/posts/redis/hash/</guid>
-      <description>Hash数据结构 HSET HSET为Hash中指定的字段设置值，如果字段已经存在，那么这是一次更新操作，返回0，如果字段不存在，那么这是一次创建操作，返回1（如果Hash不存在，同时会创建Hash）。
-HSET hash field value HSETNX HSETNX（H SET No Exists）跟HSET不同在于，HSETNX只会对键存在的时候操作，如果键不存在，设置成功返回1，如果键存在，设置失败返回0。
-HSETNX hash field value HGET HGET从指定的Hash中获取对应field的值，如果存在，返回对应的值，如果Field或者Hash不存在，返回nil。
-HGET hash field HINCRBY HINCRBY（H Increment By）对字段存储可以被Redis识别为整数的字段执行加分或减法，返回当前的结果值，如果传入的为一个正整数，则为加上一个数；如果为一个负整数，被识别为一个减法；如果传入的是一个非整数，则会产生异常。
-HINCRBY hash field increment HINCRBYFLOAT 跟HINCRBY不同的是，他可以执行一个浮点数的计算，无论字段中的值是一个整数或者一个浮点数。
-HINCRBYFLOAT hash field increment 用来获取指定字段值的长度。
-HSTRLEN hash field HEXISTS HEXISTS用来检查用户给定的字段是否存在于指定的Hash中，存在返回1，不存在返回0。
-HEXISTS hash field HDEL HDEL用来删除hash中指定字段及其关联的值，如果指定的字段存在于hash中并且成功删除时，命令返回1，如果字段不存在或者hash不存在，返回0。
-HDEL hash field HMSET HMSET（H Multiple Set）跟HSET不同在于，他可以同时指定多个field-value，其他更HSET一样，字段存在更新值等；不同在于一条HMSET跟多条HSET只需要通信一次。
-HMSET hash field value [field value] HMGET HMGET可以同时获取多个字段的值，其他跟HGET相同，如果获取的字段或hash不存在，那么他返回一个nil。
-HMGET hash field [field] HKEYS、HVALS、HGETALL HKEYS、HVALS、HGETALL分别为获取所有的键，所有的值，所有的键值对，因为Hash不对如何的数据进行排序，为无序状态，所以这三个每次返回值的顺序都可能是不一样的。
-KEYS hash HVALS hash HGETALL hash Hash vs String hash和string是两种不同的数据结构，他们有相同的特征，也有不同，hash可以保存许多对不同的键值对，而stirng只能保存一个键值对。</description>
+      <description>Hash数据结构 HSET HSET为Hash中指定的字段设置值，如果字段已经存在，那么这是一次更新操作，返回0，如果字段不存在，那么这是一次创建操作，返回1（如果Hash不存在，同时会创建Hash）。&#xA;HSET hash field value HSETNX HSETNX（H SET No Exists）跟HSET不同在于，HSETNX只会对键存在的时候操作，如果键不存在，设置成功返回1，如果键存在，设置失败返回0。&#xA;HSETNX hash field value HGET HGET从指定的Hash中获取对应field的值，如果存在，返回对应的值，如果Field或者Hash不存在，返回nil。&#xA;HGET hash field HINCRBY HINCRBY（H Increment By）对字段存储可以被Redis识别为整数的字段执行加分或减法，返回当前的结果值，如果传入的为一个正整数，则为加上一个数；如果为一个负整数，被识别为一个减法；如果传入的是一个非整数，则会产生异常。&#xA;HINCRBY hash field increment HINCRBYFLOAT 跟HINCRBY不同的是，他可以执行一个浮点数的计算，无论字段中的值是一个整数或者一个浮点数。&#xA;HINCRBYFLOAT hash field increment 用来获取指定字段值的长度。&#xA;HSTRLEN hash field HEXISTS HEXISTS用来检查用户给定的字段是否存在于指定的Hash中，存在返回1，不存在返回0。&#xA;HEXISTS hash field HDEL HDEL用来删除hash中指定字段及其关联的值，如果指定的字段存在于hash中并且成功删除时，命令返回1，如果字段不存在或者hash不存在，返回0。&#xA;HDEL hash field HMSET HMSET（H Multiple Set）跟HSET不同在于，他可以同时指定多个field-value，其他更HSET一样，字段存在更新值等；不同在于一条HMSET跟多条HSET只需要通信一次。&#xA;HMSET hash field value [field value] HMGET HMGET可以同时获取多个字段的值，其他跟HGET相同，如果获取的字段或hash不存在，那么他返回一个nil。&#xA;HMGET hash field [field] HKEYS、HVALS、HGETALL HKEYS、HVALS、HGETALL分别为获取所有的键，所有的值，所有的键值对，因为Hash不对如何的数据进行排序，为无序状态，所以这三个每次返回值的顺序都可能是不一样的。&#xA;KEYS hash HVALS hash HGETALL hash Hash vs String hash和string是两种不同的数据结构，他们有相同的特征，也有不同，hash可以保存许多对不同的键值对，而stirng只能保存一个键值对。</description>
     </item>
   </channel>
 </rss>
