@@ -4,9 +4,9 @@
     <title>Redis on Laelaps</title>
     <link>https://blog.laelaps.us/categories/redis/</link>
     <description>Recent content in Redis on Laelaps</description>
-    <generator>Hugo 0.125.1</generator>
+    <generator>Hugo 0.125.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Apr 2024 00:39:10 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Apr 2024 00:42:02 +0000</lastBuildDate>
     <atom:link href="https://blog.laelaps.us/categories/redis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redis 数据结构Hash</title>
