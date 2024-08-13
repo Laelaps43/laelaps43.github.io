@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.131.0">
+  <meta name="generator" content="Hugo 0.132.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,12 +42,12 @@
 代理又分为动态代理和静态代理，两种代理各有各的优缺点；但是他们都是通过一个代理对象来访问对应的被代理对象。
 代理模式通常有三个角色：
 Subject：一组可以被代理的行为的集合，通常是一个接口，保证代理对象有被代理对象有相同的行为。 ProxySubject：代理对象，消费端通过它来访问实际的对象。 RealSubject：实际被代理的对象。 静态代理 静态代理是指程序运行前，代理类已经存在于编译结果之前，也就是存在代理类的字节码（一个实际的Class文件）。
-package org.example; // 声明一个接口为需要被代理行为的集合，Subject public interface People { void callMe(); } package org.example; // 被代理对象 public class Ron implements People{ public void callMe(){ System.out.println(&amp;#34;I am Ron&amp;#34;); } } package org.example; // People的代理对象 public class PeopleProxy implements People{ private People target; public PeopleProxy(People target) { this.target = target; } @Override public void callMe() { System.out.println(&amp;#34;People Proxy Class&amp;#34;); target.callMe(); } } public class Main { public static void main(String[] args) throws Exception { PeopleProxy peopleProxy = new PeopleProxy(new Ron()); peopleProxy." />
+package org.example; // 声明一个接口为需要被代理行为的集合，Subject public interface People { void callMe(); } package org.example; // 被代理对象 public class Ron implements People{ public void callMe(){ System.out.println(&#34;I am Ron&#34;); } } package org.example; // People的代理对象 public class PeopleProxy implements People{ private People target; public PeopleProxy(People target) { this.target = target; } @Override public void callMe() { System.out.println(&#34;People Proxy Class&#34;); target.callMe(); } } public class Main { public static void main(String[] args) throws Exception { PeopleProxy peopleProxy = new PeopleProxy(new Ron()); peopleProxy." />
   <meta name="description" content="代理 代理是一种设计模式，他用一个代理对象来控制其他的对象进行访问。在我们对对象进行访问的时候，我们不是直接访问对应的对象，而是访问他的代理对象，我们可以在访问对象之前或者之后执行对应的操作；代理提供了一种更加灵活和可控的访问方式。
 代理又分为动态代理和静态代理，两种代理各有各的优缺点；但是他们都是通过一个代理对象来访问对应的被代理对象。
 代理模式通常有三个角色：
 Subject：一组可以被代理的行为的集合，通常是一个接口，保证代理对象有被代理对象有相同的行为。 ProxySubject：代理对象，消费端通过它来访问实际的对象。 RealSubject：实际被代理的对象。 静态代理 静态代理是指程序运行前，代理类已经存在于编译结果之前，也就是存在代理类的字节码（一个实际的Class文件）。
-package org.example; // 声明一个接口为需要被代理行为的集合，Subject public interface People { void callMe(); } package org.example; // 被代理对象 public class Ron implements People{ public void callMe(){ System.out.println(&amp;#34;I am Ron&amp;#34;); } } package org.example; // People的代理对象 public class PeopleProxy implements People{ private People target; public PeopleProxy(People target) { this.target = target; } @Override public void callMe() { System.out.println(&amp;#34;People Proxy Class&amp;#34;); target.callMe(); } } public class Main { public static void main(String[] args) throws Exception { PeopleProxy peopleProxy = new PeopleProxy(new Ron()); peopleProxy." />
+package org.example; // 声明一个接口为需要被代理行为的集合，Subject public interface People { void callMe(); } package org.example; // 被代理对象 public class Ron implements People{ public void callMe(){ System.out.println(&#34;I am Ron&#34;); } } package org.example; // People的代理对象 public class PeopleProxy implements People{ private People target; public PeopleProxy(People target) { this.target = target; } @Override public void callMe() { System.out.println(&#34;People Proxy Class&#34;); target.callMe(); } } public class Main { public static void main(String[] args) throws Exception { PeopleProxy peopleProxy = new PeopleProxy(new Ron()); peopleProxy." />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

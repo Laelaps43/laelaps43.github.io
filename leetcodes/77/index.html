@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.131.0">
+  <meta name="generator" content="Hugo 0.132.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,9 +39,9 @@
   <meta property="og:title" content="力扣77题解" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="前言 回溯算法题目
-回溯 func combine(n int, k int) [][]int { path := make([]int, 0) result := make([][]int, 0) backtracking(1, n, k, &amp;amp;path, &amp;amp;result) return result } func backtracking(begin, n, k int, path *[]int, result *[][]int) { if len(*path) == k{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) return } if begin &amp;gt; n { return } *path = append(*path, begin) backtracking(begin&#43;1, n, k, path, result) *path = (*path)[:len(*path) - 1] backtracking(begin&#43;1, n, k, path, result) } " />
+回溯 func combine(n int, k int) [][]int { path := make([]int, 0) result := make([][]int, 0) backtracking(1, n, k, &amp;path, &amp;result) return result } func backtracking(begin, n, k int, path *[]int, result *[][]int) { if len(*path) == k{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) return } if begin &gt; n { return } *path = append(*path, begin) backtracking(begin&#43;1, n, k, path, result) *path = (*path)[:len(*path) - 1] backtracking(begin&#43;1, n, k, path, result) } " />
   <meta name="description" content="前言 回溯算法题目
-回溯 func combine(n int, k int) [][]int { path := make([]int, 0) result := make([][]int, 0) backtracking(1, n, k, &amp;amp;path, &amp;amp;result) return result } func backtracking(begin, n, k int, path *[]int, result *[][]int) { if len(*path) == k{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) return } if begin &amp;gt; n { return } *path = append(*path, begin) backtracking(begin&#43;1, n, k, path, result) *path = (*path)[:len(*path) - 1] backtracking(begin&#43;1, n, k, path, result) } " />
+回溯 func combine(n int, k int) [][]int { path := make([]int, 0) result := make([][]int, 0) backtracking(1, n, k, &amp;path, &amp;result) return result } func backtracking(begin, n, k int, path *[]int, result *[][]int) { if len(*path) == k{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) return } if begin &gt; n { return } *path = append(*path, begin) backtracking(begin&#43;1, n, k, path, result) *path = (*path)[:len(*path) - 1] backtracking(begin&#43;1, n, k, path, result) } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

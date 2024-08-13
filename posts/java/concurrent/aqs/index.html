@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.131.0">
+  <meta name="generator" content="Hugo 0.132.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,10 +40,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="LockSupport LockSupport是JUC包下locks子包下的一个类，同用来在Java中对线程实现一个最基本的阻塞和唤醒。它和CAS一样是在JUC包下并发工具控制的实现基础，他们同样都依赖Unsafe类，依赖该类下的JNI接口。
 基本方法 在LockSupport中使用park开头的方法来阻塞当前线程，unpark方法用来唤醒一个被阻塞的现场。
-/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 */ public static void park() { UNSAFE.park(false, 0L); } /** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 */ public static void parkNanos(long nanos) { if (nanos &amp;gt; 0) UNSAFE.park(false, nanos); } /** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 */ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } /** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2." />
+/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 */ public static void park() { UNSAFE.park(false, 0L); } /** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 */ public static void parkNanos(long nanos) { if (nanos &gt; 0) UNSAFE.park(false, nanos); } /** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 */ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } /** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2." />
   <meta name="description" content="LockSupport LockSupport是JUC包下locks子包下的一个类，同用来在Java中对线程实现一个最基本的阻塞和唤醒。它和CAS一样是在JUC包下并发工具控制的实现基础，他们同样都依赖Unsafe类，依赖该类下的JNI接口。
 基本方法 在LockSupport中使用park开头的方法来阻塞当前线程，unpark方法用来唤醒一个被阻塞的现场。
-/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 */ public static void park() { UNSAFE.park(false, 0L); } /** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 */ public static void parkNanos(long nanos) { if (nanos &amp;gt; 0) UNSAFE.park(false, nanos); } /** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 */ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } /** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2." />
+/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 */ public static void park() { UNSAFE.park(false, 0L); } /** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 */ public static void parkNanos(long nanos) { if (nanos &gt; 0) UNSAFE.park(false, nanos); } /** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 */ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } /** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2." />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

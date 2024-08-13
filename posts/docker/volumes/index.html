@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.131.0">
+  <meta name="generator" content="Hugo 0.132.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,11 +41,11 @@
   <meta property="og:description" content="数据管理 在Docker内部以及容器之间管理数据，数据持久化，有两种方式：数据卷（Volumes）、挂载主机目录（Bind mounts）。
 数据卷 数据卷是一个可以由一个或者多个容器共同使用的特殊目录，实现数据的持久化，他可以被挂载到指定容器的指定目录下。
 特性：
-在容器中可以共享和重用 对数据卷的修改会立马生效 对数据卷的更新，不会影响镜像 数据卷会一致存在，即使容器被删除 # 创建一个数据卷 $ docker volume create my-vol my-vol # 查看所有的数据卷 $ docker volume ls DRIVER VOLUME NAME local 4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8 local my-vol # 查看指定数据卷的信息 $ docker volume inspect my-vol [ { &amp;#34;CreatedAt&amp;#34;: &amp;#34;2023-08-12T14:19:27Z&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Labels&amp;#34;: null, &amp;#34;Mountpoint&amp;#34;: &amp;#34;/var/lib/docker/volumes/my-vol/_data&amp;#34;, &amp;#34;Name&amp;#34;: &amp;#34;my-vol&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34; } ] # 删除指定的数据卷 $ docker volume rm my-vol my-vol # 删除无主的数据卷 $ docker volume prune 挂载数据卷到容器：" />
+在容器中可以共享和重用 对数据卷的修改会立马生效 对数据卷的更新，不会影响镜像 数据卷会一致存在，即使容器被删除 # 创建一个数据卷 $ docker volume create my-vol my-vol # 查看所有的数据卷 $ docker volume ls DRIVER VOLUME NAME local 4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8 local my-vol # 查看指定数据卷的信息 $ docker volume inspect my-vol [ { &#34;CreatedAt&#34;: &#34;2023-08-12T14:19:27Z&#34;, &#34;Driver&#34;: &#34;local&#34;, &#34;Labels&#34;: null, &#34;Mountpoint&#34;: &#34;/var/lib/docker/volumes/my-vol/_data&#34;, &#34;Name&#34;: &#34;my-vol&#34;, &#34;Options&#34;: null, &#34;Scope&#34;: &#34;local&#34; } ] # 删除指定的数据卷 $ docker volume rm my-vol my-vol # 删除无主的数据卷 $ docker volume prune 挂载数据卷到容器：" />
   <meta name="description" content="数据管理 在Docker内部以及容器之间管理数据，数据持久化，有两种方式：数据卷（Volumes）、挂载主机目录（Bind mounts）。
 数据卷 数据卷是一个可以由一个或者多个容器共同使用的特殊目录，实现数据的持久化，他可以被挂载到指定容器的指定目录下。
 特性：
-在容器中可以共享和重用 对数据卷的修改会立马生效 对数据卷的更新，不会影响镜像 数据卷会一致存在，即使容器被删除 # 创建一个数据卷 $ docker volume create my-vol my-vol # 查看所有的数据卷 $ docker volume ls DRIVER VOLUME NAME local 4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8 local my-vol # 查看指定数据卷的信息 $ docker volume inspect my-vol [ { &amp;#34;CreatedAt&amp;#34;: &amp;#34;2023-08-12T14:19:27Z&amp;#34;, &amp;#34;Driver&amp;#34;: &amp;#34;local&amp;#34;, &amp;#34;Labels&amp;#34;: null, &amp;#34;Mountpoint&amp;#34;: &amp;#34;/var/lib/docker/volumes/my-vol/_data&amp;#34;, &amp;#34;Name&amp;#34;: &amp;#34;my-vol&amp;#34;, &amp;#34;Options&amp;#34;: null, &amp;#34;Scope&amp;#34;: &amp;#34;local&amp;#34; } ] # 删除指定的数据卷 $ docker volume rm my-vol my-vol # 删除无主的数据卷 $ docker volume prune 挂载数据卷到容器：" />
+在容器中可以共享和重用 对数据卷的修改会立马生效 对数据卷的更新，不会影响镜像 数据卷会一致存在，即使容器被删除 # 创建一个数据卷 $ docker volume create my-vol my-vol # 查看所有的数据卷 $ docker volume ls DRIVER VOLUME NAME local 4212c0b85321ee7dec3e5f156533d101a66078bc7eee4c0beac94e6ad3b8f7e8 local my-vol # 查看指定数据卷的信息 $ docker volume inspect my-vol [ { &#34;CreatedAt&#34;: &#34;2023-08-12T14:19:27Z&#34;, &#34;Driver&#34;: &#34;local&#34;, &#34;Labels&#34;: null, &#34;Mountpoint&#34;: &#34;/var/lib/docker/volumes/my-vol/_data&#34;, &#34;Name&#34;: &#34;my-vol&#34;, &#34;Options&#34;: null, &#34;Scope&#34;: &#34;local&#34; } ] # 删除指定的数据卷 $ docker volume rm my-vol my-vol # 删除无主的数据卷 $ docker volume prune 挂载数据卷到容器：" />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

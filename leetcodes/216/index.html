@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.131.0">
+  <meta name="generator" content="Hugo 0.132.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,9 +39,9 @@
   <meta property="og:title" content="力扣216题解" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="前言 回溯问题
-回溯 func combinationSum3(k int, n int) [][]int { path := make([]int, 0, k) result := make([][]int, 0) backtracking(1, k, n, 9, 0, &amp;amp;path, &amp;amp;result) return result } func backtracking(start, k, n, end, target int, path *[]int, result *[][]int){ if len(*path) == k { if target == n{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) } return } if start &amp;gt; end || n &amp;lt; target || start &amp;gt; n{ return } *path = append(*path, start) backtracking(start &#43; 1, k, n, end, target &#43; start, path, result) *path = (*path)[:len(*path) - 1] backtracking(start &#43; 1, k, n, end,target, path, result) } " />
+回溯 func combinationSum3(k int, n int) [][]int { path := make([]int, 0, k) result := make([][]int, 0) backtracking(1, k, n, 9, 0, &amp;path, &amp;result) return result } func backtracking(start, k, n, end, target int, path *[]int, result *[][]int){ if len(*path) == k { if target == n{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) } return } if start &gt; end || n &lt; target || start &gt; n{ return } *path = append(*path, start) backtracking(start &#43; 1, k, n, end, target &#43; start, path, result) *path = (*path)[:len(*path) - 1] backtracking(start &#43; 1, k, n, end,target, path, result) } " />
   <meta name="description" content="前言 回溯问题
-回溯 func combinationSum3(k int, n int) [][]int { path := make([]int, 0, k) result := make([][]int, 0) backtracking(1, k, n, 9, 0, &amp;amp;path, &amp;amp;result) return result } func backtracking(start, k, n, end, target int, path *[]int, result *[][]int){ if len(*path) == k { if target == n{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) } return } if start &amp;gt; end || n &amp;lt; target || start &amp;gt; n{ return } *path = append(*path, start) backtracking(start &#43; 1, k, n, end, target &#43; start, path, result) *path = (*path)[:len(*path) - 1] backtracking(start &#43; 1, k, n, end,target, path, result) } " />
+回溯 func combinationSum3(k int, n int) [][]int { path := make([]int, 0, k) result := make([][]int, 0) backtracking(1, k, n, 9, 0, &amp;path, &amp;result) return result } func backtracking(start, k, n, end, target int, path *[]int, result *[][]int){ if len(*path) == k { if target == n{ tmp := make([]int, k) copy(tmp, *path) *result = append(*result, tmp) } return } if start &gt; end || n &lt; target || start &gt; n{ return } *path = append(*path, start) backtracking(start &#43; 1, k, n, end, target &#43; start, path, result) *path = (*path)[:len(*path) - 1] backtracking(start &#43; 1, k, n, end,target, path, result) } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
