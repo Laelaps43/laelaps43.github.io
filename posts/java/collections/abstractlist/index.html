@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "Java集合AbstractList",
       "headline" : "Java集合AbstractList",
-      "description" : "Content AbstractList扩展了AbstractCollection和实现了List；在这里有趣的是有5个内部类的实现。\nremoveRange protected void removeRange(int fromIndex, int toIndex) { ListIterator\u0026lt;E\u0026gt; it = listIterator(fromIndex); for (int i=0, n=toIndex-fromIndex; i\u0026lt;n; i\u002b\u002b) { it.next(); it.remove(); } } 删除指定范围的元素，使用迭代器来实现，并且为一个protected方法。\nsubList public List\u0026lt;E\u0026gt; subList(int fromIndex, int toIndex) { subListRangeCheck(fromIndex, toIndex, size()); return (this instanceof RandomAccess ? new RandomAccessSubList\u0026lt;\u0026gt;(this, fromIndex, toIndex) : new SubList\u0026lt;\u0026gt;(this, fromIndex, toIndex)); } RandomAccess 是一个标记接口，他是一个空的接口，通常用来表示我们的集合是支持随机访问，所有他的功能就仅仅是一个标记的作用。 在这里如果我们的集合实现了RandomAccess这个空接口，那么他返回的就是RandomAccessSubList，否则返回的就是一个SubList的内部类。\nItr 他实现了Iterator接口，供AbstractList使用迭代器。\nprivate class Itr implements Iterator\u0026lt;E\u0026gt; { int cursor = 0; int lastRet = -1; int expectedModCount = modCount; public boolean hasNext() { return cursor !",
+      "description" : "Content AbstractList扩展了AbstractCollection和实现了List；在这里有趣的是有5个内部类的实现。\nremoveRange protected void removeRange(int fromIndex, int toIndex) { ListIterator\u0026lt;E\u0026gt; it = listIterator(fromIndex); for (int i=0, n=toIndex-fromIndex; i\u0026lt;n; i\u002b\u002b) { it.next(); it.remove(); } } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -39,15 +39,9 @@
   <meta property="og:title" content="Java集合AbstractList" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="Content AbstractList扩展了AbstractCollection和实现了List；在这里有趣的是有5个内部类的实现。
-removeRange protected void removeRange(int fromIndex, int toIndex) { ListIterator&lt;E&gt; it = listIterator(fromIndex); for (int i=0, n=toIndex-fromIndex; i&lt;n; i&#43;&#43;) { it.next(); it.remove(); } } 删除指定范围的元素，使用迭代器来实现，并且为一个protected方法。
-subList public List&lt;E&gt; subList(int fromIndex, int toIndex) { subListRangeCheck(fromIndex, toIndex, size()); return (this instanceof RandomAccess ? new RandomAccessSubList&lt;&gt;(this, fromIndex, toIndex) : new SubList&lt;&gt;(this, fromIndex, toIndex)); } RandomAccess 是一个标记接口，他是一个空的接口，通常用来表示我们的集合是支持随机访问，所有他的功能就仅仅是一个标记的作用。 在这里如果我们的集合实现了RandomAccess这个空接口，那么他返回的就是RandomAccessSubList，否则返回的就是一个SubList的内部类。
-Itr 他实现了Iterator接口，供AbstractList使用迭代器。
-private class Itr implements Iterator&lt;E&gt; { int cursor = 0; int lastRet = -1; int expectedModCount = modCount; public boolean hasNext() { return cursor !" />
+removeRange protected void removeRange(int fromIndex, int toIndex) { ListIterator&lt;E&gt; it = listIterator(fromIndex); for (int i=0, n=toIndex-fromIndex; i&lt;n; i&#43;&#43;) { it.next(); it.remove(); } } " />
   <meta name="description" content="Content AbstractList扩展了AbstractCollection和实现了List；在这里有趣的是有5个内部类的实现。
-removeRange protected void removeRange(int fromIndex, int toIndex) { ListIterator&lt;E&gt; it = listIterator(fromIndex); for (int i=0, n=toIndex-fromIndex; i&lt;n; i&#43;&#43;) { it.next(); it.remove(); } } 删除指定范围的元素，使用迭代器来实现，并且为一个protected方法。
-subList public List&lt;E&gt; subList(int fromIndex, int toIndex) { subListRangeCheck(fromIndex, toIndex, size()); return (this instanceof RandomAccess ? new RandomAccessSubList&lt;&gt;(this, fromIndex, toIndex) : new SubList&lt;&gt;(this, fromIndex, toIndex)); } RandomAccess 是一个标记接口，他是一个空的接口，通常用来表示我们的集合是支持随机访问，所有他的功能就仅仅是一个标记的作用。 在这里如果我们的集合实现了RandomAccess这个空接口，那么他返回的就是RandomAccessSubList，否则返回的就是一个SubList的内部类。
-Itr 他实现了Iterator接口，供AbstractList使用迭代器。
-private class Itr implements Iterator&lt;E&gt; { int cursor = 0; int lastRet = -1; int expectedModCount = modCount; public boolean hasNext() { return cursor !" />
+removeRange protected void removeRange(int fromIndex, int toIndex) { ListIterator&lt;E&gt; it = listIterator(fromIndex); for (int i=0, n=toIndex-fromIndex; i&lt;n; i&#43;&#43;) { it.next(); it.remove(); } } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

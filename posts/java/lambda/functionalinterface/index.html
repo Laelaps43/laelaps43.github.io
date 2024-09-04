@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "Java 函数式接口",
       "headline" : "Java 函数式接口",
-      "description" : "函数式接口 函数式接口（Functional interface）是有且只有一个抽象方法的接口。在java.util.function包中有许多非常通用的函数式接口。\n自定义函数接口 自定义函数接口跟我们普通的定义函数接口没有任何的区别，但是我们有一个可选的@FunctionalInterface来注解这个接口，这个可以保证这个接口有只能有一个抽象方法；在javadoc中也会显示这个接口为一个函数式编接口。\n@FunctionalInterface public interface Multiply { int multiplyAB(int A, int B); } public static void main(String[] args) { System.out.println(multiplyAB(1, 10, (a, b) -\u0026gt; a * b)); } public static int multiplyAB(int a, int b, Multiply multiply){ return multiply.multiplyAB(a,b); } 常用函数式接口 Supplier接口 对象实例的提供者，有一个名为get的抽象方法，没有任何参数，返回一个泛型对象；我们需要去实现get方法，让他生产一个泛型对象。\npackage java.util.function; @FunctionalInterface public interface Supplier\u0026lt;T\u0026gt; { T get(); } 除了Supplier 接口的使用，我们还可以指定类型，如BooleanJSupplier DoubleSupplier IntSupplier LongSupplier。 |接口名称|方法名称|方法签名|\nPerson person = (Person) Optional.empty().orElseGet(() -\u0026gt; new Person(\u0026#34;laelaps\u0026#34;)); System.",
+      "description" : "函数式接口 函数式接口（Functional interface）是有且只有一个抽象方法的接口。在java.util.function包中有许多非常通用的函数式接口。\n自定义函数接口 自定义函数接口跟我们普通的定义函数接口没有任何的区别，但是我们有一个可选的@FunctionalInterface来注解这个接口，这个可以保证这个接口有只能有一个抽象方法；在javadoc中也会显示这个接口为一个函数式编接口。\n@FunctionalInterface public interface Multiply { int multiplyAB(int A, int B); } public static void main(String[] args) { System.out.println(multiplyAB(1, 10, (a, b) -\u0026gt; a * b)); } public static int multiplyAB(int a, int b, Multiply multiply){ return multiply.multiplyAB(a,b); } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -40,14 +40,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="函数式接口 函数式接口（Functional interface）是有且只有一个抽象方法的接口。在java.util.function包中有许多非常通用的函数式接口。
 自定义函数接口 自定义函数接口跟我们普通的定义函数接口没有任何的区别，但是我们有一个可选的@FunctionalInterface来注解这个接口，这个可以保证这个接口有只能有一个抽象方法；在javadoc中也会显示这个接口为一个函数式编接口。
-@FunctionalInterface public interface Multiply { int multiplyAB(int A, int B); } public static void main(String[] args) { System.out.println(multiplyAB(1, 10, (a, b) -&gt; a * b)); } public static int multiplyAB(int a, int b, Multiply multiply){ return multiply.multiplyAB(a,b); } 常用函数式接口 Supplier接口 对象实例的提供者，有一个名为get的抽象方法，没有任何参数，返回一个泛型对象；我们需要去实现get方法，让他生产一个泛型对象。
-package java.util.function; @FunctionalInterface public interface Supplier&lt;T&gt; { T get(); } 除了Supplier 接口的使用，我们还可以指定类型，如BooleanJSupplier DoubleSupplier IntSupplier LongSupplier。 |接口名称|方法名称|方法签名|
-Person person = (Person) Optional.empty().orElseGet(() -&gt; new Person(&#34;laelaps&#34;)); System." />
+@FunctionalInterface public interface Multiply { int multiplyAB(int A, int B); } public static void main(String[] args) { System.out.println(multiplyAB(1, 10, (a, b) -&gt; a * b)); } public static int multiplyAB(int a, int b, Multiply multiply){ return multiply.multiplyAB(a,b); } " />
   <meta name="description" content="函数式接口 函数式接口（Functional interface）是有且只有一个抽象方法的接口。在java.util.function包中有许多非常通用的函数式接口。
 自定义函数接口 自定义函数接口跟我们普通的定义函数接口没有任何的区别，但是我们有一个可选的@FunctionalInterface来注解这个接口，这个可以保证这个接口有只能有一个抽象方法；在javadoc中也会显示这个接口为一个函数式编接口。
-@FunctionalInterface public interface Multiply { int multiplyAB(int A, int B); } public static void main(String[] args) { System.out.println(multiplyAB(1, 10, (a, b) -&gt; a * b)); } public static int multiplyAB(int a, int b, Multiply multiply){ return multiply.multiplyAB(a,b); } 常用函数式接口 Supplier接口 对象实例的提供者，有一个名为get的抽象方法，没有任何参数，返回一个泛型对象；我们需要去实现get方法，让他生产一个泛型对象。
-package java.util.function; @FunctionalInterface public interface Supplier&lt;T&gt; { T get(); } 除了Supplier 接口的使用，我们还可以指定类型，如BooleanJSupplier DoubleSupplier IntSupplier LongSupplier。 |接口名称|方法名称|方法签名|
-Person person = (Person) Optional.empty().orElseGet(() -&gt; new Person(&#34;laelaps&#34;)); System." />
+@FunctionalInterface public interface Multiply { int multiplyAB(int A, int B); } public static void main(String[] args) { System.out.println(multiplyAB(1, 10, (a, b) -&gt; a * b)); } public static int multiplyAB(int a, int b, Multiply multiply){ return multiply.multiplyAB(a,b); } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
@@ -204,40 +200,40 @@ Person person = (Person) Optional.empty().orElseGet(() -&gt; new Person(&#34;lae
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> value <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> value : supplier.<span style="color:#a6e22e">get</span>();  
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><table>
-<thead>
-<tr>
-<th>接口名称</th>
-<th>方法名称</th>
-<th>方法签名</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Supplier</td>
-<td>get</td>
-<td>() -&gt; T</td>
-</tr>
-<tr>
-<td>BooleanSupplier</td>
-<td>getAsBoolean</td>
-<td>() -&gt; boolean</td>
-</tr>
-<tr>
-<td>DoubleSupplier</td>
-<td>getAsDouble</td>
-<td>() -&gt; double</td>
-</tr>
-<tr>
-<td>IntSupplier</td>
-<td>getAsInt</td>
-<td>() -&gt; int</td>
-</tr>
-<tr>
-<td>LongSupplier</td>
-<td>getAsLong</td>
-<td>() -&gt; long</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">接口名称</th>
+          <th style="text-align: left">方法名称</th>
+          <th style="text-align: left">方法签名</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Supplier</td>
+          <td style="text-align: left">get</td>
+          <td style="text-align: left">() -&gt; T</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">BooleanSupplier</td>
+          <td style="text-align: left">getAsBoolean</td>
+          <td style="text-align: left">() -&gt; boolean</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DoubleSupplier</td>
+          <td style="text-align: left">getAsDouble</td>
+          <td style="text-align: left">() -&gt; double</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">IntSupplier</td>
+          <td style="text-align: left">getAsInt</td>
+          <td style="text-align: left">() -&gt; int</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">LongSupplier</td>
+          <td style="text-align: left">getAsLong</td>
+          <td style="text-align: left">() -&gt; long</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="predicate接口">Predicate接口</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> java.util.function;
@@ -318,100 +314,100 @@ Person person = (Person) Optional.empty().orElseGet(() -&gt; new Person(&#34;lae
 </span></span><span style="display:flex;"><span>             BiFunction<span style="color:#f92672">&lt;</span>U, <span style="color:#f92672">?</span> <span style="color:#66d9ef">super</span> T, U<span style="color:#f92672">&gt;</span> accumulator,  
 </span></span><span style="display:flex;"><span>             BinaryOperator<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> combiner);
 </span></span></code></pre></div><table>
-<thead>
-<tr>
-<th>接口名称</th>
-<th>方法名称</th>
-<th>方法签名</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Function</td>
-<td>apply</td>
-<td>(T) -&gt; R</td>
-</tr>
-<tr>
-<td>BiFunction</td>
-<td>apply</td>
-<td>(T, U) -&gt; R</td>
-</tr>
-<tr>
-<td>DoubleFunction</td>
-<td>apply</td>
-<td>(double) -&gt; R</td>
-</tr>
-<tr>
-<td>DoubleToIntFunction</td>
-<td>applyAsInt</td>
-<td>(double) -&gt; int</td>
-</tr>
-<tr>
-<td>DoubleToLongFunction</td>
-<td>applyAsLong</td>
-<td>(double) -&gt; long</td>
-</tr>
-<tr>
-<td>IntFunction</td>
-<td>apply</td>
-<td>(int) -&gt; R</td>
-</tr>
-<tr>
-<td>IntToDoubleFunction</td>
-<td>applyAsDouble</td>
-<td>(int) -&gt; double</td>
-</tr>
-<tr>
-<td>IntToLongFunction</td>
-<td>applyAsLong</td>
-<td>(int) -&gt; long</td>
-</tr>
-<tr>
-<td>LongFunction</td>
-<td>apply</td>
-<td>(long) -&gt; R</td>
-</tr>
-<tr>
-<td>LongToDoubleFunction</td>
-<td>applyAsDouble</td>
-<td>(long) -&gt; double</td>
-</tr>
-<tr>
-<td>LongToIntFunction</td>
-<td>applyAsInt</td>
-<td>(long) -&gt; int</td>
-</tr>
-<tr>
-<td>ToDoubleFunction</td>
-<td>applyAsDouble</td>
-<td>(T) -&gt; double</td>
-</tr>
-<tr>
-<td>ToDoubleBiFunction</td>
-<td>applyAsDouble</td>
-<td>(T, U) -&gt; double</td>
-</tr>
-<tr>
-<td>ToIntFunction</td>
-<td>applyAsInt</td>
-<td>(T) -&gt; int</td>
-</tr>
-<tr>
-<td>ToIntBiFunction</td>
-<td>applyAsInt</td>
-<td>(T, U) -&gt; int</td>
-</tr>
-<tr>
-<td>ToLongFunction</td>
-<td>applyAsLong</td>
-<td>(T) -&gt; long</td>
-</tr>
-<tr>
-<td>ToLongBiFunction</td>
-<td>applyAsLong</td>
-<td>(T, U) -&gt; long</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">接口名称</th>
+          <th style="text-align: left">方法名称</th>
+          <th style="text-align: left">方法签名</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Function</td>
+          <td style="text-align: left">apply</td>
+          <td style="text-align: left">(T) -&gt; R</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">BiFunction</td>
+          <td style="text-align: left">apply</td>
+          <td style="text-align: left">(T, U) -&gt; R</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DoubleFunction</td>
+          <td style="text-align: left">apply</td>
+          <td style="text-align: left">(double) -&gt; R</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DoubleToIntFunction</td>
+          <td style="text-align: left">applyAsInt</td>
+          <td style="text-align: left">(double) -&gt; int</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DoubleToLongFunction</td>
+          <td style="text-align: left">applyAsLong</td>
+          <td style="text-align: left">(double) -&gt; long</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">IntFunction</td>
+          <td style="text-align: left">apply</td>
+          <td style="text-align: left">(int) -&gt; R</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">IntToDoubleFunction</td>
+          <td style="text-align: left">applyAsDouble</td>
+          <td style="text-align: left">(int) -&gt; double</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">IntToLongFunction</td>
+          <td style="text-align: left">applyAsLong</td>
+          <td style="text-align: left">(int) -&gt; long</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">LongFunction</td>
+          <td style="text-align: left">apply</td>
+          <td style="text-align: left">(long) -&gt; R</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">LongToDoubleFunction</td>
+          <td style="text-align: left">applyAsDouble</td>
+          <td style="text-align: left">(long) -&gt; double</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">LongToIntFunction</td>
+          <td style="text-align: left">applyAsInt</td>
+          <td style="text-align: left">(long) -&gt; int</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ToDoubleFunction</td>
+          <td style="text-align: left">applyAsDouble</td>
+          <td style="text-align: left">(T) -&gt; double</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ToDoubleBiFunction</td>
+          <td style="text-align: left">applyAsDouble</td>
+          <td style="text-align: left">(T, U) -&gt; double</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ToIntFunction</td>
+          <td style="text-align: left">applyAsInt</td>
+          <td style="text-align: left">(T) -&gt; int</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ToIntBiFunction</td>
+          <td style="text-align: left">applyAsInt</td>
+          <td style="text-align: left">(T, U) -&gt; int</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ToLongFunction</td>
+          <td style="text-align: left">applyAsLong</td>
+          <td style="text-align: left">(T) -&gt; long</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ToLongBiFunction</td>
+          <td style="text-align: left">applyAsLong</td>
+          <td style="text-align: left">(T, U) -&gt; long</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="consumer接口">Consumer接口</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> java.util.function;
@@ -461,50 +457,50 @@ Person person = (Person) Optional.empty().orElseGet(() -&gt; new Person(&#34;lae
 </span></span><span style="display:flex;"><span>    }  
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><table>
-<thead>
-<tr>
-<th>接口名称</th>
-<th>方法名称</th>
-<th>方法签名</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Consumer</td>
-<td>accept</td>
-<td>(T) -&gt; void</td>
-</tr>
-<tr>
-<td>DoubleConsumer</td>
-<td>accept</td>
-<td>(double) -&gt; void</td>
-</tr>
-<tr>
-<td>IntConsumer</td>
-<td>accept</td>
-<td>(int) -&gt; void</td>
-</tr>
-<tr>
-<td>LongConsumer</td>
-<td>accept</td>
-<td>(long) -&gt; void</td>
-</tr>
-<tr>
-<td>ObjDoubleConsumer</td>
-<td>accept</td>
-<td>(T, double) -&gt; void</td>
-</tr>
-<tr>
-<td>ObjIntConsumer</td>
-<td>accept</td>
-<td>(T, int) -&gt; void</td>
-</tr>
-<tr>
-<td>ObjLongConsumer</td>
-<td>accept</td>
-<td>(T, long) -&gt; void</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">接口名称</th>
+          <th style="text-align: left">方法名称</th>
+          <th style="text-align: left">方法签名</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Consumer</td>
+          <td style="text-align: left">accept</td>
+          <td style="text-align: left">(T) -&gt; void</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DoubleConsumer</td>
+          <td style="text-align: left">accept</td>
+          <td style="text-align: left">(double) -&gt; void</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">IntConsumer</td>
+          <td style="text-align: left">accept</td>
+          <td style="text-align: left">(int) -&gt; void</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">LongConsumer</td>
+          <td style="text-align: left">accept</td>
+          <td style="text-align: left">(long) -&gt; void</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ObjDoubleConsumer</td>
+          <td style="text-align: left">accept</td>
+          <td style="text-align: left">(T, double) -&gt; void</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ObjIntConsumer</td>
+          <td style="text-align: left">accept</td>
+          <td style="text-align: left">(T, int) -&gt; void</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ObjLongConsumer</td>
+          <td style="text-align: left">accept</td>
+          <td style="text-align: left">(T, long) -&gt; void</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="unaryoperator接口">UnaryOperator接口</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@FunctionalInterface</span>  

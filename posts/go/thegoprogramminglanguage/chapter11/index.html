@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "The Go Programming Language 测试（11)",
       "headline" : "The Go Programming Language 测试（11)",
-      "description" : "在go的包下通常会存在一些以_test.go结尾的文件，他在go build阶段并不会被编译，在文件中有三种函数，一种是以Test开头的功能测试函数，运行go test会测试这些函数；一种是Benchmark开头的基准测试函数，用来测试某些操作的性能，go test会回报操作的平均执行时间；最后一种是以Example开头的示例函数。 go test会扫描包下的_test.go结尾的文件来寻找特殊的函数，使用一个临时的main包来调用这些函数，并编译和运行他们。\nTest函数 test基本 在_test.go里面的Test函数有着固定的函数前面，所有的函数都要符合这个规定\nfunc TestName(t *testing.T){ } package word \/\/ IsPalindrome reports whether s reads the same forward and backward. \/\/ (Our first attempt.) func IsPalindrome(s string) bool { for i := range s { if s[i] != s[len(s)-1-i] { return false } } return true } 测试函数：\nfunc TestPalindrome(t *testing.T) { if !IsPalindrome(\u0026#34;detartrated\u0026#34;) { t.Error(\u0060IsPalindrome(\u0026#34;detartrated\u0026#34;) = false\u0060) } if !IsPalindrome(\u0026#34;kayak\u0026#34;) { t.Error(\u0060IsPalindrome(\u0026#34;kayak\u0026#34;) = false\u0060) } } 我们可以使用go test来运行测试，为当前目录，当测试成功的时候会返回PASS，测试失败会给出失败的函数等信息。",
+      "description" : "在go的包下通常会存在一些以_test.go结尾的文件，他在go build阶段并不会被编译，在文件中有三种函数，一种是以Test开头的功能测试函数，运行go test会测试这些函数；一种是Benchmark开头的基准测试函数，用来测试某些操作的性能，go test会回报操作的平均执行时间；最后一种是以Example开头的示例函数。 go test会扫描包下的_test.go结尾的文件来寻找特殊的函数，使用一个临时的main包来调用这些函数，并编译和运行他们。\nTest函数 test基本 在_test.go里面的Test函数有着固定的函数前面，所有的函数都要符合这个规定\nfunc TestName(t *testing.T){ } package word \/\/ IsPalindrome reports whether s reads the same forward and backward. \/\/ (Our first attempt.) func IsPalindrome(s string) bool { for i := range s { if s[i] != s[len(s)-1-i] { return false } } return true } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -40,12 +40,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="在go的包下通常会存在一些以_test.go结尾的文件，他在go build阶段并不会被编译，在文件中有三种函数，一种是以Test开头的功能测试函数，运行go test会测试这些函数；一种是Benchmark开头的基准测试函数，用来测试某些操作的性能，go test会回报操作的平均执行时间；最后一种是以Example开头的示例函数。 go test会扫描包下的_test.go结尾的文件来寻找特殊的函数，使用一个临时的main包来调用这些函数，并编译和运行他们。
 Test函数 test基本 在_test.go里面的Test函数有着固定的函数前面，所有的函数都要符合这个规定
-func TestName(t *testing.T){ } package word // IsPalindrome reports whether s reads the same forward and backward. // (Our first attempt.) func IsPalindrome(s string) bool { for i := range s { if s[i] != s[len(s)-1-i] { return false } } return true } 测试函数：
-func TestPalindrome(t *testing.T) { if !IsPalindrome(&#34;detartrated&#34;) { t.Error(`IsPalindrome(&#34;detartrated&#34;) = false`) } if !IsPalindrome(&#34;kayak&#34;) { t.Error(`IsPalindrome(&#34;kayak&#34;) = false`) } } 我们可以使用go test来运行测试，为当前目录，当测试成功的时候会返回PASS，测试失败会给出失败的函数等信息。" />
+func TestName(t *testing.T){ } package word // IsPalindrome reports whether s reads the same forward and backward. // (Our first attempt.) func IsPalindrome(s string) bool { for i := range s { if s[i] != s[len(s)-1-i] { return false } } return true } " />
   <meta name="description" content="在go的包下通常会存在一些以_test.go结尾的文件，他在go build阶段并不会被编译，在文件中有三种函数，一种是以Test开头的功能测试函数，运行go test会测试这些函数；一种是Benchmark开头的基准测试函数，用来测试某些操作的性能，go test会回报操作的平均执行时间；最后一种是以Example开头的示例函数。 go test会扫描包下的_test.go结尾的文件来寻找特殊的函数，使用一个临时的main包来调用这些函数，并编译和运行他们。
 Test函数 test基本 在_test.go里面的Test函数有着固定的函数前面，所有的函数都要符合这个规定
-func TestName(t *testing.T){ } package word // IsPalindrome reports whether s reads the same forward and backward. // (Our first attempt.) func IsPalindrome(s string) bool { for i := range s { if s[i] != s[len(s)-1-i] { return false } } return true } 测试函数：
-func TestPalindrome(t *testing.T) { if !IsPalindrome(&#34;detartrated&#34;) { t.Error(`IsPalindrome(&#34;detartrated&#34;) = false`) } if !IsPalindrome(&#34;kayak&#34;) { t.Error(`IsPalindrome(&#34;kayak&#34;) = false`) } } 我们可以使用go test来运行测试，为当前目录，当测试成功的时候会返回PASS，测试失败会给出失败的函数等信息。" />
+func TestName(t *testing.T){ } package word // IsPalindrome reports whether s reads the same forward and backward. // (Our first attempt.) func IsPalindrome(s string) bool { for i := range s { if s[i] != s[len(s)-1-i] { return false } } return true } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

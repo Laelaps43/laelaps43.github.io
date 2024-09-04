@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "Java反射",
       "headline" : "Java反射",
-      "description" : "Class类 Class类是真实存在的，他在java.lang下，他跟普通的类还是有很多不一样的；在Java中一切都是对象，而在java中有两种对象，一种是我们创建的实例对象，而另外一种是有JVM以及类加载器创建的Class对象，其实也就是说Class对象并不是我们自己创建的，他应该由JVM来创建；\nClass保存的是什么信息呢？他用来表示一般类在运行时的类型信息，我们创建的实例对象在JVM中都应该根据Class对象来创建；而他被用来进行RTTI（Run-Time Type Identification）运行类型识别，在运行时识别一个对象的类型和类的信息。\n在Java中每一个类都有一个Class对象，每当编译一个新类就产生一个 Class对象，基本类型 (boolean, byte, char, short, int, long, float, double)有 Class对象，就连关键字 void也有Class对象（void.class）。\n前面说过Class对象只能由JVM及类加载器来创建，所有Class只有一个私有构造器；Java中的所有类都是懒加载到JVM中的，只有当需要的时候才会被加载；在类加载过程中，类加载器会检查这个类的Class对象是否存在，如果未被加载，那么类加载器会根据类的全限定名查找.class文件，随后类加载器进行验证等操作，生产Class对象，根据Class对象来生成实例对象。\n获取Class对象 Class.forName package org.example; public class Ron { static { System.out.println(\u0026#34;I am Ron\u0026#34;); } } package org.example; public class Main { public static void main(String[] args) throws ClassNotFoundException { Class\u0026lt;?\u0026gt; ron = Class.forName(\u0026#34;org.example.Ron\u0026#34;); } } static{}会被类第一次被加载的时候被执行，所以new或forName都会判断类是否被加载，forName获取Class对象时并不需要去拥有该类型的对象，而只需要全限定名就可以获取到对应的Class对象。\ngetClass package org.example; public class Main { public static void main(String[] args){ \/\/ Class\u0026lt;?\u0026gt; ron = Class.",
+      "description" : "Class类 Class类是真实存在的，他在java.lang下，他跟普通的类还是有很多不一样的；在Java中一切都是对象，而在java中有两种对象，一种是我们创建的实例对象，而另外一种是有JVM以及类加载器创建的Class对象，其实也就是说Class对象并不是我们自己创建的，他应该由JVM来创建；\nClass保存的是什么信息呢？他用来表示一般类在运行时的类型信息，我们创建的实例对象在JVM中都应该根据Class对象来创建；而他被用来进行RTTI（Run-Time Type Identification）运行类型识别，在运行时识别一个对象的类型和类的信息。\n在Java中每一个类都有一个Class对象，每当编译一个新类就产生一个 Class对象，基本类型 (boolean, byte, char, short, int, long, float, double)有 Class对象，就连关键字 void也有Class对象（void.class）。\n前面说过Class对象只能由JVM及类加载器来创建，所有Class只有一个私有构造器；Java中的所有类都是懒加载到JVM中的，只有当需要的时候才会被加载；在类加载过程中，类加载器会检查这个类的Class对象是否存在，如果未被加载，那么类加载器会根据类的全限定名查找.class文件，随后类加载器进行验证等操作，生产Class对象，根据Class对象来生成实例对象。\n获取Class对象 Class.forName package org.example; public class Ron { static { System.out.println(\u0026#34;I am Ron\u0026#34;); } } package org.example; public class Main { public static void main(String[] args) throws ClassNotFoundException { Class\u0026lt;?\u0026gt; ron = Class.forName(\u0026#34;org.example.Ron\u0026#34;); } } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -42,14 +42,12 @@
 Class保存的是什么信息呢？他用来表示一般类在运行时的类型信息，我们创建的实例对象在JVM中都应该根据Class对象来创建；而他被用来进行RTTI（Run-Time Type Identification）运行类型识别，在运行时识别一个对象的类型和类的信息。
 在Java中每一个类都有一个Class对象，每当编译一个新类就产生一个 Class对象，基本类型 (boolean, byte, char, short, int, long, float, double)有 Class对象，就连关键字 void也有Class对象（void.class）。
 前面说过Class对象只能由JVM及类加载器来创建，所有Class只有一个私有构造器；Java中的所有类都是懒加载到JVM中的，只有当需要的时候才会被加载；在类加载过程中，类加载器会检查这个类的Class对象是否存在，如果未被加载，那么类加载器会根据类的全限定名查找.class文件，随后类加载器进行验证等操作，生产Class对象，根据Class对象来生成实例对象。
-获取Class对象 Class.forName package org.example; public class Ron { static { System.out.println(&#34;I am Ron&#34;); } } package org.example; public class Main { public static void main(String[] args) throws ClassNotFoundException { Class&lt;?&gt; ron = Class.forName(&#34;org.example.Ron&#34;); } } static{}会被类第一次被加载的时候被执行，所以new或forName都会判断类是否被加载，forName获取Class对象时并不需要去拥有该类型的对象，而只需要全限定名就可以获取到对应的Class对象。
-getClass package org.example; public class Main { public static void main(String[] args){ // Class&lt;?&gt; ron = Class." />
+获取Class对象 Class.forName package org.example; public class Ron { static { System.out.println(&#34;I am Ron&#34;); } } package org.example; public class Main { public static void main(String[] args) throws ClassNotFoundException { Class&lt;?&gt; ron = Class.forName(&#34;org.example.Ron&#34;); } } " />
   <meta name="description" content="Class类 Class类是真实存在的，他在java.lang下，他跟普通的类还是有很多不一样的；在Java中一切都是对象，而在java中有两种对象，一种是我们创建的实例对象，而另外一种是有JVM以及类加载器创建的Class对象，其实也就是说Class对象并不是我们自己创建的，他应该由JVM来创建；
 Class保存的是什么信息呢？他用来表示一般类在运行时的类型信息，我们创建的实例对象在JVM中都应该根据Class对象来创建；而他被用来进行RTTI（Run-Time Type Identification）运行类型识别，在运行时识别一个对象的类型和类的信息。
 在Java中每一个类都有一个Class对象，每当编译一个新类就产生一个 Class对象，基本类型 (boolean, byte, char, short, int, long, float, double)有 Class对象，就连关键字 void也有Class对象（void.class）。
 前面说过Class对象只能由JVM及类加载器来创建，所有Class只有一个私有构造器；Java中的所有类都是懒加载到JVM中的，只有当需要的时候才会被加载；在类加载过程中，类加载器会检查这个类的Class对象是否存在，如果未被加载，那么类加载器会根据类的全限定名查找.class文件，随后类加载器进行验证等操作，生产Class对象，根据Class对象来生成实例对象。
-获取Class对象 Class.forName package org.example; public class Ron { static { System.out.println(&#34;I am Ron&#34;); } } package org.example; public class Main { public static void main(String[] args) throws ClassNotFoundException { Class&lt;?&gt; ron = Class.forName(&#34;org.example.Ron&#34;); } } static{}会被类第一次被加载的时候被执行，所以new或forName都会判断类是否被加载，forName获取Class对象时并不需要去拥有该类型的对象，而只需要全限定名就可以获取到对应的Class对象。
-getClass package org.example; public class Main { public static void main(String[] args){ // Class&lt;?&gt; ron = Class." />
+获取Class对象 Class.forName package org.example; public class Ron { static { System.out.println(&#34;I am Ron&#34;); } } package org.example; public class Main { public static void main(String[] args) throws ClassNotFoundException { Class&lt;?&gt; ron = Class.forName(&#34;org.example.Ron&#34;); } } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

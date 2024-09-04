@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "Java AQS",
       "headline" : "Java AQS",
-      "description" : "LockSupport LockSupport是JUC包下locks子包下的一个类，同用来在Java中对线程实现一个最基本的阻塞和唤醒。它和CAS一样是在JUC包下并发工具控制的实现基础，他们同样都依赖Unsafe类，依赖该类下的JNI接口。\n基本方法 在LockSupport中使用park开头的方法来阻塞当前线程，unpark方法用来唤醒一个被阻塞的现场。\n\/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 *\/ public static void park() { UNSAFE.park(false, 0L); } \/** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 *\/ public static void parkNanos(long nanos) { if (nanos \u0026gt; 0) UNSAFE.park(false, nanos); } \/** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 *\/ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } \/** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2.",
+      "description" : "LockSupport LockSupport是JUC包下locks子包下的一个类，同用来在Java中对线程实现一个最基本的阻塞和唤醒。它和CAS一样是在JUC包下并发工具控制的实现基础，他们同样都依赖Unsafe类，依赖该类下的JNI接口。\n基本方法 在LockSupport中使用park开头的方法来阻塞当前线程，unpark方法用来唤醒一个被阻塞的现场。\n\/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 *\/ public static void park() { UNSAFE.park(false, 0L); } \/** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 *\/ public static void parkNanos(long nanos) { if (nanos \u0026gt; 0) UNSAFE.park(false, nanos); } \/** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 *\/ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } \/** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2.如果thread 之前因调用park()而被挂起，则调用unpark()后，该线程会被唤醒。 * 3.如果thread 之前没有调用park()，则调用unpark()方法后，后续再一次调用park()方法时，其会立刻返回。 * * @param thread *\/ public static void unpark(Thread thread) { if (thread != null) UNSAFE.unpark(thread); } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -40,10 +40,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="LockSupport LockSupport是JUC包下locks子包下的一个类，同用来在Java中对线程实现一个最基本的阻塞和唤醒。它和CAS一样是在JUC包下并发工具控制的实现基础，他们同样都依赖Unsafe类，依赖该类下的JNI接口。
 基本方法 在LockSupport中使用park开头的方法来阻塞当前线程，unpark方法用来唤醒一个被阻塞的现场。
-/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 */ public static void park() { UNSAFE.park(false, 0L); } /** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 */ public static void parkNanos(long nanos) { if (nanos &gt; 0) UNSAFE.park(false, nanos); } /** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 */ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } /** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2." />
+/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 */ public static void park() { UNSAFE.park(false, 0L); } /** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 */ public static void parkNanos(long nanos) { if (nanos &gt; 0) UNSAFE.park(false, nanos); } /** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 */ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } /** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2.如果thread 之前因调用park()而被挂起，则调用unpark()后，该线程会被唤醒。 * 3.如果thread 之前没有调用park()，则调用unpark()方法后，后续再一次调用park()方法时，其会立刻返回。 * * @param thread */ public static void unpark(Thread thread) { if (thread != null) UNSAFE.unpark(thread); } " />
   <meta name="description" content="LockSupport LockSupport是JUC包下locks子包下的一个类，同用来在Java中对线程实现一个最基本的阻塞和唤醒。它和CAS一样是在JUC包下并发工具控制的实现基础，他们同样都依赖Unsafe类，依赖该类下的JNI接口。
 基本方法 在LockSupport中使用park开头的方法来阻塞当前线程，unpark方法用来唤醒一个被阻塞的现场。
-/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 */ public static void park() { UNSAFE.park(false, 0L); } /** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 */ public static void parkNanos(long nanos) { if (nanos &gt; 0) UNSAFE.park(false, nanos); } /** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 */ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } /** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2." />
+/** * 尝试获取一个许可，如果没有则阻塞当前线程，响应中断；以下情况会返回 * 1.调用unpark(Thread thread)获得许可，这个unpark操作可以在park之前或者之后，如果park之前已经获得了许可，则调用了park会发上返回 * 2.当前线程被中断(interrupt())，返回时不会抛出异常 * 3.因为虚假唤醒而返回 */ public static void park() { UNSAFE.park(false, 0L); } /** * park()的扩展函数，时间是相对当前时间的时间段，单位为纳秒，如果超时自动返回 * * @param nanos 时间段纳秒 */ public static void parkNanos(long nanos) { if (nanos &gt; 0) UNSAFE.park(false, nanos); } /** * park()的扩展函数，时间是基于绝对时间(1970开始)的时间点，单位为毫秒，如果超时自动返回 * * @param deadline 时间点的毫秒值 */ public static void parkUntil(long deadline) { UNSAFE.park(true, deadline); } /** * 提供一个许可，唤醒线程的方法就这一个。 * 1.如果thread 之前没有持有许可，则让thread 线程持有一个，如果这前有许可了，那么数量不会增加 * 2.如果thread 之前因调用park()而被挂起，则调用unpark()后，该线程会被唤醒。 * 3.如果thread 之前没有调用park()，则调用unpark()方法后，后续再一次调用park()方法时，其会立刻返回。 * * @param thread */ public static void unpark(Thread thread) { if (thread != null) UNSAFE.unpark(thread); } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
@@ -313,113 +313,113 @@
 <p>AQS中最基本的最基本的数据结构为Node，及CLH变体队列中的节点，将请求的队列封装成CLH变体队列中的一个节点。
 在Node中线程有两种锁的模式，共享锁和独占锁。</p>
 <table>
-<thead>
-<tr>
-<th>模式</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SHARED</td>
-<td>表示线程以共享的模式等待锁</td>
-</tr>
-<tr>
-<td>EXCLUSIVE</td>
-<td>表示线程正在以独占的方式等待锁</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">模式</th>
+          <th style="text-align: left">含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">SHARED</td>
+          <td style="text-align: left">表示线程以共享的模式等待锁</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">EXCLUSIVE</td>
+          <td style="text-align: left">表示线程正在以独占的方式等待锁</td>
+      </tr>
+  </tbody>
 </table>
 <p>Node中的方法和属性：</p>
 <table>
-<thead>
-<tr>
-<th>方法和属性值</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>waitStatus</td>
-<td>当前节点在队列中的状态</td>
-</tr>
-<tr>
-<td>thread</td>
-<td>表示处于该节点的线程</td>
-</tr>
-<tr>
-<td>prev</td>
-<td>前驱指针</td>
-</tr>
-<tr>
-<td>predecessor</td>
-<td>返回前驱节点，没有的话抛出NPE</td>
-</tr>
-<tr>
-<td>nextWaiter</td>
-<td>指向下一个处于CONDITION状态的节点</td>
-</tr>
-<tr>
-<td>next</td>
-<td>后继指针</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">方法和属性值</th>
+          <th style="text-align: left">含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">waitStatus</td>
+          <td style="text-align: left">当前节点在队列中的状态</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">thread</td>
+          <td style="text-align: left">表示处于该节点的线程</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">prev</td>
+          <td style="text-align: left">前驱指针</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">predecessor</td>
+          <td style="text-align: left">返回前驱节点，没有的话抛出NPE</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">nextWaiter</td>
+          <td style="text-align: left">指向下一个处于CONDITION状态的节点</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">next</td>
+          <td style="text-align: left">后继指针</td>
+      </tr>
+  </tbody>
 </table>
 <p>waitStatus有带选的枚举值：</p>
 <table>
-<thead>
-<tr>
-<th>枚举</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>当一个Node被初始化的时候的默认值</td>
-</tr>
-<tr>
-<td>CANCELLED</td>
-<td>为1，表示线程获取锁的请求已经取消了</td>
-</tr>
-<tr>
-<td>CONDITION</td>
-<td>为-2，表示节点在等待队列中，节点线程等待唤醒</td>
-</tr>
-<tr>
-<td>PROPAGATE</td>
-<td>为-3，当前线程处在SHARED情况下，该字段才会使用</td>
-</tr>
-<tr>
-<td>SIGNAL</td>
-<td>为-1，表示线程已经准备好了，就等资源释放了</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">枚举</th>
+          <th style="text-align: left">含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">当一个Node被初始化的时候的默认值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CANCELLED</td>
+          <td style="text-align: left">为1，表示线程获取锁的请求已经取消了</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CONDITION</td>
+          <td style="text-align: left">为-2，表示节点在等待队列中，节点线程等待唤醒</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">PROPAGATE</td>
+          <td style="text-align: left">为-3，当前线程处在SHARED情况下，该字段才会使用</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">SIGNAL</td>
+          <td style="text-align: left">为-1，表示线程已经准备好了，就等资源释放了</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="state-同步状态">State 同步状态</h3>
 <p>在AQS中有一个state的字段，为同步状态，由Volatile修饰，表示当前临界资源的获锁情况；我们在定义同步工具时，需要自定义获取同步状态和释放同步状态的方式，API层实现。</p>
 <p>访问state方法：</p>
 <table>
-<thead>
-<tr>
-<th>方法名</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>protected final int getState()</td>
-<td>获取State的值</td>
-</tr>
-<tr>
-<td>protected final void setState(int newState)</td>
-<td>设置State的值</td>
-</tr>
-<tr>
-<td>protected final boolean compareAndSetState(int expect, int update)</td>
-<td>使用CAS方式更新State</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">方法名</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">protected final int getState()</td>
+          <td style="text-align: left">获取State的值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">protected final void setState(int newState)</td>
+          <td style="text-align: left">设置State的值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">protected final boolean compareAndSetState(int expect, int update)</td>
+          <td style="text-align: left">使用CAS方式更新State</td>
+      </tr>
+  </tbody>
 </table>
 <p>通过State字段来实现多线程的独占模式和共享模式：
 <img src="/images/AQS/exclusiveState.png" alt="exclusiveState">
@@ -427,34 +427,34 @@
 <h3 id="方法实现">方法实现</h3>
 <p>我们在自定义同步器时，需要实现同步器中的方法，也就是通过修改State字段来实现多线程的独占模式或者共享模式。</p>
 <table>
-<thead>
-<tr>
-<th>方法名</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>protected boolean isHeldExclusively()</td>
-<td>该线程是否正在独占资源。只有用到Condition才需要去实现它。</td>
-</tr>
-<tr>
-<td>protected boolean tryAcquire(int arg)</td>
-<td>独占方式。arg为获取锁的次数，尝试获取资源，成功则返回True，失败则返回False。</td>
-</tr>
-<tr>
-<td>protected boolean tryRelease(int arg)</td>
-<td>独占方式。arg为释放锁的次数，尝试释放资源，成功则返回True，失败则返回False。</td>
-</tr>
-<tr>
-<td>protected int tryAcquireShared(int arg)</td>
-<td>共享方式。arg为获取锁的次数，尝试获取资源。负数表示失败；0表示成功，但没有剩余可用资源；正数表示成功，且有剩余资源。</td>
-</tr>
-<tr>
-<td>protected boolean tryReleaseShared(int arg)</td>
-<td>共享方式。arg为释放锁的次数，尝试释放资源，如果释放后允许唤醒后续等待结点返回True，否则返回False。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">方法名</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">protected boolean isHeldExclusively()</td>
+          <td style="text-align: left">该线程是否正在独占资源。只有用到Condition才需要去实现它。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">protected boolean tryAcquire(int arg)</td>
+          <td style="text-align: left">独占方式。arg为获取锁的次数，尝试获取资源，成功则返回True，失败则返回False。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">protected boolean tryRelease(int arg)</td>
+          <td style="text-align: left">独占方式。arg为释放锁的次数，尝试释放资源，成功则返回True，失败则返回False。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">protected int tryAcquireShared(int arg)</td>
+          <td style="text-align: left">共享方式。arg为获取锁的次数，尝试获取资源。负数表示失败；0表示成功，但没有剩余可用资源；正数表示成功，且有剩余资源。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">protected boolean tryReleaseShared(int arg)</td>
+          <td style="text-align: left">共享方式。arg为释放锁的次数，尝试释放资源，如果释放后允许唤醒后续等待结点返回True，否则返回False。</td>
+      </tr>
+  </tbody>
 </table>
 <p>这些方法不是全部都要实现，如果我们需要的独占锁，那么只需要实现tryAcquire-tryRelease，共享锁需要实现tryAcquireShared-tryReleaseShared，当然也有同时实现独占和共享两种方式的，如ReentrantReadWriteLock。</p>
 <p>Lock类跟API层核心方法的映射关系：
@@ -816,34 +816,34 @@
 </ol>
 <h3 id="juc的应用场景">JUC的应用场景</h3>
 <table>
-<thead>
-<tr>
-<th>同步工具</th>
-<th>同步工具与AQS的关联</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ReentrantLock</td>
-<td>使用AQS保存锁重复持有的次数。当一个线程获取锁时，ReentrantLock记录当前获得锁的线程标识，用于检测是否重复获取，以及错误线程试图解锁操作时异常情况的处理。</td>
-</tr>
-<tr>
-<td>Semaphore</td>
-<td>使用AQS同步状态来保存信号量的当前计数。tryRelease会增加计数，acquireShared会减少计数。</td>
-</tr>
-<tr>
-<td>CountDownLatch</td>
-<td>使用AQS同步状态来表示计数。计数为0时，所有的Acquire操作（CountDownLatch的await方法）才可以通过。</td>
-</tr>
-<tr>
-<td>ReentrantReadWriteLock</td>
-<td>使用AQS同步状态中的16位保存写锁持有的次数，剩下的16位用于保存读锁的持有次数。</td>
-</tr>
-<tr>
-<td>ThreadPoolExecutor</td>
-<td>Worker利用AQS同步状态实现对独占线程变量的设置（tryAcquire和tryRelease）。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">同步工具</th>
+          <th style="text-align: left">同步工具与AQS的关联</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">ReentrantLock</td>
+          <td style="text-align: left">使用AQS保存锁重复持有的次数。当一个线程获取锁时，ReentrantLock记录当前获得锁的线程标识，用于检测是否重复获取，以及错误线程试图解锁操作时异常情况的处理。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Semaphore</td>
+          <td style="text-align: left">使用AQS同步状态来保存信号量的当前计数。tryRelease会增加计数，acquireShared会减少计数。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CountDownLatch</td>
+          <td style="text-align: left">使用AQS同步状态来表示计数。计数为0时，所有的Acquire操作（CountDownLatch的await方法）才可以通过。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ReentrantReadWriteLock</td>
+          <td style="text-align: left">使用AQS同步状态中的16位保存写锁持有的次数，剩下的16位用于保存读锁的持有次数。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ThreadPoolExecutor</td>
+          <td style="text-align: left">Worker利用AQS同步状态实现对独占线程变量的设置（tryAcquire和tryRelease）。</td>
+      </tr>
+  </tbody>
 </table>
 
         </div>

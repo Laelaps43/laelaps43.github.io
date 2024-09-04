@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "Java判断基本数据类型",
       "headline" : "Java判断基本数据类型",
-      "description" : "Content 我们需要判断当前数据类型是不是基本数据类型，我们有以下一些方法：\n1. class类提供的 isPrimitive方法 public void testIsPrimitiveType(){ System.out.println(int.class.isPrimitive()); System.out.println(String.class.isPrimitive()); System.out.println(boolean.class.isPrimitive()); System.out.println(void.class.isPrimitive()); System.out.println(Double.class.isPrimitive()); \/\/ false } 这个方法用于判断Class对象是否为一个基本数据类型和Void，如果是八大基本类型加void，则返回true，否则返回false。\n2. class也可以使用isArray()判断是否为数组类型 public void testIsArray(){ int[] ints = new int[0]; System.out.println(ints.getClass().isArray()); System.out.println(\u0026#34;1\u0026#34;.getClass().isArray()); } 3. getName 引用类型不是数组类型 返回二进制名称 基本类型或者void，返回的是一个String字符串 数组类型，由多个或一个[后接内部形式的元素类型的名称组成。 @Test public void testGetName(){ MergeSort mergeSort = new MergeSort(); System.out.println(mergeSort.getClass().getName()); \/\/ us.laelaps.sort.MergeSort System.out.println(int.class.getName()); \/\/ int System.out.println(String.class.getName()); \/\/ java.lang.String System.out.println(void.class.getName()); \/\/ void int[] ints = new int[1]; System.out.println(ints.getClass().getName()); \/\/ [I String[][] strings = new String[2][3]; System.",
+      "description" : "Content 我们需要判断当前数据类型是不是基本数据类型，我们有以下一些方法：\n1. class类提供的 isPrimitive方法 public void testIsPrimitiveType(){ System.out.println(int.class.isPrimitive()); System.out.println(String.class.isPrimitive()); System.out.println(boolean.class.isPrimitive()); System.out.println(void.class.isPrimitive()); System.out.println(Double.class.isPrimitive()); \/\/ false } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -39,11 +39,9 @@
   <meta property="og:title" content="Java判断基本数据类型" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="Content 我们需要判断当前数据类型是不是基本数据类型，我们有以下一些方法：
-1. class类提供的 isPrimitive方法 public void testIsPrimitiveType(){ System.out.println(int.class.isPrimitive()); System.out.println(String.class.isPrimitive()); System.out.println(boolean.class.isPrimitive()); System.out.println(void.class.isPrimitive()); System.out.println(Double.class.isPrimitive()); // false } 这个方法用于判断Class对象是否为一个基本数据类型和Void，如果是八大基本类型加void，则返回true，否则返回false。
-2. class也可以使用isArray()判断是否为数组类型 public void testIsArray(){ int[] ints = new int[0]; System.out.println(ints.getClass().isArray()); System.out.println(&#34;1&#34;.getClass().isArray()); } 3. getName 引用类型不是数组类型 返回二进制名称 基本类型或者void，返回的是一个String字符串 数组类型，由多个或一个[后接内部形式的元素类型的名称组成。 @Test public void testGetName(){ MergeSort mergeSort = new MergeSort(); System.out.println(mergeSort.getClass().getName()); // us.laelaps.sort.MergeSort System.out.println(int.class.getName()); // int System.out.println(String.class.getName()); // java.lang.String System.out.println(void.class.getName()); // void int[] ints = new int[1]; System.out.println(ints.getClass().getName()); // [I String[][] strings = new String[2][3]; System." />
+1. class类提供的 isPrimitive方法 public void testIsPrimitiveType(){ System.out.println(int.class.isPrimitive()); System.out.println(String.class.isPrimitive()); System.out.println(boolean.class.isPrimitive()); System.out.println(void.class.isPrimitive()); System.out.println(Double.class.isPrimitive()); // false } " />
   <meta name="description" content="Content 我们需要判断当前数据类型是不是基本数据类型，我们有以下一些方法：
-1. class类提供的 isPrimitive方法 public void testIsPrimitiveType(){ System.out.println(int.class.isPrimitive()); System.out.println(String.class.isPrimitive()); System.out.println(boolean.class.isPrimitive()); System.out.println(void.class.isPrimitive()); System.out.println(Double.class.isPrimitive()); // false } 这个方法用于判断Class对象是否为一个基本数据类型和Void，如果是八大基本类型加void，则返回true，否则返回false。
-2. class也可以使用isArray()判断是否为数组类型 public void testIsArray(){ int[] ints = new int[0]; System.out.println(ints.getClass().isArray()); System.out.println(&#34;1&#34;.getClass().isArray()); } 3. getName 引用类型不是数组类型 返回二进制名称 基本类型或者void，返回的是一个String字符串 数组类型，由多个或一个[后接内部形式的元素类型的名称组成。 @Test public void testGetName(){ MergeSort mergeSort = new MergeSort(); System.out.println(mergeSort.getClass().getName()); // us.laelaps.sort.MergeSort System.out.println(int.class.getName()); // int System.out.println(String.class.getName()); // java.lang.String System.out.println(void.class.getName()); // void int[] ints = new int[1]; System.out.println(ints.getClass().getName()); // [I String[][] strings = new String[2][3]; System." />
+1. class类提供的 isPrimitive方法 public void testIsPrimitiveType(){ System.out.println(int.class.isPrimitive()); System.out.println(String.class.isPrimitive()); System.out.println(boolean.class.isPrimitive()); System.out.println(void.class.isPrimitive()); System.out.println(Double.class.isPrimitive()); // false } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
@@ -247,50 +245,50 @@
 <ul>
 <li>数组的二进制名称由一个或多个<code>[</code>和基础类型或引用类型的二进制名称组成；通过使用方括号的数量，我们可以区分不同纬度的数组。
 <table>
-<thead>
-<tr>
-<th>元素类型</th>
-<th>编码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>boolean</td>
-<td>Z</td>
-</tr>
-<tr>
-<td>byte</td>
-<td>B</td>
-</tr>
-<tr>
-<td>char</td>
-<td>C</td>
-</tr>
-<tr>
-<td>class or interface</td>
-<td>L<em>classname</em></td>
-</tr>
-<tr>
-<td>double</td>
-<td>D</td>
-</tr>
-<tr>
-<td>float</td>
-<td>F</td>
-</tr>
-<tr>
-<td>int</td>
-<td>I</td>
-</tr>
-<tr>
-<td>long</td>
-<td>J</td>
-</tr>
-<tr>
-<td>short</td>
-<td>S</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">元素类型</th>
+          <th style="text-align: left">编码</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">boolean</td>
+          <td style="text-align: left">Z</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">byte</td>
+          <td style="text-align: left">B</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">char</td>
+          <td style="text-align: left">C</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">class or interface</td>
+          <td style="text-align: left">L<em>classname</em></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">double</td>
+          <td style="text-align: left">D</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">float</td>
+          <td style="text-align: left">F</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">int</td>
+          <td style="text-align: left">I</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">long</td>
+          <td style="text-align: left">J</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">short</td>
+          <td style="text-align: left">S</td>
+      </tr>
+  </tbody>
 </table>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>int<span style="color:#f92672">[]</span> -&gt; <span style="color:#f92672">[</span>I
 </span></span><span style="display:flex;"><span>char<span style="color:#f92672">[][]</span> -&gt; <span style="color:#f92672">[[</span>C

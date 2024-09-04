@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "leetcodes",
       "name" : "力扣19题解",
       "headline" : "力扣19题解",
-      "description" : "前言 看到这个是关于链表的题目，那么就是使用递归或者是迭代了，在递归的时候，是从后往前数到第n个；使用迭代则是先得出总的节点数，然后在使用总的节点数减去n，得到的就是从前往后数的个数，在使用一次迭代就可以将节点删去。\n迭代 func removeNthFromEnd(head *ListNode, n int) *ListNode { dummy := \u0026amp;ListNode{0, head} tmp := dummy.Next sum := 0 for tmp.Next != nil { tmp = tmp.Next sum \u002b= 1 } beforeNth := sum - n tmp = dummy for i := 0; i \u0026lt;= beforeNth; i\u002b\u002b{ tmp = tmp.Next } tmp.Next = tmp.Next.Next return dummy.Next } 递归 func removeNthFromEnd(head *ListNode, n int) *ListNode { m := 0 dummy := \u0026amp;ListNode{0, head} removeByRecursion(dummy, n, \u0026amp;m) return dummy.",
+      "description" : "前言 看到这个是关于链表的题目，那么就是使用递归或者是迭代了，在递归的时候，是从后往前数到第n个；使用迭代则是先得出总的节点数，然后在使用总的节点数减去n，得到的就是从前往后数的个数，在使用一次迭代就可以将节点删去。\n迭代 func removeNthFromEnd(head *ListNode, n int) *ListNode { dummy := \u0026amp;ListNode{0, head} tmp := dummy.Next sum := 0 for tmp.Next != nil { tmp = tmp.Next sum \u002b= 1 } beforeNth := sum - n tmp = dummy for i := 0; i \u0026lt;= beforeNth; i\u002b\u002b{ tmp = tmp.Next } tmp.Next = tmp.Next.Next return dummy.Next } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -39,9 +39,9 @@
   <meta property="og:title" content="力扣19题解" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="前言 看到这个是关于链表的题目，那么就是使用递归或者是迭代了，在递归的时候，是从后往前数到第n个；使用迭代则是先得出总的节点数，然后在使用总的节点数减去n，得到的就是从前往后数的个数，在使用一次迭代就可以将节点删去。
-迭代 func removeNthFromEnd(head *ListNode, n int) *ListNode { dummy := &amp;ListNode{0, head} tmp := dummy.Next sum := 0 for tmp.Next != nil { tmp = tmp.Next sum &#43;= 1 } beforeNth := sum - n tmp = dummy for i := 0; i &lt;= beforeNth; i&#43;&#43;{ tmp = tmp.Next } tmp.Next = tmp.Next.Next return dummy.Next } 递归 func removeNthFromEnd(head *ListNode, n int) *ListNode { m := 0 dummy := &amp;ListNode{0, head} removeByRecursion(dummy, n, &amp;m) return dummy." />
+迭代 func removeNthFromEnd(head *ListNode, n int) *ListNode { dummy := &amp;ListNode{0, head} tmp := dummy.Next sum := 0 for tmp.Next != nil { tmp = tmp.Next sum &#43;= 1 } beforeNth := sum - n tmp = dummy for i := 0; i &lt;= beforeNth; i&#43;&#43;{ tmp = tmp.Next } tmp.Next = tmp.Next.Next return dummy.Next } " />
   <meta name="description" content="前言 看到这个是关于链表的题目，那么就是使用递归或者是迭代了，在递归的时候，是从后往前数到第n个；使用迭代则是先得出总的节点数，然后在使用总的节点数减去n，得到的就是从前往后数的个数，在使用一次迭代就可以将节点删去。
-迭代 func removeNthFromEnd(head *ListNode, n int) *ListNode { dummy := &amp;ListNode{0, head} tmp := dummy.Next sum := 0 for tmp.Next != nil { tmp = tmp.Next sum &#43;= 1 } beforeNth := sum - n tmp = dummy for i := 0; i &lt;= beforeNth; i&#43;&#43;{ tmp = tmp.Next } tmp.Next = tmp.Next.Next return dummy.Next } 递归 func removeNthFromEnd(head *ListNode, n int) *ListNode { m := 0 dummy := &amp;ListNode{0, head} removeByRecursion(dummy, n, &amp;m) return dummy." />
+迭代 func removeNthFromEnd(head *ListNode, n int) *ListNode { dummy := &amp;ListNode{0, head} tmp := dummy.Next sum := 0 for tmp.Next != nil { tmp = tmp.Next sum &#43;= 1 } beforeNth := sum - n tmp = dummy for i := 0; i &lt;= beforeNth; i&#43;&#43;{ tmp = tmp.Next } tmp.Next = tmp.Next.Next return dummy.Next } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

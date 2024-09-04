@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "leetcodes",
       "name" : "力扣53题解",
       "headline" : "力扣53题解",
-      "description" : "前言 我一开始想到的是使用双指针，但是写着写着发现还是有点复杂的，最后放弃了这种方法，因为之前做个这个题目，所以也很容易想到贪心。\n贪心 思想 当sum \u0026lt;= 0时，重新将sum赋值为0，因为一个负数加上一个负数，那么他更小，如果他加上一个大于他的数，我们为什么不选择比他的那个数，而需要加上他呢。\nJava public static int maxSubArray(int[] nums) { int max = Integer.MIN_VALUE; int sum = 0; for (int i = 0; i \u0026lt; nums.length; i\u002b\u002b) { sum \u002b= nums[i]; max = Math.max(max, sum); if (sum \u0026lt;= 0) sum = 0; } return max; } Go func maxSubArray(nums []int) int { max := math.MinInt sum := 0 for _, num := range(nums){ sum \u002b= num if sum \u0026gt; max { max = sum } if sum \u0026lt;= 0 { sum = 0 } } return max } ",
+      "description" : "前言 我一开始想到的是使用双指针，但是写着写着发现还是有点复杂的，最后放弃了这种方法，因为之前做个这个题目，所以也很容易想到贪心。\n贪心 思想 当sum \u0026lt;= 0时，重新将sum赋值为0，因为一个负数加上一个负数，那么他更小，如果他加上一个大于他的数，我们为什么不选择比他的那个数，而需要加上他呢。\nJava public static int maxSubArray(int[] nums) { int max = Integer.MIN_VALUE; int sum = 0; for (int i = 0; i \u0026lt; nums.length; i\u002b\u002b) { sum \u002b= nums[i]; max = Math.max(max, sum); if (sum \u0026lt;= 0) sum = 0; } return max; } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -40,10 +40,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="前言 我一开始想到的是使用双指针，但是写着写着发现还是有点复杂的，最后放弃了这种方法，因为之前做个这个题目，所以也很容易想到贪心。
 贪心 思想 当sum &lt;= 0时，重新将sum赋值为0，因为一个负数加上一个负数，那么他更小，如果他加上一个大于他的数，我们为什么不选择比他的那个数，而需要加上他呢。
-Java public static int maxSubArray(int[] nums) { int max = Integer.MIN_VALUE; int sum = 0; for (int i = 0; i &lt; nums.length; i&#43;&#43;) { sum &#43;= nums[i]; max = Math.max(max, sum); if (sum &lt;= 0) sum = 0; } return max; } Go func maxSubArray(nums []int) int { max := math.MinInt sum := 0 for _, num := range(nums){ sum &#43;= num if sum &gt; max { max = sum } if sum &lt;= 0 { sum = 0 } } return max } " />
+Java public static int maxSubArray(int[] nums) { int max = Integer.MIN_VALUE; int sum = 0; for (int i = 0; i &lt; nums.length; i&#43;&#43;) { sum &#43;= nums[i]; max = Math.max(max, sum); if (sum &lt;= 0) sum = 0; } return max; } " />
   <meta name="description" content="前言 我一开始想到的是使用双指针，但是写着写着发现还是有点复杂的，最后放弃了这种方法，因为之前做个这个题目，所以也很容易想到贪心。
 贪心 思想 当sum &lt;= 0时，重新将sum赋值为0，因为一个负数加上一个负数，那么他更小，如果他加上一个大于他的数，我们为什么不选择比他的那个数，而需要加上他呢。
-Java public static int maxSubArray(int[] nums) { int max = Integer.MIN_VALUE; int sum = 0; for (int i = 0; i &lt; nums.length; i&#43;&#43;) { sum &#43;= nums[i]; max = Math.max(max, sum); if (sum &lt;= 0) sum = 0; } return max; } Go func maxSubArray(nums []int) int { max := math.MinInt sum := 0 for _, num := range(nums){ sum &#43;= num if sum &gt; max { max = sum } if sum &lt;= 0 { sum = 0 } } return max } " />
+Java public static int maxSubArray(int[] nums) { int max = Integer.MIN_VALUE; int sum = 0; for (int i = 0; i &lt; nums.length; i&#43;&#43;) { sum &#43;= nums[i]; max = Math.max(max, sum); if (sum &lt;= 0) sum = 0; } return max; } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

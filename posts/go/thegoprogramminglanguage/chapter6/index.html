@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "The Go Programming Language 方法（6)",
       "headline" : "The Go Programming Language 方法（6)",
-      "description" : "面向对象编程 在Go中没有统一的面向对象编程的定义，也就是没有类，但是我们还是可以使用者一种思想。对象可以是一个简单的值或者变量同时拥有方法，方法是某特定类型的函数。\n方法 声明 我们可以在同一个包下的任何类型（但是指针类型和接口类型除外）给他们声明一个方法，方法跟函数类型类似，只是在函数的前面多了一个接受者，用来描述方法跟哪一种类型相互关联。 注意 方法和字段在同一个命名空间内不能是相同的名字。\ntype Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } 指针接收者 方法的接受者可以使用类型的指针来代替以来的类型，改变原来的值传递；但是按照习惯，如果一个地方使用了指针接收者，那么该类型的所有方法都应该使用指针接受者。\n\/\/ 声明 type Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p.",
+      "description" : "面向对象编程 在Go中没有统一的面向对象编程的定义，也就是没有类，但是我们还是可以使用者一种思想。对象可以是一个简单的值或者变量同时拥有方法，方法是某特定类型的函数。\n方法 声明 我们可以在同一个包下的任何类型（但是指针类型和接口类型除外）给他们声明一个方法，方法跟函数类型类似，只是在函数的前面多了一个接受者，用来描述方法跟哪一种类型相互关联。 注意 方法和字段在同一个命名空间内不能是相同的名字。\ntype Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -40,12 +40,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="面向对象编程 在Go中没有统一的面向对象编程的定义，也就是没有类，但是我们还是可以使用者一种思想。对象可以是一个简单的值或者变量同时拥有方法，方法是某特定类型的函数。
 方法 声明 我们可以在同一个包下的任何类型（但是指针类型和接口类型除外）给他们声明一个方法，方法跟函数类型类似，只是在函数的前面多了一个接受者，用来描述方法跟哪一种类型相互关联。 注意 方法和字段在同一个命名空间内不能是相同的名字。
-type Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } 指针接收者 方法的接受者可以使用类型的指针来代替以来的类型，改变原来的值传递；但是按照习惯，如果一个地方使用了指针接收者，那么该类型的所有方法都应该使用指针接受者。
-// 声明 type Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p." />
+type Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } " />
   <meta name="description" content="面向对象编程 在Go中没有统一的面向对象编程的定义，也就是没有类，但是我们还是可以使用者一种思想。对象可以是一个简单的值或者变量同时拥有方法，方法是某特定类型的函数。
 方法 声明 我们可以在同一个包下的任何类型（但是指针类型和接口类型除外）给他们声明一个方法，方法跟函数类型类似，只是在函数的前面多了一个接受者，用来描述方法跟哪一种类型相互关联。 注意 方法和字段在同一个命名空间内不能是相同的名字。
-type Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } 指针接收者 方法的接受者可以使用类型的指针来代替以来的类型，改变原来的值传递；但是按照习惯，如果一个地方使用了指针接收者，那么该类型的所有方法都应该使用指针接受者。
-// 声明 type Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p." />
+type Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

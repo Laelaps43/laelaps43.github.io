@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "Java锁体系",
       "headline" : "Java锁体系",
-      "description" : "Monitor机制 monitor（监视器、管程）是一个同步工具（同步机制）；底层以来于操作系统的mutex lock实现。 特点：\n互斥 提供singnal机制 Mark Word会保存指向重量级锁的指针，结构如下： ObjectMonitor() { _header = NULL; _count = 0; _waiters = 0, _recursions = 0; _object = NULL; _owner = NULL; _WaitSet = NULL; _WaitSetLock = 0 ; _Responsible = NULL ; _succ = NULL ; _cxq = NULL ; FreeNext = NULL ; _EntryList = NULL ; _SpinFreq = 0 ; _SpinClock = 0 ; OwnerIsThread = 0 ; _previous_owner_tid = 0; } 字段声明：",
+      "description" : "Monitor机制 monitor（监视器、管程）是一个同步工具（同步机制）；底层以来于操作系统的mutex lock实现。 特点：\n互斥 提供singnal机制 Mark Word会保存指向重量级锁的指针，结构如下： ObjectMonitor() { _header = NULL; _count = 0; _waiters = 0, _recursions = 0; _object = NULL; _owner = NULL; _WaitSet = NULL; _WaitSetLock = 0 ; _Responsible = NULL ; _succ = NULL ; _cxq = NULL ; FreeNext = NULL ; _EntryList = NULL ; _SpinFreq = 0 ; _SpinClock = 0 ; OwnerIsThread = 0 ; _previous_owner_tid = 0; } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -39,9 +39,9 @@
   <meta property="og:title" content="Java锁体系" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="Monitor机制 monitor（监视器、管程）是一个同步工具（同步机制）；底层以来于操作系统的mutex lock实现。 特点：
-互斥 提供singnal机制 Mark Word会保存指向重量级锁的指针，结构如下： ObjectMonitor() { _header = NULL; _count = 0; _waiters = 0, _recursions = 0; _object = NULL; _owner = NULL; _WaitSet = NULL; _WaitSetLock = 0 ; _Responsible = NULL ; _succ = NULL ; _cxq = NULL ; FreeNext = NULL ; _EntryList = NULL ; _SpinFreq = 0 ; _SpinClock = 0 ; OwnerIsThread = 0 ; _previous_owner_tid = 0; } 字段声明：" />
+互斥 提供singnal机制 Mark Word会保存指向重量级锁的指针，结构如下： ObjectMonitor() { _header = NULL; _count = 0; _waiters = 0, _recursions = 0; _object = NULL; _owner = NULL; _WaitSet = NULL; _WaitSetLock = 0 ; _Responsible = NULL ; _succ = NULL ; _cxq = NULL ; FreeNext = NULL ; _EntryList = NULL ; _SpinFreq = 0 ; _SpinClock = 0 ; OwnerIsThread = 0 ; _previous_owner_tid = 0; } " />
   <meta name="description" content="Monitor机制 monitor（监视器、管程）是一个同步工具（同步机制）；底层以来于操作系统的mutex lock实现。 特点：
-互斥 提供singnal机制 Mark Word会保存指向重量级锁的指针，结构如下： ObjectMonitor() { _header = NULL; _count = 0; _waiters = 0, _recursions = 0; _object = NULL; _owner = NULL; _WaitSet = NULL; _WaitSetLock = 0 ; _Responsible = NULL ; _succ = NULL ; _cxq = NULL ; FreeNext = NULL ; _EntryList = NULL ; _SpinFreq = 0 ; _SpinClock = 0 ; OwnerIsThread = 0 ; _previous_owner_tid = 0; } 字段声明：" />
+互斥 提供singnal机制 Mark Word会保存指向重量级锁的指针，结构如下： ObjectMonitor() { _header = NULL; _count = 0; _waiters = 0, _recursions = 0; _object = NULL; _owner = NULL; _WaitSet = NULL; _WaitSetLock = 0 ; _Responsible = NULL ; _succ = NULL ; _cxq = NULL ; FreeNext = NULL ; _EntryList = NULL ; _SpinFreq = 0 ; _SpinClock = 0 ; OwnerIsThread = 0 ; _previous_owner_tid = 0; } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
@@ -273,40 +273,40 @@ Mark Word会保存指向重量级锁的指针，结构如下：</li>
 <img src="/images/JavaMarkWord.png" alt="JavaMarkWord">
 锁标志位代表含义：
 <table>
-<thead>
-<tr>
-<th>状态</th>
-<th>标志位</th>
-<th>存储内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>未锁定</td>
-<td>01</td>
-<td>对象哈希码、分代年龄</td>
-</tr>
-<tr>
-<td>偏向锁定</td>
-<td>01</td>
-<td>线程ID、偏向时间戳、分代年龄</td>
-</tr>
-<tr>
-<td>轻量级锁定</td>
-<td>00</td>
-<td>指向栈中锁记录的指针</td>
-</tr>
-<tr>
-<td>重量级锁定</td>
-<td>10</td>
-<td>指向重量级锁定的指针</td>
-</tr>
-<tr>
-<td>GC标记</td>
-<td>11</td>
-<td>空</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">状态</th>
+          <th style="text-align: left">标志位</th>
+          <th style="text-align: left">存储内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">未锁定</td>
+          <td style="text-align: left">01</td>
+          <td style="text-align: left">对象哈希码、分代年龄</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">偏向锁定</td>
+          <td style="text-align: left">01</td>
+          <td style="text-align: left">线程ID、偏向时间戳、分代年龄</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">轻量级锁定</td>
+          <td style="text-align: left">00</td>
+          <td style="text-align: left">指向栈中锁记录的指针</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">重量级锁定</td>
+          <td style="text-align: left">10</td>
+          <td style="text-align: left">指向重量级锁定的指针</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">GC标记</td>
+          <td style="text-align: left">11</td>
+          <td style="text-align: left">空</td>
+      </tr>
+  </tbody>
 </table>
 </li>
 </ol>

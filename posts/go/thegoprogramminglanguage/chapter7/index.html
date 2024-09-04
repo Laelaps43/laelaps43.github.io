@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.133.1">
+  <meta name="generator" content="Hugo 0.134.0">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "The Go Programming Language 接口（7)",
       "headline" : "The Go Programming Language 接口（7)",
-      "description" : "前言 Go中通过接口支持鸭子类型 If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.\nWhat? 接口类型是对其他类型行为的概括和抽象，一个接口定义了一套方法，如果一个类型需要实现该接口，那么需要实现接口中定义的所有方法，所以对于一个接口对象，我们不知道他是什么，但是我们可以知道他能做什么，及有那些方法，及接口是一种抽象的类型，他并没有暴露他所含有的数据的布局和内部结构，而是只有操纵他的方法。 接口要求类型包含了与签名和行为与接口类的方法一致的方法；实现了接口类型的任何方法都可以等于这个接口类型。 接口类型可以嵌套其他接口类型，这个新的接口类型需要去实现所有嵌套接口的类型。\npackage main import \u0026#34;fmt\u0026#34; type Person struct{ Name string Age int } type Lae interface { play() } func (p Person)play(){ fmt.Println(p.Name \u002b \u0026#34; play\u0026#34;) } func main() { lae := new(Person) lae.Name = \u0026#34;Ron\u0026#34; lae.Age = 18 var inter Lae = lae inter.",
+      "description" : "前言 Go中通过接口支持鸭子类型 If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.\nWhat? 接口类型是对其他类型行为的概括和抽象，一个接口定义了一套方法，如果一个类型需要实现该接口，那么需要实现接口中定义的所有方法，所以对于一个接口对象，我们不知道他是什么，但是我们可以知道他能做什么，及有那些方法，及接口是一种抽象的类型，他并没有暴露他所含有的数据的布局和内部结构，而是只有操纵他的方法。 接口要求类型包含了与签名和行为与接口类的方法一致的方法；实现了接口类型的任何方法都可以等于这个接口类型。 接口类型可以嵌套其他接口类型，这个新的接口类型需要去实现所有嵌套接口的类型。\npackage main import \u0026#34;fmt\u0026#34; type Person struct{ Name string Age int } type Lae interface { play() } func (p Person)play(){ fmt.Println(p.Name \u002b \u0026#34; play\u0026#34;) } func main() { lae := new(Person) lae.Name = \u0026#34;Ron\u0026#34; lae.Age = 18 var inter Lae = lae inter.play() } ",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -40,10 +40,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="前言 Go中通过接口支持鸭子类型 If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.
 What? 接口类型是对其他类型行为的概括和抽象，一个接口定义了一套方法，如果一个类型需要实现该接口，那么需要实现接口中定义的所有方法，所以对于一个接口对象，我们不知道他是什么，但是我们可以知道他能做什么，及有那些方法，及接口是一种抽象的类型，他并没有暴露他所含有的数据的布局和内部结构，而是只有操纵他的方法。 接口要求类型包含了与签名和行为与接口类的方法一致的方法；实现了接口类型的任何方法都可以等于这个接口类型。 接口类型可以嵌套其他接口类型，这个新的接口类型需要去实现所有嵌套接口的类型。
-package main import &#34;fmt&#34; type Person struct{ Name string Age int } type Lae interface { play() } func (p Person)play(){ fmt.Println(p.Name &#43; &#34; play&#34;) } func main() { lae := new(Person) lae.Name = &#34;Ron&#34; lae.Age = 18 var inter Lae = lae inter." />
+package main import &#34;fmt&#34; type Person struct{ Name string Age int } type Lae interface { play() } func (p Person)play(){ fmt.Println(p.Name &#43; &#34; play&#34;) } func main() { lae := new(Person) lae.Name = &#34;Ron&#34; lae.Age = 18 var inter Lae = lae inter.play() } " />
   <meta name="description" content="前言 Go中通过接口支持鸭子类型 If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck.
 What? 接口类型是对其他类型行为的概括和抽象，一个接口定义了一套方法，如果一个类型需要实现该接口，那么需要实现接口中定义的所有方法，所以对于一个接口对象，我们不知道他是什么，但是我们可以知道他能做什么，及有那些方法，及接口是一种抽象的类型，他并没有暴露他所含有的数据的布局和内部结构，而是只有操纵他的方法。 接口要求类型包含了与签名和行为与接口类的方法一致的方法；实现了接口类型的任何方法都可以等于这个接口类型。 接口类型可以嵌套其他接口类型，这个新的接口类型需要去实现所有嵌套接口的类型。
-package main import &#34;fmt&#34; type Person struct{ Name string Age int } type Lae interface { play() } func (p Person)play(){ fmt.Println(p.Name &#43; &#34; play&#34;) } func main() { lae := new(Person) lae.Name = &#34;Ron&#34; lae.Age = 18 var inter Lae = lae inter." />
+package main import &#34;fmt&#34; type Person struct{ Name string Age int } type Lae interface { play() } func (p Person)play(){ fmt.Println(p.Name &#43; &#34; play&#34;) } func main() { lae := new(Person) lae.Name = &#34;Ron&#34; lae.Age = 18 var inter Lae = lae inter.play() } " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
