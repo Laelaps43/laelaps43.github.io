@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.134.1">
+  <meta name="generator" content="Hugo 0.134.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "Java集合List",
       "headline" : "Java集合List",
-      "description" : "Content List 是一个接口，是对应的是一组元素为有序的，可重复的集合；他基础于Collection，但List又有一些独特的方法。\n位置相关 E get(int index); 接受一个int类型的参数index，index \u0026lt; 0 || index \u0026gt;= size() 触发越界异常。\nE set(int index, E element); 在指定位置添加元素，添加成功后返回原来这个位置的元素。\nvoid add(int index, E element); 在指定的位置上添加元素，在这个位置之后的元素（包括这个元素）向右移动。\nE remove(int index); 删除指定位置上的元素\n搜索 int indexOf(Object o); 在给定的List中查找o第一次出现位置，查找到返回所在位置，没有则返回-1。\nint lastIndexOf(Object o); 与上面那个相反，这个是从后往前找。\n迭代 ListIterator\u0026lt;E\u0026gt; listIterator() 返回一个ListIterator迭代器\nListIterator\u0026lt;E\u0026gt; listIterator(int index) 返回一ListIterator迭代器，但是他将这个”指针“放到指定的位置，所以next是指定的位置，而previous则是index - 1的位置。\n",
+      "description" : "Content List 是一个接口，是对应的是一组元素为有序的，可重复的集合；他基础于Collection，但List又有一些独特的方法。\n位置相关 E get(int index); 接受一个int类型的参数index，index \u0026lt; 0 || index \u0026gt;= size() 触发越界异常。\nE set(int index, E element); 在指定位置添加元素，添加成功后返回原来这个位置的元素。\nvoid add(int index, E element); 在指定的位置上添加元素，在这个位置之后的元素（包括这个元素）向右移动。\nE remove(int index); 删除指定位置上的元素\n搜索 int indexOf(Object o); 在给定的List中查找o第一次出现位置，查找到返回所在位置，没有则返回-1。\nint lastIndexOf(Object o); 与上面那个相反，这个是从后往前找。\n迭代 ListIterator\u0026lt;E\u0026gt; listIterator() 返回一个ListIterator迭代器\nListIterator\u0026lt;E\u0026gt; listIterator(int index) 返回一ListIterator迭代器，但是他将这个”指针“放到指定的位置，所以next是指定的位置，而previous则是index - 1的位置。\n@Test public void testList3(){ List\u0026lt;String\u0026gt; strings = new ArrayList\u0026lt;\u0026gt;(); strings.add(\u0026#34;a\u0026#34;); strings.add(\u0026#34;b\u0026#34;); strings.add(\u0026#34;c\u0026#34;); ListIterator\u0026lt;String\u0026gt; stringListIterator = strings.listIterator(1); System.out.println(stringListIterator.previousIndex()); System.out.println(stringListIterator.nextIndex()); } 范围操作 List\u0026lt;E\u0026gt; subList(int fromIndex, int toIndex) 返回的是一个List的一个视图，所有所有的操作都会返回在原来的数组之上。\n",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -47,6 +47,7 @@ E remove(int index); 删除指定位置上的元素
 int lastIndexOf(Object o); 与上面那个相反，这个是从后往前找。
 迭代 ListIterator&lt;E&gt; listIterator() 返回一个ListIterator迭代器
 ListIterator&lt;E&gt; listIterator(int index) 返回一ListIterator迭代器，但是他将这个”指针“放到指定的位置，所以next是指定的位置，而previous则是index - 1的位置。
+@Test public void testList3(){ List&lt;String&gt; strings = new ArrayList&lt;&gt;(); strings.add(&#34;a&#34;); strings.add(&#34;b&#34;); strings.add(&#34;c&#34;); ListIterator&lt;String&gt; stringListIterator = strings.listIterator(1); System.out.println(stringListIterator.previousIndex()); System.out.println(stringListIterator.nextIndex()); } 范围操作 List&lt;E&gt; subList(int fromIndex, int toIndex) 返回的是一个List的一个视图，所有所有的操作都会返回在原来的数组之上。
 " />
   <meta name="description" content="Content List 是一个接口，是对应的是一组元素为有序的，可重复的集合；他基础于Collection，但List又有一些独特的方法。
 位置相关 E get(int index); 接受一个int类型的参数index，index &lt; 0 || index &gt;= size() 触发越界异常。
@@ -57,6 +58,7 @@ E remove(int index); 删除指定位置上的元素
 int lastIndexOf(Object o); 与上面那个相反，这个是从后往前找。
 迭代 ListIterator&lt;E&gt; listIterator() 返回一个ListIterator迭代器
 ListIterator&lt;E&gt; listIterator(int index) 返回一ListIterator迭代器，但是他将这个”指针“放到指定的位置，所以next是指定的位置，而previous则是index - 1的位置。
+@Test public void testList3(){ List&lt;String&gt; strings = new ArrayList&lt;&gt;(); strings.add(&#34;a&#34;); strings.add(&#34;b&#34;); strings.add(&#34;c&#34;); ListIterator&lt;String&gt; stringListIterator = strings.listIterator(1); System.out.println(stringListIterator.previousIndex()); System.out.println(stringListIterator.nextIndex()); } 范围操作 List&lt;E&gt; subList(int fromIndex, int toIndex) 返回的是一个List的一个视图，所有所有的操作都会返回在原来的数组之上。
 " />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.134.1">
+  <meta name="generator" content="Hugo 0.134.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "The Go Programming Language 方法（6)",
       "headline" : "The Go Programming Language 方法（6)",
-      "description" : "面向对象编程 在Go中没有统一的面向对象编程的定义，也就是没有类，但是我们还是可以使用者一种思想。对象可以是一个简单的值或者变量同时拥有方法，方法是某特定类型的函数。\n方法 声明 我们可以在同一个包下的任何类型（但是指针类型和接口类型除外）给他们声明一个方法，方法跟函数类型类似，只是在函数的前面多了一个接受者，用来描述方法跟哪一种类型相互关联。 注意 方法和字段在同一个命名空间内不能是相同的名字。\ntype Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } ",
+      "description" : "面向对象编程 在Go中没有统一的面向对象编程的定义，也就是没有类，但是我们还是可以使用者一种思想。对象可以是一个简单的值或者变量同时拥有方法，方法是某特定类型的函数。\n方法 声明 我们可以在同一个包下的任何类型（但是指针类型和接口类型除外）给他们声明一个方法，方法跟函数类型类似，只是在函数的前面多了一个接受者，用来描述方法跟哪一种类型相互关联。 注意 方法和字段在同一个命名空间内不能是相同的名字。\ntype Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } 指针接收者 方法的接受者可以使用类型的指针来代替以来的类型，改变原来的值传递；但是按照习惯，如果一个地方使用了指针接收者，那么该类型的所有方法都应该使用指针接受者。\n\/\/ 声明 type Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p.X *= factor p.Y *= factor } func main(){ p := Point{1, 2} r := \u0026amp;p r.ScaleBy(2) fmt.Printf(\u0026#34;%v\\n\u0026#34;, *r) p.ScaleBy(2) fmt.Printf(\u0026#34;%v\\n\u0026#34;, p) \/\/ 等于 (\u0026amp;p).ScaleBy(2) fmt.Printf(\u0026#34;%v\\n\u0026#34;, p) q := \u0026amp;Point{3, 4} q.ScaleBy(2) fmt.Printf(\u0026#34;%v\\n\u0026#34;, *q) } nil也作为方法的实参，但是我们需要指定一个类型允许nil作为接受者的时候，在文档中有显示的表明。\n结构体内嵌的类型 结构体中可以嵌套其他的结构体，外层的结构体共享内层结构体的方法。如果结构体中的匿名字段是指向命名类型的指针，那么这个多个结构体可以指向同一个类型实例，同时外出的结构体也拥有指针类型对象的方法，但是同一个查找级别中的类型之间不能有相同的方法名。\ntype Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p.X *= factor p.Y *= factor } type Circle struct{ *Point radius float64 } func (c *Circle) Area()float64{ return math.Pi * math.Cbrt(c.radius) } func (c *Circle) ScaleBy(factor float64){ c.radius *= 2 } func main(){ p := \u0026amp;Point{2, 2} c := \u0026amp;Circle{p, 2} fmt.Printf(\u0026#34;%v\\n\u0026#34;, *c) c.ScaleBy(2) fmt.Printf(\u0026#34;%v\\n\u0026#34;, *c) c.ScaleBy(2) fmt.Printf(\u0026#34;%v\\n\u0026#34;, *c) } 方法变量和方法表达式 我们可以将一个方法的选择子赋值给一个变量。调用的时候需要提供实参，只需要提供接收者就可以。\n",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -40,10 +40,18 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="面向对象编程 在Go中没有统一的面向对象编程的定义，也就是没有类，但是我们还是可以使用者一种思想。对象可以是一个简单的值或者变量同时拥有方法，方法是某特定类型的函数。
 方法 声明 我们可以在同一个包下的任何类型（但是指针类型和接口类型除外）给他们声明一个方法，方法跟函数类型类似，只是在函数的前面多了一个接受者，用来描述方法跟哪一种类型相互关联。 注意 方法和字段在同一个命名空间内不能是相同的名字。
-type Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } " />
+type Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } 指针接收者 方法的接受者可以使用类型的指针来代替以来的类型，改变原来的值传递；但是按照习惯，如果一个地方使用了指针接收者，那么该类型的所有方法都应该使用指针接受者。
+// 声明 type Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p.X *= factor p.Y *= factor } func main(){ p := Point{1, 2} r := &amp;p r.ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, *r) p.ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, p) // 等于 (&amp;p).ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, p) q := &amp;Point{3, 4} q.ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, *q) } nil也作为方法的实参，但是我们需要指定一个类型允许nil作为接受者的时候，在文档中有显示的表明。
+结构体内嵌的类型 结构体中可以嵌套其他的结构体，外层的结构体共享内层结构体的方法。如果结构体中的匿名字段是指向命名类型的指针，那么这个多个结构体可以指向同一个类型实例，同时外出的结构体也拥有指针类型对象的方法，但是同一个查找级别中的类型之间不能有相同的方法名。
+type Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p.X *= factor p.Y *= factor } type Circle struct{ *Point radius float64 } func (c *Circle) Area()float64{ return math.Pi * math.Cbrt(c.radius) } func (c *Circle) ScaleBy(factor float64){ c.radius *= 2 } func main(){ p := &amp;Point{2, 2} c := &amp;Circle{p, 2} fmt.Printf(&#34;%v\n&#34;, *c) c.ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, *c) c.ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, *c) } 方法变量和方法表达式 我们可以将一个方法的选择子赋值给一个变量。调用的时候需要提供实参，只需要提供接收者就可以。
+" />
   <meta name="description" content="面向对象编程 在Go中没有统一的面向对象编程的定义，也就是没有类，但是我们还是可以使用者一种思想。对象可以是一个简单的值或者变量同时拥有方法，方法是某特定类型的函数。
 方法 声明 我们可以在同一个包下的任何类型（但是指针类型和接口类型除外）给他们声明一个方法，方法跟函数类型类似，只是在函数的前面多了一个接受者，用来描述方法跟哪一种类型相互关联。 注意 方法和字段在同一个命名空间内不能是相同的名字。
-type Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } " />
+type Point struct{ X, Y float64 } func Distance(p, q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func (p Point) Distance(q Point) float64{ return math.Hypot(p.X - q.X, p.Y - q.Y) } func main(){ p := Point{1, 2} q := Point{3, 4} fmt.Println(Distance(p, q)) fmt.Println(p.Distance(q)) } 指针接收者 方法的接受者可以使用类型的指针来代替以来的类型，改变原来的值传递；但是按照习惯，如果一个地方使用了指针接收者，那么该类型的所有方法都应该使用指针接受者。
+// 声明 type Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p.X *= factor p.Y *= factor } func main(){ p := Point{1, 2} r := &amp;p r.ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, *r) p.ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, p) // 等于 (&amp;p).ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, p) q := &amp;Point{3, 4} q.ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, *q) } nil也作为方法的实参，但是我们需要指定一个类型允许nil作为接受者的时候，在文档中有显示的表明。
+结构体内嵌的类型 结构体中可以嵌套其他的结构体，外层的结构体共享内层结构体的方法。如果结构体中的匿名字段是指向命名类型的指针，那么这个多个结构体可以指向同一个类型实例，同时外出的结构体也拥有指针类型对象的方法，但是同一个查找级别中的类型之间不能有相同的方法名。
+type Point struct{ X, Y float64 } func (p *Point) ScaleBy(factor float64){ p.X *= factor p.Y *= factor } type Circle struct{ *Point radius float64 } func (c *Circle) Area()float64{ return math.Pi * math.Cbrt(c.radius) } func (c *Circle) ScaleBy(factor float64){ c.radius *= 2 } func main(){ p := &amp;Point{2, 2} c := &amp;Circle{p, 2} fmt.Printf(&#34;%v\n&#34;, *c) c.ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, *c) c.ScaleBy(2) fmt.Printf(&#34;%v\n&#34;, *c) } 方法变量和方法表达式 我们可以将一个方法的选择子赋值给一个变量。调用的时候需要提供实参，只需要提供接收者就可以。
+" />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

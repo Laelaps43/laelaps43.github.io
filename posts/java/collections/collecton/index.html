@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.134.1">
+  <meta name="generator" content="Hugo 0.134.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "Java集合Collecton",
       "headline" : "Java集合Collecton",
-      "description" : "Collection Collection是一个接口，他定义了一些对集合的通用方法。\nremoveIf default boolean removeIf(Predicate\u0026lt;? super E\u0026gt; filter) Collection 中的默认实现，接受一个Predicate函数，他在删除的时候也是采用的Iterator来迭代找到最佳的匹配数据，然后使用迭代器的remove()。\ntoArray 在Collection有以下三个方法：\nObject[] toArray(); \/\/ 直接返回的就是一个Object类型的数组 \u0026lt;T\u0026gt; T[] toArray(T[] a); \/\/ 接受一个T[]的数组 \/\/ 接受一个lambda 函数，但是这个lambda函数返回的类型应该也是返回一个数组，因为他调用的是上一个函数 default \u0026lt;T\u0026gt; T[] toArray(IntFunction\u0026lt;T[]\u0026gt; generator){ return toArray(generator.apply(0)); } ",
+      "description" : "Collection Collection是一个接口，他定义了一些对集合的通用方法。\nremoveIf default boolean removeIf(Predicate\u0026lt;? super E\u0026gt; filter) Collection 中的默认实现，接受一个Predicate函数，他在删除的时候也是采用的Iterator来迭代找到最佳的匹配数据，然后使用迭代器的remove()。\ntoArray 在Collection有以下三个方法：\nObject[] toArray(); \/\/ 直接返回的就是一个Object类型的数组 \u0026lt;T\u0026gt; T[] toArray(T[] a); \/\/ 接受一个T[]的数组 \/\/ 接受一个lambda 函数，但是这个lambda函数返回的类型应该也是返回一个数组，因为他调用的是上一个函数 default \u0026lt;T\u0026gt; T[] toArray(IntFunction\u0026lt;T[]\u0026gt; generator){ return toArray(generator.apply(0)); } spliterator spliterator是Java 8加入的一个新接口，他和Iterator一样，用于遍历数据源的元素，与之不同的是他是为了并行执行而设计的。\nstream 返回一个Stream流\nparallelStream 返回一个可以并发的Stream流\nAbstractCollection AbstractCollection实现了Collection接口的所有方法。\nretainAll public boolean retainAll(Collection\u0026lt;?\u0026gt; c) 只保留交集的那一部分，也是使用迭代器的方式判断来判断c中是否含有相关的元素，没有执行使用迭代器的remove()。\nfinishToArray 迭代器中还有数据，我们将全部的数据拷贝到数组中。\n\/\/ 源代码 private static \u0026lt;T\u0026gt; T[] finishToArray(T[] r, Iterator\u0026lt;?\u0026gt; it) { int len = r.length; int i = len; while (it.hasNext()) { if (i == len) { len = ArraysSupport.newLength(len, 1, \/* minimum growth *\/ (len \u0026gt;\u0026gt; 1) \u002b 1 \/* preferred growth *\/); r = Arrays.copyOf(r, len); } r[i\u002b\u002b] = (T)it.next(); } \/\/ trim if overallocated return (i == len) ? r : Arrays.copyOf(r, i); } public static int newLength(int oldLength, int minGrowth, int prefGrowth) { \/\/ preconditions not checked because of inlining \/\/ assert oldLength \u0026gt;= 0 \/\/ assert minGrowth \u0026gt; 0 int prefLength = oldLength \u002b Math.max(minGrowth, prefGrowth); \/\/ might overflow if (0 \u0026lt; prefLength \u0026amp;\u0026amp; prefLength \u0026lt;= SOFT_MAX_ARRAY_LENGTH) { return prefLength; } else { \/\/ put code cold in a separate method return hugeLength(oldLength, minGrowth); } } private static int hugeLength(int oldLength, int minGrowth) { int minLength = oldLength \u002b minGrowth; if (minLength \u0026lt; 0) { \/\/ overflow throw new OutOfMemoryError( \u0026#34;Required array length \u0026#34; \u002b oldLength \u002b \u0026#34; \u002b \u0026#34; \u002b minGrowth \u002b \u0026#34; is too large\u0026#34;); } else if (minLength \u0026lt;= SOFT_MAX_ARRAY_LENGTH) { return SOFT_MAX_ARRAY_LENGTH; } else { return minLength; } } 在扩容的时候主要是需要计算新的数组长度\n",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -41,11 +41,25 @@
   <meta property="og:description" content="Collection Collection是一个接口，他定义了一些对集合的通用方法。
 removeIf default boolean removeIf(Predicate&lt;? super E&gt; filter) Collection 中的默认实现，接受一个Predicate函数，他在删除的时候也是采用的Iterator来迭代找到最佳的匹配数据，然后使用迭代器的remove()。
 toArray 在Collection有以下三个方法：
-Object[] toArray(); // 直接返回的就是一个Object类型的数组 &lt;T&gt; T[] toArray(T[] a); // 接受一个T[]的数组 // 接受一个lambda 函数，但是这个lambda函数返回的类型应该也是返回一个数组，因为他调用的是上一个函数 default &lt;T&gt; T[] toArray(IntFunction&lt;T[]&gt; generator){ return toArray(generator.apply(0)); } " />
+Object[] toArray(); // 直接返回的就是一个Object类型的数组 &lt;T&gt; T[] toArray(T[] a); // 接受一个T[]的数组 // 接受一个lambda 函数，但是这个lambda函数返回的类型应该也是返回一个数组，因为他调用的是上一个函数 default &lt;T&gt; T[] toArray(IntFunction&lt;T[]&gt; generator){ return toArray(generator.apply(0)); } spliterator spliterator是Java 8加入的一个新接口，他和Iterator一样，用于遍历数据源的元素，与之不同的是他是为了并行执行而设计的。
+stream 返回一个Stream流
+parallelStream 返回一个可以并发的Stream流
+AbstractCollection AbstractCollection实现了Collection接口的所有方法。
+retainAll public boolean retainAll(Collection&lt;?&gt; c) 只保留交集的那一部分，也是使用迭代器的方式判断来判断c中是否含有相关的元素，没有执行使用迭代器的remove()。
+finishToArray 迭代器中还有数据，我们将全部的数据拷贝到数组中。
+// 源代码 private static &lt;T&gt; T[] finishToArray(T[] r, Iterator&lt;?&gt; it) { int len = r.length; int i = len; while (it.hasNext()) { if (i == len) { len = ArraysSupport.newLength(len, 1, /* minimum growth */ (len &gt;&gt; 1) &#43; 1 /* preferred growth */); r = Arrays.copyOf(r, len); } r[i&#43;&#43;] = (T)it.next(); } // trim if overallocated return (i == len) ? r : Arrays.copyOf(r, i); } public static int newLength(int oldLength, int minGrowth, int prefGrowth) { // preconditions not checked because of inlining // assert oldLength &gt;= 0 // assert minGrowth &gt; 0 int prefLength = oldLength &#43; Math.max(minGrowth, prefGrowth); // might overflow if (0 &lt; prefLength &amp;&amp; prefLength &lt;= SOFT_MAX_ARRAY_LENGTH) { return prefLength; } else { // put code cold in a separate method return hugeLength(oldLength, minGrowth); } } private static int hugeLength(int oldLength, int minGrowth) { int minLength = oldLength &#43; minGrowth; if (minLength &lt; 0) { // overflow throw new OutOfMemoryError( &#34;Required array length &#34; &#43; oldLength &#43; &#34; &#43; &#34; &#43; minGrowth &#43; &#34; is too large&#34;); } else if (minLength &lt;= SOFT_MAX_ARRAY_LENGTH) { return SOFT_MAX_ARRAY_LENGTH; } else { return minLength; } } 在扩容的时候主要是需要计算新的数组长度
+" />
   <meta name="description" content="Collection Collection是一个接口，他定义了一些对集合的通用方法。
 removeIf default boolean removeIf(Predicate&lt;? super E&gt; filter) Collection 中的默认实现，接受一个Predicate函数，他在删除的时候也是采用的Iterator来迭代找到最佳的匹配数据，然后使用迭代器的remove()。
 toArray 在Collection有以下三个方法：
-Object[] toArray(); // 直接返回的就是一个Object类型的数组 &lt;T&gt; T[] toArray(T[] a); // 接受一个T[]的数组 // 接受一个lambda 函数，但是这个lambda函数返回的类型应该也是返回一个数组，因为他调用的是上一个函数 default &lt;T&gt; T[] toArray(IntFunction&lt;T[]&gt; generator){ return toArray(generator.apply(0)); } " />
+Object[] toArray(); // 直接返回的就是一个Object类型的数组 &lt;T&gt; T[] toArray(T[] a); // 接受一个T[]的数组 // 接受一个lambda 函数，但是这个lambda函数返回的类型应该也是返回一个数组，因为他调用的是上一个函数 default &lt;T&gt; T[] toArray(IntFunction&lt;T[]&gt; generator){ return toArray(generator.apply(0)); } spliterator spliterator是Java 8加入的一个新接口，他和Iterator一样，用于遍历数据源的元素，与之不同的是他是为了并行执行而设计的。
+stream 返回一个Stream流
+parallelStream 返回一个可以并发的Stream流
+AbstractCollection AbstractCollection实现了Collection接口的所有方法。
+retainAll public boolean retainAll(Collection&lt;?&gt; c) 只保留交集的那一部分，也是使用迭代器的方式判断来判断c中是否含有相关的元素，没有执行使用迭代器的remove()。
+finishToArray 迭代器中还有数据，我们将全部的数据拷贝到数组中。
+// 源代码 private static &lt;T&gt; T[] finishToArray(T[] r, Iterator&lt;?&gt; it) { int len = r.length; int i = len; while (it.hasNext()) { if (i == len) { len = ArraysSupport.newLength(len, 1, /* minimum growth */ (len &gt;&gt; 1) &#43; 1 /* preferred growth */); r = Arrays.copyOf(r, len); } r[i&#43;&#43;] = (T)it.next(); } // trim if overallocated return (i == len) ? r : Arrays.copyOf(r, i); } public static int newLength(int oldLength, int minGrowth, int prefGrowth) { // preconditions not checked because of inlining // assert oldLength &gt;= 0 // assert minGrowth &gt; 0 int prefLength = oldLength &#43; Math.max(minGrowth, prefGrowth); // might overflow if (0 &lt; prefLength &amp;&amp; prefLength &lt;= SOFT_MAX_ARRAY_LENGTH) { return prefLength; } else { // put code cold in a separate method return hugeLength(oldLength, minGrowth); } } private static int hugeLength(int oldLength, int minGrowth) { int minLength = oldLength &#43; minGrowth; if (minLength &lt; 0) { // overflow throw new OutOfMemoryError( &#34;Required array length &#34; &#43; oldLength &#43; &#34; &#43; &#34; &#43; minGrowth &#43; &#34; is too large&#34;); } else if (minLength &lt;= SOFT_MAX_ARRAY_LENGTH) { return SOFT_MAX_ARRAY_LENGTH; } else { return minLength; } } 在扩容的时候主要是需要计算新的数组长度
+" />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

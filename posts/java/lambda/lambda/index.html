@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.134.1">
+  <meta name="generator" content="Hugo 0.134.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "Java Lambda表达式",
       "headline" : "Java Lambda表达式",
-      "description" : "是什么？ Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。 我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。\n\/\/ 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(\u0026#34;abc\u0026#34;); } }); ",
+      "description" : "是什么？ Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。 我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。\n\/\/ 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(\u0026#34;abc\u0026#34;); } }); \/\/ 使用lambda表达式 new Thread(() -\u0026gt; System.out.println(\u0026#34;xyz\u0026#34;)).start(); 语法 Java中lambda表达式的形式：参数 -\u0026gt;（箭头）{代码块}\/一个表达式。\n如果需要实现的方法代码很多，可以将代码放入一个{}中 \/\/ 使用一个代码块实现，将代码放入一个{}中 Arrays.sort(arr, (String str1, String str2) -\u0026gt; { if(str1.length() \u0026lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambda表达式可以推导出参数的字符串，我们可以参数的类型省去，但是值得注意的是Java是一种强类型的编程语言，他需要明确的知道参数的类型，这里可以省去的原因是Java编译器可以从上下文中推到出来。 Arrays.sort(arr, (str1, str2) -\u0026gt; { if(str1.length() \u0026lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambada表达式只有一个参数，我们可以同时将参数类型以及()省去。 List\u0026lt;String\u0026gt; strings = List.of(\u0026#34;abc\u0026#34;, \u0026#34;xyz\u0026#34;, \u0026#34;wert\u0026#34;); strings.forEach((String s) -\u0026gt; System.out.println(s)); \/\/ 同时省去参数类型以及() strings.forEach(s -\u0026gt; System.out.println(s)); 如果lambda表达式中没有参数，我们也需要同时提供空括号 new Thread(() -\u0026gt; System.out.println(\u0026#34;xyz\u0026#34;)).start(); 如果只是一个表达式，编译器会自动返回值，如果使用大括号包围，则需要手动的指明返回值；并且返回值的类型可以自动推到。 函数式接口 引用 方法引用（method reference） 在一般情况下，我们都是自己写lambda的body部分，但是在有一些情况下，在Java中有一些方法已经实现了类似的操作，我们只需要引用他，引用的条件是方法的签名必须要接口恰好一致。 使用::来表示引用运算符\n",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -39,9 +39,13 @@
   <meta property="og:title" content="Java Lambda表达式" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="是什么？ Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。 我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。
-// 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&#34;abc&#34;); } }); " />
+// 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&#34;abc&#34;); } }); // 使用lambda表达式 new Thread(() -&gt; System.out.println(&#34;xyz&#34;)).start(); 语法 Java中lambda表达式的形式：参数 -&gt;（箭头）{代码块}/一个表达式。
+如果需要实现的方法代码很多，可以将代码放入一个{}中 // 使用一个代码块实现，将代码放入一个{}中 Arrays.sort(arr, (String str1, String str2) -&gt; { if(str1.length() &lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambda表达式可以推导出参数的字符串，我们可以参数的类型省去，但是值得注意的是Java是一种强类型的编程语言，他需要明确的知道参数的类型，这里可以省去的原因是Java编译器可以从上下文中推到出来。 Arrays.sort(arr, (str1, str2) -&gt; { if(str1.length() &lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambada表达式只有一个参数，我们可以同时将参数类型以及()省去。 List&lt;String&gt; strings = List.of(&#34;abc&#34;, &#34;xyz&#34;, &#34;wert&#34;); strings.forEach((String s) -&gt; System.out.println(s)); // 同时省去参数类型以及() strings.forEach(s -&gt; System.out.println(s)); 如果lambda表达式中没有参数，我们也需要同时提供空括号 new Thread(() -&gt; System.out.println(&#34;xyz&#34;)).start(); 如果只是一个表达式，编译器会自动返回值，如果使用大括号包围，则需要手动的指明返回值；并且返回值的类型可以自动推到。 函数式接口 引用 方法引用（method reference） 在一般情况下，我们都是自己写lambda的body部分，但是在有一些情况下，在Java中有一些方法已经实现了类似的操作，我们只需要引用他，引用的条件是方法的签名必须要接口恰好一致。 使用::来表示引用运算符
+" />
   <meta name="description" content="是什么？ Java的lambda表达式是一个可传递的代码块，可以在之后执行一次或者多次。 我们都知道Java是一种面向对象的语言，所以我们如果想传递一个代码款，我们必须构造一个对象，然后在对象中实现一个方法包含所需要的代码块。
-// 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&#34;abc&#34;); } }); " />
+// 实现一个内部类来传递需要实现的代码 Thread thread1 = new Thread(new Runnable() { @Override public void run() { System.out.println(&#34;abc&#34;); } }); // 使用lambda表达式 new Thread(() -&gt; System.out.println(&#34;xyz&#34;)).start(); 语法 Java中lambda表达式的形式：参数 -&gt;（箭头）{代码块}/一个表达式。
+如果需要实现的方法代码很多，可以将代码放入一个{}中 // 使用一个代码块实现，将代码放入一个{}中 Arrays.sort(arr, (String str1, String str2) -&gt; { if(str1.length() &lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambda表达式可以推导出参数的字符串，我们可以参数的类型省去，但是值得注意的是Java是一种强类型的编程语言，他需要明确的知道参数的类型，这里可以省去的原因是Java编译器可以从上下文中推到出来。 Arrays.sort(arr, (str1, str2) -&gt; { if(str1.length() &lt; str2.length()) return -1; else if(str1.length() == str2.length()) return 0; else return 1; }); 如果lambada表达式只有一个参数，我们可以同时将参数类型以及()省去。 List&lt;String&gt; strings = List.of(&#34;abc&#34;, &#34;xyz&#34;, &#34;wert&#34;); strings.forEach((String s) -&gt; System.out.println(s)); // 同时省去参数类型以及() strings.forEach(s -&gt; System.out.println(s)); 如果lambda表达式中没有参数，我们也需要同时提供空括号 new Thread(() -&gt; System.out.println(&#34;xyz&#34;)).start(); 如果只是一个表达式，编译器会自动返回值，如果使用大括号包围，则需要手动的指明返回值；并且返回值的类型可以自动推到。 函数式接口 引用 方法引用（method reference） 在一般情况下，我们都是自己写lambda的body部分，但是在有一些情况下，在Java中有一些方法已经实现了类似的操作，我们只需要引用他，引用的条件是方法的签名必须要接口恰好一致。 使用::来表示引用运算符
+" />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 

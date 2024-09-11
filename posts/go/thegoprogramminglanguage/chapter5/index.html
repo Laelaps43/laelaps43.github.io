@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.134.1">
+  <meta name="generator" content="Hugo 0.134.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
       "articleSection" : "posts",
       "name" : "The Go Programming Language 函数（5)",
       "headline" : "The Go Programming Language 函数（5)",
-      "description" : "函数声明 func name(paramter-list)(result-list){ } 在Go中返回值可以是多个参数，并且返回值可以像形参一样命名，会根据变量的类型初始化相应的零值。 当两个函数有相同的形参列表和返回的列表是，这两个函数的类型或者函数的签名是相同的。\nfunc fun1(x, y int) (z int){ return x \u002b y } 多返回值 我们在标准库中可以看见许多的函数返回有两个值，一个是函数返回的结果，另外一个是表示一个函数是否执行成功的布尔值。 如果我们去调用一个多返回值的函数，必须将这些函数的返回值全部接收，如果我们不需要某个值，那我们可以将返回值赋值给一个空标识符。\nfunc judgeXY(x, y int) (string, error){ if x == y { return \u0026#34;\u0026#34;, fmt.Errorf(\u0026#34;x == y\u0026#34;) } if x \u0026gt; y { return \u0026#34;x \u0026gt; y\u0026#34;, nil } return \u0026#34;x \u0026lt; y\u0026#34;, nil } ",
+      "description" : "函数声明 func name(paramter-list)(result-list){ } 在Go中返回值可以是多个参数，并且返回值可以像形参一样命名，会根据变量的类型初始化相应的零值。 当两个函数有相同的形参列表和返回的列表是，这两个函数的类型或者函数的签名是相同的。\nfunc fun1(x, y int) (z int){ return x \u002b y } 多返回值 我们在标准库中可以看见许多的函数返回有两个值，一个是函数返回的结果，另外一个是表示一个函数是否执行成功的布尔值。 如果我们去调用一个多返回值的函数，必须将这些函数的返回值全部接收，如果我们不需要某个值，那我们可以将返回值赋值给一个空标识符。\nfunc judgeXY(x, y int) (string, error){ if x == y { return \u0026#34;\u0026#34;, fmt.Errorf(\u0026#34;x == y\u0026#34;) } if x \u0026gt; y { return \u0026#34;x \u0026gt; y\u0026#34;, nil } return \u0026#34;x \u0026lt; y\u0026#34;, nil } 函数的裸返回是指函数的返回值有命名，那么我们可以使用命名的参数去接收函数中计算的结果，最后我们可以直接写return，他根据命名返回值相应的结果。\nfunc judgeXY(x, y int) (result string, err error){ if x == y { err = fmt.Errorf(\u0026#34;x == y\u0026#34;) return } if x \u0026gt; y { result = \u0026#34;x \u0026gt; y\u0026#34; return } result = \u0026#34;x \u0026lt; y\u0026#34; return } 函数变量 在Go中函数也可以赋值给一个变量，传递，函数返回，类型是函数的签名；函数类型的零值为nil；闭包的实现。\nfunc fun(a, b int) int{ return a \u002b b } func fun2(x, y int, add func(a, b int)int) int{ if add == nil{ log.Fatalf(\u0026#34;add != nill\u0026#34;) } return add(x, y)\t} re := fun2(1, 2, fun) fmt.Println(re) 匿名函数 声明函数时我们在包级别声明并给定一个名字，我们可以将一个不带函数名的函数赋值到一个函数变量，他可以进行参数的传递。\n",
       "inLanguage" : "en-US",
       "author" : "laelaps",
       "creator" : "laelaps",
@@ -40,10 +40,16 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="函数声明 func name(paramter-list)(result-list){ } 在Go中返回值可以是多个参数，并且返回值可以像形参一样命名，会根据变量的类型初始化相应的零值。 当两个函数有相同的形参列表和返回的列表是，这两个函数的类型或者函数的签名是相同的。
 func fun1(x, y int) (z int){ return x &#43; y } 多返回值 我们在标准库中可以看见许多的函数返回有两个值，一个是函数返回的结果，另外一个是表示一个函数是否执行成功的布尔值。 如果我们去调用一个多返回值的函数，必须将这些函数的返回值全部接收，如果我们不需要某个值，那我们可以将返回值赋值给一个空标识符。
-func judgeXY(x, y int) (string, error){ if x == y { return &#34;&#34;, fmt.Errorf(&#34;x == y&#34;) } if x &gt; y { return &#34;x &gt; y&#34;, nil } return &#34;x &lt; y&#34;, nil } " />
+func judgeXY(x, y int) (string, error){ if x == y { return &#34;&#34;, fmt.Errorf(&#34;x == y&#34;) } if x &gt; y { return &#34;x &gt; y&#34;, nil } return &#34;x &lt; y&#34;, nil } 函数的裸返回是指函数的返回值有命名，那么我们可以使用命名的参数去接收函数中计算的结果，最后我们可以直接写return，他根据命名返回值相应的结果。
+func judgeXY(x, y int) (result string, err error){ if x == y { err = fmt.Errorf(&#34;x == y&#34;) return } if x &gt; y { result = &#34;x &gt; y&#34; return } result = &#34;x &lt; y&#34; return } 函数变量 在Go中函数也可以赋值给一个变量，传递，函数返回，类型是函数的签名；函数类型的零值为nil；闭包的实现。
+func fun(a, b int) int{ return a &#43; b } func fun2(x, y int, add func(a, b int)int) int{ if add == nil{ log.Fatalf(&#34;add != nill&#34;) } return add(x, y)	} re := fun2(1, 2, fun) fmt.Println(re) 匿名函数 声明函数时我们在包级别声明并给定一个名字，我们可以将一个不带函数名的函数赋值到一个函数变量，他可以进行参数的传递。
+" />
   <meta name="description" content="函数声明 func name(paramter-list)(result-list){ } 在Go中返回值可以是多个参数，并且返回值可以像形参一样命名，会根据变量的类型初始化相应的零值。 当两个函数有相同的形参列表和返回的列表是，这两个函数的类型或者函数的签名是相同的。
 func fun1(x, y int) (z int){ return x &#43; y } 多返回值 我们在标准库中可以看见许多的函数返回有两个值，一个是函数返回的结果，另外一个是表示一个函数是否执行成功的布尔值。 如果我们去调用一个多返回值的函数，必须将这些函数的返回值全部接收，如果我们不需要某个值，那我们可以将返回值赋值给一个空标识符。
-func judgeXY(x, y int) (string, error){ if x == y { return &#34;&#34;, fmt.Errorf(&#34;x == y&#34;) } if x &gt; y { return &#34;x &gt; y&#34;, nil } return &#34;x &lt; y&#34;, nil } " />
+func judgeXY(x, y int) (string, error){ if x == y { return &#34;&#34;, fmt.Errorf(&#34;x == y&#34;) } if x &gt; y { return &#34;x &gt; y&#34;, nil } return &#34;x &lt; y&#34;, nil } 函数的裸返回是指函数的返回值有命名，那么我们可以使用命名的参数去接收函数中计算的结果，最后我们可以直接写return，他根据命名返回值相应的结果。
+func judgeXY(x, y int) (result string, err error){ if x == y { err = fmt.Errorf(&#34;x == y&#34;) return } if x &gt; y { result = &#34;x &gt; y&#34; return } result = &#34;x &lt; y&#34; return } 函数变量 在Go中函数也可以赋值给一个变量，传递，函数返回，类型是函数的签名；函数类型的零值为nil；闭包的实现。
+func fun(a, b int) int{ return a &#43; b } func fun2(x, y int, add func(a, b int)int) int{ if add == nil{ log.Fatalf(&#34;add != nill&#34;) } return add(x, y)	} re := fun2(1, 2, fun) fmt.Println(re) 匿名函数 声明函数时我们在包级别声明并给定一个名字，我们可以将一个不带函数名的函数赋值到一个函数变量，他可以进行参数的传递。
+" />
   <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
   
 
