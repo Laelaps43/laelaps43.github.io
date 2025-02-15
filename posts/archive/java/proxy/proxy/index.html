@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.123.8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="laelaps" />
+  <meta property="og:url" content="https://blog.laelaps.us/posts/archive/java/proxy/proxy/" />
+  <link rel="canonical" href="https://blog.laelaps.us/posts/archive/java/proxy/proxy/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.us/index.xml" title="Laelaps">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/blog.laelaps.us\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Java代理模式",
+      "headline" : "Java代理模式",
+      "description" : "代理 代理是一种设计模式，他用一个代理对象来控制其他的对象进行访问。在我们对对象进行访问的时候，我们不是直接访问对应的对象，而是访问他的代理对象，我们可以在访问对象之前或者之后执行对应的操作；代理提供了一种更加灵活和可控的访问方式。\n代理又分为动态代理和静态代理，两种代理各有各的优缺点；但是他们都是通过一个代理对象来访问对应的被代理对象。\n代理模式通常有三个角色：\nSubject：一组可以被代理的行为的集合，通常是一个接口，保证代理对象有被代理对象有相同的行为。 ProxySubject：代理对象，消费端通过它来访问实际的对象。 RealSubject：实际被代理的对象。 静态代理 静态代理是指程序运行前，代理类已经存在于编译结果之前，也就是存在代理类的字节码（一个实际的Class文件）。\npackage org.example; \/\/ 声明一个接口为需要被代理行为的集合，Subject public interface People { void callMe(); } package org.example; \/\/ 被代理对象 public class Ron implements People{ public void callMe(){ System.out.println(\u0026#34;I am Ron\u0026#34;); } } package org.example; \/\/ People的代理对象 public class PeopleProxy implements People{ private People target; public PeopleProxy(People target) { this.target = target; } @Override public void callMe() { System.out.println(\u0026#34;People Proxy Class\u0026#34;); target.callMe(); } } public class Main { public static void main(String[] args) throws Exception { PeopleProxy peopleProxy = new PeopleProxy(new Ron()); peopleProxy.",
+      "inLanguage" : "en-US",
+      "author" : "laelaps",
+      "creator" : "laelaps",
+      "publisher": "laelaps",
+      "accountablePerson" : "laelaps",
+      "copyrightHolder" : "laelaps",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-09-09 08:01:21 \u002b0800 \u002b0800",
+      "dateModified" : "2023-09-09 08:01:21 \u002b0800 \u002b0800",
+      "url" : "https:\/\/blog.laelaps.us\/posts\/archive\/java\/proxy\/proxy\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Java代理模式</title>
+  <meta property="og:title" content="Java代理模式" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="代理 代理是一种设计模式，他用一个代理对象来控制其他的对象进行访问。在我们对对象进行访问的时候，我们不是直接访问对应的对象，而是访问他的代理对象，我们可以在访问对象之前或者之后执行对应的操作；代理提供了一种更加灵活和可控的访问方式。
+代理又分为动态代理和静态代理，两种代理各有各的优缺点；但是他们都是通过一个代理对象来访问对应的被代理对象。
+代理模式通常有三个角色：
+Subject：一组可以被代理的行为的集合，通常是一个接口，保证代理对象有被代理对象有相同的行为。 ProxySubject：代理对象，消费端通过它来访问实际的对象。 RealSubject：实际被代理的对象。 静态代理 静态代理是指程序运行前，代理类已经存在于编译结果之前，也就是存在代理类的字节码（一个实际的Class文件）。
+package org.example; // 声明一个接口为需要被代理行为的集合，Subject public interface People { void callMe(); } package org.example; // 被代理对象 public class Ron implements People{ public void callMe(){ System.out.println(&amp;#34;I am Ron&amp;#34;); } } package org.example; // People的代理对象 public class PeopleProxy implements People{ private People target; public PeopleProxy(People target) { this.target = target; } @Override public void callMe() { System.out.println(&amp;#34;People Proxy Class&amp;#34;); target.callMe(); } } public class Main { public static void main(String[] args) throws Exception { PeopleProxy peopleProxy = new PeopleProxy(new Ron()); peopleProxy." />
+  <meta name="description" content="代理 代理是一种设计模式，他用一个代理对象来控制其他的对象进行访问。在我们对对象进行访问的时候，我们不是直接访问对应的对象，而是访问他的代理对象，我们可以在访问对象之前或者之后执行对应的操作；代理提供了一种更加灵活和可控的访问方式。
+代理又分为动态代理和静态代理，两种代理各有各的优缺点；但是他们都是通过一个代理对象来访问对应的被代理对象。
+代理模式通常有三个角色：
+Subject：一组可以被代理的行为的集合，通常是一个接口，保证代理对象有被代理对象有相同的行为。 ProxySubject：代理对象，消费端通过它来访问实际的对象。 RealSubject：实际被代理的对象。 静态代理 静态代理是指程序运行前，代理类已经存在于编译结果之前，也就是存在代理类的字节码（一个实际的Class文件）。
+package org.example; // 声明一个接口为需要被代理行为的集合，Subject public interface People { void callMe(); } package org.example; // 被代理对象 public class Ron implements People{ public void callMe(){ System.out.println(&amp;#34;I am Ron&amp;#34;); } } package org.example; // People的代理对象 public class PeopleProxy implements People{ private People target; public PeopleProxy(People target) { this.target = target; } @Override public void callMe() { System.out.println(&amp;#34;People Proxy Class&amp;#34;); target.callMe(); } } public class Main { public static void main(String[] args) throws Exception { PeopleProxy peopleProxy = new PeopleProxy(new Ron()); peopleProxy." />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:none;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body a{color:#1bc92a}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{text-align:center}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}}@media screen and (max-width:48em){.posts-category{display:none}}table{width:100%;border-collapse:collapse;border:1px solid}tr,th,td{border:1px solid;height:40px;padding-left:10px}thead{background:#ebebeb}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="Laelaps">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >Laelaps</a
+    >
+  </div>
+  <div class="header-subtitle">Stay Hungry, Stay Foolish</div>
+</header>
+<div class="row end-md center-xs header-items">
+  
+  <div class="header-item">
+    <a href="/categories/plan" target="_blank">Plan</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories" target="_blank">Categories</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories/java" target="_blank">Java</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories/go" target="_blank">Go</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/leetcodes" target="_blank">LeetCode</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/about" target="_blank">About Me</a>
+  </div>
+  
+</div>
+<div class="row end-xs">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Java代理模式</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-09-09 08:01:21 &#43;0800">
+                09 Sep 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="/">@laelaps</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+        <aside id="toc-container">
+          <details>
+            <summary>Table of Contents</summary>
+            <aside class="toc">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#代理">代理</a>
+      <ul>
+        <li><a href="#静态代理">静态代理</a></li>
+        <li><a href="#jdk动态代理">JDK动态代理</a>
+          <ul>
+            <li><a href="#proxy类">Proxy类</a>
+              <ul>
+                <li><a href="#getproxyclass方法">getProxyClass方法</a></li>
+                <li><a href="#newproxyinstance方法">newProxyInstance方法</a></li>
+                <li><a href="#isproxy方法">isProxy方法</a></li>
+                <li><a href="#getinvocationhandler方法">getInvocationHandler方法</a></li>
+              </ul>
+            </li>
+            <li><a href="#示例">示例</a></li>
+          </ul>
+        </li>
+        <li><a href="#cglib代理">CGLIB代理</a>
+          <ul>
+            <li><a href="#示例1拦截所有方法">示例1：拦截所有方法</a></li>
+            <li><a href="#示例2拦截所有方法并返回固定值">示例2：拦截所有方法并返回固定值</a></li>
+            <li><a href="#示例3直接放行不做任何操作">示例3：直接放行，不做任何操作</a></li>
+            <li><a href="#示例4不同的方法使用不同的拦截器">示例4：不同的方法使用不同的拦截器</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </aside>
+        </details> 
+        </aside>
+
+        <div class="post-content markdown-body">
+          
+          <h1 id="代理">代理</h1>
+<p>代理是一种设计模式，他用一个代理对象来控制其他的对象进行访问。在我们对对象进行访问的时候，我们不是直接访问对应的对象，而是访问他的代理对象，我们可以在访问对象之前或者之后执行对应的操作；代理提供了一种更加灵活和可控的访问方式。</p>
+<p>代理又分为动态代理和静态代理，两种代理各有各的优缺点；但是他们都是通过一个代理对象来访问对应的被代理对象。</p>
+<p>代理模式通常有三个角色：</p>
+<ul>
+<li><code>Subject</code>：一组可以被代理的行为的集合，通常是一个接口，保证代理对象有被代理对象有相同的行为。</li>
+<li><code>ProxySubject</code>：代理对象，消费端通过它来访问实际的对象。</li>
+<li><code>RealSubject</code>：实际被代理的对象。</li>
+</ul>
+<h2 id="静态代理">静态代理</h2>
+<p>静态代理是指程序运行前，代理类已经存在于编译结果之前，也就是存在代理类的字节码（一个实际的Class文件）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> org.example;  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 声明一个接口为需要被代理行为的集合，Subject</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">People</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">callMe</span>();  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> org.example;  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 被代理对象</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Ron</span> <span style="color:#66d9ef">implements</span> People{  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">callMe</span>(){  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;I am Ron&#34;</span>);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> org.example;  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// People的代理对象</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PeopleProxy</span> <span style="color:#66d9ef">implements</span> People{  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> People target;  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">PeopleProxy</span>(People target) {  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">target</span> <span style="color:#f92672">=</span> target;  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">callMe</span>() {  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;People Proxy Class&#34;</span>);  
+</span></span><span style="display:flex;"><span>        target.<span style="color:#a6e22e">callMe</span>();  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>        PeopleProxy peopleProxy <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PeopleProxy(<span style="color:#66d9ef">new</span> Ron());  
+</span></span><span style="display:flex;"><span>        peopleProxy.<span style="color:#a6e22e">callMe</span>();  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>缺点：</p>
+<ul>
+<li>要为每一个接口实现一个代理类，如果接口中增加了方法，目标对象和被代理对象都要实现。</li>
+<li>每个代理类只有特定的功能，如果我需要别的功能，就需要再去实现一个代理类和接口，不好管理，会出现一个类有多个代理类。
+优点：</li>
+<li>无序修改被代理对象。</li>
+<li>隐藏原始对象的细节，客户只要跟代理对象交互，降低系统的耦合性。</li>
+</ul>
+<h2 id="jdk动态代理">JDK动态代理</h2>
+<p>动态代理（JDK代理）的类是在程序运行时动态生成的，然后加载到JVM中，JDK是由Java本身支持的。</p>
+<p>在JDK代理中主要由下面两个类支持：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>java.<span style="color:#a6e22e">lang</span>.<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">Proxy</span>  
+</span></span><span style="display:flex;"><span>java.<span style="color:#a6e22e">lang</span>.<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">InvocationHandler</span>
+</span></span></code></pre></div><p>在JDK代理中有一个限制，那就是只能为一个接口创建代理，不能为一个类创建一个代理，所有一个实现一个接口才能代理。</p>
+<p>优点：</p>
+<ul>
+<li>Java内置特性，使用方便</li>
+<li>动态性，动态生产代理类，不改变源代码的情况下对对象进行代理</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>只能代理接口，不能代理类</li>
+<li>性能较低，在代理的时候设计到反射等机制，不易频繁调用</li>
+</ul>
+<h3 id="proxy类">Proxy类</h3>
+<p>这是一个JDK代理中经常会用到的一个类。</p>
+<h4 id="getproxyclass方法">getProxyClass方法</h4>
+<p>为指定的接口创建代理类，返回代理类的Class对象，我们可以使用返回的对象来创建一个代理对象。（在新的JDK中被抛弃）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// loader 定义代理类的类加载器</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// interfaces 指定需要实现的接口列表</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Class<span style="color:#f92672">&lt;?&gt;</span> getProxyClass(ClassLoader loader,  
+</span></span><span style="display:flex;"><span>                                         Class<span style="color:#f92672">&lt;?&gt;</span>... interfaces)
+</span></span></code></pre></div><h4 id="newproxyinstance方法">newProxyInstance方法</h4>
+<p>创建代理类的实例对象，返回一个代理对象。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Object <span style="color:#a6e22e">newProxyInstance</span>(ClassLoader loader,  
+</span></span><span style="display:flex;"><span>                                          Class<span style="color:#f92672">&lt;?&gt;[]</span> interfaces,  
+</span></span><span style="display:flex;"><span>                                          InvocationHandler h)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvocationHandler</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">invoke</span>(Object proxy, Method method, Object<span style="color:#f92672">[]</span> args)  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throws</span> Throwable;  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>InvocationHandler是一个接口，当newProxyInstance每次调用一个方法的时候，都会调用InvocationHandler接口中的<code>invoke</code>方法；所有我们需要代理的内容都会在这里面实现。</p>
+<h4 id="isproxy方法">isProxy方法</h4>
+<p>判断指定的类是否是一个代理类</p>
+<h4 id="getinvocationhandler方法">getInvocationHandler方法</h4>
+<p>获取代理对象的<code>InvocationHandler</code>对象</p>
+<h3 id="示例">示例</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> org.example;  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.lang.reflect.*;  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>        People proxy <span style="color:#f92672">=</span> MyInvocationHandler.<span style="color:#a6e22e">createProxy</span>(<span style="color:#66d9ef">new</span> Ron(), People.<span style="color:#a6e22e">class</span>);  
+</span></span><span style="display:flex;"><span>        proxy.<span style="color:#a6e22e">callMe</span>();  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyInvocationHandler</span> <span style="color:#66d9ef">implements</span> InvocationHandler{  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    Object target;  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">invoke</span>(Object proxy, Method method, Object<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Throwable {  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;执行方法：&#34;</span><span style="color:#f92672">+</span>method.<span style="color:#a6e22e">getName</span>());  
+</span></span><span style="display:flex;"><span>        Object invoke <span style="color:#f92672">=</span> method.<span style="color:#a6e22e">invoke</span>(target);  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> invoke;  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    MyInvocationHandler(Object target){  
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">target</span> <span style="color:#f92672">=</span> target;  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">createProxy</span>(Object target, Class<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> targetInterface){  
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>targetInterface.<span style="color:#a6e22e">isInterface</span>()){  
+</span></span><span style="display:flex;"><span>           <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException(<span style="color:#e6db74">&#34;targetInterface不是接口&#34;</span>);  
+</span></span><span style="display:flex;"><span>       }  
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>targetInterface.<span style="color:#a6e22e">isAssignableFrom</span>(target.<span style="color:#a6e22e">getClass</span>())){  
+</span></span><span style="display:flex;"><span>           <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException(<span style="color:#e6db74">&#34;target 不继承 targetInterface&#34;</span>);  
+</span></span><span style="display:flex;"><span>       }  
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">return</span> (T) Proxy.<span style="color:#a6e22e">newProxyInstance</span>(target.<span style="color:#a6e22e">getClass</span>().<span style="color:#a6e22e">getClassLoader</span>(), target.<span style="color:#a6e22e">getClass</span>().<span style="color:#a6e22e">getInterfaces</span>(), <span style="color:#66d9ef">new</span> MyInvocationHandler(target));  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="cglib代理">CGLIB代理</h2>
+<p>因为JDK代理只能进行接口代理，不能进行类代理，如果需要对类进行代理的话，那么就可以使用CGLIB，CGLIB是一个强大、高性能的字节码生成库，就是说CGLIB是通过动态的去生成一个子类去覆盖需要被代理的类，那么根据Java的规则，那么他是无法代理被<code>final</code>修饰的方法的或者是类；在较低层，CGLIB是通过ASM（字节码操作框架）来操作字节码生成子类的。
+优点：</p>
+<ul>
+<li>可以代理任意的接口和类，</li>
+<li>相对于JDK代理性能更加高，通过生成字节码来实现代理，避免了反射调用的开销
+缺点：</li>
+<li>不能代理final方法和final类</li>
+<li>增添了项目的依赖性</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// cglib依赖</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>cglib<span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>cglib<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>2.<span style="color:#a6e22e">2</span>.<span style="color:#a6e22e">2</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><h3 id="示例1拦截所有方法">示例1：拦截所有方法</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> org.example;  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mac</span> {  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m1</span>(){  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;M1 MacBook Pro&#34;</span>);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m2</span>(){  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;M2 MacBook Pro&#34;</span>);  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 创建一个Enhancer来给某个类创建代理类  </span>
+</span></span><span style="display:flex;"><span>        Enhancer enhancer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Enhancer();  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// setSuperclass来设置父类型，即需要给哪个类创建代理类  </span>
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setSuperclass</span>(Mac.<span style="color:#a6e22e">class</span>);  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 设置回调，当调用代理对象的任何方法的时候，都会被MethodInterceptor接口的invoke方法处理  </span>
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setCallback</span>(<span style="color:#66d9ef">new</span> MethodInterceptor() {  
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/**  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">             * 代理对象方法拦截器  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">             * @param o 代理对象  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">             * @param method 被代理的类的方法，即Service1中的方法  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">             * @param objects 调用方法传递的参数  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">             * @param methodProxy 方法代理对象  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">             * @return  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">             * @throws Throwable  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">             */</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@Override</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">intercept</span>(Object o, Method method, Object<span style="color:#f92672">[]</span> objects, MethodProxy methodProxy) <span style="color:#66d9ef">throws</span> Throwable {  
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;调用方法:&#34;</span> <span style="color:#f92672">+</span> method);  
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 使用MethodProxy的invokeSuper调用被代理类的方法  </span>
+</span></span><span style="display:flex;"><span>                Object result <span style="color:#f92672">=</span> methodProxy.<span style="color:#a6e22e">invokeSuper</span>(o, objects);  
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> result;  
+</span></span><span style="display:flex;"><span>            }  
+</span></span><span style="display:flex;"><span>        });  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 获取代理对象,调用enhancer.create方法获取代理对象  </span>
+</span></span><span style="display:flex;"><span>        Mac mac <span style="color:#f92672">=</span> (Mac) enhancer.<span style="color:#a6e22e">create</span>();  
+</span></span><span style="display:flex;"><span>        mac.<span style="color:#a6e22e">m1</span>();  
+</span></span><span style="display:flex;"><span>        mac.<span style="color:#a6e22e">m2</span>();  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>MethodInterceptor</code>接口有个<code>intercept</code>方法，这个方法会拦截代理对象所有的方法调用。</p>
+<h3 id="示例2拦截所有方法并返回固定值">示例2：拦截所有方法并返回固定值</h3>
+<p>当调用任何方法的时候都返回一个固定值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mac</span> {  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">m1</span>(){  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;M1 MacBook Pro&#34;</span>);  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;M1&#34;</span>;  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">m2</span>(){  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;M2 MacBook Pro&#34;</span>);  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;M2&#34;</span>;  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 创建一个Enhancer来给某个类创建代理类  </span>
+</span></span><span style="display:flex;"><span>        Enhancer enhancer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Enhancer();  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// setSuperclass来设置父类型，即需要给哪个类创建代理类  </span>
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setSuperclass</span>(Mac.<span style="color:#a6e22e">class</span>);  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 设置回调，当调用代理对象的任何方法的时候，都返回系统的值  </span>
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setCallback</span>(<span style="color:#66d9ef">new</span> FixedValue() {  
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@Override</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">loadObject</span>() <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Apple M&#34;</span>;  
+</span></span><span style="display:flex;"><span>            }  
+</span></span><span style="display:flex;"><span>        });  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 获取代理对象,调用enhancer.create方法获取代理对象  </span>
+</span></span><span style="display:flex;"><span>        Mac mac <span style="color:#f92672">=</span> (Mac) enhancer.<span style="color:#a6e22e">create</span>();  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(mac.<span style="color:#a6e22e">m1</span>());  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(mac.<span style="color:#a6e22e">m2</span>());  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="示例3直接放行不做任何操作">示例3：直接放行，不做任何操作</h3>
+<p>将<code>NoOp.INSTANCE</code>作为<code>setCallback</code>参数的时候，调用方法会直接运行。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>        Enhancer enhancer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Enhancer();  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setSuperclass</span>(Mac.<span style="color:#a6e22e">class</span>);  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setCallback</span>(NoOp.<span style="color:#a6e22e">INSTANCE</span>);  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        Mac mac <span style="color:#f92672">=</span> (Mac) enhancer.<span style="color:#a6e22e">create</span>();  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(mac.<span style="color:#a6e22e">m1</span>());  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(mac.<span style="color:#a6e22e">m2</span>());  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="示例4不同的方法使用不同的拦截器">示例4：不同的方法使用不同的拦截器</h3>
+<p>通过将不同的代理方式添加进<code>callbacks</code>数组当中，然后将数组设置为Enhancer 的属性，最后通过<code>CallbackFilter</code>中的<code>accept</code>来判断执行那个不同的代理方式，<code>accept</code>方法返回<code>callbacks</code>数组的索引。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>        Enhancer enhancer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Enhancer();  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setSuperclass</span>(Mac.<span style="color:#a6e22e">class</span>);  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 创建2个Callback数组  </span>
+</span></span><span style="display:flex;"><span>        Callback<span style="color:#f92672">[]</span> callbacks <span style="color:#f92672">=</span> {  
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> MethodInterceptor() {  
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">@Override</span>  
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">intercept</span>(Object o, Method method, Object<span style="color:#f92672">[]</span> objects, MethodProxy methodProxy) <span style="color:#66d9ef">throws</span> Throwable {  
+</span></span><span style="display:flex;"><span>                        Object result <span style="color:#f92672">=</span> methodProxy.<span style="color:#a6e22e">invokeSuper</span>(o, objects);  
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">return</span> result;  
+</span></span><span style="display:flex;"><span>                    }  
+</span></span><span style="display:flex;"><span>                },  
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> FixedValue() {  
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">@Override</span>  
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">loadObject</span>() <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Apple M2&#34;</span>;  
+</span></span><span style="display:flex;"><span>                    }  
+</span></span><span style="display:flex;"><span>                }  
+</span></span><span style="display:flex;"><span>        };  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// etCallbacks传递Callback数组  </span>
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setCallbacks</span>(callbacks);  
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 设置过滤器CallbackFilter  </span>
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setCallbackFilter</span>(<span style="color:#66d9ef">new</span> CallbackFilter() {  
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// accept返回的Callbacks数组的索引  </span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@Override</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">accept</span>(Method method) {  
+</span></span><span style="display:flex;"><span>                String name <span style="color:#f92672">=</span> method.<span style="color:#a6e22e">getName</span>();  
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> name.<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;m2&#34;</span>) <span style="color:#f92672">?</span> 1 : 0;  
+</span></span><span style="display:flex;"><span>            }  
+</span></span><span style="display:flex;"><span>        });  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        Mac mac <span style="color:#f92672">=</span> (Mac) enhancer.<span style="color:#a6e22e">create</span>();  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(mac.<span style="color:#a6e22e">m1</span>());  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(mac.<span style="color:#a6e22e">m2</span>());  
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>优化：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>        Enhancer enhancer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Enhancer();  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        MethodInterceptor methodInterceptor <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MethodInterceptor() {  
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@Override</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">intercept</span>(Object o, Method method, Object<span style="color:#f92672">[]</span> objects, MethodProxy methodProxy) <span style="color:#66d9ef">throws</span> Throwable {  
+</span></span><span style="display:flex;"><span>                Object result <span style="color:#f92672">=</span> methodProxy.<span style="color:#a6e22e">invokeSuper</span>(o, objects);  
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> result;  
+</span></span><span style="display:flex;"><span>            }  
+</span></span><span style="display:flex;"><span>        };  
+</span></span><span style="display:flex;"><span>        FixedValue fixedValue <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FixedValue() {  
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@Override</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">loadObject</span>() <span style="color:#66d9ef">throws</span> Exception {  
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Apple M2&#34;</span>;  
+</span></span><span style="display:flex;"><span>            }  
+</span></span><span style="display:flex;"><span>        };  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        CallbackHelper callbackHelper <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CallbackHelper(Mac.<span style="color:#a6e22e">class</span>, <span style="color:#66d9ef">null</span>) {  
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@Override</span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">protected</span> Object <span style="color:#a6e22e">getCallback</span>(Method method) {  
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> method.<span style="color:#a6e22e">getName</span>().<span style="color:#a6e22e">equals</span>(<span style="color:#e6db74">&#34;m2&#34;</span>) <span style="color:#f92672">?</span> fixedValue : methodInterceptor;  
+</span></span><span style="display:flex;"><span>            }  
+</span></span><span style="display:flex;"><span>        };  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setSuperclass</span>(Mac.<span style="color:#a6e22e">class</span>);  
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setCallbacks</span>(callbackHelper.<span style="color:#a6e22e">getCallbacks</span>());  
+</span></span><span style="display:flex;"><span>        enhancer.<span style="color:#a6e22e">setCallbackFilter</span>(callbackHelper);  
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        Mac mac <span style="color:#f92672">=</span> (Mac) enhancer.<span style="color:#a6e22e">create</span>();  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(mac.<span style="color:#a6e22e">m1</span>());  
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(mac.<span style="color:#a6e22e">m2</span>());  
+</span></span><span style="display:flex;"><span>    }  
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

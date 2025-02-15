@@ -4,9 +4,9 @@
     <title>文章分类 on Laelaps</title>
     <link>https://blog.laelaps.us/categories/</link>
     <description>Recent content in 文章分类 on Laelaps</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Oct 2024 00:52:17 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2025 15:37:18 +0000</lastBuildDate>
     <atom:link href="https://blog.laelaps.us/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nginx</title>
@@ -44,6 +44,13 @@
       <description></description>
     </item>
     <item>
+      <title>MQ</title>
+      <link>https://blog.laelaps.us/categories/mq/</link>
+      <pubDate>Wed, 23 Aug 2023 10:27:39 +0800</pubDate>
+      <guid>https://blog.laelaps.us/categories/mq/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Go</title>
       <link>https://blog.laelaps.us/categories/go/</link>
       <pubDate>Wed, 16 Aug 2023 22:18:32 +0800</pubDate>
@@ -55,6 +62,13 @@
       <link>https://blog.laelaps.us/categories/docker/</link>
       <pubDate>Mon, 14 Aug 2023 21:58:13 +0800</pubDate>
       <guid>https://blog.laelaps.us/categories/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JVM</title>
+      <link>https://blog.laelaps.us/categories/jvm/</link>
+      <pubDate>Tue, 11 Jul 2023 16:31:28 +0800</pubDate>
+      <guid>https://blog.laelaps.us/categories/jvm/</guid>
       <description></description>
     </item>
     <item>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.123.8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="laelaps" />
+  <meta property="og:url" content="https://blog.laelaps.us/posts/archive/tools/nginx/" />
+  <link rel="canonical" href="https://blog.laelaps.us/posts/archive/tools/nginx/" /><link rel="alternate" type="application/atom+xml" href="https://blog.laelaps.us/index.xml" title="Laelaps">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/blog.laelaps.us\/"
+      },
+      "articleSection" : "posts",
+      "name" : "重读Nginx",
+      "headline" : "重读Nginx",
+      "description" : "Nginx 在之前就看过Nginx，但是很久了，许多内容都忘记了，就只剩下Nginx是一个Web服务器，可以干很多牛逼的事。这次突然想再去玩玩Nginx了。\nNginx是一个高性能的、轻量级的Web服务器、反向代理服务器以及电子邮件代理服务器。反向代理服务器是指来自互联网的流量全部指向代理服务器，然后代理服务器再将请求转向内部的其他服务器上，再将从服务器上的结果重新返回给用户；有反向服务器就必然有正向代理服务器，正向代理服务器最常见的可能就是“翻墙”了，典型的正向代理，正向代理服务器代理用户去访问外部的服务器，所以正向代理服务提供了安全性、隐私保护等功能。\n|-------------------| | Client1\\ | | Client2 \\ Proxy |-------\u0026gt; Origin Server | Client3 \/ | |-------------------| Forward Proxy 代理客户端 |-------------------| |-------------------| | Client1 -------\u0026gt;| | \/ Server 1 | | Client2 -------\u0026gt;|----\u0026gt;| Proxy - Server 2 | | Client3 -------\u0026gt;| | \\ Server 3 | |-------------------| |-------------------| Forward Proxy 代理服务器 如果我们只是想使用Nginx的话，不想研究他的源码（至少我不想），那么我们只需要知道他的配置文件即可，在接下来，我们也只是居于配置文件上的学习；学会之后，也不用我们真的去手写配置文件，至少我是不愿意的，我们可以利用https:\/\/github.com\/digitalocean\/nginxconfig.io去生成配置。\n常用命令 nginx -s stop 快速关闭Nginx，可能不保存相关信息，并迅速终止web服务。 nginx -s quit 平稳关闭Nginx，保存相关信息，有安排的结束web服务。 nginx -s reload 因改变了Nginx相关配置，需要重新加载配置而重载。 nginx -s reopen 重新打开日志文件。 nginx -c filename 为 Nginx 指定一个配置文件，来代替缺省的。 nginx -t 不运行，仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。 nginx -v 显示 nginx 的版本。 nginx -V 显示 nginx 的版本，编译器版本和配置参数。 配置 我们先使用ChatGPT生成一份配置文件，要求如下: 我需要部署一个前后端分离的项目，前端包括管理页面（https:\/\/domain.",
+      "inLanguage" : "en-US",
+      "author" : "laelaps",
+      "creator" : "laelaps",
+      "publisher": "laelaps",
+      "accountablePerson" : "laelaps",
+      "copyrightHolder" : "laelaps",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-09-16 14:34:33 \u002b0800 \u002b0800",
+      "dateModified" : "2023-09-16 14:34:33 \u002b0800 \u002b0800",
+      "url" : "https:\/\/blog.laelaps.us\/posts\/archive\/tools\/nginx\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>重读Nginx</title>
+  <meta property="og:title" content="重读Nginx" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Nginx 在之前就看过Nginx，但是很久了，许多内容都忘记了，就只剩下Nginx是一个Web服务器，可以干很多牛逼的事。这次突然想再去玩玩Nginx了。
+Nginx是一个高性能的、轻量级的Web服务器、反向代理服务器以及电子邮件代理服务器。反向代理服务器是指来自互联网的流量全部指向代理服务器，然后代理服务器再将请求转向内部的其他服务器上，再将从服务器上的结果重新返回给用户；有反向服务器就必然有正向代理服务器，正向代理服务器最常见的可能就是“翻墙”了，典型的正向代理，正向代理服务器代理用户去访问外部的服务器，所以正向代理服务提供了安全性、隐私保护等功能。
+|-------------------| | Client1\ | | Client2 \ Proxy |-------&amp;gt; Origin Server | Client3 / | |-------------------| Forward Proxy 代理客户端 |-------------------| |-------------------| | Client1 -------&amp;gt;| | / Server 1 | | Client2 -------&amp;gt;|----&amp;gt;| Proxy - Server 2 | | Client3 -------&amp;gt;| | \ Server 3 | |-------------------| |-------------------| Forward Proxy 代理服务器 如果我们只是想使用Nginx的话，不想研究他的源码（至少我不想），那么我们只需要知道他的配置文件即可，在接下来，我们也只是居于配置文件上的学习；学会之后，也不用我们真的去手写配置文件，至少我是不愿意的，我们可以利用https://github.com/digitalocean/nginxconfig.io去生成配置。
+常用命令 nginx -s stop 快速关闭Nginx，可能不保存相关信息，并迅速终止web服务。 nginx -s quit 平稳关闭Nginx，保存相关信息，有安排的结束web服务。 nginx -s reload 因改变了Nginx相关配置，需要重新加载配置而重载。 nginx -s reopen 重新打开日志文件。 nginx -c filename 为 Nginx 指定一个配置文件，来代替缺省的。 nginx -t 不运行，仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。 nginx -v 显示 nginx 的版本。 nginx -V 显示 nginx 的版本，编译器版本和配置参数。 配置 我们先使用ChatGPT生成一份配置文件，要求如下: 我需要部署一个前后端分离的项目，前端包括管理页面（https://domain." />
+  <meta name="description" content="Nginx 在之前就看过Nginx，但是很久了，许多内容都忘记了，就只剩下Nginx是一个Web服务器，可以干很多牛逼的事。这次突然想再去玩玩Nginx了。
+Nginx是一个高性能的、轻量级的Web服务器、反向代理服务器以及电子邮件代理服务器。反向代理服务器是指来自互联网的流量全部指向代理服务器，然后代理服务器再将请求转向内部的其他服务器上，再将从服务器上的结果重新返回给用户；有反向服务器就必然有正向代理服务器，正向代理服务器最常见的可能就是“翻墙”了，典型的正向代理，正向代理服务器代理用户去访问外部的服务器，所以正向代理服务提供了安全性、隐私保护等功能。
+|-------------------| | Client1\ | | Client2 \ Proxy |-------&amp;gt; Origin Server | Client3 / | |-------------------| Forward Proxy 代理客户端 |-------------------| |-------------------| | Client1 -------&amp;gt;| | / Server 1 | | Client2 -------&amp;gt;|----&amp;gt;| Proxy - Server 2 | | Client3 -------&amp;gt;| | \ Server 3 | |-------------------| |-------------------| Forward Proxy 代理服务器 如果我们只是想使用Nginx的话，不想研究他的源码（至少我不想），那么我们只需要知道他的配置文件即可，在接下来，我们也只是居于配置文件上的学习；学会之后，也不用我们真的去手写配置文件，至少我是不愿意的，我们可以利用https://github.com/digitalocean/nginxconfig.io去生成配置。
+常用命令 nginx -s stop 快速关闭Nginx，可能不保存相关信息，并迅速终止web服务。 nginx -s quit 平稳关闭Nginx，保存相关信息，有安排的结束web服务。 nginx -s reload 因改变了Nginx相关配置，需要重新加载配置而重载。 nginx -s reopen 重新打开日志文件。 nginx -c filename 为 Nginx 指定一个配置文件，来代替缺省的。 nginx -t 不运行，仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。 nginx -v 显示 nginx 的版本。 nginx -V 显示 nginx 的版本，编译器版本和配置参数。 配置 我们先使用ChatGPT生成一份配置文件，要求如下: 我需要部署一个前后端分离的项目，前端包括管理页面（https://domain." />
+  <meta property="og:locale" content="en-us" /><meta property="og:image" content="" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:none;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body a{color:#1bc92a}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{text-align:center}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}}@media screen and (max-width:48em){.posts-category{display:none}}table{width:100%;border-collapse:collapse;border:1px solid}tr,th,td{border:1px solid;height:40px;padding-left:10px}thead{background:#ebebeb}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="Laelaps">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >Laelaps</a
+    >
+  </div>
+  <div class="header-subtitle">Stay Hungry, Stay Foolish</div>
+</header>
+<div class="row end-md center-xs header-items">
+  
+  <div class="header-item">
+    <a href="/categories/plan" target="_blank">Plan</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories" target="_blank">Categories</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories/java" target="_blank">Java</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/categories/go" target="_blank">Go</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/leetcodes" target="_blank">LeetCode</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="/about" target="_blank">About Me</a>
+  </div>
+  
+</div>
+<div class="row end-xs">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">重读Nginx</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime=" 2023-09-16 14:34:33 &#43;0800">
+                16 Sep 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="/">@laelaps</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+        <aside id="toc-container">
+          <details>
+            <summary>Table of Contents</summary>
+            <aside class="toc">
+                <nav id="TableOfContents">
+  <ul>
+    <li><a href="#nginx">Nginx</a>
+      <ul>
+        <li><a href="#常用命令">常用命令</a></li>
+        <li><a href="#配置">配置</a>
+          <ul>
+            <li><a href="#全局配置">全局配置</a></li>
+            <li><a href="#events块">events块</a></li>
+            <li><a href="#http块">http块</a></li>
+            <li><a href="#server块">server块</a>
+              <ul>
+                <li><a href="#server_name通配符">server_name通配符</a></li>
+              </ul>
+            </li>
+            <li><a href="#location块">location块</a></li>
+            <li><a href="#upstream块">upstream块</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#实例">实例</a>
+      <ul>
+        <li><a href="#简单的文件服务器">简单的文件服务器</a></li>
+        <li><a href="#监听相同的端口">监听相同的端口</a></li>
+        <li><a href="#反向代理">反向代理</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </aside>
+        </details> 
+        </aside>
+
+        <div class="post-content markdown-body">
+          
+          <h1 id="nginx">Nginx</h1>
+<p>在之前就看过Nginx，但是很久了，许多内容都忘记了，就只剩下Nginx是一个Web服务器，可以干很多牛逼的事。这次突然想再去玩玩Nginx了。</p>
+<p>Nginx是一个高性能的、轻量级的Web服务器、反向代理服务器以及电子邮件代理服务器。反向代理服务器是指来自互联网的流量全部指向代理服务器，然后代理服务器再将请求转向内部的其他服务器上，再将从服务器上的结果重新返回给用户；有反向服务器就必然有正向代理服务器，正向代理服务器最常见的可能就是“翻墙”了，典型的正向代理，正向代理服务器代理用户去访问外部的服务器，所以正向代理服务提供了安全性、隐私保护等功能。</p>
+<pre tabindex="0"><code>|-------------------|
+|   Client1\        |
+|   Client2 \ Proxy |-------&gt; Origin Server
+|   Client3 /       |
+|-------------------|
+   Forward Proxy 代理客户端
+</code></pre><pre tabindex="0"><code>|-------------------|     |-------------------|
+|   Client1 -------&gt;|     |       / Server 1  |
+|   Client2 -------&gt;|----&gt;| Proxy - Server 2  |
+|   Client3 -------&gt;|     |       \ Server 3  |
+|-------------------|     |-------------------|
+                        Forward Proxy 代理服务器
+</code></pre><p>如果我们只是想使用Nginx的话，不想研究他的源码（至少我不想），那么我们只需要知道他的配置文件即可，在接下来，我们也只是居于配置文件上的学习；学会之后，也不用我们真的去手写配置文件，至少我是不愿意的，我们可以利用<a href="https://github.com/digitalocean/nginxconfig.io">https://github.com/digitalocean/nginxconfig.io</a>去生成配置。</p>
+<h2 id="常用命令">常用命令</h2>
+<pre tabindex="0"><code>nginx -s stop       快速关闭Nginx，可能不保存相关信息，并迅速终止web服务。
+nginx -s quit       平稳关闭Nginx，保存相关信息，有安排的结束web服务。
+nginx -s reload     因改变了Nginx相关配置，需要重新加载配置而重载。
+nginx -s reopen     重新打开日志文件。
+nginx -c filename   为 Nginx 指定一个配置文件，来代替缺省的。
+nginx -t            不运行，仅仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。
+nginx -v            显示 nginx 的版本。
+nginx -V            显示 nginx 的版本，编译器版本和配置参数。
+</code></pre><h2 id="配置">配置</h2>
+<p>我们先使用ChatGPT生成一份配置文件，要求如下:
+我需要部署一个前后端分离的项目，前端包括管理页面（https://domain.xyz/backend)，前端页面(<a href="https://domain.xyz/">https://domain.xyz/</a>)，所有的API请求（https://domain.xyz/api/&hellip;），给出一个nginx的配置文件，前端文件放在/var/www/下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── backend
+</span></span><span style="display:flex;"><span>│   ├── assets
+</span></span><span style="display:flex;"><span>│   ├── avatar
+</span></span><span style="display:flex;"><span>│   ├── favicon.ico
+</span></span><span style="display:flex;"><span>│   ├── index.html
+</span></span><span style="display:flex;"><span>│   ├── index.html.gz
+</span></span><span style="display:flex;"><span>│   ├── js
+</span></span><span style="display:flex;"><span>│   ├── robots.txt
+</span></span><span style="display:flex;"><span>│   ├── template
+</span></span><span style="display:flex;"><span>│   └── thumb
+</span></span><span style="display:flex;"><span>└── frontend
+</span></span><span style="display:flex;"><span>    ├── assets
+</span></span><span style="display:flex;"><span>    ├── favicon.ico
+</span></span><span style="display:flex;"><span>    ├── index.html
+</span></span><span style="display:flex;"><span>    ├── index.html.gz
+</span></span><span style="display:flex;"><span>    └── js
+</span></span></code></pre></div><p>结果如下：</p>
+<pre tabindex="0"><code># 用户和工作目录
+user nginx;
+worker_processes auto;
+pid /run/nginx.pid;
+
+# 定义事件块
+events {
+    worker_connections 1024;
+    # 其他事件配置可以放在这里
+}
+
+# 定义 HTTP 块
+http {
+    # 定义 MIME 类型
+    include /etc/nginx/mime.types;
+
+    # 默认 MIME 类型
+    default_type application/octet-stream;
+
+    # 定义日志格式
+    log_format main &#39;$remote_addr - $remote_user [$time_local] &#39;
+                    &#39;&#34;$request&#34; $status $body_bytes_sent &#39;
+                    &#39;&#34;$http_referer&#34; &#34;$http_user_agent&#34;&#39;;
+
+    # 定义反向代理服务器集群（示例）
+    upstream api_servers {
+        server api_server1:8080;  # 替换为你的 API 服务器地址和端口
+        server api_server2:8080;  # 如果有多个后端服务器，可以添加更多的服务器
+    }
+
+    # 定义虚拟主机
+    server {
+        listen 80;  # 监听端口
+
+        server_name domain.xyz;  # 主机名
+
+        # 静态文件服务 - 前端页面（示例）
+        location / {
+            root /var/www/frontend;  # 前端文件所在目录
+            index index.html;
+        }
+
+        # 静态文件服务 - 后端管理页面（示例）
+        location /backend/ {
+            root /var/www/backend;  # 后端管理文件所在目录
+            index index.html;
+        }
+
+        # API 请求代理（示例）
+        location /api/ {
+            proxy_pass http://api_servers;  # 将请求转发到后端 API 服务器
+        }
+
+        # 配置静态资源缓存
+        location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+            expires max;
+            add_header Cache-Control &#34;public, max-age=31536000&#34;;
+        }
+
+        # 请求日志
+        access_log /var/log/nginx/access.log main;
+
+        # 错误页面（前端）
+        error_page 404 /frontend/404.html;
+        error_page 500 502 503 504 /frontend/50x.html;
+        location = /frontend/50x.html {
+            root /var/www/frontend;  # 前端错误页面所在目录
+        }
+
+        # 错误页面（后端）
+        error_page 404 /backend/404.html;
+        error_page 500 502 503 504 /backend/50x.html;
+        location = /backend/50x.html {
+            root /var/www/backend;  # 后端错误页面所在目录
+        }
+    }
+
+    # 其他虚拟主机配置可以放在这里
+
+    # 配置 Gzip 压缩
+    gzip on;
+    gzip_comp_level 5;
+    gzip_min_length 256;
+    gzip_types application/javascript application/x-javascript text/css application/xml application/json;
+    
+    # 阻止服务器信息泄漏
+    server_tokens off;
+    
+    # SSL/TLS 配置（如果需要，根据实际需求添加）
+    # include /etc/nginx/conf.d/ssl.conf;
+
+    # 防火墙规则（如果需要，根据实际需求添加）
+    # include /etc/nginx/conf.d/firewall.conf;
+}
+</code></pre><p>其实在这里还是有点问题的，我们这里是单页应用，最后的404的location是可以删去的。</p>
+<p>从上面的配置文件中，我们可以看出nginx的配置文件也是分层的，在最外面那次是nginx的全局配置，在向里面有events事件块，以及http时间块，他们两个是并列的；在http块里，又有upstream块、虚拟主机server块，以及一切其他配置；在server块中，又存在location块。</p>
+<pre tabindex="0"><code># nginx配置的层次结构
+
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+
+events {
+    worker_connections 768;
+    # 其他事件配置指令
+}
+
+http {
+    # 全局 HTTP 配置指令
+
+    server {
+        listen 80;
+        server_name example.com;
+        
+        # 服务器配置指令
+
+        location / {
+            # 根路径的 Location 配置指令
+        }
+
+        location /images/ {
+            # /images/ 路径的 Location 配置指令
+        }
+    }
+
+    server {
+        listen 80;
+        server_name anotherdomain.com;
+        
+        # 另一个服务器配置指令
+
+        location / {
+            # 根路径的 Location 配置指令
+        }
+    }
+
+    # 其他 Server 配置块和 Location 配置块
+}
+</code></pre><h3 id="全局配置">全局配置</h3>
+<p>全局块是默认配置文件从开始到events块之间的一部分内容，主要设置影响Nginx服务器正题运行的配置指令。
+通常包括：用户（组）、worker process、worker_rlimit_nofile、nginx进程pid存放路径、日志存放路径、类型、配置文件引入等。</p>
+<pre tabindex="0"><code># 用户和工作目录
+user nginx; # 配置运行 nginx 服务器用户
+worker_processes auto;
+pid /run/nginx.pid;
+error_log logs/error.log error;
+include /etc/nginx/conf.d/ssl.conf;
+</code></pre><ul>
+<li>用户组：用户组主要是处于安全性和权限管理的考虑，所以指定的用户通常只应该有足够的权限来访问 Web 根目录和执行 Nginx 操作；没有其他特殊权限。</li>
+<li>worker_processes：用于指定Nginx主进程生产工作进程的数量，通常是CPU核心数或者核心数的两倍，或者直接 auto。</li>
+<li>pid：Nginx主进程的进程ID文件，对于Nginx的监视和管理非常重要。</li>
+<li>error_log：用于记录服务器运行和请求相关的错误或者警告，有五个级别error、warn、notice、info、debug，为了减小服务器的压力，通常设置为error 或者 warn；当然在http块和server块也可以配置日志。</li>
+<li>include：用来导入其他的配置文件，防止配置文件过大，便于管理，同时在虚拟主机中也将一些相同的配置提取到系统的一个配置文件中。</li>
+</ul>
+<h3 id="events块">events块</h3>
+<p>用来配置一些与用户相关的网络连接。</p>
+<pre tabindex="0"><code>events {
+	accept_mutex on;
+	multi_accept off;
+	use poll;
+    worker_connections 1024;
+}
+</code></pre><ul>
+<li>accept_mutex：默认开启，用于控制Nginx是否开启接受锁，主要左右是为了避免惊群效应，节省用户资源（在多个进程工作的时候，如果来了一个新的请求，如果不使用接受锁，那么多个进程会竞争同一个用户连接，会导致多个进程被唤醒，使用接受锁，那么只有一个进程被唤醒，获取锁）。</li>
+<li>multi_accept：是否允许多个Nginx同时接受多个连接请求，如果开启，他减少了处理连接请求的次数，提高了并发的能力，因为他一次接受多个请求，然后将请求分配给工作进程处理，减少了进程之间的竞争，默认为关闭。</li>
+<li>use：选择事件驱动模型。</li>
+<li>worker_connections：用于设置每个工作线程同时处理的最大连接数，直接影响了Nginx服务器的并发处理能力和性能，如果设置的太低，那么导致被拒绝服务的连接增多服务器性能下降，如果设置的过大，没一个连接都需要顶的内存，会导致内存消耗过多，同时导致其他资源被消耗，系统崩溃。</li>
+</ul>
+<h3 id="http块">http块</h3>
+<p>http块是作为web服务器和代理服务器最重要的部分；代理，缓存和日志定义等多数功能和第三方模块配置都放在此块中。</p>
+<pre tabindex="0"><code>http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    # 自定义 MIME 类型映射
+    types {
+        text/html            html htm shtml;
+        text/css             css;
+        text/javascript      js;
+        image/jpeg           jpeg jpg;
+        image/png            png;
+        application/pdf      pdf;
+        application/zip      zip;
+    }
+
+    # 定义日志格式
+    log_format main &#39;$remote_addr - $remote_user [$time_local] &#39;
+                    &#39;&#34;$request&#34; $status $body_bytes_sent &#39;
+                    &#39;&#34;$http_referer&#34; &#34;$http_user_agent&#34;&#39;;
+
+	# 请求日志
+    access_log /var/log/nginx/access.log main;
+	
+	sendfile on;
+	sendfile_max_chunk 512k;  # 每次发送最多 512KB 的数据块
+
+	keepalive_timeout 120s [120s];
+	keepalive_requests 100;
+}
+</code></pre><ul>
+<li>MIME：MIME是用来告诉浏览器如何处理服务器返回的文件，他表明了文件是视频，音频等，我们使用include导入了默认的MIME配置文件，使用default_type设置了默认的MIME类型，如果没有对应的匹配，就会匹配到application/octet-stream；当然我们可以使用types 定义我们自己的MIME匹配类型。</li>
+<li>log_format：用于指定日志的格式，自定义日志的输出格式。</li>
+<li>access_log：访问日志，用来记录 HTTP 请求和响应信息。</li>
+<li>sendfile：用来优化了Nginx对于文件或者静态资源的分发，如果开启，那么他可以直接将磁盘中的文件读取到套接字中，无需通过用户空间来传递，在提高文件传输效率下，也减少了CPU和内存的使用，降低了服务器的负载。</li>
+<li>sendfile_max_chunk：指定了sendfile可以发送数据块的大小，如果过大，会消耗过多的内存，所以需要在性能和内存之间寻找到平衡点。</li>
+<li>keepalive_timeout：指每个TCP连接最多可以保存多久，不用为每一个请求都创建一个TCP连接（设置为0），如果限制了指定的时间，那么连接将被关闭，而第二个参数可选，是为了在HTTP头部设置一个Keep-Alive: timeout=time。</li>
+<li>keepalive_requests：设置一个keepalive上允许连接的最大请求数，如果超过这个数，那么连接将会被关闭，默认值为100 或者 0（没有限制）。</li>
+</ul>
+<h3 id="server块">server块</h3>
+<p>在http快中可以有多个server块，每个块相当于一台虚拟主机，可以向外提供逻辑上的一组服务（网站）。</p>
+<pre tabindex="0"><code># 定义虚拟主机
+    server {
+        listen 80;  # 监听端口
+
+        server_name domain.xyz;  # 主机名
+
+        # 静态文件服务 - 前端页面（示例）
+        location / {
+            root /var/www/frontend;  # 前端文件所在目录
+            index index.html;
+        }
+
+
+        # 请求日志
+        access_log /var/log/nginx/access.log main;
+
+        # 错误页面（前端）
+        error_page 404 /frontend/404.html;
+        error_page 500 502 503 504 /frontend/50x.html;
+        location = /frontend/50x.html {
+            root /var/www/frontend;  # 前端错误页面所在目录
+        }
+    }
+</code></pre><ul>
+<li>listen：用来配置监听的网络地址和端口，处理来自特定用户的请求。</li>
+<li>server_name：为不同的虚拟主机配置不同的域名，Nginx可以根据请求来的域名将请求路由到正确的虚拟主机中，这是多域名托管和虚拟主机配置的关键。</li>
+</ul>
+<h4 id="server_name通配符">server_name通配符</h4>
+<ol>
+<li><strong>精确匹配</strong>：直接指定一个特定的域名。<code>server_name: domain.xyz</code></li>
+<li><strong>通配符前缀</strong>：通配符 <code>*</code> 作为前缀来匹配多个子域名。<code>server_name *.domain.xyz</code>可以匹配<code>sub1.domain.xyz</code>或者<code>sub2.domain.xyz</code>。</li>
+<li><strong>通配符后缀</strong>：通配符 <code>*</code> 作为后缀来匹配多个域名。<code>server_name domain.*</code>可以匹配<code>domain.xyz</code>或者<code>domain.com</code>。</li>
+<li><strong>通配符通用匹配</strong>：使用通配符 <code>*</code> 匹配所有域名。<code>server_name *</code>。</li>
+<li><strong>正则匹配</strong>：已<code>~</code>开头，不推荐使用。
+匹配优先级为：准确匹配 &gt; 通配符在开始时匹配 &gt; 通配符在结尾时匹配 &gt; 正则表达式匹配 &gt; 1. 先到先得。</li>
+</ol>
+<h3 id="location块">location块</h3>
+<p>在每个server块定义多location块，location块是对Nginx受到的请求字符串，对出虚拟主机之外的字符串进行匹配，都有特定的处理方式。</p>
+<p>所有的功能都在这里定义，例如负载均衡、反向代理、虚拟域名。</p>
+<pre tabindex="0"><code>location / {
+	root /var/www/frontend;  # 前端文件所在目录
+	index index.html;
+}
+</code></pre><ul>
+<li>location：基于请求的 URL 路径对请求进行匹配，可以是一个正则表达式。</li>
+<li>root：虚拟主机的WEB目录。</li>
+<li>index：默认地址，先后顺序是index.php index.html index.htm，如果没有开启目录浏览权限，又找不到这些默认首页，就会报403错误。</li>
+</ul>
+<h3 id="upstream块">upstream块</h3>
+<pre tabindex="0"><code>upstream domain.xyz{  
+     ip_hash;  
+     server 192.168.12.1:80;  
+     server 192.168.12.2:80 down;  
+     server 192.168.12.3:8080  max_fails=3  fail_timeout=20s;  
+     server 192.168.12.4:8080;  
+}
+</code></pre><p>upstream是http的子模块，用来实现负载均衡的模块；他有四种调度算法。</p>
+<ul>
+<li>weight 轮询（默认）：请求按照时间顺序被分配到后端服务器，如果后端某台服务器宕机，将会被自动剔除，weight越大，轮询值越大，分配的概率越高，主要用于后端性能不一样的情况下。</li>
+<li>ip_hash：每个请求按照请求的IP地址的hash结果分配，可以将来自同一个IP的访客固定在一个后端服务器上，可以解决动态网页存在session的问题。</li>
+<li>fair：根据页面大小和加载时间的长短智能的进行负载均衡，也就是根据后端服务器的响应时间来分配请求。（Nginx 不支持这个策略，需要下载Nginx的upstream_fair模块）</li>
+<li>url_hash：安装请求URL的hash进行分配，使每个URL定向到同一个后端服务器。（Nginx 不支持这个策略，需要安装Nginx 的hash软件包）</li>
+</ul>
+<p>在upstream中，可以用server指定后端服务器的地址和端口号外，还可能指定每个后端服务器在负载均衡中的状态。</p>
+<ul>
+<li>down：表示当前服务器不参与负载均衡中。</li>
+<li>backup：备份服务器，只有当其他的服务器崩溃或者是忙的时候，才会请求backup服务器，因此这台服务器压力最低。</li>
+<li>max_fails：允许请求失败的次数，默认为1；当超过最大次数后，返回proxy_next_upstream 模块定义的错误。</li>
+<li>fail_timeout：在经历max_fails最大次数后，暂停服务的时间。
+<strong>当负载调度算法为ip_hash时，后端服务器在负载均衡调度中的状态不能是weight和backup。</strong></li>
+</ul>
+<h1 id="实例">实例</h1>
+<h2 id="简单的文件服务器">简单的文件服务器</h2>
+<pre tabindex="0"><code>server { 
+	# 监听 8080 端口 
+	listen 8080; 
+	location /share/ { 
+		# 打开自动列表功能，通常关闭 
+		autoindex on; 
+		# 将 /share/ 路径映射至 /data/public/，请保证 nginx 进程有权限访问 /data/public/ 
+		alias /data/public/; 
+}
+</code></pre><h2 id="监听相同的端口">监听相同的端口</h2>
+<pre tabindex="0"><code>server {
+    listen       80;
+    listen  [::]:80;
+    server_name  backend.domain.xyz;
+
+    #charset koi8-r;
+    access_log  /var/log/nginx/1.access.log  main;
+
+    location / {
+        root   /usr/share/nginx/html/backend/;
+        index  index.html;
+    }
+}
+
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name  domain.xyz;
+
+    #charset koi8-r;
+    access_log  /var/log/nginx/2.access.log  main;
+
+    location / {
+        root   /usr/share/nginx/html/frontend/;
+        index  index.html;
+    }
+}
+</code></pre><h2 id="反向代理">反向代理</h2>
+<pre tabindex="0"><code></code></pre>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+
+        
+
+
+
+        
+        
+        <div style="height: 50px;"></div>
+        
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>
