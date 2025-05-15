@@ -6,8 +6,22 @@
     <description>Recent content in Posts on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 May 2025 06:11:07 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 15 May 2025 08:03:42 +0000</lastBuildDate>
     <atom:link href="https://blog.laelaps.us/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LeetCode27 移除元素</title>
+      <link>https://blog.laelaps.us/posts/algorithm/leetcode27/</link>
+      <pubDate>Thu, 15 May 2025 15:16:23 +0800</pubDate>
+      <guid>https://blog.laelaps.us/posts/algorithm/leetcode27/</guid>
+      <description>https://leetcode.com/problems/remove-element/description/&#xA;一开始只相当到了用双指针去做，后面才反应过来，可以k其实就是一个指针，指向的是当前元素。 Java：&#xA;public static int removeElement(int[] nums, int val) { int preIndex = 0; int curIndex = 0; int k = 0; while (preIndex &amp;lt; nums.length) { nums[curIndex] = nums[preIndex]; if (nums[preIndex] == val) { preIndex++; } else { curIndex++; preIndex++; k++; } } return k; } Python：&#xA;def removeElement(self, nums: List[int], val: int) -&amp;gt; int: k = 0 for i in range(len(nums)): if nums[i] != val: nums[k] = nums[i] k += 1 return k Scala:</description>
+    </item>
+    <item>
+      <title>LeetCode704 二分查找</title>
+      <link>https://blog.laelaps.us/posts/algorithm/leetcode704/</link>
+      <pubDate>Thu, 15 May 2025 15:16:23 +0800</pubDate>
+      <guid>https://blog.laelaps.us/posts/algorithm/leetcode704/</guid>
+      <description>https://leetcode.com/problems/binary-search/description/&#xA;en&amp;hellip;.没什么好说的，最简单的二分搜索，但是看别人的写法，Scala挺有意思的，递归的写法，但是本质没什么区别。 Java：&#xA;public static int search(int[] nums, int target) { int minIndex = 0; int maxIndex = nums.length - 1; while(minIndex &amp;lt;= maxIndex){ int middleIndex = (minIndex + maxIndex) / 2; if (nums[middleIndex] == target){ return middleIndex; }else if (nums[middleIndex] &amp;lt; target){ minIndex = middleIndex + 1; }else if (nums[middleIndex] &amp;gt; target){ maxIndex = middleIndex - 1; } } return -1; } Python：&#xA;def search(self, nums: List[int], target: int) -&amp;gt; int: min_index = 0 max_index = len(nums) - 1 while min_index &amp;lt;= max_index: middle_index = (min_index + max_index) // 2 middle_value = nums[middle_index] if middle_value == target: return middle_index elif middle_value &amp;lt; target: min_index = middle_index + 1 elif middle_value &amp;gt; target: max_index = middle_index - 1 return -1 Scala:</description>
+    </item>
     <item>
       <title>------------------------ 以下为归档 ------------------------</title>
       <link>https://blog.laelaps.us/posts/archive/init/</link>
