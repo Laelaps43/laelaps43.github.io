@@ -6,7 +6,7 @@
     <description>Recent content on Laelaps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 May 2025 01:00:18 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 16 May 2025 11:04:18 +0000</lastBuildDate>
     <atom:link href="https://blog.laelaps.us/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LeetCode27 移除元素</title>
@@ -322,6 +322,13 @@
       <pubDate>Thu, 22 Jun 2023 22:50:28 +0800</pubDate>
       <guid>https://blog.laelaps.us/about/</guid>
       <description>你好，感谢你可以看到这里，我是Laelaps，一个已经从业一年的渣渣程序猿，这已经不记得自己是第几次写博客了，在之前总是感觉写博客是一件很酷的东西，觉得程序猿好像都需要一个博客，以此来炫耀自己的战绩，显示自己有多么得牛逼等等。 在24年10月16号开始实习至今，这期间有过生活的不易，感情的挫折，工作的不顺心，家庭的琐碎，以及对自己跨入25岁的恐惧等等；越加让自己觉得越来越不像自己，越来越不纯粹，越来越忧伤，甚至觉得所有的事都在自己为敌；但是自己心中仍有一种反抗的声音，告诉自己应该去改变自己。&#xA;在这一年多的工作过程中，一直有一种自己一直再吃老本的感觉，这种感觉来自自己在从业一年以来没有认真的去学习任何一门技术，尽管自己有对技术的渴望，但就是没有动力，而这也间接的导致了我在就业市场中害怕去寻找下一份工作的勇气，因为我是了解自己的水平；在这一年多期间，遇见了个别比较牛逼的人，看见他们都有自己的笔记，且笔记相对的完善，回看自己的笔记貌似都是东一点西一点，甚至可以用没有来形容了，所以这也是我重新拾起这个博客的原因，我希望自己可以对自己的笔记有系统的整理。&#xA;另外在这一年的时间中，有去追过一个女孩子，但是最后的结果就是没成功，我把结果归咎于两个方面，一个是谈吐，另外一个是外貌。希望在今后的日子里，可以朝改变这两个方面去努力，但目前也没有想到很好的方法去做出改变，希望在接下来的一年中可以找到一些方法然后有一些改变吧。&#xA;2025-04-14： 一次失败的面试，又一次发现了自己的不足 本博客仅仅用来记录自己的一些笔记，以及自己的生活。博客使用hugo + hugo-theme-yinyang + Github Page搭建而成。</description>
+    </item>
+    <item>
+      <title>Python 中的类</title>
+      <link>https://blog.laelaps.us/posts/python/python_class/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://blog.laelaps.us/posts/python/python_class/</guid>
+      <description>一直以来都没认真学习过Python中的类，今天系统的看了一下，对Python中的类有了进一步的认识。&#xA;定义 &amp;amp;&amp;amp; 实例化 类的定义是通过 class 关键字类定义的，并且习惯都是首字母大写。默认都是继承object&#xA;class MyClass(object): pass 类的实例化没有Java的那么复杂，不要new关键字。&#xA;my_class = MyClass() 在类的下面有__new__ 和 __init__两个特殊方法，__new__是一个静态用来的是分配内存创建一个新的实例，他在__init__之前就调用了；__init__是一个实例方法，他用来初始化一个已经存在的实例，为他设置对象的初始化属性。&#xA;class MyClass(object): def __new__(cls, *args, **kwargs): print(&amp;#34;Creating instance of MyClass&amp;#34;) return super().__new__(cls) def __init__(self, a): print(&amp;#34;Initializing instance of MyClass&amp;#34;) self.a = a my_class = MyClass(2) __init__不等于Java中的构造函数。&#xA;属性 基础 属性分为类属性和实例属性。实例属性每个实例独自占有，类属性只有一份。&#xA;class MyClass(object): b = 3 # 类属性 def __init__(self, a): self.a = a # 实例属性 my_class = MyClass(2) my_class2 = MyClass(3) print(my_class.a) # 2 print(my_class.</description>
     </item>
   </channel>
 </rss>
